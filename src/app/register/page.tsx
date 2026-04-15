@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
-import { Shield, Loader2, Eye, EyeOff } from 'lucide-react';
+import { Logo } from '@/components/Logo';
+import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { register, saveAuth } from '@/lib/auth';
 
 export default function RegisterPage() {
@@ -62,9 +63,8 @@ export default function RegisterPage() {
       <main className="pt-24 pb-20 min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="w-full max-w-md mx-4">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <Shield className="w-8 h-8 text-indigo-600" />
-              <span className="text-2xl font-bold text-gray-900">Credo<span className="text-indigo-600">Screening</span></span>
+            <div className="flex justify-center mb-4">
+              <Logo size={40} />
             </div>
             <h1 className="text-2xl font-bold text-gray-900">Create your account</h1>
             <p className="text-sm text-gray-500 mt-1">Get your API key and start screening</p>

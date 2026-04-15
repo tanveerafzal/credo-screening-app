@@ -2,9 +2,10 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import {
-  Shield, Search, Globe, Zap, Lock, BarChart3,
+  Search, Globe, Zap, Lock, BarChart3,
   CheckCircle, ArrowRight, Database
 } from 'lucide-react';
+import { LogoIcon } from '@/components/Logo';
 
 const SOURCES = [
   { category: 'Sanctions', items: ['OFAC SDN', 'OFAC Consolidated', 'EU Consolidated Sanctions', 'UN Security Council', 'UK OFSI', 'Australia DFAT', 'Canada SEMA', 'Switzerland SECO', 'Japan MOF', 'Singapore MAS', 'Hong Kong MAS'], color: 'red' },
@@ -51,7 +52,7 @@ export default function Home() {
       <section className="pt-28 pb-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold mb-6">
-            <Shield className="w-3.5 h-3.5" /> Powered by TrustCredo
+            <LogoIcon size={16} /> Powered by TrustCredo
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
             Your Trusted<br />

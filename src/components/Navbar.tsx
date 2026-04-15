@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Shield, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { Logo } from './Logo';
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -11,9 +12,8 @@ export function Navbar() {
     <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-100 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center gap-2">
-            <Shield className="w-8 h-8 text-indigo-600" />
-            <span className="text-xl font-bold text-gray-900">Credo<span className="text-indigo-600">Screening</span></span>
+          <Link href="/">
+            <Logo size={36} />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">

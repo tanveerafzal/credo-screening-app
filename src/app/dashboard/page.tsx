@@ -3,9 +3,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import {
-  Shield, Key, Copy, Check, Search, Loader2, AlertTriangle, CheckCircle,
-  LogOut, History, BookOpen, LayoutDashboard, ChevronRight, Clock, ExternalLink
+  Key, Copy, Check, Search, Loader2, AlertTriangle, CheckCircle,
+  LogOut, History, BookOpen, LayoutDashboard, Clock
 } from 'lucide-react';
+import { Logo } from '@/components/Logo';
 import { getAuth, clearAuth, getProfile } from '@/lib/auth';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
@@ -132,10 +133,7 @@ export default function DashboardPage() {
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-gray-200 flex flex-col fixed h-full">
         <div className="p-5 border-b border-gray-100">
-          <div className="flex items-center gap-2">
-            <Shield className="w-6 h-6 text-indigo-600" />
-            <span className="font-bold text-gray-900">Credo<span className="text-indigo-600">Screening</span></span>
-          </div>
+          <Logo size={28} />
         </div>
 
         <nav className="flex-1 p-3 space-y-1">

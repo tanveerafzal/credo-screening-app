@@ -1,5 +1,5 @@
-import { Shield } from 'lucide-react';
 import Link from 'next/link';
+import { LogoIcon } from './Logo';
 
 export function Footer() {
   return (
@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <Shield className="w-6 h-6 text-indigo-400" />
+              <LogoIcon size={28} />
               <span className="text-lg font-bold text-white">Credo<span className="text-indigo-400">Screening</span></span>
             </div>
             <p className="text-sm leading-relaxed max-w-md">
