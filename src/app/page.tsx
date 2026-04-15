@@ -177,7 +177,7 @@ export default function Home() {
                 period: '',
                 features: ['Unlimited screenings', 'Continuous monitoring', 'Dedicated support', 'Custom integrations', 'SLA guarantee'],
                 cta: 'Contact Us',
-                href: '/contact',
+                href: '/contact?plan=enterprise',
                 popular: false,
               },
             ].map((plan) => (
