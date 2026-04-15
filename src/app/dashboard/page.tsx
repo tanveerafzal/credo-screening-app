@@ -7,7 +7,7 @@ import { Footer } from '@/components/Footer';
 import { Shield, Key, Copy, Check, Search, Loader2, AlertTriangle, CheckCircle, LogOut } from 'lucide-react';
 import { getAuth, clearAuth, getProfile } from '@/lib/auth';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-214036150009.northamerica-northeast2.run.app';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
 
 interface ScreeningResult {
   screeningId: string;

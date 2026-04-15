@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-214036150009.northamerica-northeast2.run.app';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
 
 export interface AuthResponse {
   token: string;
