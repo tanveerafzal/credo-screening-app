@@ -82,6 +82,8 @@ export default function ScreeningPage() {
   const [result, setResult] = useState<ScreeningResult | null>(null);
   const [error, setError] = useState('');
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
+  const [showUpgradePrompt, setShowUpgradePrompt] = useState(false);
+  const [limitInfo, setLimitInfo] = useState<{ used: number; limit: number } | null>(null);
 
   const remaining = DAILY_LIMIT - getDailyUsage().count;
 
@@ -101,22 +103,19 @@ export default function ScreeningPage() {
     setError('');
     setResult(null);
     setShowAuthPrompt(false);
+    setShowUpgradePrompt(false);
+    setLimitInfo(null);
 
     if (!firstName.trim() || !lastName.trim()) {
       setError('First name and last name are required.');
       return;
     }
 
-    // Check if user is logged in
+    // Check if user is logged in FIRST — never call the API without auth
     const auth = getAuth();
-    if (!auth) {
+    if (!auth || !auth.partner?.apiKey) {
       saveScreeningInput();
       setShowAuthPrompt(true);
-      return;
-    }
-
-    if (remaining <= 0) {
-      setError('Daily limit reached (10 screenings). Upgrade your plan for more.');
       return;
     }
 
@@ -139,12 +138,26 @@ export default function ScreeningPage() {
         body: JSON.stringify(body),
       });
 
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.error || err.message || `Screening failed (${res.status})`);
+      const data = await res.json().catch(() => ({}));
+
+      // Handle 429 / monthly limit reached
+      if (res.status === 429 || (data.error && String(data.error).toLowerCase().includes('limit'))) {
+        setLimitInfo({ used: data.used || 10, limit: data.limit || 10 });
+        setShowUpgradePrompt(true);
+        return;
       }
 
-      const data: ScreeningResult = await res.json();
+      // Handle 401 / unauthorized — clear stale auth
+      if (res.status === 401) {
+        saveScreeningInput();
+        setShowAuthPrompt(true);
+        return;
+      }
+
+      if (!res.ok) {
+        throw new Error(data.error || data.message || `Screening failed (${res.status})`);
+      }
+
       setResult(data);
       incrementUsage();
       localStorage.removeItem('cs_pending_screening');
@@ -260,6 +273,38 @@ export default function ScreeningPage() {
               </div>
               <div className="px-6 pb-4">
                 <p className="text-xs text-gray-500 text-center">10 free screenings per month. No credit card required.</p>
+              </div>
+            </div>
+          )}
+
+          {/* Upgrade Prompt (monthly limit reached) */}
+          {showUpgradePrompt && (
+            <div className="mt-6 bg-white rounded-2xl border border-amber-200 shadow-sm overflow-hidden">
+              <div className="bg-amber-50 px-6 py-4 border-b border-amber-100">
+                <div className="flex items-center gap-2 mb-1">
+                  <AlertTriangle className="w-5 h-5 text-amber-600" />
+                  <h3 className="font-semibold text-amber-900">Monthly screening limit reached</h3>
+                </div>
+                <p className="text-sm text-amber-700 mt-1">
+                  You've used {limitInfo?.used || 10} of {limitInfo?.limit || 10} free screenings this month. Upgrade to continue screening.
+                </p>
+              </div>
+              <div className="p-6 flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/#pricing"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition text-sm"
+                >
+                  View Plans
+                </Link>
+                <Link
+                  href="/contact?plan=enterprise"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-white text-indigo-600 font-semibold rounded-xl border-2 border-indigo-600 hover:bg-indigo-50 transition text-sm"
+                >
+                  Contact Sales
+                </Link>
+              </div>
+              <div className="px-6 pb-4">
+                <p className="text-xs text-gray-500 text-center">Pro plan starts at $49/month for 1,000 screenings.</p>
               </div>
             </div>
           )}
