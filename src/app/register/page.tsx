@@ -1,15 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Logo } from '@/components/Logo';
 import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { register, saveAuth } from '@/lib/auth';
 
-export default function RegisterPage() {
+function RegisterForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get('redirect') || '/dashboard';
   const [form, setForm] = useState({
     companyName: '',
     contactName: '',
@@ -49,7 +52,7 @@ export default function RegisterPage() {
         contactName: form.contactName.trim(),
       });
       saveAuth(data.token, data.partner);
-      router.push('/dashboard');
+      router.push(redirect);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Registration failed');
     } finally {
@@ -156,5 +159,13 @@ export default function RegisterPage() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense>
+      <RegisterForm />
+    </Suspense>
   );
 }

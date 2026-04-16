@@ -1,15 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Logo } from '@/components/Logo';
 import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { login, saveAuth } from '@/lib/auth';
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get('redirect') || '/dashboard';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -29,7 +32,7 @@ export default function LoginPage() {
     try {
       const data = await login(email.trim(), password);
       saveAuth(data.token, data.partner);
-      router.push('/dashboard');
+      router.push(redirect);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     } finally {
@@ -103,5 +106,13 @@ export default function LoginPage() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   );
 }

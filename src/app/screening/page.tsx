@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { Shield, Search, AlertTriangle, CheckCircle, Loader2 } from 'lucide-react';
+import { Shield, Search, AlertTriangle, CheckCircle, Loader2, LogIn, UserPlus } from 'lucide-react';
+import { getAuth } from '@/lib/auth';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
-const FREE_API_KEY = process.env.NEXT_PUBLIC_FREE_API_KEY || '';
 
 interface MatchedEntity {
   name: string;
@@ -65,28 +67,56 @@ const listTypeBadge: Record<string, { bg: string; text: string; label: string }>
 };
 
 export default function ScreeningPage() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [dob, setDob] = useState('');
-  const [nationality, setNationality] = useState('');
+  const router = useRouter();
+
+  // Restore saved screening input (from before login/register redirect)
+  const pending = typeof window !== 'undefined'
+    ? JSON.parse(localStorage.getItem('cs_pending_screening') || 'null')
+    : null;
+
+  const [firstName, setFirstName] = useState(pending?.firstName || '');
+  const [lastName, setLastName] = useState(pending?.lastName || '');
+  const [dob, setDob] = useState(pending?.dateOfBirth || '');
+  const [nationality, setNationality] = useState(pending?.nationality || '');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ScreeningResult | null>(null);
   const [error, setError] = useState('');
+  const [showAuthPrompt, setShowAuthPrompt] = useState(false);
 
   const remaining = DAILY_LIMIT - getDailyUsage().count;
+
+  const saveScreeningInput = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cs_pending_screening', JSON.stringify({
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        dateOfBirth: dob.trim() || undefined,
+        nationality: nationality.trim() || undefined,
+      }));
+    }
+  };
 
   const handleScreen = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setResult(null);
+    setShowAuthPrompt(false);
 
     if (!firstName.trim() || !lastName.trim()) {
       setError('First name and last name are required.');
       return;
     }
 
+    // Check if user is logged in
+    const auth = getAuth();
+    if (!auth) {
+      saveScreeningInput();
+      setShowAuthPrompt(true);
+      return;
+    }
+
     if (remaining <= 0) {
-      setError('Daily limit reached (10 screenings). Sign up for unlimited access.');
+      setError('Daily limit reached (10 screenings). Upgrade your plan for more.');
       return;
     }
 
@@ -104,7 +134,7 @@ export default function ScreeningPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': FREE_API_KEY,
+          'x-api-key': auth.partner.apiKey,
         },
         body: JSON.stringify(body),
       });
@@ -117,6 +147,7 @@ export default function ScreeningPage() {
       const data: ScreeningResult = await res.json();
       setResult(data);
       incrementUsage();
+      localStorage.removeItem('cs_pending_screening');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Screening failed');
     } finally {
@@ -193,7 +224,7 @@ export default function ScreeningPage() {
 
             <button
               type="submit"
-              disabled={loading || remaining <= 0}
+              disabled={loading}
               className="mt-6 w-full flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
             >
               {loading ? (
@@ -203,6 +234,35 @@ export default function ScreeningPage() {
               )}
             </button>
           </form>
+
+          {/* Auth Prompt */}
+          {showAuthPrompt && (
+            <div className="mt-6 bg-white rounded-2xl border border-indigo-200 shadow-sm overflow-hidden">
+              <div className="bg-indigo-50 px-6 py-4 border-b border-indigo-100">
+                <h3 className="font-semibold text-indigo-900">Sign in to run your screening</h3>
+                <p className="text-sm text-indigo-700 mt-1">
+                  Create a free account to screen against 1.2M+ entities. Your screening details have been saved.
+                </p>
+              </div>
+              <div className="p-6 flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/login?redirect=/screening"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition text-sm"
+                >
+                  <LogIn className="w-4 h-4" /> Sign In
+                </Link>
+                <Link
+                  href="/register?redirect=/screening"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-white text-indigo-600 font-semibold rounded-xl border-2 border-indigo-600 hover:bg-indigo-50 transition text-sm"
+                >
+                  <UserPlus className="w-4 h-4" /> Create Free Account
+                </Link>
+              </div>
+              <div className="px-6 pb-4">
+                <p className="text-xs text-gray-500 text-center">10 free screenings per month. No credit card required.</p>
+              </div>
+            </div>
+          )}
 
           {/* Error */}
           {error && (
