@@ -21,7 +21,7 @@ interface ScreeningRecord {
   createdAt: string;
   completedAt: string | null;
   processingTimeMs: number | null;
-  inputPayload: { firstName?: string; lastName?: string };
+  inputPayload: { firstName?: string; lastName?: string; dateOfBirth?: string; nationality?: string; [key: string]: any };
   resultPayload: any;
 }
 
@@ -56,6 +56,7 @@ export default function DashboardPage() {
   // Screening history
   const [history, setHistory] = useState<ScreeningRecord[]>([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useEffect(() => {
     const auth = getAuth();
@@ -282,48 +283,131 @@ export default function DashboardPage() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="bg-gray-50 text-left">
-                      <th className="px-5 py-3 font-semibold text-gray-600">Name</th>
+                      <th className="px-5 py-3 font-semibold text-gray-600">Request</th>
                       <th className="px-5 py-3 font-semibold text-gray-600">Result</th>
                       <th className="px-5 py-3 font-semibold text-gray-600">Time</th>
                       <th className="px-5 py-3 font-semibold text-gray-600">Date</th>
-                      <th className="px-5 py-3 font-semibold text-gray-600">ID</th>
+                      <th className="px-5 py-3 font-semibold text-gray-600 w-8"></th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-50">
                     {history.map(s => {
-                      const name = s.inputPayload
-                        ? `${s.inputPayload.firstName || ''} ${s.inputPayload.lastName || ''}`.trim()
-                        : s.id.slice(0, 8);
+                      const input = s.inputPayload || {};
+                      const name = `${input.firstName || ''} ${input.lastName || ''}`.trim();
                       const hasMatch = s.verdict === 'FLAG';
+                      const isExpanded = expandedId === s.id;
+                      const resp = s.resultPayload || {};
+                      const matchedLists: Array<{ name: string; listType: string; entities: Array<{ name: string; score: number; matchLevel: string }> }> = resp.matchedLists || [];
+
                       return (
-                        <tr key={s.id} className="hover:bg-gray-50">
-                          <td className="px-5 py-3 font-medium text-gray-900">{name || '—'}</td>
-                          <td className="px-5 py-3">
-                            {s.status === 'COMPLETED' ? (
-                              <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full ${
-                                hasMatch ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
-                              }`}>
-                                {hasMatch ? <><AlertTriangle className="w-3 h-3" /> Match</> : <><CheckCircle className="w-3 h-3" /> Clear</>}
-                              </span>
-                            ) : s.status === 'FAILED' ? (
-                              <span className="text-xs font-semibold text-red-500">Failed</span>
-                            ) : (
-                              <span className="text-xs text-gray-500">{s.status}</span>
-                            )}
-                          </td>
-                          <td className="px-5 py-3 text-gray-500">
-                            {s.processingTimeMs ? `${(s.processingTimeMs / 1000).toFixed(1)}s` : '—'}
-                          </td>
-                          <td className="px-5 py-3 text-gray-500">
-                            <div className="flex items-center gap-1">
-                              <Clock className="w-3 h-3" />
-                              {new Date(s.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
-                            </div>
-                          </td>
-                          <td className="px-5 py-3">
-                            <code className="text-xs text-gray-400 font-mono">{s.id.slice(0, 8)}</code>
-                          </td>
-                        </tr>
+                        <>
+                          <tr key={s.id} className="hover:bg-gray-50 cursor-pointer" onClick={() => setExpandedId(isExpanded ? null : s.id)}>
+                            <td className="px-5 py-3">
+                              <div className="font-medium text-gray-900">{name || '—'}</div>
+                              <div className="text-xs text-gray-400 mt-0.5">
+                                {[input.dateOfBirth, input.nationality].filter(Boolean).join(' · ') || ''}
+                              </div>
+                            </td>
+                            <td className="px-5 py-3">
+                              {s.status === 'COMPLETED' ? (
+                                <div>
+                                  <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full ${
+                                    hasMatch ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+                                  }`}>
+                                    {hasMatch ? <><AlertTriangle className="w-3 h-3" /> {resp.totalMatches || 0} Match{(resp.totalMatches || 0) > 1 ? 'es' : ''}</> : <><CheckCircle className="w-3 h-3" /> Clear</>}
+                                  </span>
+                                  {hasMatch && matchedLists.length > 0 && (
+                                    <div className="flex flex-wrap gap-1 mt-1.5">
+                                      {matchedLists.slice(0, 3).map((l, i) => (
+                                        <span key={i} className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                                          l.listType === 'ofac' ? 'bg-red-50 text-red-600' :
+                                          l.listType === 'pep' ? 'bg-purple-50 text-purple-600' :
+                                          'bg-amber-50 text-amber-600'
+                                        }`}>
+                                          {l.listType.toUpperCase()}
+                                        </span>
+                                      ))}
+                                      {matchedLists.length > 3 && <span className="text-[10px] text-gray-400">+{matchedLists.length - 3}</span>}
+                                    </div>
+                                  )}
+                                </div>
+                              ) : s.status === 'FAILED' ? (
+                                <span className="text-xs font-semibold text-red-500">Failed</span>
+                              ) : (
+                                <span className="text-xs text-gray-500">{s.status}</span>
+                              )}
+                            </td>
+                            <td className="px-5 py-3 text-gray-500">
+                              {s.processingTimeMs ? `${(s.processingTimeMs / 1000).toFixed(1)}s` : '—'}
+                            </td>
+                            <td className="px-5 py-3 text-gray-500">
+                              <div className="flex items-center gap-1">
+                                <Clock className="w-3 h-3" />
+                                {new Date(s.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                              </div>
+                            </td>
+                            <td className="px-5 py-3 text-gray-400">
+                              <svg className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                            </td>
+                          </tr>
+                          {isExpanded && (
+                            <tr key={`${s.id}-detail`}>
+                              <td colSpan={5} className="px-5 py-4 bg-gray-50 border-t border-gray-100">
+                                <div className="grid md:grid-cols-2 gap-4">
+                                  {/* Request */}
+                                  <div>
+                                    <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Request</h4>
+                                    <pre className="bg-gray-900 text-gray-100 rounded-xl p-3 text-xs overflow-x-auto">
+{JSON.stringify(s.inputPayload, null, 2)}
+                                    </pre>
+                                  </div>
+                                  {/* Response */}
+                                  <div>
+                                    <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Response</h4>
+                                    {s.status === 'COMPLETED' && resp ? (
+                                      hasMatch ? (
+                                        <div className="space-y-2">
+                                          {matchedLists.map((list, i) => (
+                                            <div key={i} className="bg-white rounded-lg border border-red-100 p-3">
+                                              <div className="flex items-center gap-2 mb-1">
+                                                <span className="font-semibold text-xs text-gray-900">{list.name}</span>
+                                                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                                                  list.listType === 'ofac' ? 'bg-red-100 text-red-700' :
+                                                  list.listType === 'pep' ? 'bg-purple-100 text-purple-700' :
+                                                  'bg-amber-100 text-amber-700'
+                                                }`}>{list.listType.toUpperCase()}</span>
+                                              </div>
+                                              {list.entities.map((ent, j) => (
+                                                <div key={j} className="flex justify-between text-xs mt-1 py-0.5">
+                                                  <span className="text-gray-700">{ent.name}</span>
+                                                  <span className={`font-semibold ${
+                                                    ent.score >= 0.9 ? 'text-red-600' : ent.score >= 0.8 ? 'text-orange-600' : 'text-yellow-600'
+                                                  }`}>{(ent.score * 100).toFixed(0)}%</span>
+                                                </div>
+                                              ))}
+                                            </div>
+                                          ))}
+                                        </div>
+                                      ) : (
+                                        <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-2">
+                                          <CheckCircle className="w-4 h-4 text-green-500" />
+                                          <span className="text-sm text-green-700 font-medium">No matches found — all clear</span>
+                                        </div>
+                                      )
+                                    ) : (
+                                      <pre className="bg-gray-900 text-gray-100 rounded-xl p-3 text-xs overflow-x-auto">
+{JSON.stringify(resp, null, 2)}
+                                      </pre>
+                                    )}
+                                  </div>
+                                </div>
+                                <div className="mt-3 text-xs text-gray-400">
+                                  Screening ID: <code className="font-mono">{s.id}</code>
+                                </div>
+                              </td>
+                            </tr>
+                          )}
+                        </>
                       );
                     })}
                   </tbody>
