@@ -319,7 +319,31 @@ export default function ScreeningPage() {
 
           {/* Results */}
           {result && (
-            <div className="mt-6">
+            <div className="mt-6 space-y-4">
+              {/* Subject Information */}
+              <div className="rounded-2xl border border-gray-200 bg-white p-6">
+                <h3 className="text-sm font-semibold text-gray-900 mb-3">Subject Information</h3>
+                <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                  <div className="flex justify-between sm:block">
+                    <span className="text-gray-500">First Name</span>
+                    <span className="sm:ml-2 font-medium text-gray-900">{firstName.trim()}</span>
+                  </div>
+                  <div className="flex justify-between sm:block">
+                    <span className="text-gray-500">Last Name</span>
+                    <span className="sm:ml-2 font-medium text-gray-900">{lastName.trim()}</span>
+                  </div>
+                  <div className="flex justify-between sm:block">
+                    <span className="text-gray-500">Date of Birth</span>
+                    <span className="sm:ml-2 font-medium text-gray-900">{dob.trim() || '—'}</span>
+                  </div>
+                  <div className="flex justify-between sm:block">
+                    <span className="text-gray-500">Nationality</span>
+                    <span className="sm:ml-2 font-medium text-gray-900">{nationality.trim() || '—'}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Screening Result */}
               <div className={`rounded-2xl border p-6 ${result.hasMatch ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'}`}>
                 <div className="flex items-center gap-3 mb-4">
                   {result.hasMatch ? (
@@ -354,7 +378,12 @@ export default function ScreeningPage() {
                       </div>
                       {list.entities.map((entity, j) => (
                         <div key={j} className="flex justify-between items-center py-1.5 border-t border-gray-50 text-sm">
-                          <span className="text-gray-700">{entity.name}</span>
+                          <div>
+                            <span className="text-gray-700">{entity.name}</span>
+                            {entity.birthdate && (
+                              <span className="ml-2 text-xs text-gray-400">DOB: {entity.birthdate}</span>
+                            )}
+                          </div>
                           <div className="flex items-center gap-2">
                             <span className="text-xs text-gray-500">{entity.matchLevel}</span>
                             <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
