@@ -235,25 +235,56 @@ export default function DashboardPage() {
               )}
 
               {result && (
-                <div className={`mt-4 rounded-xl border p-4 ${result.hasMatch ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'}`}>
-                  <div className="flex items-center gap-2 mb-2">
-                    {result.hasMatch ? <AlertTriangle className="w-5 h-5 text-red-500" /> : <CheckCircle className="w-5 h-5 text-green-500" />}
-                    <span className={`font-semibold ${result.hasMatch ? 'text-red-800' : 'text-green-800'}`}>
-                      {result.hasMatch ? `${result.totalMatches} match${result.totalMatches > 1 ? 'es' : ''}` : 'All clear'} — {result.queriedName}
-                    </span>
-                  </div>
-                  {result.matchedLists.map((list, i) => (
-                    <div key={i} className="mt-2 bg-white rounded-lg border border-red-100 p-3 text-sm">
-                      <div className="font-medium text-gray-900">{list.name} <span className="text-xs text-gray-500 uppercase">{list.listType}</span></div>
-                      {list.entities.map((e, j) => (
-                        <div key={j} className="flex justify-between text-xs mt-1 text-gray-600">
-                          <span>{e.name}</span>
-                          <span>{(e.score * 100).toFixed(0)}% ({e.matchLevel})</span>
-                        </div>
-                      ))}
+                <div className="mt-4 space-y-3">
+                  {/* Subject Information */}
+                  <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+                    <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Subject Information</h4>
+                    <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
+                      <div className="flex justify-between sm:block">
+                        <span className="text-gray-500">First Name</span>
+                        <span className="sm:ml-2 font-medium text-gray-900">{firstName.trim()}</span>
+                      </div>
+                      <div className="flex justify-between sm:block">
+                        <span className="text-gray-500">Last Name</span>
+                        <span className="sm:ml-2 font-medium text-gray-900">{lastName.trim()}</span>
+                      </div>
+                      <div className="flex justify-between sm:block">
+                        <span className="text-gray-500">Date of Birth</span>
+                        <span className="sm:ml-2 font-medium text-gray-900">{dob.trim() || '—'}</span>
+                      </div>
+                      <div className="flex justify-between sm:block">
+                        <span className="text-gray-500">Nationality</span>
+                        <span className="sm:ml-2 font-medium text-gray-900">{nationality.trim() || '—'}</span>
+                      </div>
                     </div>
-                  ))}
-                  <div className="mt-2 text-xs text-gray-500">ID: {result.screeningId}</div>
+                  </div>
+
+                  {/* Screening Result */}
+                  <div className={`rounded-xl border p-4 ${result.hasMatch ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'}`}>
+                    <div className="flex items-center gap-2 mb-2">
+                      {result.hasMatch ? <AlertTriangle className="w-5 h-5 text-red-500" /> : <CheckCircle className="w-5 h-5 text-green-500" />}
+                      <span className={`font-semibold ${result.hasMatch ? 'text-red-800' : 'text-green-800'}`}>
+                        {result.hasMatch ? `${result.totalMatches} match${result.totalMatches > 1 ? 'es' : ''}` : 'All clear'} — {result.queriedName}
+                      </span>
+                    </div>
+                    {result.matchedLists.map((list, i) => (
+                      <div key={i} className="mt-2 bg-white rounded-lg border border-red-100 p-3 text-sm">
+                        <div className="font-medium text-gray-900">{list.name} <span className="text-xs text-gray-500 uppercase">{list.listType}</span></div>
+                        {list.entities.map((e, j) => (
+                          <div key={j} className="flex justify-between text-xs mt-1 text-gray-600">
+                            <div>
+                              <span>{e.name}</span>
+                              {(e as any).birthdate && (
+                                <span className="ml-2 text-gray-400">DOB: {(e as any).birthdate}</span>
+                              )}
+                            </div>
+                            <span>{(e.score * 100).toFixed(0)}% ({e.matchLevel})</span>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                    <div className="mt-2 text-xs text-gray-500">ID: {result.screeningId}</div>
+                  </div>
                 </div>
               )}
             </div>
