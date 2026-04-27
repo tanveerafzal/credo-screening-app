@@ -93,8 +93,7 @@ export default function TermsPage() {
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">6. Fees and Payment</h2>
               <ul className="space-y-2 list-disc pl-6">
-                <li><strong>Free Tier:</strong> 10 screenings per month at no cost, no credit card required</li>
-                <li><strong>First Month Free:</strong> New accounts on the Starter and Small Business plans receive 10 free ID verifications and 10 free background screenings during the first calendar month after registration. Unused free checks do not roll over beyond the first month</li>
+                <li><strong>First Month Free:</strong> New accounts on the Starter and Small Business plans receive up to 10 ID verifications and 10 background screenings at no cost during the first calendar month after registration. Unused free checks do not roll over. Standard per-use rates apply after the first month or once the free allocation is exhausted</li>
                 <li><strong>Paid Plans:</strong> Billed monthly according to your selected pricing plan</li>
                 <li>Unused screenings do not roll over to the next billing period</li>
                 <li>You agree to provide accurate billing information and authorize charges</li>

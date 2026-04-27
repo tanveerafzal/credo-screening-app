@@ -87,7 +87,7 @@ export default async function IndustryPage({ params }: Props) {
       <SolutionsGrid />
       <CTABanner
         title={`Ready to screen for your ${industry.label.toLowerCase()} business?`}
-        subtitle="Start with 10 free screenings today. No credit card required."
+        subtitle="First month free — up to 10 verifications & 10 screenings. No credit card required."
       />
 
       <Footer />

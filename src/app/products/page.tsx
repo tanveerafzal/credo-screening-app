@@ -54,7 +54,7 @@ const PRODUCTS = [
 const FAQS = [
   { q: 'Is there a monthly fee?', a: 'No monthly fees. You only pay for what you use. Each verification or screening is billed individually at the per-use rate.' },
   { q: 'How does the bundle pricing work?', a: 'When you run both ID Verification and Background Screening on the same person in a single request, you pay $1.59 instead of $1.98 — saving you $0.39 per check.' },
-  { q: 'Is there a free tier?', a: 'Yes! You get 10 free screenings per day on the Starter plan, and your first month of the Small Business plan is free.' },
+  { q: 'Is there a free tier?', a: 'Yes! Your first month includes up to 10 ID verifications and 10 background screenings for free. After that, you pay per use.' },
   { q: 'Do I need to commit to a volume?', a: 'No commitments. Pay per use. Run 1 check or 10,000 — same price per check. For high-volume needs, contact us for enterprise pricing.' },
   { q: 'How do I get started?', a: 'Sign up for free, get your API key, and start running checks immediately. No credit card required for the free tier.' },
   { q: 'Can I use both products through the API?', a: 'Yes. Both products are available via our REST API. You can run them individually or combine them in a single API call for the bundled rate.' },

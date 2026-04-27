@@ -272,7 +272,7 @@ export default function ScreeningPage() {
                 </Link>
               </div>
               <div className="px-6 pb-4">
-                <p className="text-xs text-gray-500 text-center">10 free screenings per month. No credit card required.</p>
+                <p className="text-xs text-gray-500 text-center">First month free — up to 10 verifications & 10 screenings. No credit card required.</p>
               </div>
             </div>
           )}
@@ -286,7 +286,7 @@ export default function ScreeningPage() {
                   <h3 className="font-semibold text-amber-900">Monthly screening limit reached</h3>
                 </div>
                 <p className="text-sm text-amber-700 mt-1">
-                  You've used {limitInfo?.used || 10} of {limitInfo?.limit || 10} free screenings this month. Upgrade to continue screening.
+                  You've reached the screening limit. Upgrade to continue screening.
                 </p>
               </div>
               <div className="p-6 flex flex-col sm:flex-row gap-3">

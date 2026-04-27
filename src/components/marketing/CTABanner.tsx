@@ -12,7 +12,7 @@ interface CTABannerProps {
 
 export function CTABanner({
   title = 'Ready to start screening?',
-  subtitle = 'Try 10 free screenings today. No credit card required.',
+  subtitle = 'First month free — up to 10 verifications & 10 screenings. No credit card required.',
   primaryLabel = 'Try Free',
   primaryHref = '/register',
   secondaryLabel = 'Contact Sales',

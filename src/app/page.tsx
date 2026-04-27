@@ -77,7 +77,7 @@ export default function Home() {
               View Sources
             </Link>
           </div>
-          <p className="mt-4 text-sm text-gray-500">10 free screenings per day. No credit card required.</p>
+          <p className="mt-4 text-sm text-gray-500">First month free — up to 10 verifications & 10 screenings. No credit card required.</p>
         </div>
       </section>
 
@@ -258,7 +258,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white">Ready to screen?</h2>
           <p className="mt-4 text-indigo-200 text-lg">
-            Try 10 free screenings today. No signup required.
+            First month free — up to 10 verifications & 10 screenings.
           </p>
           <Link
             href="/screening"
