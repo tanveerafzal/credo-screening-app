@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Logo } from '@/components/Logo';
@@ -10,9 +8,7 @@ import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { login, saveAuth } from '@/lib/auth';
 
 function LoginForm() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get('redirect') || '/dashboard';
+  const DASHBOARD_URL = 'https://app.credoscreening.com/partner/dashboard';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +28,7 @@ function LoginForm() {
     try {
       const data = await login(email.trim(), password);
       saveAuth(data.token, data.partner);
-      router.push(redirect);
+      window.location.href = `${DASHBOARD_URL}?token=${encodeURIComponent(data.token)}`;
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     } finally {
@@ -110,9 +106,5 @@ function LoginForm() {
 }
 
 export default function LoginPage() {
-  return (
-    <Suspense>
-      <LoginForm />
-    </Suspense>
-  );
+  return <LoginForm />;
 }

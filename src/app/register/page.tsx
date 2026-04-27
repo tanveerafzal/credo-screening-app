@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Logo } from '@/components/Logo';
@@ -10,9 +8,7 @@ import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { register, saveAuth } from '@/lib/auth';
 
 function RegisterForm() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get('redirect') || '/dashboard';
+  const DASHBOARD_URL = 'https://app.credoscreening.com/partner/dashboard';
   const [form, setForm] = useState({
     companyName: '',
     contactName: '',
@@ -52,7 +48,7 @@ function RegisterForm() {
         contactName: form.contactName.trim(),
       });
       saveAuth(data.token, data.partner);
-      router.push(redirect);
+      window.location.href = `${DASHBOARD_URL}?token=${encodeURIComponent(data.token)}`;
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Registration failed');
     } finally {
@@ -163,9 +159,5 @@ function RegisterForm() {
 }
 
 export default function RegisterPage() {
-  return (
-    <Suspense>
-      <RegisterForm />
-    </Suspense>
-  );
+  return <RegisterForm />;
 }
