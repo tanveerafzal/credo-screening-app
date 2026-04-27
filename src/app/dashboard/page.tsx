@@ -4,14 +4,61 @@ import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Key, Copy, Check, Search, Loader2, AlertTriangle, CheckCircle,
-  LogOut, History, BookOpen, LayoutDashboard, Clock
+  LogOut, History, BookOpen, LayoutDashboard, Clock, Settings, ScanFace,
+  ShieldCheck, Globe, Mail, MessageSquare, FileText
 } from 'lucide-react';
 import { Logo } from '@/components/Logo';
 import { getAuth, clearAuth, getProfile } from '@/lib/auth';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
 
-type Tab = 'overview' | 'screenings' | 'docs';
+type Tab = 'overview' | 'screenings' | 'products' | 'docs';
+
+type ProductType = 'id-verification' | 'id-verification-screening' | 'screening-only';
+
+interface ProductConfig {
+  type: ProductType;
+  reportDelivery: {
+    email: boolean;
+    sms: boolean;
+  };
+  emailAddress: string;
+  phoneNumber: string;
+}
+
+const PRODUCT_OPTIONS: Array<{
+  type: ProductType;
+  icon: React.ElementType;
+  title: string;
+  desc: string;
+  color: string;
+  features: string[];
+}> = [
+  {
+    type: 'id-verification',
+    icon: ScanFace,
+    title: 'ID Verification',
+    desc: 'Verify government-issued IDs with AI-powered document scanning, facial biometric matching, and liveness detection.',
+    color: 'indigo',
+    features: ['Document scanning (200+ countries)', 'Facial biometric matching', 'Liveness detection', 'OCR & MRZ extraction', 'Report delivered via email or SMS'],
+  },
+  {
+    type: 'id-verification-screening',
+    icon: ShieldCheck,
+    title: 'ID Verification + Screening',
+    desc: 'Full KYC: verify identity documents, match biometrics, then screen against global sanctions, PEP, and adverse media lists.',
+    color: 'purple',
+    features: ['Everything in ID Verification', 'Sanctions & PEP screening (80+ sources)', 'Adverse media checks', 'Combined KYC report', 'Report delivered via email or SMS'],
+  },
+  {
+    type: 'screening-only',
+    icon: Globe,
+    title: 'Screening Only',
+    desc: 'Screen individuals against global sanctions lists, PEP databases, and adverse media from 80+ sources.',
+    color: 'blue',
+    features: ['1.2M+ entities screened', 'OFAC, EU, UN, UK sanctions', 'PEP & adverse media', 'Smart name matching', 'Report delivered via email or SMS'],
+  },
+];
 
 interface ScreeningRecord {
   id: string;
@@ -57,6 +104,17 @@ export default function DashboardPage() {
   const [history, setHistory] = useState<ScreeningRecord[]>([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  // Product configuration
+  const [productConfig, setProductConfig] = useState<ProductConfig>(() => {
+    if (typeof window === 'undefined') return { type: 'screening-only', reportDelivery: { email: true, sms: false }, emailAddress: '', phoneNumber: '' };
+    try {
+      const saved = localStorage.getItem('cs_product_config');
+      if (saved) return JSON.parse(saved);
+    } catch { /* ignore */ }
+    return { type: 'screening-only', reportDelivery: { email: true, sms: false }, emailAddress: '', phoneNumber: '' };
+  });
+  const [productSaved, setProductSaved] = useState(false);
 
   useEffect(() => {
     const auth = getAuth();
@@ -123,9 +181,17 @@ export default function DashboardPage() {
     );
   }
 
+  const saveProductConfig = (config: ProductConfig) => {
+    setProductConfig(config);
+    localStorage.setItem('cs_product_config', JSON.stringify(config));
+    setProductSaved(true);
+    setTimeout(() => setProductSaved(false), 2000);
+  };
+
   const sidebarItems: { id: Tab; label: string; icon: React.ElementType }[] = [
     { id: 'overview', label: 'Overview', icon: LayoutDashboard },
     { id: 'screenings', label: 'Screenings', icon: History },
+    { id: 'products', label: 'Products', icon: Settings },
     { id: 'docs', label: 'API Docs', icon: BookOpen },
   ];
 
@@ -445,6 +511,151 @@ export default function DashboardPage() {
                 </table>
               </div>
             )}
+          </div>
+        )}
+
+        {/* Products Tab */}
+        {tab === 'products' && (
+          <div className="max-w-4xl">
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Product Configuration</h1>
+            <p className="text-sm text-gray-500 mb-6">Choose your verification product and configure how reports are delivered.</p>
+
+            {/* Product Selection */}
+            <div className="space-y-4 mb-8">
+              <h2 className="text-sm font-bold text-gray-500 uppercase">Select Your Product</h2>
+              <div className="grid gap-4">
+                {PRODUCT_OPTIONS.map((opt) => {
+                  const isActive = productConfig.type === opt.type;
+                  const colorMap: Record<string, { ring: string; bg: string; icon: string; badge: string }> = {
+                    indigo: { ring: 'ring-indigo-600', bg: 'bg-indigo-50', icon: 'text-indigo-600', badge: 'bg-indigo-100 text-indigo-700' },
+                    purple: { ring: 'ring-purple-600', bg: 'bg-purple-50', icon: 'text-purple-600', badge: 'bg-purple-100 text-purple-700' },
+                    blue: { ring: 'ring-blue-600', bg: 'bg-blue-50', icon: 'text-blue-600', badge: 'bg-blue-100 text-blue-700' },
+                  };
+                  const colors = colorMap[opt.color] || colorMap.indigo;
+
+                  return (
+                    <button
+                      key={opt.type}
+                      onClick={() => saveProductConfig({ ...productConfig, type: opt.type })}
+                      className={`w-full text-left bg-white rounded-2xl border-2 p-6 transition ${
+                        isActive ? `${colors.ring} ring-2 border-transparent` : 'border-gray-100 hover:border-gray-200'
+                      }`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className={`w-12 h-12 ${colors.bg} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                          <opt.icon className={`w-6 h-6 ${colors.icon}`} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-3 mb-1">
+                            <h3 className="text-base font-bold text-gray-900">{opt.title}</h3>
+                            {isActive && (
+                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${colors.badge}`}>ACTIVE</span>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-600 mb-3">{opt.desc}</p>
+                          <div className="flex flex-wrap gap-2">
+                            {opt.features.map((f) => (
+                              <span key={f} className="inline-flex items-center gap-1 text-xs text-gray-500">
+                                <CheckCircle className={`w-3 h-3 ${isActive ? colors.icon : 'text-gray-300'}`} />
+                                {f}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-1 ${
+                          isActive ? `${colors.ring.replace('ring-', 'border-')} ${colors.bg}` : 'border-gray-300'
+                        }`}>
+                          {isActive && <div className={`w-2.5 h-2.5 rounded-full ${colors.ring.replace('ring-', 'bg-')}`} />}
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Report Delivery Configuration */}
+            <div className="bg-white rounded-2xl border border-gray-100 p-6">
+              <div className="flex items-center gap-2 mb-1">
+                <FileText className="w-5 h-5 text-indigo-600" />
+                <h2 className="text-lg font-semibold text-gray-900">Report Delivery</h2>
+              </div>
+              <p className="text-sm text-gray-500 mb-5">
+                Reports are generated after each verification and delivered via your configured channels.
+              </p>
+
+              <div className="space-y-4">
+                {/* Email toggle */}
+                <div className={`rounded-xl border p-4 transition ${productConfig.reportDelivery.email ? 'border-indigo-200 bg-indigo-50/50' : 'border-gray-100'}`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <Mail className="w-5 h-5 text-indigo-600" />
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900">Email Delivery</h4>
+                        <p className="text-xs text-gray-500">Send verification report to an email address</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => saveProductConfig({
+                        ...productConfig,
+                        reportDelivery: { ...productConfig.reportDelivery, email: !productConfig.reportDelivery.email },
+                      })}
+                      className={`relative w-11 h-6 rounded-full transition ${productConfig.reportDelivery.email ? 'bg-indigo-600' : 'bg-gray-200'}`}
+                    >
+                      <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${productConfig.reportDelivery.email ? 'translate-x-[22px]' : 'translate-x-0.5'}`} />
+                    </button>
+                  </div>
+                  {productConfig.reportDelivery.email && (
+                    <input
+                      type="email"
+                      value={productConfig.emailAddress}
+                      onChange={(e) => saveProductConfig({ ...productConfig, emailAddress: e.target.value })}
+                      placeholder="reports@company.com"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-2"
+                    />
+                  )}
+                </div>
+
+                {/* SMS toggle */}
+                <div className={`rounded-xl border p-4 transition ${productConfig.reportDelivery.sms ? 'border-indigo-200 bg-indigo-50/50' : 'border-gray-100'}`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <MessageSquare className="w-5 h-5 text-indigo-600" />
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900">SMS Delivery</h4>
+                        <p className="text-xs text-gray-500">Send verification report via text message</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => saveProductConfig({
+                        ...productConfig,
+                        reportDelivery: { ...productConfig.reportDelivery, sms: !productConfig.reportDelivery.sms },
+                      })}
+                      className={`relative w-11 h-6 rounded-full transition ${productConfig.reportDelivery.sms ? 'bg-indigo-600' : 'bg-gray-200'}`}
+                    >
+                      <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${productConfig.reportDelivery.sms ? 'translate-x-[22px]' : 'translate-x-0.5'}`} />
+                    </button>
+                  </div>
+                  {productConfig.reportDelivery.sms && (
+                    <input
+                      type="tel"
+                      value={productConfig.phoneNumber}
+                      onChange={(e) => saveProductConfig({ ...productConfig, phoneNumber: e.target.value })}
+                      placeholder="+1 (555) 123-4567"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-2"
+                    />
+                  )}
+                </div>
+              </div>
+
+              {/* Save confirmation */}
+              {productSaved && (
+                <div className="mt-4 flex items-center gap-2 text-sm text-green-600">
+                  <CheckCircle className="w-4 h-4" />
+                  Configuration saved
+                </div>
+              )}
+            </div>
           </div>
         )}
 
