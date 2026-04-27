@@ -168,7 +168,7 @@ export default function Home() {
                 name: 'Small Business',
                 price: '$49',
                 period: '/month',
-                badge: 'MOST POPULAR',
+                badge: 'FIRST MONTH FREE',
                 features: ['All in Starter', 'REST API access', 'Webhook callbacks', 'CSV export', 'Priority support'],
                 cta: 'Get Started',
                 href: '/register',
@@ -212,6 +212,43 @@ export default function Home() {
                 </Link>
               </div>
             ))}
+          </div>
+
+          {/* Per-Use Product Pricing */}
+          <div className="mt-16 max-w-3xl mx-auto">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900">Pay Per Use</h3>
+              <p className="mt-2 text-gray-600 text-sm">Every plan uses the same per-check pricing. No hidden fees.</p>
+            </div>
+            <div className="grid sm:grid-cols-3 gap-6">
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center hover:shadow-lg transition">
+                <ScanFace className="w-8 h-8 text-indigo-600 mx-auto mb-3" />
+                <div className="text-sm font-medium text-gray-500">ID Verification</div>
+                <div className="text-3xl font-extrabold text-gray-900 mt-1">$0.99</div>
+                <div className="text-xs text-gray-500 mt-1">per check</div>
+              </div>
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center hover:shadow-lg transition">
+                <Search className="w-8 h-8 text-indigo-600 mx-auto mb-3" />
+                <div className="text-sm font-medium text-gray-500">Background Screening</div>
+                <div className="text-3xl font-extrabold text-gray-900 mt-1">$0.99</div>
+                <div className="text-xs text-gray-500 mt-1">per check</div>
+              </div>
+              <div className="bg-indigo-50 rounded-2xl border border-indigo-200 p-6 text-center hover:shadow-lg transition">
+                <div className="flex items-center justify-center gap-1 mb-3">
+                  <ScanFace className="w-6 h-6 text-indigo-600" />
+                  <span className="text-indigo-400 font-bold">+</span>
+                  <Search className="w-6 h-6 text-indigo-600" />
+                </div>
+                <div className="text-sm font-medium text-indigo-600">Both Together</div>
+                <div className="text-3xl font-extrabold text-gray-900 mt-1">$1.59</div>
+                <div className="text-xs text-indigo-500 mt-1">per check · save 20%</div>
+              </div>
+            </div>
+            <div className="text-center mt-6">
+              <Link href="/products" className="text-sm font-medium text-indigo-600 hover:text-indigo-700 inline-flex items-center gap-1">
+                View full product details <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
