@@ -99,6 +99,7 @@ export function Navbar() {
               )}
             </div>
 
+            <Link href="/products" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Products</Link>
             <Link href="/id-verification" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition">ID Verification</Link>
             <Link href="/#pricing" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Pricing</Link>
             <Link href="/docs" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Docs</Link>
@@ -145,6 +146,7 @@ export function Navbar() {
             ))}
 
             <div className="pt-4 border-t border-gray-100 space-y-2">
+              <Link href="/products" className="block px-2 py-2 text-sm font-medium text-gray-600" onClick={() => setMobileOpen(false)}>Products</Link>
               <Link href="/id-verification" className="block px-2 py-2 text-sm font-medium text-gray-600" onClick={() => setMobileOpen(false)}>ID Verification</Link>
               <Link href="/#pricing" className="block px-2 py-2 text-sm font-medium text-gray-600" onClick={() => setMobileOpen(false)}>Pricing</Link>
               <Link href="/docs" className="block px-2 py-2 text-sm font-medium text-gray-600" onClick={() => setMobileOpen(false)}>Docs</Link>
