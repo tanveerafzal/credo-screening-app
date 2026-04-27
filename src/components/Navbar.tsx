@@ -102,7 +102,6 @@ export function Navbar() {
             <Link href="/products" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Products</Link>
             <Link href="/id-verification" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition">ID Verification</Link>
             <Link href="/#pricing" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Pricing</Link>
-            <Link href="/docs" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Docs</Link>
             <Link href="/login" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Login</Link>
             <Link
               href="/register"
@@ -149,7 +148,6 @@ export function Navbar() {
               <Link href="/products" className="block px-2 py-2 text-sm font-medium text-gray-600" onClick={() => setMobileOpen(false)}>Products</Link>
               <Link href="/id-verification" className="block px-2 py-2 text-sm font-medium text-gray-600" onClick={() => setMobileOpen(false)}>ID Verification</Link>
               <Link href="/#pricing" className="block px-2 py-2 text-sm font-medium text-gray-600" onClick={() => setMobileOpen(false)}>Pricing</Link>
-              <Link href="/docs" className="block px-2 py-2 text-sm font-medium text-gray-600" onClick={() => setMobileOpen(false)}>Docs</Link>
               <Link href="/login" className="block px-2 py-2 text-sm font-medium text-gray-600" onClick={() => setMobileOpen(false)}>Login</Link>
               <Link href="/register" className="block w-full text-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg" onClick={() => setMobileOpen(false)}>
                 Try Free
