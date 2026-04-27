@@ -150,15 +150,16 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl font-bold text-gray-900">Simple, Transparent Pricing</h2>
-            <p className="mt-3 text-gray-600">Start free. Scale as you grow.</p>
+            <p className="mt-3 text-gray-600">First month free. Pay per use. Scale as you grow.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
               {
-                name: 'Free',
+                name: 'Starter',
                 price: '$0',
-                period: 'forever',
-                features: ['10 screenings/day', 'All watchlist sources', 'Instant results', 'Web interface'],
+                period: '/month',
+                badge: 'FIRST MONTH FREE',
+                features: ['10 screenings/month', 'Pay per use after free tier', 'All watchlist sources', 'Instant results', 'Web interface'],
                 cta: 'Start Free',
                 href: '/screening',
                 popular: false,
@@ -167,7 +168,8 @@ export default function Home() {
                 name: 'Pro',
                 price: '$49',
                 period: '/month',
-                features: ['1,000 screenings/month', 'REST API access', 'Webhook callbacks', 'CSV export', 'Priority support'],
+                badge: 'MOST POPULAR',
+                features: ['1,000 screenings/month', 'Pay per use for overages', 'REST API access', 'Webhook callbacks', 'CSV export', 'Priority support'],
                 cta: 'Get Started',
                 href: '/register',
                 popular: true,
@@ -176,6 +178,7 @@ export default function Home() {
                 name: 'Enterprise',
                 price: 'Custom',
                 period: '',
+                badge: null,
                 features: ['Unlimited screenings', 'Continuous monitoring', 'Dedicated support', 'Custom integrations', 'SLA guarantee'],
                 cta: 'Contact Us',
                 href: '/contact?plan=enterprise',
@@ -183,7 +186,7 @@ export default function Home() {
               },
             ].map((plan) => (
               <div key={plan.name} className={`rounded-2xl p-8 ${plan.popular ? 'bg-indigo-600 text-white ring-2 ring-indigo-600 shadow-xl scale-105' : 'bg-white border border-gray-200'}`}>
-                {plan.popular && <div className="text-xs font-semibold text-indigo-200 mb-2">MOST POPULAR</div>}
+                {plan.badge && <div className={`text-xs font-semibold mb-2 ${plan.popular ? 'text-indigo-200' : 'text-indigo-600'}`}>{plan.badge}</div>}
                 <h3 className={`text-xl font-bold ${plan.popular ? 'text-white' : 'text-gray-900'}`}>{plan.name}</h3>
                 <div className="mt-4">
                   <span className={`text-4xl font-extrabold ${plan.popular ? 'text-white' : 'text-gray-900'}`}>{plan.price}</span>
