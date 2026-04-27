@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import {
   Search, Globe, Zap, Lock, BarChart3,
-  CheckCircle, ArrowRight, Database
+  CheckCircle, ArrowRight, Database, ScanFace
 } from 'lucide-react';
 import { LogoIcon } from '@/components/Logo';
 
@@ -23,6 +23,7 @@ const FEATURES = [
   { icon: BarChart3, title: 'Smart Matching', desc: 'Name variant detection (Muhammad/Mohammed/Mohamed), phonetic matching, and composite scoring' },
   { icon: Database, title: 'Always Fresh', desc: 'Critical sanctions lists updated hourly. Full dataset refreshed every 4 hours automatically' },
   { icon: Search, title: 'Easy Integration', desc: 'Simple REST API. Send a name, get results. Webhook callbacks for async workflows' },
+  { icon: ScanFace, title: 'ID Verification', desc: 'Verify real people with ID scan + selfie. Facial matching, liveness detection, 200+ countries supported' },
 ];
 
 const colorMap: Record<string, string> = {
@@ -59,8 +60,8 @@ export default function Home() {
             <span className="text-indigo-600">Background Check</span> Partner
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-            Screen individuals and businesses against <strong>1.2 million+ entities</strong> from
-            OFAC, global sanctions, PEP databases, and 80+ watchlists. Results in seconds.
+            Screen against <strong>1.2 million+ entities</strong> from OFAC, global sanctions, PEP databases, and 80+ watchlists.
+            Verify identities with <strong>ID scan + selfie</strong> in under 30 seconds. All in one platform.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -86,8 +87,8 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: '1.2M+', label: 'Entities Screened Against' },
-              { value: '80+', label: 'Global Data Sources' },
-              { value: '<3s', label: 'Average Response Time' },
+              { value: '200+', label: 'Countries for ID Verification' },
+              { value: '<30s', label: 'Identity Verified' },
               { value: '99.9%', label: 'Uptime SLA' },
             ].map((s) => (
               <div key={s.label}>

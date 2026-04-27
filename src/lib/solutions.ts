@@ -1,4 +1,4 @@
-import { Code2, Database, Layers, Activity, Building2, Cloud, ShoppingBag, Mail } from 'lucide-react';
+import { Code2, Database, Layers, Activity, Building2, Cloud, ShoppingBag, Mail, ScanFace } from 'lucide-react';
 
 export interface SolutionConfig {
   slug: string;
@@ -133,6 +133,43 @@ export const SOLUTIONS: Record<string, SolutionConfig> = {
     faqs: [
       { q: 'How often are customers re-screened?', a: 'Every time a relevant watchlist updates — critical sanctions lists refresh hourly, others daily.' },
       { q: 'How do I receive alerts?', a: 'Via webhook, email, or both. Configure in your dashboard.' },
+    ],
+  },
+  'id-verification': {
+    slug: 'id-verification',
+    label: 'ID Verification',
+    shortDesc: 'Verify real people in seconds',
+    icon: ScanFace,
+    hero: {
+      badge: 'Identity Verification',
+      title: 'The Fastest Way to Verify Real People',
+      subtitle: 'ID scan. Selfie. Done. Enterprise-grade identity verification your users complete in under 30 seconds — no app downloads, no manual review.',
+    },
+    features: [
+      { icon: ScanFace, title: 'Facial Matching', desc: 'Real-time comparison of selfie to ID photo with liveness detection to ensure a real person is present.' },
+      { icon: Activity, title: 'Under 30 Seconds', desc: 'Most users finish verification before they can fill out a form. Lightning-fast processing.' },
+      { icon: Database, title: '200+ Countries', desc: 'Government-issued IDs, driver\'s licenses, and passports from over 200 countries supported.' },
+      { icon: Layers, title: 'MRZ & OCR Scanning', desc: 'Automatic data extraction from passports (MRZ), IDs, and driver\'s licenses — no manual entry.' },
+      { icon: Cloud, title: 'Privacy-First', desc: 'Biometric data encrypted and deleted after verification. Nothing stored on servers.' },
+      { icon: Code2, title: 'Simple Integration', desc: 'Embed in your app or website. Works on desktop, mobile, and tablet — any device with a camera.' },
+    ],
+    deepDives: [
+      {
+        title: 'Two Photos, Done',
+        desc: 'No app downloads. No document uploads. No waiting for a human to review. Your users scan their ID and snap a selfie — verification completes instantly.',
+        bullets: ['Instant verification — most users finish in under 30 seconds', 'Works anywhere, anytime — desktop, mobile, tablet', 'No app download required', 'Supports government IDs, driver\'s licenses, and passports'],
+      },
+      {
+        title: 'Security You Can Trust',
+        desc: 'Facial matching and liveness detection ensure the person behind the screen is who they say they are. We verify and delete — your users\' biometric data is never stored.',
+        bullets: ['Real-time facial matching against ID photo', 'Liveness detection prevents spoofing and fraud', 'Encrypted data — biometrics deleted post-verification', '180+ countries with built-in fraud detection'],
+      },
+    ],
+    faqs: [
+      { q: 'What documents are supported?', a: 'Government-issued IDs, driver\'s licenses, and passports from 200+ countries. MRZ scanning for instant passport data extraction.' },
+      { q: 'How fast is verification?', a: 'Most users complete the entire process in under 30 seconds. No waiting for manual review.' },
+      { q: 'Is biometric data stored?', a: 'No. We encrypt biometric data during verification and delete it immediately after. Nothing is stored on our servers.' },
+      { q: 'Do users need to download an app?', a: 'No. Verification works directly in any web browser on any device with a camera.' },
     ],
   },
 };
