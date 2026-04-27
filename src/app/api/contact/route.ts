@@ -12,8 +12,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Name, email, and message are required' }, { status: 400 });
     }
 
-    const subject = plan === 'enterprise'
-      ? `Enterprise Inquiry from ${company || name}`
+    const subject = plan === 'corporate'
+      ? `Corporate Plan Inquiry from ${company || name}`
       : `Contact Form: ${name}`;
 
     const htmlBody = `

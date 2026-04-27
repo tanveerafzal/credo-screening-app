@@ -17,8 +17,8 @@ function ContactForm() {
     email: '',
     company: '',
     phone: '',
-    message: plan === 'enterprise'
-      ? 'I\'m interested in the Enterprise plan. Please provide details on pricing and custom integrations.'
+    message: plan === 'corporate'
+      ? 'I\'m interested in the Corporate plan. Please provide details on pricing and custom integrations.'
       : '',
   });
   const [loading, setLoading] = useState(false);
@@ -65,9 +65,9 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 space-y-5">
-      {plan === 'enterprise' && (
+      {plan === 'corporate' && (
         <div className="p-3 bg-indigo-50 border border-indigo-200 rounded-xl text-sm text-indigo-700">
-          <strong>Enterprise Plan Inquiry</strong> — We'll prepare a custom quote for your team.
+          <strong>Corporate Plan Inquiry</strong> — We'll prepare a custom quote for your team.
         </div>
       )}
 

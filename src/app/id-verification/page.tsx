@@ -135,7 +135,7 @@ export default function IDVerificationPage() {
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/contact?plan=enterprise"
+              href="/contact?plan=corporate"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition"
             >
               Get Started <ArrowRight className="w-4 h-4" />
@@ -313,7 +313,7 @@ export default function IDVerificationPage() {
               Try Free Screening <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/contact?plan=enterprise"
+              href="/contact?plan=corporate"
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-indigo-500 text-white font-semibold rounded-xl hover:bg-indigo-400 transition"
             >
               Contact Sales

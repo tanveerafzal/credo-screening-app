@@ -156,7 +156,7 @@ export default function ProductsPage() {
               Get Started Free <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/contact?plan=enterprise"
+              href="/contact?plan=corporate"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-indigo-500 text-white font-semibold rounded-xl hover:bg-indigo-400 transition"
             >
               Contact Sales

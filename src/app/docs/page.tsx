@@ -293,9 +293,9 @@ export default function DocsPage() {
                   </thead>
                   <tbody className="divide-y divide-gray-100">
                     {[
-                      { plan: 'Free', screenings: '10', rate: '5,000 req/15min', api: true },
-                      { plan: 'Pro', screenings: '1,000', rate: '5,000 req/15min', api: true },
-                      { plan: 'Enterprise', screenings: 'Unlimited', rate: 'Custom', api: true },
+                      { plan: 'Starter', screenings: 'Pay per use', rate: '5,000 req/15min', api: true },
+                      { plan: 'Professional', screenings: 'Pay per use', rate: '5,000 req/15min', api: true },
+                      { plan: 'Corporate', screenings: 'Unlimited', rate: 'Custom', api: true },
                     ].map(p => (
                       <tr key={p.plan}>
                         <td className="px-3 py-2 font-medium text-gray-900">{p.plan}</td>

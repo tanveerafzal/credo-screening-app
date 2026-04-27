@@ -297,7 +297,7 @@ export default function ScreeningPage() {
                   View Plans
                 </Link>
                 <Link
-                  href="/contact?plan=enterprise"
+                  href="/contact?plan=corporate"
                   className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-white text-indigo-600 font-semibold rounded-xl border-2 border-indigo-600 hover:bg-indigo-50 transition text-sm"
                 >
                   Contact Sales

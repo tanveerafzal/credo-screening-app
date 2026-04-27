@@ -165,7 +165,7 @@ export default function Home() {
                 popular: false,
               },
               {
-                name: 'Small Business',
+                name: 'Professional',
                 price: '$49',
                 period: '/month',
                 badge: 'FIRST MONTH FREE',
@@ -175,13 +175,13 @@ export default function Home() {
                 popular: true,
               },
               {
-                name: 'Enterprise',
+                name: 'Corporate',
                 price: 'Custom',
                 period: '',
                 badge: null,
                 features: ['Unlimited screenings', 'Continuous monitoring', 'Dedicated support', 'Custom integrations', 'SLA guarantee'],
                 cta: 'Contact Us',
-                href: '/contact?plan=enterprise',
+                href: '/contact?plan=corporate',
                 popular: false,
               },
             ].map((plan) => (
