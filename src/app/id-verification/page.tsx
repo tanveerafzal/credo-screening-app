@@ -6,7 +6,7 @@ import { CTABanner } from '@/components/marketing/CTABanner';
 import Link from 'next/link';
 import {
   ScanFace, Camera, CheckCircle, ShieldCheck, Globe, Zap,
-  ArrowRight, Fingerprint, CreditCard, BookOpen, Lock
+  ArrowRight, CreditCard, BookOpen, Lock
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
@@ -51,11 +51,6 @@ const DOCUMENTS = [
     icon: Globe,
     title: 'Passport',
     desc: 'MRZ scanning for instant data extraction from any passport.',
-  },
-  {
-    icon: Fingerprint,
-    title: 'Bank Account',
-    desc: 'Verify account ownership via micro-deposits or instant match.',
   },
 ];
 
@@ -291,14 +286,10 @@ export default function IDVerificationPage() {
               <p className="mt-3 text-gray-600 text-sm max-w-xs">
                 Your users&apos; data is protected with bank-level encryption. We verify and delete — nothing is stored on our servers.
               </p>
-              <div className="mt-6 grid grid-cols-2 gap-4 text-center w-full max-w-xs">
-                <div className="bg-white rounded-xl p-3">
+              <div className="mt-6 w-full max-w-xs">
+                <div className="bg-white rounded-xl p-3 text-center">
                   <div className="text-xl font-extrabold text-indigo-600">AES-256</div>
                   <div className="text-xs text-gray-500">Encryption</div>
-                </div>
-                <div className="bg-white rounded-xl p-3">
-                  <div className="text-xl font-extrabold text-indigo-600">SOC 2</div>
-                  <div className="text-xs text-gray-500">Compliant</div>
                 </div>
               </div>
             </div>
