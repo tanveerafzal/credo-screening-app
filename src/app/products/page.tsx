@@ -68,8 +68,8 @@ export default function ProductsPage() {
       {/* Hero */}
       <section className="pt-28 pb-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold mb-6">
-            <Layers className="w-3.5 h-3.5" /> Products & Pricing
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold mb-6 animate-pulse">
+            <span>&#127881;</span> First Month Free — 10 verifications & 10 screenings included
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
             Simple Pricing.<br />

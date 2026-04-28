@@ -49,11 +49,24 @@ export default function Home() {
     <>
       <Navbar />
 
+      {/* Promo Banner */}
+      <div className="fixed top-16 left-0 right-0 z-40 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 text-white text-center py-2.5 px-4">
+        <p className="text-sm font-medium">
+          <span className="inline-flex items-center gap-1.5">
+            <span className="animate-pulse">&#127881;</span>
+            <strong>First Month Free</strong> — Get 10 ID verifications & 10 screenings at no cost.
+            <Link href="/register" className="underline underline-offset-2 font-semibold hover:text-indigo-200 transition ml-1">
+              Start Free →
+            </Link>
+          </span>
+        </p>
+      </div>
+
       {/* Hero */}
-      <section className="pt-28 pb-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+      <section className="pt-38 pb-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold mb-6">
-            <LogoIcon size={16} /> Powered by TrustCredo
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold mb-6 animate-pulse">
+            <span>&#127881;</span> Limited Offer: First Month Free
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
             Your Trusted<br />
@@ -149,6 +162,9 @@ export default function Home() {
       <section id="pricing" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold mb-4">
+              <span>&#127381;</span> First Month Free — 10 verifications & 10 screenings included
+            </div>
             <h2 className="text-3xl font-bold text-gray-900">Simple, Transparent Pricing</h2>
             <p className="mt-3 text-gray-600">First month free. Pay per use. Scale as you grow.</p>
           </div>
