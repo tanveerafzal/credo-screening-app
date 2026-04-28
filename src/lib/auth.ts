@@ -50,6 +50,30 @@ export async function getProfile(token: string) {
   return json.data || json;
 }
 
+export async function forgotPassword(email: string): Promise<{ message: string }> {
+  const res = await fetch(`${API_URL}/api/v1/partners/forgot-password`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  });
+
+  const json = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+  if (!res.ok) throw new Error(json.error || json.message || 'Failed to send reset email');
+  return json;
+}
+
+export async function resetPassword(token: string, password: string): Promise<{ message: string }> {
+  const res = await fetch(`${API_URL}/api/v1/partners/reset-password`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token, password }),
+  });
+
+  const json = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+  if (!res.ok) throw new Error(json.error || json.message || 'Failed to reset password');
+  return json;
+}
+
 export function saveAuth(token: string, partner: AuthResponse['partner']) {
   if (typeof window === 'undefined') return;
   localStorage.setItem('cs_token', token);
