@@ -19,20 +19,21 @@ export function CTABanner({
   secondaryHref = '/contact',
 }: CTABannerProps) {
   return (
-    <section className="py-16 bg-indigo-600">
-      <div className="max-w-4xl mx-auto px-4 text-center">
+    <section className="py-20 bg-primary relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+      <div className="relative max-w-4xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-white">{title}</h2>
-        <p className="mt-3 text-indigo-200">{subtitle}</p>
+        <p className="mt-3 text-slate-300">{subtitle}</p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href={primaryHref}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-white text-indigo-600 font-semibold rounded-xl hover:bg-indigo-50 shadow-lg transition"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-lg shadow-accent/20 transition-all"
           >
             {primaryLabel} <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             href={secondaryHref}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-indigo-700 text-white font-semibold rounded-xl border border-indigo-500 hover:bg-indigo-800 transition"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:bg-white/15 transition-all"
           >
             {secondaryLabel}
           </Link>

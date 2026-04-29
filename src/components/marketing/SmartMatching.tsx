@@ -11,25 +11,26 @@ const CAPABILITIES = [
 
 export function SmartMatching() {
   return (
-    <section className="py-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-surface-elevated relative overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
             <Sparkles className="w-3.5 h-3.5" /> Smart Matching Technology
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">Find Real Matches, Reduce False Positives</h2>
-          <p className="mt-3 text-gray-600 max-w-xl mx-auto">
+          <h2 className="text-3xl font-bold text-text-primary">Find Real Matches, Reduce False Positives</h2>
+          <p className="mt-3 text-text-secondary max-w-xl mx-auto">
             Our matching engine uses multiple algorithms in parallel to catch matches a simple text search would miss.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {CAPABILITIES.map((c) => (
-            <div key={c.title} className="bg-white p-5 rounded-2xl border border-gray-100">
-              <div className="flex items-center gap-2 mb-2">
-                <c.icon className="w-5 h-5 text-indigo-600" />
-                <h3 className="font-semibold text-gray-900">{c.title}</h3>
+            <div key={c.title} className="bg-surface p-5 rounded-xl border border-border">
+              <div className="flex items-center gap-2.5 mb-2">
+                <c.icon className="w-5 h-5 text-accent" />
+                <h3 className="font-semibold text-text-primary">{c.title}</h3>
               </div>
-              <p className="text-sm text-gray-600 leading-relaxed">{c.desc}</p>
+              <p className="text-sm text-text-secondary leading-relaxed">{c.desc}</p>
             </div>
           ))}
         </div>

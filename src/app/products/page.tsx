@@ -30,7 +30,6 @@ const PRODUCTS = [
       'Biometric data deleted after verification',
     ],
     href: '/id-verification',
-    color: 'indigo',
   },
   {
     icon: Search,
@@ -47,7 +46,6 @@ const PRODUCTS = [
       'Adverse media monitoring',
     ],
     href: '/screening',
-    color: 'purple',
   },
 ];
 
@@ -66,49 +64,51 @@ export default function ProductsPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-28 pb-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold mb-6 animate-pulse">
-            <span>&#127881;</span> First Month Free — 10 verifications & 10 screenings included
+      <section className="pt-28 pb-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated to-surface" />
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-6 border border-accent/10">
+            <ShieldCheck className="w-3.5 h-3.5" /> First Month Free — 10 verifications & 10 screenings included
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary leading-tight tracking-tight">
             Simple Pricing.<br />
-            <span className="text-indigo-600">Pay Per Use.</span>
+            <span className="text-accent">Pay Per Use.</span>
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-            ID Verification and Background Screening at <strong>$0.99 per check</strong>.
-            Bundle both for just <strong>$1.59</strong>. No contracts, no monthly minimums.
+          <p className="mt-6 text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto">
+            ID Verification and Background Screening at <strong className="text-text-primary">$0.99 per check</strong>.
+            Bundle both for just <strong className="text-text-primary">$1.59</strong>. No contracts, no monthly minimums.
           </p>
         </div>
       </section>
 
       {/* Product Cards */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {PRODUCTS.map((product) => (
-              <div key={product.name} className="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-xl transition">
-                <div className={`w-14 h-14 ${product.color === 'indigo' ? 'bg-indigo-100' : 'bg-purple-100'} rounded-2xl flex items-center justify-center mb-5`}>
-                  <product.icon className={`w-7 h-7 ${product.color === 'indigo' ? 'text-indigo-600' : 'text-purple-600'}`} />
+              <div key={product.name} className="bg-surface rounded-xl border border-border p-8 hover:shadow-lg hover:border-accent/20 transition-all">
+                <div className="w-12 h-12 bg-accent-subtle rounded-xl flex items-center justify-center mb-5">
+                  <product.icon className="w-6 h-6 text-accent" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">{product.name}</h3>
-                <p className="text-sm text-gray-500 mt-1">{product.tagline}</p>
+                <h3 className="text-2xl font-bold text-text-primary">{product.name}</h3>
+                <p className="text-sm text-text-muted mt-1">{product.tagline}</p>
                 <div className="mt-5">
-                  <span className="text-4xl font-extrabold text-gray-900">{product.price}</span>
-                  <span className="text-sm text-gray-500 ml-1">/ per check</span>
+                  <span className="text-4xl font-bold text-text-primary">{product.price}</span>
+                  <span className="text-sm text-text-muted ml-1">/ per check</span>
                 </div>
-                <p className="mt-4 text-sm text-gray-600 leading-relaxed">{product.description}</p>
+                <p className="mt-4 text-sm text-text-secondary leading-relaxed">{product.description}</p>
                 <ul className="mt-6 space-y-3">
                   {product.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm">
-                      <CheckCircle className="w-4 h-4 text-indigo-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{f}</span>
+                    <li key={f} className="flex items-start gap-2.5 text-sm">
+                      <CheckCircle className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                      <span className="text-text-secondary">{f}</span>
                     </li>
                   ))}
                 </ul>
                 <Link
                   href={product.href}
-                  className="mt-8 flex items-center justify-center gap-2 w-full py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition"
+                  className="mt-8 flex items-center justify-center gap-2 w-full py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light transition-colors"
                 >
                   Learn More <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -119,45 +119,46 @@ export default function ProductsPage() {
       </section>
 
       {/* Bundle CTA */}
-      <section className="py-20 bg-gradient-to-br from-indigo-600 to-purple-600">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 text-white rounded-full text-xs font-semibold mb-6">
+      <section className="py-24 bg-primary relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+        <div className="relative max-w-4xl mx-auto px-4 text-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 text-white rounded-full text-xs font-semibold mb-6 border border-white/10">
             <DollarSign className="w-3.5 h-3.5" /> Best Value
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white">
             Bundle & Save
           </h2>
-          <p className="mt-4 text-indigo-200 text-lg max-w-2xl mx-auto">
+          <p className="mt-4 text-slate-300 text-lg max-w-2xl mx-auto">
             Run ID Verification + Background Screening together for just <strong className="text-white">$1.59 per check</strong> — save 20% compared to running them separately.
           </p>
-          <div className="mt-10 grid sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
-            <div className="bg-white/10 backdrop-blur rounded-2xl p-6">
-              <ScanFace className="w-8 h-8 text-indigo-200 mx-auto mb-3" />
-              <div className="text-sm text-indigo-200">ID Verification</div>
-              <div className="text-2xl font-extrabold text-white mt-1">$0.99</div>
+          <div className="mt-10 grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <ScanFace className="w-8 h-8 text-slate-300 mx-auto mb-3" />
+              <div className="text-sm text-slate-300">ID Verification</div>
+              <div className="text-2xl font-bold text-white mt-1">$0.99</div>
             </div>
-            <div className="bg-white/10 backdrop-blur rounded-2xl p-6">
-              <Search className="w-8 h-8 text-indigo-200 mx-auto mb-3" />
-              <div className="text-sm text-indigo-200">Screening</div>
-              <div className="text-2xl font-extrabold text-white mt-1">$0.99</div>
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <Search className="w-8 h-8 text-slate-300 mx-auto mb-3" />
+              <div className="text-sm text-slate-300">Screening</div>
+              <div className="text-2xl font-bold text-white mt-1">$0.99</div>
             </div>
-            <div className="bg-white/20 backdrop-blur rounded-2xl p-6 ring-2 ring-white/30">
-              <Layers className="w-8 h-8 text-white mx-auto mb-3" />
-              <div className="text-sm text-indigo-200">Both Together</div>
-              <div className="text-2xl font-extrabold text-white mt-1">$1.59</div>
-              <div className="text-xs text-indigo-300 mt-1">Save $0.39</div>
+            <div className="bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-xl p-6 ring-1 ring-accent/40">
+              <Layers className="w-8 h-8 text-accent-light mx-auto mb-3" />
+              <div className="text-sm text-accent-light">Both Together</div>
+              <div className="text-2xl font-bold text-white mt-1">$1.59</div>
+              <div className="text-xs text-accent-light mt-1">Save $0.39</div>
             </div>
           </div>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/register"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-indigo-600 font-semibold rounded-xl hover:bg-indigo-50 shadow-lg transition"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-lg shadow-accent/20 transition-all"
             >
               Get Started Free <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/contact?plan=corporate"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-indigo-500 text-white font-semibold rounded-xl hover:bg-indigo-400 transition"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:bg-white/15 transition-all"
             >
               Contact Sales
             </Link>
@@ -165,16 +166,16 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-20 bg-white">
+      {/* Why Pay Per Use */}
+      <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-gray-900">Why Pay Per Use?</h2>
-            <p className="mt-3 text-gray-600 max-w-xl mx-auto">
+            <h2 className="text-3xl font-bold text-text-primary">Why Pay Per Use?</h2>
+            <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               No subscriptions, no surprises. You only pay when you run a check.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {[
               {
                 icon: DollarSign,
@@ -192,12 +193,12 @@ export default function ProductsPage() {
                 desc: 'Same low price whether you run 10 checks a month or 10,000. Enterprise volume? Let\'s talk.',
               },
             ].map((item) => (
-              <div key={item.title} className="bg-gray-50 p-8 rounded-2xl text-center">
-                <div className="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-5">
-                  <item.icon className="w-7 h-7 text-indigo-600" />
+              <div key={item.title} className="bg-surface-elevated p-8 rounded-xl text-center">
+                <div className="w-12 h-12 bg-accent-subtle rounded-xl flex items-center justify-center mx-auto mb-5">
+                  <item.icon className="w-6 h-6 text-accent" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
-                <p className="mt-3 text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                <h3 className="text-lg font-bold text-text-primary">{item.title}</h3>
+                <p className="mt-3 text-sm text-text-secondary leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -205,25 +206,25 @@ export default function ProductsPage() {
       </section>
 
       {/* Comparison Table */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-24 bg-surface-elevated">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-gray-900">What&apos;s Included</h2>
-            <p className="mt-3 text-gray-600">Every check includes all features. No hidden tiers.</p>
+            <h2 className="text-3xl font-bold text-text-primary">What&apos;s Included</h2>
+            <p className="mt-3 text-text-secondary">Every check includes all features. No hidden tiers.</p>
           </div>
-          <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+          <div className="bg-surface rounded-xl border border-border overflow-hidden">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-100">
-                  <th className="text-left text-sm font-semibold text-gray-900 px-6 py-4">Feature</th>
-                  <th className="text-center text-sm font-semibold text-gray-900 px-4 py-4">
-                    <ScanFace className="w-4 h-4 inline mr-1 text-indigo-600" />ID Verify
+                <tr className="border-b border-border">
+                  <th className="text-left text-sm font-semibold text-text-primary px-6 py-4">Feature</th>
+                  <th className="text-center text-sm font-semibold text-text-primary px-4 py-4">
+                    <ScanFace className="w-4 h-4 inline mr-1 text-accent" />ID Verify
                   </th>
-                  <th className="text-center text-sm font-semibold text-gray-900 px-4 py-4">
-                    <Search className="w-4 h-4 inline mr-1 text-purple-600" />Screening
+                  <th className="text-center text-sm font-semibold text-text-primary px-4 py-4">
+                    <Search className="w-4 h-4 inline mr-1 text-accent" />Screening
                   </th>
-                  <th className="text-center text-sm font-semibold text-gray-900 px-4 py-4">
-                    <Layers className="w-4 h-4 inline mr-1 text-indigo-600" />Bundle
+                  <th className="text-center text-sm font-semibold text-text-primary px-4 py-4">
+                    <Layers className="w-4 h-4 inline mr-1 text-accent" />Bundle
                   </th>
                 </tr>
               </thead>
@@ -241,18 +242,18 @@ export default function ProductsPage() {
                   { feature: 'Adverse media', idv: false, screen: true, bundle: true },
                   { feature: '200+ countries', idv: true, screen: true, bundle: true },
                 ].map((row) => (
-                  <tr key={row.feature} className="border-b border-gray-50">
-                    <td className="text-sm text-gray-700 px-6 py-3">{row.feature}</td>
+                  <tr key={row.feature} className="border-b border-border-subtle">
+                    <td className="text-sm text-text-secondary px-6 py-3">{row.feature}</td>
                     {[row.idv, row.screen, row.bundle].map((val, i) => (
                       <td key={i} className="text-center px-4 py-3">
                         {typeof val === 'boolean' ? (
                           val ? (
-                            <CheckCircle className="w-4 h-4 text-green-500 inline" />
+                            <CheckCircle className="w-4 h-4 text-success inline" />
                           ) : (
-                            <span className="text-gray-300">—</span>
+                            <span className="text-text-muted">—</span>
                           )
                         ) : (
-                          <span className="text-sm font-semibold text-gray-900">{val}</span>
+                          <span className="text-sm font-semibold text-text-primary">{val}</span>
                         )}
                       </td>
                     ))}

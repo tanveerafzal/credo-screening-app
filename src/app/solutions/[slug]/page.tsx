@@ -54,15 +54,15 @@ export default async function SolutionPage({ params }: Props) {
 
       {/* Feature Deep-Dives */}
       {solution.deepDives.map((d, i) => (
-        <section key={i} className={`py-20 ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
+        <section key={i} className={`py-20 ${i % 2 === 0 ? 'bg-surface' : 'bg-surface-elevated'}`}>
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{d.title}</h2>
-            <p className="text-gray-600 leading-relaxed text-lg">{d.desc}</p>
+            <h2 className="text-3xl font-bold text-text-primary mb-4">{d.title}</h2>
+            <p className="text-text-secondary leading-relaxed text-lg">{d.desc}</p>
             {d.bullets && (
               <ul className="mt-6 space-y-3">
                 {d.bullets.map((b, j) => (
-                  <li key={j} className="flex items-start gap-3 text-gray-700">
-                    <CheckCircle className="w-5 h-5 text-indigo-600 flex-shrink-0 mt-0.5" />
+                  <li key={j} className="flex items-start gap-3 text-text-secondary">
+                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                     <span>{b}</span>
                   </li>
                 ))}

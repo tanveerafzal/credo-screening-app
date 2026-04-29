@@ -8,11 +8,11 @@ interface LogoProps {
 
 export function Logo({ size = 32, className = '', showText = true }: LogoProps) {
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={`flex items-center gap-2.5 ${className}`}>
       <Image src="/logo.svg" alt="CredoScreening" width={size} height={size} />
       {showText && (
-        <span className="font-bold text-gray-900">
-          Credo<span className="text-indigo-600">Screening</span>
+        <span className="font-bold text-text-primary">
+          Credo<span className="text-accent">Screening</span>
         </span>
       )}
     </div>

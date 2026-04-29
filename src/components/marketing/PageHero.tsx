@@ -17,25 +17,27 @@ export function PageHero({
   secondaryCta = { label: 'Contact Sales', href: '/contact' },
 }: PageHeroProps) {
   return (
-    <section className="pt-28 pb-16 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold mb-6">
+    <section className="pt-28 pb-16 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated to-surface" />
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-6 border border-accent/10">
           {badge}
         </div>
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight max-w-3xl mx-auto">
+        <h1 className="text-4xl sm:text-5xl font-bold text-text-primary leading-tight max-w-3xl mx-auto tracking-tight">
           {title}
         </h1>
-        <p className="mt-5 text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
+        <p className="mt-5 text-lg text-text-secondary max-w-2xl mx-auto">{subtitle}</p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href={primaryCta.href}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-sm shadow-accent/20 transition-all"
           >
             {primaryCta.label} <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             href={secondaryCta.href}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-white text-gray-700 font-semibold rounded-xl border border-gray-200 hover:border-gray-300 transition"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-surface text-text-primary font-semibold rounded-lg border border-border hover:border-text-muted transition-all"
           >
             {secondaryCta.label}
           </Link>

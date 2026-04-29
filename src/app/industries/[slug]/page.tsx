@@ -45,22 +45,22 @@ export default async function IndustryPage({ params }: Props) {
       <StatsBar />
 
       {/* Pain Points */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-24 bg-surface-elevated">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-gray-900">Compliance Challenges for {industry.label}</h2>
-            <p className="mt-3 text-gray-600 max-w-xl mx-auto">
+            <h2 className="text-3xl font-bold text-text-primary">Compliance Challenges for {industry.label}</h2>
+            <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               We understand the specific compliance pressures facing your industry.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5">
             {industry.painPoints.map((p) => (
-              <div key={p.title} className="bg-white p-6 rounded-2xl border border-gray-100">
-                <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center mb-3">
-                  <AlertTriangle className="w-5 h-5 text-red-600" />
+              <div key={p.title} className="bg-surface p-6 rounded-xl border border-border">
+                <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center mb-3">
+                  <AlertTriangle className="w-5 h-5 text-red-500" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900">{p.title}</h3>
-                <p className="mt-2 text-sm text-gray-600 leading-relaxed">{p.desc}</p>
+                <h3 className="text-base font-semibold text-text-primary">{p.title}</h3>
+                <p className="mt-2 text-sm text-text-secondary leading-relaxed">{p.desc}</p>
               </div>
             ))}
           </div>
@@ -68,14 +68,14 @@ export default async function IndustryPage({ params }: Props) {
       </section>
 
       {/* Use Cases */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-surface">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">Common Use Cases</h2>
+          <h2 className="text-3xl font-bold text-text-primary text-center mb-10">Common Use Cases</h2>
           <div className="grid sm:grid-cols-2 gap-3">
             {industry.useCases.map((uc) => (
-              <div key={uc} className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-                <CheckCircle className="w-5 h-5 text-indigo-600 flex-shrink-0" />
-                <span className="text-sm font-medium text-gray-800">{uc}</span>
+              <div key={uc} className="flex items-center gap-3 p-4 bg-surface-elevated rounded-lg border border-border">
+                <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                <span className="text-sm font-medium text-text-primary">{uc}</span>
               </div>
             ))}
           </div>
