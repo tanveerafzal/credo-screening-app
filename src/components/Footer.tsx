@@ -37,6 +37,7 @@ export function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li><a href="https://trustcredo.com" className="hover:text-white transition-colors">TrustCredo</a></li>
               <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+              <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
               <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
             </ul>

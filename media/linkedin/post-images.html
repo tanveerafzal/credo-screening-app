@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CredoScreening LinkedIn Post Images</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #111;
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px;
+  }
+
+  .label {
+    color: #666;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: -24px;
+  }
+
+  /* LinkedIn post image: 1200x627 (1.91:1) */
+  .post-image {
+    width: 1200px;
+    height: 627px;
+    background: #0F2B46;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .post-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+
+  .post-image::after {
+    content: '';
+    position: absolute;
+    right: -100px;
+    bottom: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(13,148,136,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 60px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(13,148,136,0.15);
+    border: 1px solid rgba(13,148,136,0.25);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2DD4BF;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+  }
+
+  .headline {
+    font-size: 48px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  .headline em {
+    font-style: normal;
+    color: #2DD4BF;
+  }
+
+  .subtext {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #94A3B8;
+    line-height: 1.6;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 36px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-val {
+    font-size: 36px;
+    font-weight: 800;
+    color: #2DD4BF;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-lbl {
+    font-size: 11px;
+    font-weight: 500;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.08);
+    align-self: stretch;
+  }
+
+  .brand-footer {
+    position: absolute;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .brand-footer span {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: -0.01em;
+  }
+
+  .brand-footer span em {
+    font-style: normal;
+    color: rgba(45,212,191,0.5);
+  }
+
+  .url {
+    font-size: 13px;
+    color: rgba(255,255,255,0.25);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* Checklist style */
+  .checklist {
+    text-align: left;
+    margin-top: 28px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    color: #CBD5E1;
+  }
+
+  .check-icon {
+    width: 24px;
+    height: 24px;
+    background: rgba(13,148,136,0.2);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2DD4BF;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  /* Price card style */
+  .price-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 36px;
+  }
+
+  .price-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 24px 32px;
+    text-align: center;
+    min-width: 180px;
+  }
+
+  .price-card.highlight {
+    background: rgba(13,148,136,0.12);
+    border-color: rgba(13,148,136,0.3);
+  }
+
+  .price-card .name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #94A3B8;
+    margin-bottom: 8px;
+  }
+
+  .price-card .price {
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+
+  .price-card .per {
+    font-size: 12px;
+    color: #64748B;
+    margin-top: 4px;
+  }
+
+  .price-card .save {
+    font-size: 12px;
+    font-weight: 600;
+    color: #2DD4BF;
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- POST 1: Launch -->
+<div class="label">Post 1 — Launch (post-launch.png)</div>
+<div class="post-image" id="post-launch">
+  <div class="content">
+    <div class="badge">Now on LinkedIn</div>
+    <div class="headline">
+      Compliance screening<br><em>you can trust</em>
+    </div>
+    <div class="subtext">
+      Screen against 1.2M+ entities from OFAC, sanctions,<br>PEP databases, and 80+ global watchlists.
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val">1.2M+</div><div class="stat-lbl">Entities</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-val">80+</div><div class="stat-lbl">Watchlists</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-val">&lt;3s</div><div class="stat-lbl">Response</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-val">$0.99</div><div class="stat-lbl">Per Check</div></div>
+    </div>
+  </div>
+  <div class="brand-footer">
+    <span>Credo<em>Screening</em></span>
+    <div class="url">credoscreening.com</div>
+  </div>
+</div>
+
+<!-- POST 2: Problem/Solution -->
+<div class="label">Post 2 — Problem/Solution (post-problems.png)</div>
+<div class="post-image" id="post-problems">
+  <div class="content">
+    <div class="badge">Why CredoScreening</div>
+    <div class="headline">
+      Screening tools<br><em>shouldn't slow you down</em>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-icon">✓</div> $0.99 per check — no monthly minimums</div>
+      <div class="check-item"><div class="check-icon">✓</div> Results in under 3 seconds</div>
+      <div class="check-item"><div class="check-icon">✓</div> Simple REST API — integrate in hours</div>
+      <div class="check-item"><div class="check-icon">✓</div> Sanctions lists refreshed every 60 minutes</div>
+      <div class="check-item"><div class="check-icon">✓</div> First month free — no credit card</div>
+    </div>
+  </div>
+  <div class="brand-footer">
+    <span>Credo<em>Screening</em></span>
+    <div class="url">credoscreening.com</div>
+  </div>
+</div>
+
+<!-- POST 3: Background Screening -->
+<div class="label">Post 3 — Background Screening (post-screening.png)</div>
+<div class="post-image" id="post-screening">
+  <div class="content">
+    <div class="badge">Background Screening</div>
+    <div class="headline">
+      80+ watchlists.<br><em>One API call.</em>
+    </div>
+    <div class="subtext">
+      OFAC · EU Sanctions · UN · UK OFSI · Interpol · PEP<br>
+      FBI · DEA · SEC · World Bank · FATF · Adverse Media
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val">1.2M+</div><div class="stat-lbl">Entities</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-val">&lt;3s</div><div class="stat-lbl">Response</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-val">$0.99</div><div class="stat-lbl">Per Check</div></div>
+    </div>
+  </div>
+  <div class="brand-footer">
+    <span>Credo<em>Screening</em></span>
+    <div class="url">credoscreening.com/screening</div>
+  </div>
+</div>
+
+<!-- POST 4: ID Verification -->
+<div class="label">Post 4 — ID Verification (post-idv.png)</div>
+<div class="post-image" id="post-idv">
+  <div class="content">
+    <div class="badge">Identity Verification</div>
+    <div class="headline">
+      ID scan. Selfie.<br><em>Verified.</em>
+    </div>
+    <div class="subtext">
+      Government ID + facial matching + liveness detection.<br>
+      200+ countries. Under 30 seconds. No app required.
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val">200+</div><div class="stat-lbl">Countries</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-val">&lt;30s</div><div class="stat-lbl">Verification</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-val">$0.99</div><div class="stat-lbl">Per Check</div></div>
+    </div>
+  </div>
+  <div class="brand-footer">
+    <span>Credo<em>Screening</em></span>
+    <div class="url">credoscreening.com/id-verification</div>
+  </div>
+</div>
+
+<!-- POST 5: Data Freshness -->
+<div class="label">Post 5 — Data Freshness (post-freshness.png)</div>
+<div class="post-image" id="post-freshness">
+  <div class="content">
+    <div class="badge">Data Freshness</div>
+    <div class="headline">
+      How old is your<br><em>sanctions data?</em>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-icon">✓</div> OFAC, EU, UN, UK — refreshed every 60 minutes</div>
+      <div class="check-item"><div class="check-icon">✓</div> Full dataset updated every 4 hours</div>
+      <div class="check-item"><div class="check-icon">✓</div> Zero manual intervention</div>
+      <div class="check-item"><div class="check-icon">✓</div> 1.2M+ entities always current</div>
+    </div>
+  </div>
+  <div class="brand-footer">
+    <span>Credo<em>Screening</em></span>
+    <div class="url">credoscreening.com</div>
+  </div>
+</div>
+
+<!-- POST 6: Bundle -->
+<div class="label">Post 6 — Bundle (post-bundle.png)</div>
+<div class="post-image" id="post-bundle">
+  <div class="content">
+    <div class="badge">Bundle & Save</div>
+    <div class="headline">
+      Two checks. One API.<br><em>Save 20%.</em>
+    </div>
+    <div class="price-row">
+      <div class="price-card">
+        <div class="name">ID Verification</div>
+        <div class="price">$0.99</div>
+        <div class="per">per check</div>
+      </div>
+      <div class="price-card">
+        <div class="name">Screening</div>
+        <div class="price">$0.99</div>
+        <div class="per">per check</div>
+      </div>
+      <div class="price-card highlight">
+        <div class="name">Both Together</div>
+        <div class="price">$1.59</div>
+        <div class="per">per check</div>
+        <div class="save">Save $0.39</div>
+      </div>
+    </div>
+  </div>
+  <div class="brand-footer">
+    <span>Credo<em>Screening</em></span>
+    <div class="url">credoscreening.com/products</div>
+  </div>
+</div>
+
+<!-- POST 7: FinTech -->
+<div class="label">Post 7 — FinTech (post-fintech.png)</div>
+<div class="post-image" id="post-fintech">
+  <div class="content">
+    <div class="badge">For FinTech Teams</div>
+    <div class="headline">
+      Built for teams<br><em>that move fast</em>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-icon">✓</div> REST API — integrate in hours, not months</div>
+      <div class="check-item"><div class="check-icon">✓</div> $0.99/check — scales with your growth</div>
+      <div class="check-item"><div class="check-icon">✓</div> Sub-3-second response times</div>
+      <div class="check-item"><div class="check-icon">✓</div> Webhooks for async workflows</div>
+      <div class="check-item"><div class="check-icon">✓</div> First month free</div>
+    </div>
+  </div>
+  <div class="brand-footer">
+    <span>Credo<em>Screening</em></span>
+    <div class="url">credoscreening.com</div>
+  </div>
+</div>
+
+</body>
+</html>

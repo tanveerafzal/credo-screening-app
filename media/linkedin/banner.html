@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CredoScreening LinkedIn Banner</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* LinkedIn banner: 1128x191 */
+  .banner {
+    width: 1128px;
+    height: 191px;
+    background: #0F2B46;
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 64px;
+    gap: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle dot pattern */
+  .banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+
+  /* Accent glow */
+  .banner::after {
+    content: '';
+    position: absolute;
+    right: -60px;
+    top: -80px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .left {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    background: #0D9488;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+  }
+
+  .brand-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .brand-name span {
+    color: #2DD4BF;
+  }
+
+  .tagline {
+    font-size: 14px;
+    font-weight: 400;
+    color: #94A3B8;
+    max-width: 420px;
+    line-height: 1.5;
+  }
+
+  .right {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 24px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #2DD4BF;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+
+  .divider {
+    width: 1px;
+    background: rgba(255,255,255,0.08);
+    align-self: stretch;
+  }
+</style>
+</head>
+<body style="background:#1a1a2e; display:flex; align-items:center; justify-content:center; min-height:100vh;">
+  <div class="banner">
+    <div class="left">
+      <div class="brand">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="brand-name">Credo<span>Screening</span></div>
+      </div>
+      <div class="tagline">
+        Background screening & identity verification.<br>
+        1.2M+ entities. 80+ watchlists. Results in seconds.
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="stat">
+        <div class="stat-value">1.2M+</div>
+        <div class="stat-label">Entities</div>
+      </div>
+      <div class="divider"></div>
+      <div class="stat">
+        <div class="stat-value">80+</div>
+        <div class="stat-label">Watchlists</div>
+      </div>
+      <div class="divider"></div>
+      <div class="stat">
+        <div class="stat-value">&lt;3s</div>
+        <div class="stat-label">Response</div>
+      </div>
+      <div class="divider"></div>
+      <div class="stat">
+        <div class="stat-value">200+</div>
+        <div class="stat-label">Countries</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
