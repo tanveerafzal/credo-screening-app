@@ -21,7 +21,7 @@ export interface Job {
 export const JOBS: Job[] = [
   {
     slug: 'account-executive',
-    title: 'Account Executive',
+    title: 'Sales Account Executive',
     department: 'Sales',
     location: 'Remote (US & Canada)',
     locationType: 'Remote',
