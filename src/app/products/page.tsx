@@ -51,7 +51,7 @@ const PRODUCTS = [
     icon: FileText,
     name: 'Credit Report',
     tagline: 'Powered by Equifax',
-    price: 'Contact Us',
+    price: '$5.99',
     description: 'Consumer credit reports from Equifax. Credit scores, trade lines, public records, and risk indicators — delivered in real-time via API.',
     features: [
       'Equifax credit score & risk factors',
@@ -146,24 +146,29 @@ export default function ProductsPage() {
             Bundle & Save
           </h2>
           <p className="mt-4 text-slate-300 text-lg max-w-2xl mx-auto">
-            Run ID Verification + Background Screening together for just <strong className="text-white">$1.59 per check</strong> — save 20% compared to running them separately.
+            Run all three products together — ID Verification, Background Screening, and Credit Report — for just <strong className="text-white">$7.99 per check</strong>. Save 15% compared to running them separately.
           </p>
-          <div className="mt-10 grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-              <ScanFace className="w-8 h-8 text-slate-300 mx-auto mb-3" />
-              <div className="text-sm text-slate-300">ID Verification</div>
-              <div className="text-2xl font-bold text-white mt-1">$0.99</div>
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
+              <ScanFace className="w-7 h-7 text-slate-300 mx-auto mb-2" />
+              <div className="text-xs text-slate-300">ID Verification</div>
+              <div className="text-xl font-bold text-white mt-1">$0.99</div>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-              <Search className="w-8 h-8 text-slate-300 mx-auto mb-3" />
-              <div className="text-sm text-slate-300">Screening</div>
-              <div className="text-2xl font-bold text-white mt-1">$0.99</div>
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
+              <Search className="w-7 h-7 text-slate-300 mx-auto mb-2" />
+              <div className="text-xs text-slate-300">Screening</div>
+              <div className="text-xl font-bold text-white mt-1">$0.99</div>
             </div>
-            <div className="bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-xl p-6 ring-1 ring-accent/40">
-              <Layers className="w-8 h-8 text-accent-light mx-auto mb-3" />
-              <div className="text-sm text-accent-light">Both Together</div>
-              <div className="text-2xl font-bold text-white mt-1">$1.59</div>
-              <div className="text-xs text-accent-light mt-1">Save $0.39</div>
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
+              <FileText className="w-7 h-7 text-slate-300 mx-auto mb-2" />
+              <div className="text-xs text-slate-300">Credit Report</div>
+              <div className="text-xl font-bold text-white mt-1">$5.99</div>
+            </div>
+            <div className="bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-xl p-5 ring-1 ring-accent/40">
+              <Layers className="w-7 h-7 text-accent-light mx-auto mb-2" />
+              <div className="text-xs text-accent-light">All Together</div>
+              <div className="text-xl font-bold text-white mt-1">$7.99</div>
+              <div className="text-xs text-accent-light mt-1">Save 15%</div>
             </div>
           </div>
           <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
@@ -250,7 +255,7 @@ export default function ProductsPage() {
               </thead>
               <tbody>
                 {[
-                  { feature: 'Price per check', idv: '$0.99', screen: '$0.99', credit: 'Contact', bundle: '$1.59+' },
+                  { feature: 'Price per check', idv: '$0.99', screen: '$0.99', credit: '$5.99', bundle: '$7.99' },
                   { feature: 'REST API access', idv: true, screen: true, credit: true, bundle: true },
                   { feature: 'Webhook callbacks', idv: true, screen: true, credit: true, bundle: true },
                   { feature: 'ID document scanning', idv: true, screen: false, credit: false, bundle: true },

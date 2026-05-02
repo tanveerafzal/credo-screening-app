@@ -54,8 +54,8 @@ const BENEFITS = [
     icon: Zap,
     title: 'Instant Access',
     desc: 'Pull credit reports in real-time via API. No batch processing, no waiting. Results returned in seconds.',
-    stat: '<5s',
-    statLabel: 'Average response time',
+    stat: '$5.99',
+    statLabel: 'Per soft pull · Limited time',
   },
   {
     icon: ShieldCheck,
@@ -90,7 +90,7 @@ const FAQS = [
   { q: 'Do I need consumer consent?', a: 'Yes. You must obtain written consumer consent before pulling a credit report. Our API supports consent tracking and audit trails.' },
   { q: 'Is this a hard or soft pull?', a: 'We support both hard and soft pulls depending on your use case. Soft pulls are available for pre-qualification and account review. Hard pulls are used for credit decisions.' },
   { q: 'Can I combine credit reports with screening?', a: 'Yes. You can run credit reports alongside our background screening and ID verification products through the same API for a complete risk assessment.' },
-  { q: 'How is pricing structured?', a: 'Credit reports are priced per pull. Contact us for volume pricing. All reports include the full credit file, score, and risk indicators.' },
+  { q: 'How is pricing structured?', a: 'Credit reports are $5.99 per soft pull — limited time pricing. All reports include the full credit file, score, and risk indicators. Contact us for volume pricing.' },
   { q: 'What data is included in a report?', a: 'Each report includes credit score, trade lines, payment history, public records, collections, inquiries, and account summaries. The exact fields depend on the consumer\'s credit file.' },
 ];
 
