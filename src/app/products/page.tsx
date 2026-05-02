@@ -5,13 +5,13 @@ import { FAQ } from '@/components/marketing/FAQ';
 import Link from 'next/link';
 import {
   ScanFace, Search, CheckCircle, ArrowRight, Layers,
-  Zap, Globe, ShieldCheck, DollarSign
+  Zap, Globe, ShieldCheck, DollarSign, FileText
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Products & Pricing | Credo',
-  description: 'ID Verification and Background Screening — $0.99 per check. Bundle both for $1.59. Pay per use, no contracts.',
+  description: 'ID Verification, Background Screening, and Credit Reports. Pay per use, no contracts. Powered by Equifax.',
 };
 
 const PRODUCTS = [
@@ -47,6 +47,22 @@ const PRODUCTS = [
     ],
     href: '/screening',
   },
+  {
+    icon: FileText,
+    name: 'Credit Report',
+    tagline: 'Powered by Equifax',
+    price: 'Contact Us',
+    description: 'Consumer credit reports from Equifax. Credit scores, trade lines, public records, and risk indicators — delivered in real-time via API.',
+    features: [
+      'Equifax credit score & risk factors',
+      'Full trade line & payment history',
+      'Collections, bankruptcies & liens',
+      'Hard & soft inquiry history',
+      'FCRA-compliant credit pulls',
+      'Consumer consent management',
+    ],
+    href: '/credit-report',
+  },
 ];
 
 const FAQS = [
@@ -55,7 +71,8 @@ const FAQS = [
   { q: 'Is there a free tier?', a: 'Yes! Your first month includes up to 10 ID verifications and 10 background screenings for free. After that, you pay per use.' },
   { q: 'Do I need to commit to a volume?', a: 'No commitments. Pay per use. Run 1 check or 10,000 — same price per check. For high-volume needs, contact us for enterprise pricing.' },
   { q: 'How do I get started?', a: 'Sign up for free, get your API key, and start running checks immediately. No credit card required for the free tier.' },
-  { q: 'Can I use both products through the API?', a: 'Yes. Both products are available via our REST API. You can run them individually or combine them in a single API call for the bundled rate.' },
+  { q: 'Can I use all products through the API?', a: 'Yes. All three products — ID Verification, Background Screening, and Credit Reports — are available via our REST API. Run them individually or combine them for a complete risk assessment.' },
+  { q: 'How do credit reports work?', a: 'Credit reports are pulled in real-time from Equifax. You\'ll need FCRA-compliant permissible purpose and consumer consent. Contact us to get set up.' },
 ];
 
 export default function ProductsPage() {
@@ -76,8 +93,8 @@ export default function ProductsPage() {
             <span className="text-accent">Pay Per Use.</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto">
-            ID Verification and Background Screening at <strong className="text-text-primary">$0.99 per check</strong>.
-            Bundle both for just <strong className="text-text-primary">$1.59</strong>. No contracts, no monthly minimums.
+            ID Verification, Background Screening, and Credit Reports.
+            Pay per use. No contracts, no monthly minimums.
           </p>
         </div>
       </section>
@@ -85,7 +102,7 @@ export default function ProductsPage() {
       {/* Product Cards */}
       <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {PRODUCTS.map((product) => (
               <div key={product.name} className="bg-surface rounded-xl border border-border p-8 hover:shadow-lg hover:border-accent/20 transition-all">
                 <div className="w-12 h-12 bg-accent-subtle rounded-xl flex items-center justify-center mb-5">
@@ -207,12 +224,12 @@ export default function ProductsPage() {
 
       {/* Comparison Table */}
       <section className="py-24 bg-surface-elevated">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl font-bold text-text-primary">What&apos;s Included</h2>
-            <p className="mt-3 text-text-secondary">Every check includes all features. No hidden tiers.</p>
+            <p className="mt-3 text-text-secondary">Every product includes full features. No hidden tiers.</p>
           </div>
-          <div className="bg-surface rounded-xl border border-border overflow-hidden">
+          <div className="bg-surface rounded-xl border border-border overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-border">
@@ -224,27 +241,32 @@ export default function ProductsPage() {
                     <Search className="w-4 h-4 inline mr-1 text-accent" />Screening
                   </th>
                   <th className="text-center text-sm font-semibold text-text-primary px-4 py-4">
+                    <FileText className="w-4 h-4 inline mr-1 text-accent" />Credit
+                  </th>
+                  <th className="text-center text-sm font-semibold text-text-primary px-4 py-4">
                     <Layers className="w-4 h-4 inline mr-1 text-accent" />Bundle
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { feature: 'Price per check', idv: '$0.99', screen: '$0.99', bundle: '$1.59' },
-                  { feature: 'REST API access', idv: true, screen: true, bundle: true },
-                  { feature: 'Webhook callbacks', idv: true, screen: true, bundle: true },
-                  { feature: 'ID document scanning', idv: true, screen: false, bundle: true },
-                  { feature: 'Facial matching', idv: true, screen: false, bundle: true },
-                  { feature: 'Liveness detection', idv: true, screen: false, bundle: true },
-                  { feature: 'Sanctions screening', idv: false, screen: true, bundle: true },
-                  { feature: 'PEP screening', idv: false, screen: true, bundle: true },
-                  { feature: 'Criminal watchlists', idv: false, screen: true, bundle: true },
-                  { feature: 'Adverse media', idv: false, screen: true, bundle: true },
-                  { feature: '200+ countries', idv: true, screen: true, bundle: true },
+                  { feature: 'Price per check', idv: '$0.99', screen: '$0.99', credit: 'Contact', bundle: '$1.59+' },
+                  { feature: 'REST API access', idv: true, screen: true, credit: true, bundle: true },
+                  { feature: 'Webhook callbacks', idv: true, screen: true, credit: true, bundle: true },
+                  { feature: 'ID document scanning', idv: true, screen: false, credit: false, bundle: true },
+                  { feature: 'Facial matching', idv: true, screen: false, credit: false, bundle: true },
+                  { feature: 'Liveness detection', idv: true, screen: false, credit: false, bundle: true },
+                  { feature: 'Sanctions screening', idv: false, screen: true, credit: false, bundle: true },
+                  { feature: 'PEP screening', idv: false, screen: true, credit: false, bundle: true },
+                  { feature: 'Criminal watchlists', idv: false, screen: true, credit: false, bundle: true },
+                  { feature: 'Credit score & history', idv: false, screen: false, credit: true, bundle: true },
+                  { feature: 'Trade lines & public records', idv: false, screen: false, credit: true, bundle: true },
+                  { feature: 'Equifax data', idv: false, screen: false, credit: true, bundle: true },
+                  { feature: 'FCRA compliant', idv: false, screen: false, credit: true, bundle: true },
                 ].map((row) => (
                   <tr key={row.feature} className="border-b border-border-subtle">
                     <td className="text-sm text-text-secondary px-6 py-3">{row.feature}</td>
-                    {[row.idv, row.screen, row.bundle].map((val, i) => (
+                    {[row.idv, row.screen, row.credit, row.bundle].map((val, i) => (
                       <td key={i} className="text-center px-4 py-3">
                         {typeof val === 'boolean' ? (
                           val ? (
