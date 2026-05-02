@@ -8,7 +8,7 @@ import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { register, saveAuth } from '@/lib/auth';
 
 function RegisterForm() {
-  const DASHBOARD_URL = 'https://app.credo.com/partner/dashboard';
+  const DASHBOARD_URL = 'https://app.credoscreening.com/partner/dashboard';
   const [form, setForm] = useState({
     companyName: '',
     contactName: '',

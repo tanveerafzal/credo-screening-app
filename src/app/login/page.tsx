@@ -8,7 +8,7 @@ import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { login, saveAuth } from '@/lib/auth';
 
 function LoginForm() {
-  const DASHBOARD_URL = 'https://app.credo.com/partner/dashboard';
+  const DASHBOARD_URL = 'https://app.credoscreening.com/partner/dashboard';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
