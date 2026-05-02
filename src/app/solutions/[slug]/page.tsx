@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const s = SOLUTIONS[slug];
   if (!s) return {};
   return {
-    title: `${s.label} | CredoScreening`,
+    title: `${s.label} | Credo`,
     description: s.hero.subtitle,
   };
 }

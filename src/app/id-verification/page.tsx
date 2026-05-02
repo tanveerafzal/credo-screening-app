@@ -11,7 +11,7 @@ import {
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'ID Verification | CredoScreening',
+  title: 'ID Verification | Credo',
   description: 'Enterprise-grade identity verification in under 30 seconds. ID scan, selfie, done. 200+ countries, facial matching, liveness detection.',
 };
 
@@ -175,7 +175,7 @@ export default function IDVerificationPage() {
       <section className="py-24 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-text-primary">Why Choose CredoScreening for ID Verification?</h2>
+            <h2 className="text-3xl font-bold text-text-primary">Why Choose Credo for ID Verification?</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Verify identities without the friction. Your users won&apos;t hate it.
             </p>
@@ -331,7 +331,7 @@ export default function IDVerificationPage() {
           <div className="text-center mb-14">
             <h2 className="text-3xl font-bold text-text-primary">Trusted by Businesses Worldwide</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              From startups to enterprises, businesses trust CredoScreening for fast, reliable identity verification.
+              From startups to enterprises, businesses trust Credo for fast, reliable identity verification.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">

@@ -9,8 +9,8 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
               <LogoIcon size={28} />
-              <span className="text-lg font-bold text-white">
-                Credo<span className="text-accent-light">Screening</span>
+              <span className="text-lg font-bold text-accent-light">
+                Credo
               </span>
             </div>
             <p className="text-sm leading-relaxed max-w-md text-slate-400">
@@ -45,7 +45,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <span>&copy; {new Date().getFullYear()} CredoScreening. All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} Credo. All rights reserved.</span>
           <span>SOC 2 Compliant &middot; GDPR Ready &middot; 99.9% Uptime</span>
         </div>
       </div>

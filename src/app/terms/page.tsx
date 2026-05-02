@@ -23,7 +23,7 @@ export default function TermsPage() {
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">1. Acceptance of Terms</h2>
               <p>
-                By accessing or using CredoScreening's background screening services ("Services"), you agree to be bound
+                By accessing or using Credo's background screening services ("Services"), you agree to be bound
                 by these Terms of Service ("Terms"). If you do not agree to these Terms, you may not access or use
                 the Services.
               </p>
@@ -35,7 +35,7 @@ export default function TermsPage() {
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">2. Description of Services</h2>
-              <p>CredoScreening provides background screening services that include:</p>
+              <p>Credo provides background screening services that include:</p>
               <ul className="mt-3 space-y-2 list-disc pl-6">
                 <li>Watchlist screening against OFAC, sanctions, PEP, and 80+ global databases</li>
                 <li>Fuzzy name matching with composite confidence scoring</li>
@@ -131,8 +131,8 @@ export default function TermsPage() {
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">9. Intellectual Property</h2>
               <p>
-                The Services, including the CredoScreening name, logo, website design, API, and matching algorithms,
-                are owned by CredoScreening and are protected by copyright, trademark, and other intellectual
+                The Services, including the Credo name, logo, website design, API, and matching algorithms,
+                are owned by Credo and are protected by copyright, trademark, and other intellectual
                 property laws. You may not copy, modify, distribute, or create derivative works without our
                 express written permission.
               </p>
@@ -168,7 +168,7 @@ export default function TermsPage() {
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">12. Indemnification</h2>
               <p>
-                You agree to indemnify and hold harmless CredoScreening and its officers, directors, employees, and
+                You agree to indemnify and hold harmless Credo and its officers, directors, employees, and
                 agents from any claims, damages, losses, or expenses (including reasonable attorneys' fees) arising
                 out of your use of the Services, violation of these Terms, or infringement of any rights of a
                 third party.

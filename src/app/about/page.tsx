@@ -13,7 +13,7 @@ export default function AboutPage() {
         <section className="bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-16">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <Logo size={48} className="justify-center mb-6" />
-            <h1 className="text-4xl font-extrabold text-gray-900">About CredoScreening</h1>
+            <h1 className="text-4xl font-extrabold text-gray-900">About Credo</h1>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
               We help businesses stay compliant by screening individuals and organizations against
               the world's most comprehensive watchlist database.
@@ -26,7 +26,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto px-4">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h2>
             <p className="text-gray-600 leading-relaxed mb-6">
-              CredoScreening was founded with a simple mission: make compliance screening accessible to every business,
+              Credo was founded with a simple mission: make compliance screening accessible to every business,
               regardless of size. We believe that robust AML, sanctions, and PEP screening shouldn't require enterprise-level
               budgets or months of integration work.
             </p>
@@ -64,12 +64,12 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto px-4">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Powered by TrustCredo</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              CredoScreening is a sister company of <a href="https://trustcredo.com" className="text-indigo-600 font-medium hover:underline">TrustCredo</a>,
+              Credo is a sister company of <a href="https://trustcredo.com" className="text-indigo-600 font-medium hover:underline">TrustCredo</a>,
               a trusted identity verification platform used by businesses across North America. TrustCredo provides
               AI-powered ID document verification, biometric face matching, and liveness detection.
             </p>
             <p className="text-gray-600 leading-relaxed mb-6">
-              Together, TrustCredo and CredoScreening offer a complete KYC/AML solution — from identity verification
+              Together, TrustCredo and Credo offer a complete KYC/AML solution — from identity verification
               to watchlist screening — through a single integration.
             </p>
             <div className="flex gap-4">

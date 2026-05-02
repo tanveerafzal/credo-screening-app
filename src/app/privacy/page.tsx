@@ -23,7 +23,7 @@ export default function PrivacyPage() {
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">1. Introduction</h2>
               <p>
-                CredoScreening ("we," "us," or "our") is committed to protecting your privacy.
+                Credo ("we," "us," or "our") is committed to protecting your privacy.
                 This Privacy Policy explains how we collect, use, disclose, and safeguard your information when
                 you use our background screening services (the "Service").
               </p>
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">2. Privacy Policy for Individuals Being Screened</h2>
               <p>
-                Our Customers use CredoScreening to screen individuals against watchlists as part of their
+                Our Customers use Credo to screen individuals against watchlists as part of their
                 compliance obligations (AML, KYC, sanctions screening). When a screening is performed:
               </p>
               <ul className="mt-3 space-y-2 list-disc pl-6">
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
                 <li><strong>Data sharing:</strong> Screening results are returned to the Customer who initiated the request. We do not share your data with any other third party</li>
               </ul>
               <p className="mt-3">
-                CredoScreening acts as a data processor on behalf of our Customers. The Customer is the data
+                Credo acts as a data processor on behalf of our Customers. The Customer is the data
                 controller and is responsible for ensuring they have a lawful basis to submit your information
                 for screening.
               </p>
@@ -207,7 +207,7 @@ export default function PrivacyPage() {
                 <strong>Address:</strong> Toronto, Ontario, Canada
               </p>
               <p className="mt-3">
-                CredoScreening is a sister company of{' '}
+                Credo is a sister company of{' '}
                 <a href="https://trustcredo.com" className="text-indigo-600 hover:underline">TrustCredo</a> (Identity Verification).
               </p>
             </div>

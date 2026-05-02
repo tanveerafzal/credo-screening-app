@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const i = INDUSTRIES[slug];
   if (!i) return {};
   return {
-    title: `${i.label} Screening | CredoScreening`,
+    title: `${i.label} Screening | Credo`,
     description: i.hero.subtitle,
   };
 }

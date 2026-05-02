@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       <h3 style="color:#374151;margin-top:20px;">Message</h3>
       <p style="color:#4b5563;line-height:1.6;">${message.replace(/\n/g, '<br>')}</p>
       <hr style="margin-top:30px;border:none;border-top:1px solid #e5e7eb;">
-      <p style="color:#9ca3af;font-size:12px;">Sent from CredoScreening contact form</p>
+      <p style="color:#9ca3af;font-size:12px;">Sent from Credo contact form</p>
     `;
 
     if (RESEND_API_KEY) {
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'CredoScreening <noreply@credoscreening.com>',
+          from: 'Credo <noreply@credoscreening.com>',
           to: [CONTACT_EMAIL],
           reply_to: email,
           subject,

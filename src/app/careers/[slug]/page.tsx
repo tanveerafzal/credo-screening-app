@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const job = JOBS_MAP[slug];
   if (!job) return {};
   return {
-    title: `${job.title} | Careers | CredoScreening`,
+    title: `${job.title} | Careers | Credo`,
     description: job.shortDesc,
   };
 }
@@ -130,7 +130,7 @@ export default async function JobPage({ params }: Props) {
             <div className="space-y-6">
               {/* Why Join */}
               <div className="bg-surface-elevated rounded-xl border border-border p-6">
-                <h3 className="text-base font-bold text-text-primary mb-4">Why CredoScreening</h3>
+                <h3 className="text-base font-bold text-text-primary mb-4">Why Credo</h3>
                 <div className="space-y-4">
                   {job.whyJoin.map((item, i) => (
                     <div key={i}>

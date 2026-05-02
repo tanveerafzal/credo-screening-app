@@ -13,7 +13,7 @@ export default function DocsPage() {
         <div className="max-w-4xl mx-auto px-4">
           <div className="mb-10">
             <h1 className="text-3xl font-bold text-gray-900">API Documentation</h1>
-            <p className="mt-2 text-gray-600">Everything you need to integrate CredoScreening into your application.</p>
+            <p className="mt-2 text-gray-600">Everything you need to integrate Credo into your application.</p>
             <div className="mt-4 p-4 bg-indigo-50 border border-indigo-200 rounded-xl text-sm text-indigo-700">
               <strong>Base URL:</strong> <code className="bg-indigo-100 px-1.5 py-0.5 rounded">{API_URL}/api/v1</code>
               <span className="ml-4">Need an API key? <Link href="/register" className="font-semibold underline">Create a free account</Link></span>

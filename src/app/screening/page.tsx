@@ -36,7 +36,7 @@ interface ScreeningResult {
 }
 
 const DAILY_LIMIT = 10;
-const STORAGE_KEY = 'credoscreening_daily';
+const STORAGE_KEY = 'credo_daily';
 
 function getDailyUsage(): { count: number; date: string } {
   if (typeof window === 'undefined') return { count: 0, date: '' };

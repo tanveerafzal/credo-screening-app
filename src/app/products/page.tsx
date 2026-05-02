@@ -10,7 +10,7 @@ import {
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Products & Pricing | CredoScreening',
+  title: 'Products & Pricing | Credo',
   description: 'ID Verification and Background Screening — $0.99 per check. Bundle both for $1.59. Pay per use, no contracts.',
 };
 

@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CredoScreening - Your Trusted Background Check Partner",
-  description: "Screen individuals and businesses against 1.2M+ entities from OFAC, sanctions lists, PEP databases, and 80+ global watchlists. Powered by TrustCredo.",
+  title: "Credo - Your Trusted Background Check Partner",
+  description: "Screen individuals and businesses against 1.2M+ entities from OFAC, sanctions lists, PEP databases, and 80+ global watchlists.",
   keywords: ["background check", "screening", "OFAC", "sanctions", "PEP", "watchlist", "AML", "KYC"],
 };
 

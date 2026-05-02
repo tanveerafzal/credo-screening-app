@@ -9,10 +9,10 @@ interface LogoProps {
 export function Logo({ size = 32, className = '', showText = true }: LogoProps) {
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
-      <Image src="/logo.svg" alt="CredoScreening" width={size} height={size} />
+      <Image src="/logo.svg" alt="Credo" width={size} height={size} />
       {showText && (
-        <span className="font-bold text-text-primary">
-          Credo<span className="text-accent">Screening</span>
+        <span className="text-lg font-bold text-accent">
+          Credo
         </span>
       )}
     </div>
@@ -20,5 +20,5 @@ export function Logo({ size = 32, className = '', showText = true }: LogoProps) 
 }
 
 export function LogoIcon({ size = 32, className = '' }: { size?: number; className?: string }) {
-  return <Image src="/logo.svg" alt="CredoScreening" width={size} height={size} className={className} />;
+  return <Image src="/logo.svg" alt="Credo" width={size} height={size} className={className} />;
 }
