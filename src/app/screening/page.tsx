@@ -8,7 +8,7 @@ import { Footer } from '@/components/Footer';
 import { Shield, Search, AlertTriangle, CheckCircle, Loader2, LogIn, UserPlus } from 'lucide-react';
 import { getAuth } from '@/lib/auth';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
+const API_URL = process.env.NEXT_PUBLIC_ID_VERIFY_BACKEND || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
 
 interface MatchedEntity {
   name: string;

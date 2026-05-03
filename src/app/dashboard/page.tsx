@@ -10,7 +10,7 @@ import {
 import { Logo } from '@/components/Logo';
 import { getAuth, clearAuth, getProfile } from '@/lib/auth';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
+const API_URL = process.env.NEXT_PUBLIC_ID_VERIFY_BACKEND || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
 
 type Tab = 'overview' | 'screenings' | 'products' | 'docs';
 
