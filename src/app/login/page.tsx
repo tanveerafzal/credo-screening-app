@@ -8,9 +8,7 @@ import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { login, saveAuth } from '@/lib/auth';
 
 function LoginForm() {
-  const DASHBOARD_URL = process.env.NEXT_PUBLIC_ID_VERIFY_BACKEND
-    ? `${process.env.NEXT_PUBLIC_ID_VERIFY_BACKEND}/partner/dashboard`
-    : 'https://app.credoscreening.com/partner/dashboard';
+  const DASHBOARD_URL = `${process.env.NEXT_PUBLIC_ID_VERIFY_BACKEND || 'https://app.credoscreening.com'}/partner/dashboard`;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
