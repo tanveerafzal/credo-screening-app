@@ -1,20 +1,20 @@
-# CredoScreening — LinkedIn Page Setup Guide
+# Trust Credo — LinkedIn Page Setup Guide
 
 ## Page Details
 
-- **Page name:** CredoScreening
-- **LinkedIn URL:** linkedin.com/company/credoscreening
-- **Website:** https://credoscreening.com
+- **Page name:** Trust Credo
+- **LinkedIn URL:** linkedin.com/company/trustcredo
+- **Website:** https://trustcredo.com
 - **Industry:** Computer & Network Security
 - **Company type:** Privately Held
-- **CTA Button:** Visit website → https://credoscreening.com
+- **CTA Button:** Visit website → https://trustcredo.com
 
 ---
 
 ## Tagline (120 chars)
 
 ```
-Background screening & identity verification. 1.2M+ entities. 80+ watchlists. Results in seconds.
+Background screening, identity verification & credit reports powered by Equifax. 1.2M+ entities. Results in seconds.
 ```
 
 ---
@@ -22,9 +22,9 @@ Background screening & identity verification. 1.2M+ entities. 80+ watchlists. Re
 ## About
 
 ```
-CredoScreening is your trusted background check partner — screening individuals and businesses against 1.2 million+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists worldwide.
+Trust Credo is your trusted partner for background screening, identity verification, and credit reporting — helping businesses stay compliant without slowing down.
 
-We help compliance teams, fintechs, and regulated businesses verify who they're doing business with — fast.
+We screen individuals and organizations against 1.2 million+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists worldwide. We verify identities with government ID scanning and facial matching. And we deliver consumer credit reports powered by Equifax.
 
 🔍 Background Screening
 Screen against OFAC SDN, EU sanctions, UN Security Council, UK OFSI, Interpol, PEP databases, and 70+ more lists. Fuzzy name matching, phonetic algorithms, and composite scoring deliver results in under 3 seconds.
@@ -32,15 +32,19 @@ Screen against OFAC SDN, EU sanctions, UN Security Council, UK OFSI, Interpol, P
 🪪 ID Verification
 Government ID scan + selfie facial matching with liveness detection. Verify identities from 200+ countries in under 30 seconds. No app downloads required.
 
+📊 Credit Reports — Powered by Equifax
+Consumer credit reports with scores, trade lines, public records, and risk indicators. FCRA-compliant soft pulls delivered in real-time via API.
+
 Why teams choose us:
-• $0.99 per check — bundle both for $1.59
-• Simple REST API — send a name, get results
+• $0.99 per screening or ID verification check
+• $5.99 per credit report (soft pull) — limited time
+• Simple REST API — send a request, get results
 • Critical sanctions lists updated hourly
 • First month free — no credit card required
 
 Industries we serve: Financial services, FinTech, Insurance, Crypto, SaaS, Retail, Real Estate, Gaming, Professional Services, and more.
 
-A sister company of TrustCredo — Identity Verification.
+Certified Equifax credit verification partner.
 ```
 
 ---
@@ -48,7 +52,7 @@ A sister company of TrustCredo — Identity Verification.
 ## Specialties
 
 ```
-Background Screening, Identity Verification, AML Compliance, KYC, Sanctions Screening, PEP Screening, OFAC Screening, Watchlist Monitoring, Compliance API, Fraud Prevention, RegTech, Due Diligence, Risk Management, Adverse Media Screening, Continuous Monitoring
+Background Screening, Identity Verification, Credit Reports, Equifax, AML Compliance, KYC, Sanctions Screening, PEP Screening, OFAC Screening, Watchlist Monitoring, Compliance API, Fraud Prevention, RegTech, Due Diligence, Risk Management, Adverse Media Screening, Continuous Monitoring, Credit Verification, FCRA Compliance
 ```
 
 ---
@@ -56,7 +60,7 @@ Background Screening, Identity Verification, AML Compliance, KYC, Sanctions Scre
 ## Hashtags to Follow
 
 ```
-#AML #KYC #Compliance #RegTech #Sanctions #FinTech #BackgroundCheck #FraudPrevention #RiskManagement #IdentityVerification
+#AML #KYC #Compliance #RegTech #Sanctions #FinTech #BackgroundCheck #FraudPrevention #RiskManagement #IdentityVerification #CreditReport #Equifax
 ```
 
 ---
@@ -84,35 +88,40 @@ Background Screening, Identity Verification, AML Compliance, KYC, Sanctions Scre
 ```
 We're on LinkedIn! 👋
 
-CredoScreening helps compliance teams screen against 1.2M+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists — in under 3 seconds.
+Trust Credo helps compliance teams screen against 1.2M+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists — in under 3 seconds.
 
-Whether you're in fintech, insurance, crypto, or real estate, we make background screening fast, affordable, and reliable.
+We also verify identities in 200+ countries and deliver Equifax credit reports via API.
 
-✅ $0.99 per check
+Whether you're in fintech, insurance, crypto, or real estate, we make compliance fast, affordable, and reliable.
+
+✅ $0.99 per screening or ID check
+✅ $5.99 per Equifax credit report
 ✅ Simple REST API
 ✅ First month free
 
-Try it → credoscreening.com
+Try it → trustcredo.com
 
-#AML #KYC #Compliance #RegTech #BackgroundCheck
+#AML #KYC #Compliance #RegTech #BackgroundCheck #Equifax
 ```
 
 ### Post 2 — Product Highlight
 
 ```
-One API. Two products. Full KYC coverage.
+One API. Three products. Full KYC + credit coverage.
 
-🔍 Background Screening — Screen against OFAC, sanctions, PEP, Interpol, and 80+ watchlists in under 3 seconds. Fuzzy matching catches name variants that simple text search misses.
+🔍 Background Screening — Screen against OFAC, sanctions, PEP, Interpol, and 80+ watchlists in under 3 seconds.
 
-🪪 ID Verification — Government ID scan + selfie. Facial matching with liveness detection. 200+ countries. Done in under 30 seconds.
+🪪 ID Verification — Government ID scan + selfie. Facial matching with liveness detection. 200+ countries.
 
-Bundle both for just $1.59 per check.
+📊 Credit Report — Consumer credit reports powered by Equifax. Scores, trade lines, public records. FCRA compliant.
 
-No contracts. No monthly minimums. Pay only when you screen.
+Bundle all three for $7.99 per check — save 15%.
 
-Learn more → credoscreening.com/products
+No contracts. No monthly minimums. Pay only when you check.
 
-#Compliance #IdentityVerification #AML #FinTech
+Learn more → trustcredo.com/products
+
+#Compliance #IdentityVerification #AML #FinTech #Equifax #CreditReport
 ```
 
 ### Post 3 — Industry Insight
@@ -122,7 +131,7 @@ Sanctions lists change constantly. Are you keeping up?
 
 OFAC alone updates its SDN list multiple times per month. A name that was clear last week could be flagged today.
 
-At CredoScreening, critical sanctions lists are refreshed every 60 minutes. Our full dataset of 1.2M+ entities updates every 4 hours — automatically.
+At Trust Credo, critical sanctions lists are refreshed every 60 minutes. Our full dataset of 1.2M+ entities updates every 4 hours — automatically.
 
 If your screening provider updates daily (or less), you're flying blind between refreshes.
 
@@ -138,6 +147,8 @@ How often does your compliance stack update?
 - Sanctions list update alerts (OFAC additions/removals)
 - Compliance tips for specific industries
 - Product updates and new features
+- Equifax credit report use cases (lending, tenant screening, insurance)
 - Customer use cases (anonymized)
 - Regulatory news affecting KYC/AML
 - "Did you know?" posts about watchlist coverage
+- Credit report + screening bundle value proposition
