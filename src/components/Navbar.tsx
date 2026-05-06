@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useRef } from 'react';
-import { Menu, X, ChevronDown, ScanFace, Search, FileText, Building2 } from 'lucide-react';
+import { Menu, X, ChevronDown, ScanFace, Search, FileText, Building2, Users } from 'lucide-react';
 import { Logo } from './Logo';
 import { SOLUTIONS_LIST } from '@/lib/solutions';
 import { INDUSTRIES_LIST } from '@/lib/industries';
@@ -130,7 +130,7 @@ export function Navbar() {
                       </div>
                     </Link>
                   ))}
-                  <div className="col-span-2 border-t border-border mt-1 pt-2">
+                  <div className="col-span-2 border-t border-border mt-1 pt-2 grid grid-cols-2 gap-1">
                     <Link
                       href="/fintech-kyc-verification"
                       className="flex items-start gap-3 p-3 rounded-lg hover:bg-surface-elevated transition-colors"
@@ -141,7 +141,20 @@ export function Navbar() {
                       </div>
                       <div className="min-w-0">
                         <div className="text-sm font-semibold text-text-primary">Fintech KYC</div>
-                        <div className="text-xs text-text-muted leading-snug mt-0.5">Fast, compliant identity verification for fintech companies</div>
+                        <div className="text-xs text-text-muted leading-snug mt-0.5">Identity verification for fintech companies</div>
+                      </div>
+                    </Link>
+                    <Link
+                      href="/staffing-identity-check"
+                      className="flex items-start gap-3 p-3 rounded-lg hover:bg-surface-elevated transition-colors"
+                      onClick={() => setOpenMenu(null)}
+                    >
+                      <div className="w-9 h-9 bg-accent-subtle rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Users className="w-4.5 h-4.5 text-accent" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-sm font-semibold text-text-primary">Staffing</div>
+                        <div className="text-xs text-text-muted leading-snug mt-0.5">Candidate identity & credit verification</div>
                       </div>
                     </Link>
                   </div>
@@ -233,6 +246,13 @@ export function Navbar() {
               onClick={() => setMobileOpen(false)}
             >
               Fintech KYC
+            </Link>
+            <Link
+              href="/staffing-identity-check"
+              className="block px-3 py-2.5 text-sm text-text-secondary hover:bg-surface-elevated hover:text-text-primary rounded-lg transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              Staffing
             </Link>
 
             <div className="text-xs font-semibold text-text-muted uppercase tracking-wider px-3 pt-4 pb-1">Industries</div>
