@@ -233,7 +233,7 @@ export default function Home() {
           <div className="mt-20 max-w-3xl mx-auto">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-text-primary">Pay Per Use</h3>
-              <p className="mt-2 text-text-secondary text-sm">Every plan uses the same per-check pricing. No hidden fees.</p>
+              <p className="mt-2 text-text-secondary text-sm">Every plan uses the same per-check pricing. Minimum monthly pulls apply.</p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               <div className="bg-surface rounded-xl border border-border p-6 text-center hover:shadow-md hover:border-accent/20 transition-all relative">

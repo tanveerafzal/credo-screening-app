@@ -11,7 +11,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Products & Pricing | Credo',
-  description: 'ID Verification, Background Screening, and Credit Reports. Pay per use, no contracts. Powered by Equifax.',
+  description: 'ID Verification, Background Screening, and Credit Reports. Pay per use, no contracts. Minimum monthly pulls apply. Powered by Equifax.',
 };
 
 const PRODUCTS = [
@@ -66,7 +66,7 @@ const PRODUCTS = [
 ];
 
 const FAQS = [
-  { q: 'Is there a monthly fee?', a: 'No monthly fees. You only pay for what you use. Each verification or screening is billed individually at the per-use rate.' },
+  { q: 'Is there a minimum monthly usage?', a: 'Yes. A minimum number of monthly pulls applies to each product. The minimum varies depending on which products you use. Contact us for details.' },
   { q: 'How does the bundle pricing work?', a: 'When you run both ID Verification and Background Screening on the same person in a single request, you pay $1.59 instead of $1.98 — saving you $0.39 per check.' },
   { q: 'Is there a free tier?', a: 'Yes! Your first month includes up to 10 ID verifications and 10 background screenings for free. After that, you pay per use.' },
   { q: 'Do I need to commit to a volume?', a: 'No commitments. Pay per use. Run 1 check or 10,000 — same price per check. For high-volume needs, contact us for enterprise pricing.' },
@@ -94,7 +94,7 @@ export default function ProductsPage() {
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto">
             ID Verification, Background Screening, and Credit Reports.
-            Pay per use. No contracts, no monthly minimums.
+            Pay per use. No contracts. Minimum monthly pulls apply.
           </p>
         </div>
       </section>
@@ -194,15 +194,15 @@ export default function ProductsPage() {
           <div className="text-center mb-14">
             <h2 className="text-3xl font-bold text-text-primary">Why Pay Per Use?</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              No subscriptions, no surprises. You only pay when you run a check.
+              Minimum monthly pulls apply. Beyond that, you only pay when you run a check.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
                 icon: DollarSign,
-                title: 'No Monthly Fees',
-                desc: 'Zero fixed costs. Run 1 check or 10,000 — you only pay for what you use.',
+                title: 'Minimum Pulls Apply',
+                desc: 'A minimum number of monthly pulls is required per product. Beyond that, pay only for what you use.',
               },
               {
                 icon: Zap,
