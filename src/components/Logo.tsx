@@ -14,17 +14,18 @@ export function Logo({ size = 32, className = '', showText = true }: LogoProps) 
   return (
     <div className={`flex items-center ${className}`}>
       {showText ? (
-        <Image
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
           src="/trustcredo_logo.png"
           alt="Credo — Trusted Background & Verification Screening Services"
           width={width}
           height={height}
           className="hidden sm:block"
-          priority
         />
       ) : null}
       {/* Mobile: show just the shield icon */}
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src="/logo.svg"
         alt="Credo"
         width={size}
