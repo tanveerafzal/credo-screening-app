@@ -7,7 +7,7 @@ interface LogoProps {
 }
 
 export function Logo({ size = 32, className = '', showText = true }: LogoProps) {
-  const height = size;
+  const height = 110;
   // The logo image has a ~2.2:1 aspect ratio
   const width = Math.round(height * 2.2);
 
