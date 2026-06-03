@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useRef } from 'react';
-import { Menu, X, ChevronDown, ScanFace, Search, FileText, Building2, Users } from 'lucide-react';
+import { Menu, X, ChevronDown, ScanFace, Search, FileText, Building2, Users, PenLine } from 'lucide-react';
 import { Logo } from './Logo';
 import { SOLUTIONS_LIST } from '@/lib/solutions';
 import { INDUSTRIES_LIST } from '@/lib/industries';
@@ -25,6 +25,12 @@ const PRODUCTS_LIST = [
     label: 'Credit Report',
     shortDesc: 'Consumer credit reports powered by Equifax.',
     icon: FileText,
+  },
+  {
+    slug: 'trusted-signatures',
+    label: 'Trusted Signatures',
+    shortDesc: 'Identity-verified electronic signatures that prevent fraud.',
+    icon: PenLine,
   },
 ];
 

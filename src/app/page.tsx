@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import {
   Search, Globe, Zap, Lock, BarChart3,
-  CheckCircle, ArrowRight, Database, ScanFace, Shield, Clock, FileText
+  CheckCircle, ArrowRight, Database, ScanFace, Shield, Clock, FileText, PenLine
 } from 'lucide-react';
 
 const SOURCES = [
@@ -235,7 +235,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-text-primary">Pay Per Use</h3>
               <p className="mt-2 text-text-secondary text-sm">Every plan uses the same per-check pricing. Minimum monthly pulls apply.</p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
               <div className="bg-surface rounded-xl border border-border p-6 text-center hover:shadow-md hover:border-accent/20 transition-all relative">
                 <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wide">Limited Time</div>
                 <ScanFace className="w-8 h-8 text-accent mx-auto mb-3" />
@@ -256,6 +256,13 @@ export default function Home() {
                 <div className="text-sm font-medium text-text-muted">Credit Report</div>
                 <div className="text-3xl font-bold text-text-primary mt-1">$5.99</div>
                 <div className="text-xs text-text-muted mt-1">per soft pull</div>
+              </div>
+              <div className="bg-surface rounded-xl border border-border p-6 text-center hover:shadow-md hover:border-accent/20 transition-all relative">
+                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wide">Limited Time</div>
+                <PenLine className="w-8 h-8 text-accent mx-auto mb-3" />
+                <div className="text-sm font-medium text-text-muted">Trusted Signatures</div>
+                <div className="text-3xl font-bold text-text-primary mt-1">$1.99</div>
+                <div className="text-xs text-text-muted mt-1">per envelope</div>
               </div>
               <div className="bg-accent-subtle rounded-xl border border-accent/10 p-6 text-center hover:shadow-md transition-all">
                 <div className="flex items-center justify-center gap-1.5 mb-3">

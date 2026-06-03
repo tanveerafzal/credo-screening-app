@@ -5,7 +5,7 @@ import { FAQ } from '@/components/marketing/FAQ';
 import Link from 'next/link';
 import {
   ScanFace, Search, CheckCircle, ArrowRight, Layers,
-  Zap, Globe, ShieldCheck, DollarSign, FileText
+  Zap, Globe, ShieldCheck, DollarSign, FileText, PenLine
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
@@ -62,6 +62,22 @@ const PRODUCTS = [
       'Consumer consent management',
     ],
     href: '/credit-report',
+  },
+  {
+    icon: PenLine,
+    name: 'Trusted Signatures',
+    tagline: 'Verified People. Trusted Signatures.',
+    price: '$1.99',
+    description: 'Identity-verified electronic signatures. Each signer proves who they are before signing.',
+    features: [
+      'Identity verification before signing',
+      'Sequential multi-signer support',
+      'Draw, type, or upload signatures',
+      'Drag-and-drop field editor',
+      'TrustCredo verification seal',
+      'Detailed audit trail',
+    ],
+    href: '/trusted-signatures',
   },
 ];
 
