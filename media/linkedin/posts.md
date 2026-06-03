@@ -202,9 +202,8 @@ With Trust Credo, you get all three through one API:
 
 Same API. Same dashboard. Same webhook delivery.
 
-No contracts. No monthly minimums. Pay per check.
+No contracts. Pay per check.
 
-Certified Equifax credit verification partner.
 
 trustcredo.com/products
 
@@ -242,6 +241,175 @@ trustcredo.com
 
 #FinTech #AML #KYC #Compliance #Startups #RegTech #Equifax
 ```
+
+---
+
+---
+
+# Trusted Signatures Series
+
+4 posts over one week announcing Trusted Signatures — identity-verified electronic signatures.
+
+---
+
+## Post 1 (Tuesday) — Launch Announcement
+
+```
+Most e-signatures prove one thing: someone clicked a link.
+
+They don't prove WHO clicked it.
+
+Today we're launching Trusted Signatures — the first e-signature product that verifies signer identity before the signature happens.
+
+Here's how it works:
+
+1️⃣ Upload your PDF and place signature fields
+2️⃣ Add signers — set identity verification level for each
+3️⃣ Each signer verifies their identity, then signs
+4️⃣ TrustCredo seals the document with a verification stamp
+
+Every signed document includes:
+→ The signer's signature
+→ A TrustCredo verification seal
+→ Verification ID + timestamp
+→ A detailed audit trail
+
+Sequential multi-signer. Drag-and-drop field editor. Draw, type, or upload signatures.
+
+$1.99 per document — unlimited signers.
+
+Know who's signing → trustcredo.com/trusted-signatures
+
+#eSignature #IdentityVerification #KYC #Compliance #FraudPrevention #RegTech
+```
+
+**Image idea:** Product page hero screenshot or a mockup of the TrustCredo verification seal on a signed document.
+
+**Personal share (Tanveer Afzal):**
+```
+Every compliance product we've built at TrustCredo started with the same question: how do you prove who someone is?
+
+We answered it for background screening. Then identity verification. Then credit reports.
+
+Today we're answering it for signatures.
+
+Trusted Signatures verifies the signer's identity before they can sign. Not after. Not "trust me, I clicked the link." Actual identity verification.
+
+Excited to put this one out there.
+```
+
+---
+
+## Post 2 (Wednesday) — Problem/Solution
+
+```
+A fraud investigator once told me:
+
+"The signature on the loan docs was perfect. The problem was, the person who signed them didn't exist."
+
+This is the gap in every e-signature tool today:
+
+❌ DocuSign verifies an email address — not a person
+❌ HelloSign confirms someone clicked a link — not who clicked it
+❌ Adobe Sign tracks a session — not an identity
+
+A signature without identity verification is just a drawing on a screen.
+
+TrustCredo Trusted Signatures closes that gap:
+
+✅ Government ID + selfie verification before signing
+✅ Three verification levels — full IDV, email, or none — per signer
+✅ Tamper-proof sealed documents with verification proof
+✅ Complete audit trail (opened, verified, signed, delivered)
+
+For $1.99 per document, you get signatures that actually prove who signed.
+
+How confident are you in who's signing your documents?
+
+trustcredo.com/trusted-signatures
+
+#eSignature #FraudPrevention #Compliance #IdentityVerification #FinTech
+```
+
+---
+
+## Post 3 (Thursday) — Product Deep-Dive
+
+```
+What happens when you send a document through TrustCredo Trusted Signatures?
+
+Here's the full flow:
+
+📄 SENDER (you):
+→ Upload a PDF
+→ Drag and drop fields: signatures, initials, dates, text, checkboxes
+→ Add signers with name, email, phone
+→ Set verification level per signer (Full IDV / Email / None)
+→ Set signing order (signer 1, then signer 2, etc.)
+→ Hit send
+
+✍️ SIGNER (your client/counterparty):
+→ Receives secure link via email + SMS
+→ Verifies identity (if required) — government ID + selfie
+→ Reviews the document
+→ Signs — draw, type, or upload their signature
+→ Confirms and submits
+
+🔒 AFTER ALL SIGNERS COMPLETE:
+→ TrustCredo applies verification seal to each signature
+→ Document is flattened and locked (can't be edited)
+→ Final PDF delivered to everyone via email
+→ Webhook fires to your system
+→ Stored per your retention policy
+
+One API. One dashboard. $1.99 per document — no matter how many signers.
+
+trustcredo.com/trusted-signatures
+
+#eSignature #KYC #DocumentSigning #Compliance #API #FinTech
+```
+
+---
+
+## Post 4 (Friday) — Use Cases + Bundle CTA
+
+```
+Who needs identity-verified signatures?
+
+→ Lenders: Know the borrower signing the loan docs is who they claim to be
+→ Real estate: Verify buyers and sellers before closing documents
+→ Insurance: Confirm policyholder identity on applications and claims
+→ HR: Verify new hires signing employment agreements remotely
+→ Legal: Strengthen the evidentiary value of signed contracts
+→ Auto dealers: Verify identity on finance applications before funding
+
+If your business has signatures where fraud = liability, you need verification before the signature — not after.
+
+And if you're already using TrustCredo for screening or ID verification, Trusted Signatures uses the same API, same dashboard, same webhooks. Zero extra integration.
+
+The full TrustCredo stack:
+
+→ Background Screening: $0.99
+→ ID Verification: $0.99
+→ Credit Report (Equifax): $5.99
+→ Trusted Signatures: $1.99
+→ All together: $9.99
+
+One API. One integration. Complete compliance.
+
+trustcredo.com/products
+
+#eSignature #Compliance #FinTech #Lending #Insurance #KYC #FraudPrevention
+```
+
+---
+
+## Posting Tips for Trusted Signatures Series
+
+- **Key differentiator to hammer:** Identity verification before signing — no other e-signature tool does this
+- **Avoid:** Comparing features 1:1 with DocuSign — position TrustCredo as a different category (verified signatures vs. electronic signatures)
+- **Engagement hook:** Ask questions about fraud, identity, and trust in signatures
+- **Cross-sell:** Always mention the bundle — existing TrustCredo customers can add signatures with zero integration work
 
 ---
 
