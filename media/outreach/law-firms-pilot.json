@@ -1,0 +1,26 @@
+[
+  {
+    "id": "blaney-mcmurtry-shawn-wolfson",
+    "firmName": "Blaney McMurtry LLP",
+    "contactName": "Shawn Wolfson",
+    "title": "Managing Partner",
+    "email": "swolfson@blaney.com",
+    "practiceFocus": "commercial real estate and leasing",
+    "city": "Toronto",
+    "sourceUrl": "https://www.blaney.com/lawyers/Shawn-Wolfson",
+    "personalizationNote": "Managing Partner with deep real estate deal experience — high-volume closing and lease workflows.",
+    "status": "pending"
+  },
+  {
+    "id": "torkin-leonard-rodness",
+    "firmName": "Torkin Manes LLP",
+    "contactName": "Leonard Rodness",
+    "title": "Partner, Commercial Real Estate",
+    "email": "lrodness@torkin.com",
+    "practiceFocus": "commercial real estate transactions, leasing, and secured lending",
+    "city": "Toronto",
+    "sourceUrl": "https://www.torkin.com/bio/leonard-rodness",
+    "personalizationNote": "Represents major developers and institutional clients — complex multi-party agreements.",
+    "status": "pending"
+  }
+]
