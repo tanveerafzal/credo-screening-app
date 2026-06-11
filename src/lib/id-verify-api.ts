@@ -1,7 +1,7 @@
 export const ID_VERIFY_TEST_API =
   'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
 export const ID_VERIFY_PROD_API =
-  'https://id-verify-api-214036150009.northamerica-northeast2.run.app';
+  'https://id-verify-api-440170004655.northamerica-northeast2.run.app';
 export const PARTNER_DASHBOARD_TEST = 'https://partner-test.trustcredo.com';
 export const PARTNER_DASHBOARD_PROD = 'https://partner.trustcredo.com';
 
