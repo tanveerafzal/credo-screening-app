@@ -1,30 +1,44 @@
 #!/usr/bin/env node
 /**
- * Trusted Signatures outreach agent — preview and send law firm emails via Resend.
+ * Trusted Signatures outreach agent — preview and send law firm emails via SMTP.
  *
  * Usage:
  *   node scripts/outreach-agent.mjs                    # preview all pending
  *   node scripts/outreach-agent.mjs --id <target-id>   # preview one
  *   node scripts/outreach-agent.mjs --all --send       # send all pending
  *   node scripts/outreach-agent.mjs --id <id> --send   # send one
+ *   node scripts/outreach-agent.mjs --id <id> --to you@example.com --send   # test send
  */
 
 import { readFileSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import nodemailer from 'nodemailer';
+import { loadEnv } from './load-env.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 
+loadEnv(ROOT);
+
 const TARGETS_PATH = join(ROOT, 'media/outreach/law-firms-pilot.json');
 const TEMPLATE_PATH = join(ROOT, 'media/outreach/email-law-firm-trusted-signatures.md');
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
-const FROM_EMAIL = process.env.OUTREACH_FROM_EMAIL || 'TrustCredo <sales@trustcredo.com>';
-const REPLY_TO = process.env.OUTREACH_REPLY_TO || 'sales@trustcredo.com';
-const SENDER_NAME = process.env.OUTREACH_SENDER_NAME || 'Tanver Afzal';
+const SMTP_HOST = process.env.SMTP_HOST || '';
+const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587', 10);
+const SMTP_SECURE = process.env.SMTP_SECURE === 'true';
+const SMTP_USER = process.env.SMTP_USER || '';
+const SMTP_PASS = process.env.SMTP_PASS || '';
+const FROM_EMAIL =
+  process.env.OUTREACH_FROM_EMAIL ||
+  process.env.SMTP_FROM_EMAIL ||
+  (SMTP_USER ? `TrustCredo <${SMTP_USER}>` : 'TrustCredo <sales@trustcredo.com>');
+const REPLY_TO = process.env.OUTREACH_REPLY_TO || SMTP_USER || 'sales@trustcredo.com';
+const BCC = process.env.OUTREACH_BCC || '';
+const SENDER_NAME = process.env.OUTREACH_SENDER_NAME || 'Kristina';
 
-const SUBJECT = 'Identity-verified signatures for {{firmName}} — stronger evidence, less fraud risk';
+const SUBJECT =
+  'Identity-verified signatures for {{firmName}} — free to try (25 envelopes or 1 month)';
 
 function loadTargets() {
   return JSON.parse(readFileSync(TARGETS_PATH, 'utf8'));
@@ -59,14 +73,19 @@ function applyTemplate(text, target) {
 function textToHtml(text) {
   return text
     .split('\n\n')
-    .map((p) => `<p style="color:#374151;line-height:1.6;margin:0 0 16px;">${p.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`)
+    .map((p) =>
+      `<p style="color:#374151;line-height:1.6;margin:0 0 16px;">${p
+        .replace(/\n/g, '<br>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`
+    )
     .join('\n');
 }
 
 function parseArgs(argv) {
-  const args = { id: null, all: false, send: false };
+  const args = { id: null, all: false, send: false, to: null };
   for (let i = 2; i < argv.length; i++) {
     if (argv[i] === '--id') args.id = argv[++i];
+    else if (argv[i] === '--to') args.to = argv[++i];
     else if (argv[i] === '--all') args.all = true;
     else if (argv[i] === '--send') args.send = true;
     else if (argv[i] === '--help') args.help = true;
@@ -74,41 +93,57 @@ function parseArgs(argv) {
   return args;
 }
 
-async function sendEmail(target, subject, bodyText) {
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${RESEND_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: FROM_EMAIL,
-      to: [target.email],
-      reply_to: REPLY_TO,
-      subject,
-      text: bodyText,
-      html: textToHtml(bodyText),
-    }),
-  });
-
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || `Resend HTTP ${res.status}`);
+function getTransporter() {
+  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+    throw new Error(
+      'SMTP not configured. Set SMTP_HOST, SMTP_USER, and SMTP_PASS in .env.local'
+    );
   }
 
-  return res.json();
+  return nodemailer.createTransport({
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: SMTP_SECURE,
+    auth: { user: SMTP_USER, pass: SMTP_PASS },
+    tls: {
+      rejectUnauthorized: true,
+      minVersion: 'TLSv1.2',
+    },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 30000,
+  });
+}
+
+async function sendEmail(transporter, target, subject, bodyText) {
+  const mail = {
+    from: FROM_EMAIL,
+    to: target.email,
+    replyTo: REPLY_TO,
+    subject,
+    text: bodyText,
+    html: textToHtml(bodyText),
+  };
+  if (BCC) mail.bcc = BCC;
+
+  const info = await transporter.sendMail(mail);
+
+  return info;
 }
 
 async function main() {
   const args = parseArgs(process.argv);
 
   if (args.help) {
-    console.log(`Trusted Signatures outreach agent
+    console.log(`Trusted Signatures outreach agent (SMTP)
 
-  node scripts/outreach-agent.mjs              Preview all pending targets
-  node scripts/outreach-agent.mjs --id <id>  Preview one target
-  node scripts/outreach-agent.mjs --all --send   Send all pending (requires RESEND_API_KEY)
+  node scripts/outreach-agent.mjs                 Preview all pending targets
+  node scripts/outreach-agent.mjs --id <id>       Preview one target
+  node scripts/outreach-agent.mjs --all --send    Send all pending
   node scripts/outreach-agent.mjs --id <id> --send   Send one target
+  node scripts/outreach-agent.mjs --id <id> --to <email> --send   Test send (does not update target status)
+
+Requires SMTP_HOST, SMTP_USER, SMTP_PASS in .env.local
 `);
     process.exit(0);
   }
@@ -123,8 +158,6 @@ async function main() {
       console.error(`Target not found: ${args.id}`);
       process.exit(1);
     }
-  } else if (!args.all) {
-    // default: preview all pending
   }
 
   if (selected.length === 0) {
@@ -135,15 +168,34 @@ async function main() {
   console.log(`\n=== Trusted Signatures Outreach (${args.send ? 'SEND' : 'PREVIEW'}) ===\n`);
   console.log(`Targets: ${selected.length}`);
   console.log(`From: ${FROM_EMAIL}`);
-  console.log(`Reply-To: ${REPLY_TO}\n`);
+  console.log(`Reply-To: ${REPLY_TO}`);
+  if (BCC) console.log(`BCC: ${BCC}`);
+  if (args.send) {
+    console.log(`SMTP: ${SMTP_HOST}:${SMTP_PORT} (secure=${SMTP_SECURE})`);
+  }
+  console.log('');
+
+  let transporter;
+  if (args.send) {
+    transporter = getTransporter();
+    await transporter.verify();
+    console.log('SMTP connection verified.\n');
+  }
+
+  const testSend = Boolean(args.to);
 
   for (const target of selected) {
+    const recipient = testSend ? { ...target, email: args.to } : target;
     const subject = applyTemplate(SUBJECT, target);
     const body = applyTemplate(bodyTemplate, target);
 
     console.log('─'.repeat(60));
     console.log(`ID:      ${target.id}`);
-    console.log(`To:      ${target.contactName} <${target.email}>`);
+    if (testSend) {
+      console.log(`To:      ${target.contactName} <${args.to}> (test override, was ${target.email})`);
+    } else {
+      console.log(`To:      ${target.contactName} <${target.email}>`);
+    }
     console.log(`Firm:    ${target.firmName}`);
     console.log(`Subject: ${subject}`);
     console.log('─'.repeat(60));
@@ -151,22 +203,19 @@ async function main() {
     console.log('');
 
     if (args.send) {
-      if (!RESEND_API_KEY) {
-        console.error('RESEND_API_KEY is not set. Add it to .env.local or environment.');
-        process.exit(1);
-      }
-
       try {
-        const result = await sendEmail(target, subject, body);
-        console.log(`✓ Sent (Resend id: ${result.id})`);
-        const idx = targets.findIndex((t) => t.id === target.id);
-        if (idx >= 0) {
-          targets[idx] = {
-            ...targets[idx],
-            status: 'sent',
-            sentAt: new Date().toISOString(),
-            resendId: result.id,
-          };
+        const result = await sendEmail(transporter, recipient, subject, body);
+        console.log(`✓ Sent (messageId: ${result.messageId})`);
+        if (!testSend) {
+          const idx = targets.findIndex((t) => t.id === target.id);
+          if (idx >= 0) {
+            targets[idx] = {
+              ...targets[idx],
+              status: 'sent',
+              sentAt: new Date().toISOString(),
+              messageId: result.messageId,
+            };
+          }
         }
       } catch (err) {
         console.error(`✗ Failed: ${err.message}`);
@@ -176,10 +225,14 @@ async function main() {
   }
 
   if (args.send) {
-    saveTargets(targets);
-    console.log('Updated law-firms-pilot.json with sent status.');
+    if (testSend) {
+      console.log('Test send complete (target status unchanged).');
+    } else {
+      saveTargets(targets);
+      console.log('Updated law-firms-pilot.json with sent status.');
+    }
   } else {
-    console.log('Dry run complete. Add --send to deliver via Resend.');
+    console.log('Dry run complete. Add --send to deliver via SMTP.');
   }
 }
 

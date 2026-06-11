@@ -9,7 +9,9 @@
     "city": "Toronto",
     "sourceUrl": "https://www.blaney.com/lawyers/Shawn-Wolfson",
     "personalizationNote": "Managing Partner with deep real estate deal experience — high-volume closing and lease workflows.",
-    "status": "pending"
+    "status": "sent",
+    "sentAt": "2026-06-10T21:13:22.174Z",
+    "messageId": "<be6848b8-895f-70ae-f3b9-9327f02d53af@trustcredo.com>"
   },
   {
     "id": "torkin-leonard-rodness",
@@ -21,6 +23,8 @@
     "city": "Toronto",
     "sourceUrl": "https://www.torkin.com/bio/leonard-rodness",
     "personalizationNote": "Represents major developers and institutional clients — complex multi-party agreements.",
-    "status": "pending"
+    "status": "sent",
+    "sentAt": "2026-06-10T21:13:55.758Z",
+    "messageId": "<21f7020c-1c3a-7905-6baf-2184b017d5a8@trustcredo.com>"
   }
 ]

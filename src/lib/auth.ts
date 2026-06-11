@@ -1,4 +1,5 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
+// Browser calls same-origin API routes to avoid CORS against id-verify-api Cloud Run.
+const API_URL = '/api';
 
 export interface AuthResponse {
   token: string;
@@ -17,7 +18,7 @@ export async function register(data: {
   companyName: string;
   contactName: string;
 }): Promise<AuthResponse> {
-  const res = await fetch(`${API_URL}/api/v1/partners/register`, {
+  const res = await fetch(`${API_URL}/partners/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
@@ -29,7 +30,7 @@ export async function register(data: {
 }
 
 export async function login(email: string, password: string): Promise<AuthResponse> {
-  const res = await fetch(`${API_URL}/api/v1/partners/login`, {
+  const res = await fetch(`${API_URL}/partners/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
@@ -41,7 +42,7 @@ export async function login(email: string, password: string): Promise<AuthRespon
 }
 
 export async function getProfile(token: string) {
-  const res = await fetch(`${API_URL}/api/v1/partners/profile`, {
+  const res = await fetch(`${API_URL}/partners/profile`, {
     headers: { 'Authorization': `Bearer ${token}` },
   });
 
@@ -51,7 +52,7 @@ export async function getProfile(token: string) {
 }
 
 export async function forgotPassword(email: string): Promise<{ message: string }> {
-  const res = await fetch(`${API_URL}/api/v1/partners/forgot-password`, {
+  const res = await fetch(`${API_URL}/partners/forgot-password`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email }),
@@ -63,7 +64,7 @@ export async function forgotPassword(email: string): Promise<{ message: string }
 }
 
 export async function resetPassword(token: string, password: string): Promise<{ message: string }> {
-  const res = await fetch(`${API_URL}/api/v1/partners/reset-password`, {
+  const res = await fetch(`${API_URL}/partners/reset-password`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token, password }),

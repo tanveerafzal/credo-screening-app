@@ -8,7 +8,8 @@ Use with `scripts/outreach-agent.mjs`. Variables: `{{contactName}}`, `{{firstNam
 
 - `Identity-verified signatures for {{firmName}} — stronger evidence, less fraud risk`
 - `Quick idea for {{firmName}}: verify who signs before they sign`
-- `Trusted Signatures — e-signatures with identity proof ($1.99/envelope)`
+- `Trusted Signatures — free to try (25 envelopes or 1 month)`
+- `Trusted Signatures — e-signatures with identity proof ($1.99/envelope after trial)`
 
 ---
 
@@ -34,7 +35,9 @@ For law firms, that matters on:
 3. Each signer verifies identity, then signs (draw, type, or upload)
 4. Everyone receives a tamper-proof PDF with audit trail + TrustCredo verification seal
 
-**Pricing:** $1.99 per completed envelope — unlimited signers, identity verification included.
+**Free to try (limited time):** We're offering early adopters a complimentary trial — **one month or 25 completed envelopes**, whichever comes first. Enough to run real retainer letters, closings, or release agreements with your team.
+
+**After trial:** $1.99 per completed envelope — unlimited signers, identity verification included.
 
 **Compliance:** Built for ESIGN (US) and eIDAS (EU). The verification trail strengthens evidentiary value compared to standard e-sign tools.
 

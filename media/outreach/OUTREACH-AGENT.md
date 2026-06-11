@@ -1,6 +1,6 @@
 # Trusted Signatures Outreach Agent
 
-Find law firms, personalize outreach from marketing material, and send pilot emails via Resend.
+Find law firms, personalize outreach from marketing material, and send pilot emails via SMTP.
 
 ## Source material
 
@@ -38,38 +38,67 @@ cd credo-screening-app
 npm run outreach:preview
 ```
 
-### 4. Send (requires RESEND_API_KEY)
+### 4. Send (requires SMTP in `.env.local`)
 
 ```bash
 # Send to one target by id
-npm run outreach:send -- --id blaney-mcmurtry-shawn-wolfson
+node scripts/outreach-agent.mjs --id blaney-mcmurtry-shawn-wolfson --send
 
 # Send all pending
-npm run outreach:send -- --all
-
-# Actually deliver (default is dry-run)
-npm run outreach:send -- --id torkin-leonard-rodness --send
+node scripts/outreach-agent.mjs --all --send
 ```
 
-### 5. Track results
+### 5. Check for replies (30 minutes after send)
 
-Update `status` in `law-firms-pilot.json`:
+After sending, run the reply checker. It connects to your inbox via IMAP and marks targets as `replied` when a response arrives.
+
+```bash
+# Check now
+npm run outreach:check-replies
+
+# Wait 30 minutes, then check (run in background or separate terminal)
+npm run outreach:watch-replies
+
+# Or after a specific send:
+node scripts/outreach-agent.mjs --id blaney-mcmurtry-shawn-wolfson --send &
+node scripts/outreach-reply-check.mjs --wait-minutes 30
+```
+
+### 6. Track results
+
+Statuses in `law-firms-pilot.json`:
 
 - `pending` → not sent
 - `sent` → email delivered
-- `replied` → got a response
+- `replied` → got a response (auto-detected by reply checker)
 - `skipped` → do not contact
 
-## Environment
+## Environment (`.env.local`)
 
 ```env
-RESEND_API_KEY=re_...
-OUTREACH_FROM_EMAIL=Tanver Afzal <tanver@trustcredo.com>
-OUTREACH_REPLY_TO=tanver@trustcredo.com
-OUTREACH_SENDER_NAME=Tanver Afzal
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-email@trustcredo.com
+SMTP_PASS=your-app-password
+SMTP_FROM_EMAIL=Kristina <Kristina@trustcredo.com>
+
+OUTREACH_FROM_EMAIL=Kristina <Kristina@trustcredo.com>
+OUTREACH_REPLY_TO=Kristina@trustcredo.com
+OUTREACH_BCC=your-personal@gmail.com
+OUTREACH_SENDER_NAME=Kristina
 ```
 
-Use a Resend-verified domain for `OUTREACH_FROM_EMAIL`.
+**Common SMTP providers:**
+
+| Provider | Host | Port | Secure |
+|----------|------|------|--------|
+| Gmail (app password) | `smtp.gmail.com` | 587 | false |
+| Microsoft 365 | `smtp.office365.com` | 587 | false |
+| Zoho | `smtp.zoho.com` | 587 | false |
+| SendGrid SMTP | `smtp.sendgrid.net` | 587 | false |
+
+Use an app-specific password, not your main account password.
 
 ## Compliance notes
 
