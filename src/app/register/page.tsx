@@ -6,9 +6,10 @@ import { Navbar } from '@/components/Navbar';
 import { Logo } from '@/components/Logo';
 import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { register, saveAuth } from '@/lib/auth';
+import { getPartnerDashboardUrl } from '@/lib/id-verify-api';
 
 function RegisterForm() {
-  const DASHBOARD_URL = `${process.env.NEXT_PUBLIC_ID_VERIFY_BACKEND || 'https://app.credoscreening.com'}/partner/dashboard`;
+  const DASHBOARD_URL = `${getPartnerDashboardUrl()}/partner/dashboard`;
   const [form, setForm] = useState({
     companyName: '',
     contactName: '',
