@@ -5,7 +5,7 @@ import { FAQ } from '@/components/marketing/FAQ';
 import Link from 'next/link';
 import {
   ScanFace, Search, CheckCircle, ArrowRight, Layers,
-  Zap, Globe, ShieldCheck, DollarSign, FileText, PenLine
+  Zap, Globe, ShieldCheck, DollarSign, FileText, PenLine, UserCheck
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
@@ -15,6 +15,22 @@ export const metadata: Metadata = {
 };
 
 const PRODUCTS = [
+  {
+    icon: UserCheck,
+    name: 'Digital Onboarding',
+    tagline: 'Verify + screen in one flow',
+    price: 'From $0.99',
+    description: 'Complete remote onboarding: ID verification, selfie liveness, and AML/watchlist screening in a single workflow.',
+    features: [
+      'ID scan + selfie verification',
+      'Passive liveness detection',
+      'OFAC, PEP & sanctions screening',
+      'Trusted signatures integration',
+      'SDK & REST API embedding',
+      'First month free — 10 checks included',
+    ],
+    href: '/onboarding',
+  },
   {
     icon: ScanFace,
     name: 'ID Verification',
@@ -118,7 +134,7 @@ export default function ProductsPage() {
       {/* Product Cards */}
       <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {PRODUCTS.map((product) => (
               <div key={product.name} className="bg-surface rounded-xl border border-border p-8 hover:shadow-lg hover:border-accent/20 transition-all">
                 <div className="w-12 h-12 bg-accent-subtle rounded-xl flex items-center justify-center mb-5">

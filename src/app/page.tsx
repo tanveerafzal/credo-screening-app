@@ -3,7 +3,8 @@ import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import {
   Search, Globe, Zap, Lock, BarChart3,
-  CheckCircle, ArrowRight, Database, ScanFace, Shield, Clock, FileText, PenLine
+  CheckCircle, ArrowRight, Database, ScanFace, Shield, Clock, FileText, PenLine,
+  UserCheck, Camera
 } from 'lucide-react';
 
 const SOURCES = [
@@ -124,6 +125,60 @@ export default function Home() {
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">{f.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Digital Onboarding */}
+      <section className="py-24 bg-surface-elevated">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
+                <UserCheck className="w-3.5 h-3.5" /> Digital Onboarding
+              </div>
+              <h2 className="text-3xl font-bold text-text-primary">Frictionless Customer Onboarding</h2>
+              <p className="mt-4 text-text-secondary leading-relaxed">
+                Verify identity remotely with ID scan, selfie liveness, and automated AML screening —
+                all in under 30 seconds. No app downloads. No manual review queues.
+              </p>
+              <div className="mt-8 space-y-4">
+                {[
+                  { icon: Camera, title: 'Document Capture', desc: 'OCR and MRZ extraction from IDs and passports.' },
+                  { icon: ScanFace, title: 'Identity Verification', desc: 'Facial matching with passive liveness detection.' },
+                  { icon: Search, title: 'Compliance Screening', desc: 'OFAC, PEP, sanctions, and criminal watchlists.' },
+                ].map((step) => (
+                  <div key={step.title} className="flex items-start gap-3">
+                    <div className="w-9 h-9 bg-accent-subtle rounded-lg flex items-center justify-center flex-shrink-0">
+                      <step.icon className="w-4.5 h-4.5 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-text-primary">{step.title}</h3>
+                      <p className="text-sm text-text-secondary">{step.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Link
+                href="/onboarding"
+                className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light transition-all"
+              >
+                Explore Digital Onboarding <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { value: '<30s', label: 'Verification Time' },
+                { value: '200+', label: 'Countries' },
+                { value: '1.2M+', label: 'Watchlist Entities' },
+                { value: '10', label: 'Free Checks / Month' },
+              ].map((s) => (
+                <div key={s.label} className="bg-surface p-6 rounded-xl border border-border text-center">
+                  <div className="text-2xl font-bold text-accent">{s.value}</div>
+                  <div className="text-xs text-text-muted mt-1">{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

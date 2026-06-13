@@ -2,12 +2,18 @@
 
 import Link from 'next/link';
 import { useState, useRef } from 'react';
-import { Menu, X, ChevronDown, ScanFace, Search, FileText, Building2, Users, PenLine } from 'lucide-react';
+import { Menu, X, ChevronDown, ScanFace, Search, FileText, Building2, Users, PenLine, UserCheck } from 'lucide-react';
 import { Logo } from './Logo';
 import { SOLUTIONS_LIST } from '@/lib/solutions';
 import { INDUSTRIES_LIST } from '@/lib/industries';
 
 const PRODUCTS_LIST = [
+  {
+    slug: 'onboarding',
+    label: 'Digital Onboarding',
+    shortDesc: 'Remote identity verification + AML screening in one flow.',
+    icon: UserCheck,
+  },
   {
     slug: 'id-verification',
     label: 'ID Verification',
