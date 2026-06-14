@@ -14,9 +14,9 @@ interface FeatureGridProps {
 
 export function FeatureGrid({ title = 'Key Features', subtitle, features }: FeatureGridProps) {
   return (
-    <section className="py-24 bg-surface">
+    <section className="py-14 sm:py-16 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-text-primary">{title}</h2>
           {subtitle && <p className="mt-3 text-text-secondary max-w-xl mx-auto">{subtitle}</p>}
         </div>

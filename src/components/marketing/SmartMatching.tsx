@@ -11,10 +11,10 @@ const CAPABILITIES = [
 
 export function SmartMatching() {
   return (
-    <section className="py-24 bg-surface-elevated relative overflow-hidden">
+    <section className="py-14 sm:py-16 bg-surface-elevated relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
+        <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
             <Sparkles className="w-3.5 h-3.5" /> Smart Matching Technology
           </div>

@@ -54,7 +54,7 @@ export default async function SolutionPage({ params }: Props) {
 
       {/* Feature Deep-Dives */}
       {solution.deepDives.map((d, i) => (
-        <section key={i} className={`py-20 ${i % 2 === 0 ? 'bg-surface' : 'bg-surface-elevated'}`}>
+        <section key={i} className={`py-14 sm:py-16 ${i % 2 === 0 ? 'bg-surface' : 'bg-surface-elevated'}`}>
           <div className="max-w-4xl mx-auto px-4">
             <h2 className="text-3xl font-bold text-text-primary mb-4">{d.title}</h2>
             <p className="text-text-secondary leading-relaxed text-lg">{d.desc}</p>

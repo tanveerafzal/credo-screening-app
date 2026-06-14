@@ -19,7 +19,7 @@ export function CTABanner({
   secondaryHref = '/contact',
 }: CTABannerProps) {
   return (
-    <section className="py-20 bg-primary relative overflow-hidden">
+    <section className="py-14 sm:py-16 bg-primary relative overflow-hidden">
       <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
       <div className="relative max-w-4xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-white">{title}</h2>

@@ -41,7 +41,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-28 pb-24 relative overflow-hidden">
+      <section className="pt-24 pb-10 sm:pt-28 sm:pb-12 relative overflow-hidden">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated via-surface to-surface" />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
@@ -85,7 +85,7 @@ export default function Home() {
       </section>
 
       {/* Stats */}
-      <section className="py-14 bg-surface border-y border-border">
+      <section className="py-10 bg-surface border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -107,9 +107,9 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="py-24 bg-surface">
+      <section className="py-14 sm:py-16 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-text-primary">Why Credo?</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Built for compliance teams, fintechs, and any business that needs reliable screening.
@@ -130,9 +130,9 @@ export default function Home() {
       </section>
 
       {/* Digital Onboarding */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-14 sm:py-16 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
                 <UserCheck className="w-3.5 h-3.5" /> Digital Onboarding
@@ -184,9 +184,9 @@ export default function Home() {
       </section>
 
       {/* Sources */}
-      <section id="sources" className="py-24 bg-surface-elevated">
+      <section id="sources" className="py-14 sm:py-16 bg-surface-elevated border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-text-primary">Data Sources We Screen Against</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Comprehensive coverage across sanctions, PEP, criminal, and regulatory databases worldwide.
@@ -210,9 +210,9 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-24 bg-surface">
+      <section id="pricing" className="py-14 sm:py-16 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
               <Shield className="w-3.5 h-3.5" />
               First Month Free — 10 verifications & 10 screenings included
@@ -285,7 +285,7 @@ export default function Home() {
           </div>
 
           {/* Per-Use Product Pricing */}
-          <div className="mt-20 max-w-3xl mx-auto">
+          <div className="mt-14 max-w-3xl mx-auto">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-text-primary">Pay Per Use</h3>
               <p className="mt-2 text-text-secondary text-sm">Every plan uses the same per-check pricing. Minimum monthly pulls apply.</p>
@@ -342,7 +342,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-primary relative overflow-hidden">
+      <section className="py-14 sm:py-16 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white">Ready to strengthen your compliance?</h2>

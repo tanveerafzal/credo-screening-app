@@ -12,9 +12,9 @@ export function FAQ({ title = 'Frequently Asked Questions', items }: FAQProps) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-24 bg-surface">
+    <section className="py-14 sm:py-16 bg-surface">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-text-primary">{title}</h2>
         </div>
         <div className="space-y-2">
