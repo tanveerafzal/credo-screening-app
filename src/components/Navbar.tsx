@@ -9,7 +9,7 @@ import { INDUSTRIES_LIST } from '@/lib/industries';
 
 const PRODUCTS_LIST = [
   {
-    slug: 'onboarding',
+    slug: 'credo-onboarding',
     label: 'Digital Onboarding',
     shortDesc: 'Remote identity verification + AML screening in one flow.',
     icon: UserCheck,
@@ -33,7 +33,7 @@ const PRODUCTS_LIST = [
     icon: FileText,
   },
   {
-    slug: 'trusted-signatures',
+    slug: 'credo-trusted-signatures',
     label: 'Trusted Signatures',
     shortDesc: 'Identity-verified electronic signatures that prevent fraud.',
     icon: PenLine,

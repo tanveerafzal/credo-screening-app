@@ -336,7 +336,7 @@ export default function OnboardingPage() {
               { icon: ScanFace, label: 'ID Verification', href: '/id-verification' },
               { icon: Search, label: 'Screening', href: '/screening' },
               { icon: FileText, label: 'Credit Report', href: '/credit-report' },
-              { icon: PenLine, label: 'Trusted Signatures', href: '/trusted-signatures' },
+              { icon: PenLine, label: 'Trusted Signatures', href: '/credo-trusted-signatures' },
             ].map((item) => (
               <Link
                 key={item.label}

@@ -150,7 +150,7 @@ export default function TrustedSignaturesPage() {
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/contact?product=trusted-signatures"
+              href="/contact?product=credo-trusted-signatures"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-sm shadow-accent/20 transition-all"
             >
               Get Started <ArrowRight className="w-4 h-4" />
@@ -347,7 +347,7 @@ export default function TrustedSignaturesPage() {
               Learn About ID Verification <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/contact?product=trusted-signatures"
+              href="/contact?product=credo-trusted-signatures"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:bg-white/15 transition-all"
             >
               Contact Sales
@@ -362,7 +362,7 @@ export default function TrustedSignaturesPage() {
         title="Ready to stop trusting email addresses?"
         subtitle="Trusted Signatures puts verified identity behind every signature. Get started at $1.99 per envelope."
         primaryLabel="Get Started"
-        primaryHref="/contact?product=trusted-signatures"
+        primaryHref="/contact?product=credo-trusted-signatures"
         secondaryLabel="View All Products"
         secondaryHref="/products"
       />

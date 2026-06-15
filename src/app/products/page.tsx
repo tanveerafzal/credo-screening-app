@@ -39,7 +39,7 @@ const PRODUCTS = [
       'SDK & REST API embedding',
       `First month free — ${FREE_CREDITS} credits included`,
     ],
-    href: '/onboarding',
+    href: '/credo-onboarding',
   },
   {
     icon: ScanFace,
@@ -107,7 +107,7 @@ const PRODUCTS = [
       'Trust Credo verification seal',
       'Detailed audit trail',
     ],
-    href: '/trusted-signatures',
+    href: '/credo-trusted-signatures',
   },
 ];
 

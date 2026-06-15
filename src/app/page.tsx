@@ -162,7 +162,7 @@ export default function Home() {
                 ))}
               </div>
               <Link
-                href="/onboarding"
+                href="/credo-onboarding"
                 className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light transition-all"
               >
                 Explore Digital Onboarding <ArrowRight className="w-4 h-4" />
