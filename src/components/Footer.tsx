@@ -27,8 +27,10 @@ export function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li><Link href="/products" className="hover:text-white transition-colors">Products</Link></li>
               <li><Link href="/credo-onboarding" className="hover:text-white transition-colors">Digital Onboarding</Link></li>
+              <li><Link href="/id-verification" className="hover:text-white transition-colors">ID Verification</Link></li>
               <li><Link href="/screening" className="hover:text-white transition-colors">Free Screening</Link></li>
-              <li><Link href="/#sources" className="hover:text-white transition-colors">Data Sources</Link></li>
+              <li><Link href="/credo-trusted-signatures" className="hover:text-white transition-colors">Trusted Signatures</Link></li>
+              <li><Link href="/credit-report" className="hover:text-white transition-colors">Credit Reports</Link></li>
               <li><Link href="/#pricing" className="hover:text-white transition-colors">Pricing</Link></li>
               <li><Link href="/docs" className="hover:text-white transition-colors">API Docs</Link></li>
             </ul>

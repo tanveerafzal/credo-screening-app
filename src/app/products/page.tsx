@@ -8,6 +8,7 @@ import {
   Zap, Globe, ShieldCheck, DollarSign, FileText, PenLine, UserCheck
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import {
   BUNDLE_PRICES,
   FREE_CREDITS,
@@ -17,11 +18,13 @@ import {
   formatUsd,
 } from '@/lib/pricing';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Products & Pricing',
   description:
-    'ID Verification, Background Screening, Credit Reports, and Trusted Signatures. Pay per use — no contracts or monthly minimums. Powered by Equifax.',
-};
+    'AML screening, ID verification, credit reports, and identity-verified e-signatures. Pay per use with 10 free credits — no contracts or monthly minimums.',
+  path: '/products',
+  keywords: ['AML screening pricing', 'sanctions screening cost', 'KYC pricing', 'OFAC screening API'],
+});
 
 const PRODUCTS = [
   {

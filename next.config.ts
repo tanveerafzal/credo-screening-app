@@ -4,6 +4,26 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/aml-screening",
+        destination: "/screening",
+        permanent: true,
+      },
+      {
+        source: "/sanctions-screening",
+        destination: "/screening",
+        permanent: true,
+      },
+      {
+        source: "/ofac-screening",
+        destination: "/screening",
+        permanent: true,
+      },
+      {
+        source: "/kyc-verification",
+        destination: "/id-verification",
+        permanent: true,
+      },
+      {
         source: "/trusted-signatures",
         destination: "/credo-trusted-signatures",
         permanent: true,

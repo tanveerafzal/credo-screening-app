@@ -4,6 +4,14 @@ import { Logo } from '@/components/Logo';
 import { Shield, Globe, Zap, Users, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { BRAND } from '@/lib/brand';
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'About Us',
+  description: `Learn about ${BRAND.name} — AML and sanctions screening against 1.2M+ watchlist entities, operated by ${BRAND.legalEntity} as ${BRAND.registeredName}.`,
+  path: '/about',
+});
 
 export default function AboutPage() {
   return (

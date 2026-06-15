@@ -9,12 +9,15 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BRAND } from '@/lib/brand';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Fintech KYC Verification',
-  description: 'Fast and secure KYC verification for fintech companies. Reduce fraud and verify users in seconds with ID + selfie matching powered by AI.',
-  keywords: ['fintech KYC', 'identity verification', 'fraud prevention', 'KYC compliance', 'AML verification', 'fintech onboarding'],
-};
+  description:
+    'Fast KYC and identity verification for fintech apps. Reduce drop-off with sub-30-second ID + selfie flows, liveness detection, and AML screening API.',
+  path: '/fintech-kyc-verification',
+  keywords: ['fintech KYC', 'fintech identity verification', 'KYC API fintech', 'AML fintech'],
+});
 
 const PAIN_POINTS = [
   {

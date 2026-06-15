@@ -2,6 +2,14 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import { BRAND, legalOperatorLine } from '@/lib/brand';
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'Privacy Policy',
+  description: `How ${BRAND.name} collects, uses, and protects data for AML screening and identity verification services.`,
+  path: '/privacy',
+});
 
 export default function PrivacyPage() {
   return (

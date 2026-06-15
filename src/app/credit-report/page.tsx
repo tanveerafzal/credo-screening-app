@@ -10,11 +10,15 @@ import {
   CreditCard, TrendingUp, AlertTriangle
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Credit Report',
-  description: 'Consumer credit reports powered by Equifax. Access credit history, scores, and risk assessment through a single API. Fast, compliant, and affordable.',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Consumer Credit Reports',
+  description:
+    'FCRA-compliant consumer credit reports powered by Equifax. Credit history, scores, and risk signals via API for lending, staffing, and tenant screening.',
+  path: '/credit-report',
+  keywords: ['credit report API', 'Equifax credit check', 'consumer credit screening'],
+});
 
 const REPORT_INCLUDES = [
   {

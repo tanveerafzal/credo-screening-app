@@ -9,11 +9,15 @@ import {
   Lock, CheckCircle, Fingerprint, Eye, Upload, Type
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Trusted Signatures',
-  description: 'Identity-verified electronic signatures. Each signer proves who they are before signing — draw, type, or upload. Sequential multi-signer, tamper-proof, and legally binding.',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Trusted Signatures — Identity-Verified E-Signatures',
+  description:
+    'Electronic signatures with mandatory identity verification. Each signer proves who they are before signing. ESIGN and eIDAS compliant, tamper-proof audit trail.',
+  path: '/credo-trusted-signatures',
+  keywords: ['verified e-signatures', 'identity verified signing', 'ESIGN compliant signatures', 'law firm e-signatures'],
+});
 
 const BENEFITS = [
   {

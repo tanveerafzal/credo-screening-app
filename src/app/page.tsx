@@ -8,6 +8,20 @@ import {
 } from 'lucide-react';
 import { BRAND } from '@/lib/brand';
 import { BUNDLE_PRICES, FREE_CREDITS, FREE_TRIAL, PRODUCT_PRICES, formatUsd } from '@/lib/pricing';
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = {
+  ...pageMetadata({
+    title: 'AML & Sanctions Screening Platform',
+    description: BRAND.description,
+    path: '/',
+    keywords: ['AML screening', 'sanctions screening', 'OFAC screening', 'PEP screening', 'watchlist screening'],
+  }),
+  title: {
+    absolute: `${BRAND.name} — AML & Sanctions Screening Platform`,
+  },
+};
 
 const SOURCES = [
   { category: 'Sanctions', items: ['OFAC SDN', 'OFAC Consolidated', 'EU Consolidated Sanctions', 'UN Security Council', 'UK OFSI', 'Australia DFAT', 'Canada SEMA', 'Switzerland SECO', 'Japan MOF', 'Singapore MAS', 'Hong Kong MAS'], color: 'red' },

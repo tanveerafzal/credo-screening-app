@@ -8,6 +8,7 @@ import {
   CheckCircle, Star, Sparkles
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import { BRAND } from '@/lib/brand';
 
 interface Props { params: Promise<{ slug: string }> }
@@ -20,10 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const job = JOBS_MAP[slug];
   if (!job) return {};
-  return {
+  return pageMetadata({
     title: `${job.title} — Careers`,
     description: job.shortDesc,
-  };
+    path: `/careers/${slug}`,
+  });
 }
 
 export default async function JobPage({ params }: Props) {

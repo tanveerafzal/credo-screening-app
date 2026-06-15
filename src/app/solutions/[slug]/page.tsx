@@ -12,6 +12,7 @@ import { CTABanner } from '@/components/marketing/CTABanner';
 import { SOLUTIONS, SOLUTIONS_LIST } from '@/lib/solutions';
 import { CheckCircle } from 'lucide-react';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -23,10 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const s = SOLUTIONS[slug];
   if (!s) return {};
-  return {
+  return pageMetadata({
     title: s.label,
     description: s.hero.subtitle,
-  };
+    path: `/solutions/${slug}`,
+    keywords: [s.label, 'AML screening', 'sanctions screening', s.slug.replace(/-/g, ' ')],
+  });
 }
 
 export default async function SolutionPage({ params }: Props) {

@@ -9,12 +9,15 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BRAND } from '@/lib/brand';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Candidate Identity & Credit Verification for Staffing',
-  description: 'Verify candidate identity and assess financial trust with ID checks and optional credit verification powered by Cove.',
-  keywords: ['candidate verification', 'hiring fraud prevention', 'staffing identity check', 'credit check hiring', 'staffing KYC', 'recruitment verification'],
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Staffing Identity & Credit Verification',
+  description:
+    'Verify candidate identity and optional credit history for staffing and HR teams. Stop resume fraud with ID scan, selfie match, and Equifax credit checks.',
+  path: '/staffing-identity-check',
+  keywords: ['staffing background check', 'candidate identity verification', 'hiring identity check', 'employment credit check'],
+});
 
 const PAIN_POINTS = [
   {

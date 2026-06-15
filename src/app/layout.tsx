@@ -39,6 +39,9 @@ export const metadata: Metadata = {
     type: "website",
     url: BRAND.website,
   },
+  alternates: {
+    canonical: BRAND.website,
+  },
 };
 
 export default function RootLayout({

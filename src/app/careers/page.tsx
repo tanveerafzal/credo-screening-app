@@ -9,11 +9,13 @@ import {
 } from 'lucide-react';
 import { BRAND } from '@/lib/brand';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Careers',
-  description: `Join ${BRAND.name} and help build the compliance infrastructure for a digital-first world. View open positions.`,
-};
+  description: `Join ${BRAND.name} and help build AML screening and compliance infrastructure for regulated industries.`,
+  path: '/careers',
+});
 
 const PERKS = [
   { icon: Heart, title: 'Health & Wellness', desc: 'Medical, dental, and vision coverage for you and your family.' },

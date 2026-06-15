@@ -2,6 +2,14 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import { BRAND, legalOperatorLine } from '@/lib/brand';
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'Terms of Service',
+  description: `Terms of service for ${BRAND.name} AML screening, identity verification, and related compliance services.`,
+  path: '/terms',
+});
 
 export default function TermsPage() {
   return (

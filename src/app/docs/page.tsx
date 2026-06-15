@@ -2,8 +2,18 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import { ArrowRight, Shield, CheckCircle } from 'lucide-react';
+import type { Metadata } from 'next';
+import { BRAND } from '@/lib/brand';
+import { pageMetadata } from '@/lib/seo';
 
 const API_URL = 'https://api.credoscreening.com';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'API Documentation',
+  description: 'Integrate Credo Screening via REST API. Screen against OFAC, sanctions, and PEP lists with webhooks, batch jobs, and sub-3-second response times.',
+  path: '/docs',
+  keywords: ['sanctions screening API', 'OFAC API', 'AML API', 'PEP screening API'],
+});
 
 export default function DocsPage() {
   return (
@@ -13,7 +23,7 @@ export default function DocsPage() {
         <div className="max-w-4xl mx-auto px-4">
           <div className="mb-10">
             <h1 className="text-3xl font-bold text-gray-900">API Documentation</h1>
-            <p className="mt-2 text-gray-600">Everything you need to integrate Credo into your application.</p>
+            <p className="mt-2 text-gray-600">Everything you need to integrate {BRAND.name} into your application.</p>
             <div className="mt-4 p-4 bg-indigo-50 border border-indigo-200 rounded-xl text-sm text-indigo-700">
               <strong>Base URL:</strong> <code className="bg-indigo-100 px-1.5 py-0.5 rounded">{API_URL}/api/v1</code>
               <span className="ml-4">Need an API key? <Link href="/register" className="font-semibold underline">Create a free account</Link></span>

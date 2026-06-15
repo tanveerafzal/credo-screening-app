@@ -10,6 +10,7 @@ import { CTABanner } from '@/components/marketing/CTABanner';
 import { INDUSTRIES, INDUSTRIES_LIST } from '@/lib/industries';
 import { CheckCircle, AlertTriangle } from 'lucide-react';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -21,10 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const i = INDUSTRIES[slug];
   if (!i) return {};
-  return {
-    title: `${i.label} Screening`,
+  return pageMetadata({
+    title: `${i.label} AML Screening`,
     description: i.hero.subtitle,
-  };
+    path: `/industries/${slug}`,
+    keywords: [`${i.label} screening`, 'AML compliance', 'sanctions screening', i.label.toLowerCase()],
+  });
 }
 
 export default async function IndustryPage({ params }: Props) {

@@ -11,12 +11,16 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BRAND } from '@/lib/brand';
+import { pageMetadata } from '@/lib/seo';
 import { PRICING_FAQ } from '@/lib/pricing';
 
-export const metadata: Metadata = {
-  title: 'Digital Onboarding',
-  description: 'Frictionless digital onboarding with remote identity verification, AML screening, and trusted signatures. Verify customers in under 30 seconds.',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Digital Onboarding — KYC & AML',
+  description:
+    'Remote digital onboarding with ID verification, selfie liveness, AML screening, and identity-verified signatures. Complete KYC in under 30 seconds.',
+  path: '/credo-onboarding',
+  keywords: ['digital onboarding', 'KYC onboarding', 'remote identity verification', 'AML onboarding'],
+});
 
 const BENEFITS = [
   {

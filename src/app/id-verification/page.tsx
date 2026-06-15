@@ -9,11 +9,15 @@ import {
   ArrowRight, CreditCard, BookOpen, Lock
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'ID Verification',
-  description: 'Enterprise-grade identity verification in under 30 seconds. ID scan, selfie, done. 200+ countries, facial matching, liveness detection.',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'ID Verification — KYC in Under 30 Seconds',
+  description:
+    'Enterprise identity verification with government ID scan, selfie match, and liveness detection. 200+ countries, privacy-first, REST API integration.',
+  path: '/id-verification',
+  keywords: ['ID verification', 'KYC verification', 'identity verification API', 'liveness detection'],
+});
 
 const STEPS = [
   {
