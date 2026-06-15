@@ -20,7 +20,17 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/kyc-verification",
-        destination: "/id-verification",
+        destination: "/credo-id-verification",
+        permanent: true,
+      },
+      {
+        source: "/id-verification",
+        destination: "/credo-id-verification",
+        permanent: true,
+      },
+      {
+        source: "/id-verification/:path*",
+        destination: "/credo-id-verification/:path*",
         permanent: true,
       },
       {

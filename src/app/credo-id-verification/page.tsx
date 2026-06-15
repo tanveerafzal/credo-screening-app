@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
   title: 'ID Verification — KYC in Under 30 Seconds',
   description:
     'Enterprise identity verification with government ID scan, selfie match, and liveness detection. 200+ countries, privacy-first, REST API integration.',
-  path: '/id-verification',
+  path: '/credo-id-verification',
   keywords: ['ID verification', 'KYC verification', 'identity verification API', 'liveness detection'],
 });
 

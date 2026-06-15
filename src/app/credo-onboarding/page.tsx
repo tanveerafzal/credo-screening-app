@@ -337,7 +337,7 @@ export default function OnboardingPage() {
           </p>
           <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">
             {[
-              { icon: ScanFace, label: 'ID Verification', href: '/id-verification' },
+              { icon: ScanFace, label: 'ID Verification', href: '/credo-id-verification' },
               { icon: Search, label: 'Screening', href: '/screening' },
               { icon: FileText, label: 'Credit Report', href: '/credit-report' },
               { icon: PenLine, label: 'Trusted Signatures', href: '/credo-trusted-signatures' },

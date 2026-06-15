@@ -59,7 +59,7 @@ const PRODUCTS = [
       'OCR & MRZ data extraction',
       'Biometric data deleted after verification',
     ],
-    href: '/id-verification',
+    href: '/credo-id-verification',
   },
   {
     icon: Search,

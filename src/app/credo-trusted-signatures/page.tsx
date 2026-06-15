@@ -345,7 +345,7 @@ export default function TrustedSignaturesPage() {
           </div>
           <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/id-verification"
+              href="/credo-id-verification"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-lg shadow-accent/20 transition-all"
             >
               Learn About ID Verification <ArrowRight className="w-4 h-4" />

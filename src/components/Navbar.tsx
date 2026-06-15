@@ -15,7 +15,7 @@ const PRODUCTS_LIST = [
     icon: UserCheck,
   },
   {
-    slug: 'id-verification',
+    slug: 'credo-id-verification',
     label: 'ID Verification',
     shortDesc: 'Government ID + selfie verification in under 30 seconds.',
     icon: ScanFace,
