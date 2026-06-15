@@ -8,7 +8,7 @@ export const BRAND = {
   tagline: 'Your trusted AML and sanctions screening partner.',
   description:
     'Screen individuals and businesses against 1.2M+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists.',
-  website: 'https://credoscreening.com',
+  website: 'https://www.credoscreening.com',
   supportEmail: 'support@credoscreening.com',
   salesEmail: 'sales@credoscreening.com',
   apiUrl: 'https://api.credoscreening.com',

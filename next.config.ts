@@ -6,19 +6,13 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "trustcredo.com" }],
-        destination: "https://credoscreening.com/:path*",
+        destination: "https://www.credoscreening.com/:path*",
         permanent: true,
       },
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.trustcredo.com" }],
-        destination: "https://credoscreening.com/:path*",
-        permanent: true,
-      },
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.credoscreening.com" }],
-        destination: "https://credoscreening.com/:path*",
+        destination: "https://www.credoscreening.com/:path*",
         permanent: true,
       },
     ];
