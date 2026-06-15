@@ -14,7 +14,7 @@ export const BRAND = {
   apiUrl: 'https://api.credoscreening.com',
 
   /** Ontario incorporation */
-  legalEntity: 'NUMBER COMPANY 2002846 ONTARIO INC.',
+  legalEntity: '2002846 ONTARIO INC.',
   /** Registered business name (Ontario) */
   registeredName: 'Trust Credo',
 
