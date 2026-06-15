@@ -151,9 +151,14 @@ export default function ProductsPage() {
       {/* Product Cards */}
       <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {PRODUCTS.map((product) => (
-              <div key={product.name} className="bg-surface rounded-xl border border-border p-8 hover:shadow-lg hover:border-accent/20 transition-all">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+            {PRODUCTS.map((product, index) => (
+              <div
+                key={product.name}
+                className={`bg-surface rounded-xl border border-border p-8 hover:shadow-lg hover:border-accent/20 transition-all flex flex-col lg:col-span-2 ${
+                  index === 3 ? 'lg:col-start-2' : ''
+                } ${index === 4 ? 'md:col-span-2 md:max-w-lg md:justify-self-center' : ''}`}
+              >
                 <div className="w-12 h-12 bg-accent-subtle rounded-xl flex items-center justify-center mb-5">
                   <product.icon className="w-6 h-6 text-accent" />
                 </div>
@@ -174,7 +179,7 @@ export default function ProductsPage() {
                 </ul>
                 <Link
                   href={product.href}
-                  className="mt-8 flex items-center justify-center gap-2 w-full py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light transition-colors"
+                  className="mt-auto pt-8 flex items-center justify-center gap-2 w-full py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light transition-colors"
                 >
                   Learn More <ArrowRight className="w-4 h-4" />
                 </Link>
