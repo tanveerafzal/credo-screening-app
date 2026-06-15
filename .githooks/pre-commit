@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Block commits that use a non-Vercel-authorized author email.
+set -euo pipefail
+
+REQUIRED_EMAIL="tanveerafzal@gmail.com"
+CURRENT_EMAIL="$(git config user.email || true)"
+
+if [[ "${CURRENT_EMAIL}" != "${REQUIRED_EMAIL}" ]]; then
+  echo "ERROR: git user.email must be ${REQUIRED_EMAIL} for Vercel deployments." >&2
+  echo "Current value: ${CURRENT_EMAIL:-<unset>}" >&2
+  echo "Fix: git config --local include.path ../.gitconfig.project" >&2
+  exit 1
+fi

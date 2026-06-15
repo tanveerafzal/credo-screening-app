@@ -1,0 +1,5 @@
+# Project git identity — required for Vercel deployments.
+# Applied via: git config --local include.path ../.gitconfig.project
+[user]
+	email = tanveerafzal@gmail.com
+	name = Tanver Afzal
