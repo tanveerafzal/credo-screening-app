@@ -17,9 +17,6 @@ export function Footer() {
             <p className="text-sm leading-relaxed max-w-md text-slate-400">
               {BRAND.tagline} Screen against 1.2M+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists worldwide.
             </p>
-            <p className="text-xs mt-6 text-slate-500 leading-relaxed max-w-md">
-              {BRAND.legalEntity} · Operating as {BRAND.registeredName}
-            </p>
           </div>
 
           <div>

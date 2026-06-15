@@ -24,7 +24,7 @@ export const BRAND = {
   verifyUrl: 'https://verify.trustcredo.com',
 } as const;
 
-export function copyrightLine(year = new Date().getFullYear()): string {
+export function copyrightLine(year = 2024): string {
   return `© ${year} ${BRAND.legalEntity} · Operating as ${BRAND.registeredName}`;
 }
 
