@@ -11,7 +11,7 @@ import {
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Trusted Signatures | Credo',
+  title: 'Trusted Signatures',
   description: 'Identity-verified electronic signatures. Each signer proves who they are before signing — draw, type, or upload. Sequential multi-signer, tamper-proof, and legally binding.',
 };
 
@@ -33,7 +33,7 @@ const BENEFITS = [
   {
     icon: Shield,
     title: 'Tamper-Proof & Sealed',
-    desc: 'Every completed document is cryptographically sealed with a TrustCredo verification stamp. Any post-signature modification is immediately detectable.',
+    desc: 'Every completed document is cryptographically sealed with a Trust Credo verification stamp. Any post-signature modification is immediately detectable.',
     stat: '100%',
     statLabel: 'Tamper-evident',
   },
@@ -62,7 +62,7 @@ const STEPS = [
     step: '04',
     icon: FileCheck,
     title: 'Receive Signed PDF',
-    desc: 'Once all parties have signed, every recipient receives the completed, tamper-proof PDF sealed with the TrustCredo verification record and full audit trail.',
+    desc: 'Once all parties have signed, every recipient receives the completed, tamper-proof PDF sealed with the Trust Credo verification record and full audit trail.',
   },
 ];
 
@@ -89,8 +89,8 @@ const FEATURES = [
   },
   {
     icon: Shield,
-    title: 'TrustCredo Seal',
-    desc: 'Completed documents carry a cryptographic TrustCredo seal linking each signature to the verified identity behind it.',
+    title: 'Trust Credo Seal',
+    desc: 'Completed documents carry a cryptographic Trust Credo seal linking each signature to the verified identity behind it.',
   },
   {
     icon: FileCheck,
@@ -132,7 +132,7 @@ export default function TrustedSignaturesPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-28 pb-20 relative overflow-hidden">
+      <section className="pt-20 pb-8 sm:pt-24 sm:pb-10 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated to-surface" />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -166,7 +166,7 @@ export default function TrustedSignaturesPage() {
       </section>
 
       {/* Stats */}
-      <section className="py-14 bg-surface border-y border-border">
+      <section className="py-8 bg-surface border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -185,9 +185,9 @@ export default function TrustedSignaturesPage() {
       </section>
 
       {/* Benefits */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Why Trusted Signatures?</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Standard e-signatures accept any email. We verify the actual person.
@@ -212,9 +212,9 @@ export default function TrustedSignaturesPage() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-24 bg-surface">
+      <section id="how-it-works" className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">How It Works</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Four steps from document upload to signed, sealed PDF.
@@ -243,9 +243,9 @@ export default function TrustedSignaturesPage() {
       </section>
 
       {/* Features Grid */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Everything You Need</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               A complete signing platform built on verified identity.
@@ -266,7 +266,7 @@ export default function TrustedSignaturesPage() {
       </section>
 
       {/* Security & Compliance */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -297,7 +297,7 @@ export default function TrustedSignaturesPage() {
             </div>
             <div className="bg-surface-elevated rounded-2xl border border-border p-10 flex flex-col items-center justify-center text-center">
               <Shield className="w-16 h-16 text-accent mb-6" />
-              <h3 className="text-2xl font-bold text-text-primary">TrustCredo Seal</h3>
+              <h3 className="text-2xl font-bold text-text-primary">Trust Credo Seal</h3>
               <p className="mt-3 text-text-secondary text-sm max-w-xs">
                 Every completed document carries a cryptographic seal linking each signature to the
                 verified identity behind it — for courts, auditors, and counterparties.
@@ -318,7 +318,7 @@ export default function TrustedSignaturesPage() {
       </section>
 
       {/* Cross-sell CTA */}
-      <section className="py-24 bg-primary relative overflow-hidden">
+      <section className="py-10 sm:py-12 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white">Pair with ID Verification</h2>

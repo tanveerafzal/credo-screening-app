@@ -1,4 +1,5 @@
 import { Code2, Database, Layers, Activity, Building2, Cloud, ShoppingBag, Mail, ScanFace } from 'lucide-react';
+import { PRICING_FAQ } from './pricing';
 
 export interface SolutionConfig {
   slug: string;
@@ -50,7 +51,7 @@ export const SOLUTIONS: Record<string, SolutionConfig> = {
       { q: 'How fast is the API?', a: 'Median response time is under 3 seconds. 95th percentile under 5 seconds.' },
       { q: 'What data sources do you screen against?', a: 'OFAC SDN, OFAC Consolidated, EU Sanctions, UN Security Council, UK OFSI, and 80+ other global watchlists aggregated via OpenSanctions.' },
       { q: 'How are results delivered?', a: 'Synchronously in the HTTP response, or asynchronously via webhook callbacks if you prefer.' },
-      { q: 'Is there a free tier?', a: 'Yes — your first month includes up to 10 verifications & 10 screenings for free with full API access. After that, pay per use.' },
+      { q: 'Is there a free tier?', a: `${PRICING_FAQ.freeTier} Full API access included.` },
     ],
   },
   'batch-screening': {

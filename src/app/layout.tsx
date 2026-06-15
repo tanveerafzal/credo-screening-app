@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Geist_Mono } from "next/font/google";
+import { BRAND } from "@/lib/brand";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,9 +17,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Credo - Your Trusted Background Check Partner",
-  description: "Screen individuals and businesses against 1.2M+ entities from OFAC, sanctions lists, PEP databases, and 80+ global watchlists.",
-  keywords: ["background check", "screening", "OFAC", "sanctions", "PEP", "watchlist", "AML", "KYC"],
+  metadataBase: new URL(BRAND.website),
+  title: {
+    default: `${BRAND.name} — AML & Sanctions Screening Platform`,
+    template: `%s | ${BRAND.name}`,
+  },
+  description: BRAND.description,
+  keywords: [
+    "Credo Screening",
+    "AML screening",
+    "sanctions screening",
+    "OFAC screening",
+    "PEP screening",
+    "background check",
+    "watchlist screening",
+    "KYC",
+    "Trust Credo",
+  ],
+  openGraph: {
+    siteName: BRAND.name,
+    type: "website",
+    url: BRAND.website,
+  },
 };
 
 export default function RootLayout({

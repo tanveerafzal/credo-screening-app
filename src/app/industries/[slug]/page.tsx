@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const i = INDUSTRIES[slug];
   if (!i) return {};
   return {
-    title: `${i.label} Screening | Credo`,
+    title: `${i.label} Screening`,
     description: i.hero.subtitle,
   };
 }
@@ -45,9 +45,9 @@ export default async function IndustryPage({ params }: Props) {
       <StatsBar />
 
       {/* Pain Points */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Compliance Challenges for {industry.label}</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               We understand the specific compliance pressures facing your industry.
@@ -68,7 +68,7 @@ export default async function IndustryPage({ params }: Props) {
       </section>
 
       {/* Use Cases */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-text-primary text-center mb-10">Common Use Cases</h2>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -87,7 +87,6 @@ export default async function IndustryPage({ params }: Props) {
       <SolutionsGrid />
       <CTABanner
         title={`Ready to screen for your ${industry.label.toLowerCase()} business?`}
-        subtitle="First month free — up to 10 verifications & 10 screenings. No credit card required."
       />
 
       <Footer />

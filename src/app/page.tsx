@@ -6,6 +6,8 @@ import {
   CheckCircle, ArrowRight, Database, ScanFace, Shield, Clock, FileText, PenLine,
   UserCheck, Camera
 } from 'lucide-react';
+import { BRAND } from '@/lib/brand';
+import { BUNDLE_PRICES, FREE_CREDITS, FREE_TRIAL, PRODUCT_PRICES, formatUsd } from '@/lib/pricing';
 
 const SOURCES = [
   { category: 'Sanctions', items: ['OFAC SDN', 'OFAC Consolidated', 'EU Consolidated Sanctions', 'UN Security Council', 'UK OFSI', 'Australia DFAT', 'Canada SEMA', 'Switzerland SECO', 'Japan MOF', 'Singapore MAS', 'Hong Kong MAS'], color: 'red' },
@@ -41,7 +43,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-24 pb-10 sm:pt-28 sm:pb-12 relative overflow-hidden">
+      <section className="pt-20 pb-8 sm:pt-24 sm:pb-10 relative overflow-hidden">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated via-surface to-surface" />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
@@ -49,9 +51,9 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             {/* Trust badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-8 border border-accent/10">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-6 border border-accent/10">
               <Shield className="w-3.5 h-3.5" />
-              First Month Free — 10 verifications & 10 screenings
+              {FREE_TRIAL.headline}
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary leading-[1.1] tracking-tight">
@@ -60,11 +62,11 @@ export default function Home() {
               <span className="text-accent">you can trust</span>
             </h1>
 
-            <p className="mt-6 text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-5 text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
               Screen against <strong className="text-text-primary font-semibold">1.2 million+ entities</strong> from OFAC, global sanctions, PEP databases, and 80+ watchlists. Verify identities with ID scan + selfie in under 30 seconds.
             </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/screening"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-sm shadow-accent/20 transition-all"
@@ -79,13 +81,13 @@ export default function Home() {
               </Link>
             </div>
 
-            <p className="mt-5 text-sm text-text-muted">No credit card required. Cancel anytime.</p>
+            <p className="mt-4 text-sm text-text-muted">No credit card required. Cancel anytime.</p>
           </div>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="py-10 bg-surface border-y border-border">
+      <section className="py-8 bg-surface border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -107,10 +109,10 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="py-14 sm:py-16 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-text-primary">Why Credo?</h2>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-text-primary">Why {BRAND.name}?</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Built for compliance teams, fintechs, and any business that needs reliable screening.
             </p>
@@ -130,9 +132,9 @@ export default function Home() {
       </section>
 
       {/* Digital Onboarding */}
-      <section className="py-14 sm:py-16 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
                 <UserCheck className="w-3.5 h-3.5" /> Digital Onboarding
@@ -171,7 +173,7 @@ export default function Home() {
                 { value: '<30s', label: 'Verification Time' },
                 { value: '200+', label: 'Countries' },
                 { value: '1.2M+', label: 'Watchlist Entities' },
-                { value: '10', label: 'Free Checks / Month' },
+                { value: String(FREE_CREDITS), label: 'Free Credits' },
               ].map((s) => (
                 <div key={s.label} className="bg-surface p-6 rounded-xl border border-border text-center">
                   <div className="text-2xl font-bold text-accent">{s.value}</div>
@@ -184,9 +186,9 @@ export default function Home() {
       </section>
 
       {/* Sources */}
-      <section id="sources" className="py-14 sm:py-16 bg-surface-elevated border-t border-border">
+      <section id="sources" className="py-10 sm:py-12 bg-surface-elevated border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Data Sources We Screen Against</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Comprehensive coverage across sanctions, PEP, criminal, and regulatory databases worldwide.
@@ -210,45 +212,40 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-14 sm:py-16 bg-surface">
+      <section id="pricing" className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
               <Shield className="w-3.5 h-3.5" />
-              First Month Free — 10 verifications & 10 screenings included
+              {FREE_TRIAL.headline}
             </div>
             <h2 className="text-3xl font-bold text-text-primary">Simple, Transparent Pricing</h2>
-            <p className="mt-3 text-text-secondary">First month free. Pay per use. Scale as you grow.</p>
+            <p className="mt-3 text-text-secondary">Pay per use. No monthly minimums. Scale as you grow.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {[
               {
-                name: 'Starter',
+                name: 'Pay as you go',
                 price: '$0',
-                period: '/month',
+                period: ' platform fee',
                 badge: 'FIRST MONTH FREE',
-                features: ['Pay per use after first month', 'All watchlist sources', 'Instant results', 'Web interface'],
-                cta: 'Get Started',
-                href: '/register',
-                popular: false,
-              },
-              {
-                name: 'Professional',
-                price: '$49',
-                period: '/month',
-                badge: 'MOST POPULAR',
-                features: ['All in Starter', 'REST API access', 'Webhook callbacks', 'CSV export', 'Priority support'],
+                features: [
+                  `${FREE_CREDITS} free credits on signup`,
+                  'Per-check pricing — no commitments',
+                  'REST API, webhooks & dashboard included',
+                  'Buy more credits anytime in your account',
+                ],
                 cta: 'Get Started',
                 href: '/register',
                 popular: true,
               },
               {
-                name: 'Corporate',
+                name: 'Enterprise',
                 price: 'Custom',
                 period: '',
                 badge: null,
-                features: ['Unlimited screenings', 'Continuous monitoring', 'Dedicated support', 'Custom integrations', 'SLA guarantee'],
+                features: ['Volume pricing & credit packs', 'Continuous monitoring', 'Dedicated support', 'Custom integrations', 'SLA guarantee'],
                 cta: 'Contact Us',
                 href: '/contact?plan=corporate',
                 popular: false,
@@ -285,38 +282,40 @@ export default function Home() {
           </div>
 
           {/* Per-Use Product Pricing */}
-          <div className="mt-14 max-w-3xl mx-auto">
+          <div className="mt-10 max-w-3xl mx-auto">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-text-primary">Pay Per Use</h3>
-              <p className="mt-2 text-text-secondary text-sm">Every plan uses the same per-check pricing. Minimum monthly pulls apply.</p>
+              <p className="mt-2 text-text-secondary text-sm">
+                1 credit = 1 check. Use credits on any product below. ID + Screening bundle {formatUsd(BUNDLE_PRICES.idAndScreening.amount)}.
+              </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
               <div className="bg-surface rounded-xl border border-border p-6 text-center hover:shadow-md hover:border-accent/20 transition-all relative">
                 <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wide">Limited Time</div>
                 <ScanFace className="w-8 h-8 text-accent mx-auto mb-3" />
                 <div className="text-sm font-medium text-text-muted">ID Verification</div>
-                <div className="text-3xl font-bold text-text-primary mt-1">$0.99</div>
+                <div className="text-3xl font-bold text-text-primary mt-1">{formatUsd(PRODUCT_PRICES.idVerification.amount)}</div>
                 <div className="text-xs text-text-muted mt-1">per check</div>
               </div>
               <div className="bg-surface rounded-xl border border-border p-6 text-center hover:shadow-md hover:border-accent/20 transition-all relative">
                 <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wide">Limited Time</div>
                 <Search className="w-8 h-8 text-accent mx-auto mb-3" />
                 <div className="text-sm font-medium text-text-muted">Background Screening</div>
-                <div className="text-3xl font-bold text-text-primary mt-1">$0.99</div>
+                <div className="text-3xl font-bold text-text-primary mt-1">{formatUsd(PRODUCT_PRICES.screening.amount)}</div>
                 <div className="text-xs text-text-muted mt-1">per check</div>
               </div>
               <div className="bg-surface rounded-xl border border-border p-6 text-center hover:shadow-md hover:border-accent/20 transition-all relative">
                 <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wide">Limited Time</div>
                 <FileText className="w-8 h-8 text-accent mx-auto mb-3" />
                 <div className="text-sm font-medium text-text-muted">Credit Report</div>
-                <div className="text-3xl font-bold text-text-primary mt-1">$5.99</div>
+                <div className="text-3xl font-bold text-text-primary mt-1">{formatUsd(PRODUCT_PRICES.creditReport.amount)}</div>
                 <div className="text-xs text-text-muted mt-1">per soft pull</div>
               </div>
               <div className="bg-surface rounded-xl border border-border p-6 text-center hover:shadow-md hover:border-accent/20 transition-all relative">
                 <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wide">Limited Time</div>
                 <PenLine className="w-8 h-8 text-accent mx-auto mb-3" />
                 <div className="text-sm font-medium text-text-muted">Trusted Signatures</div>
-                <div className="text-3xl font-bold text-text-primary mt-1">$1.99</div>
+                <div className="text-3xl font-bold text-text-primary mt-1">{formatUsd(PRODUCT_PRICES.trustedSignatures.amount)}</div>
                 <div className="text-xs text-text-muted mt-1">per envelope</div>
               </div>
               <div className="bg-accent-subtle rounded-xl border border-accent/10 p-6 text-center hover:shadow-md transition-all">
@@ -328,7 +327,7 @@ export default function Home() {
                   <FileText className="w-5 h-5 text-accent" />
                 </div>
                 <div className="text-sm font-medium text-accent">All Together</div>
-                <div className="text-3xl font-bold text-text-primary mt-1">$7.99</div>
+                <div className="text-3xl font-bold text-text-primary mt-1">{formatUsd(BUNDLE_PRICES.full.amount)}</div>
                 <div className="text-xs text-accent mt-1">per check &middot; save 15%</div>
               </div>
             </div>
@@ -342,14 +341,14 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 sm:py-16 bg-primary relative overflow-hidden">
+      <section className="py-10 sm:py-12 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white">Ready to strengthen your compliance?</h2>
           <p className="mt-4 text-slate-300 text-lg">
-            First month free — up to 10 verifications & 10 screenings. No credit card required.
+            {FREE_TRIAL.cta}
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/screening"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-lg shadow-accent/20 transition-all"

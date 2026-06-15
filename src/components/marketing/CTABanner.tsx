@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { FREE_TRIAL } from '@/lib/pricing';
 
 interface CTABannerProps {
   title?: string;
@@ -12,14 +13,14 @@ interface CTABannerProps {
 
 export function CTABanner({
   title = 'Ready to start screening?',
-  subtitle = 'First month free — up to 10 verifications & 10 screenings. No credit card required.',
+  subtitle = FREE_TRIAL.cta,
   primaryLabel = 'Try Free',
   primaryHref = '/register',
   secondaryLabel = 'Contact Sales',
   secondaryHref = '/contact',
 }: CTABannerProps) {
   return (
-    <section className="py-14 sm:py-16 bg-primary relative overflow-hidden">
+    <section className="py-10 sm:py-12 bg-primary relative overflow-hidden">
       <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
       <div className="relative max-w-4xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-white">{title}</h2>

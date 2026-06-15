@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { BRAND } from '@/lib/brand';
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'sales@credoscreening.com';
@@ -28,7 +29,7 @@ export async function POST(req: NextRequest) {
       <h3 style="color:#374151;margin-top:20px;">Message</h3>
       <p style="color:#4b5563;line-height:1.6;">${message.replace(/\n/g, '<br>')}</p>
       <hr style="margin-top:30px;border:none;border-top:1px solid #e5e7eb;">
-      <p style="color:#9ca3af;font-size:12px;">Sent from Credo contact form</p>
+      <p style="color:#9ca3af;font-size:12px;">Sent from ${BRAND.name} contact form</p>
     `;
 
     if (RESEND_API_KEY) {
@@ -40,7 +41,7 @@ export async function POST(req: NextRequest) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'Credo <noreply@credoscreening.com>',
+          from: `${BRAND.name} <noreply@credoscreening.com>`,
           to: [CONTACT_EMAIL],
           reply_to: email,
           subject,

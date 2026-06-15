@@ -8,9 +8,10 @@ import {
   BadgeCheck, Eye, CreditCard, Scale, UserCheck, Heart
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { BRAND } from '@/lib/brand';
 
 export const metadata: Metadata = {
-  title: 'Candidate Identity & Credit Verification for Staffing | TrustCredo',
+  title: 'Candidate Identity & Credit Verification for Staffing',
   description: 'Verify candidate identity and assess financial trust with ID checks and optional credit verification powered by Cove.',
   keywords: ['candidate verification', 'hiring fraud prevention', 'staffing identity check', 'credit check hiring', 'staffing KYC', 'recruitment verification'],
 };
@@ -126,7 +127,7 @@ export default function StaffingIdentityCheckPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-28 pb-24 relative overflow-hidden">
+      <section className="pt-20 pb-8 sm:pt-24 sm:pb-10 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated via-surface to-surface" />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
 
@@ -166,7 +167,7 @@ export default function StaffingIdentityCheckPage() {
       </section>
 
       {/* Stats */}
-      <section className="py-14 bg-surface border-y border-border">
+      <section className="py-8 bg-surface border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -185,9 +186,9 @@ export default function StaffingIdentityCheckPage() {
       </section>
 
       {/* Problem Section */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">
               Fake Candidates and Hidden Risks Are Increasing
             </h2>
@@ -210,9 +211,9 @@ export default function StaffingIdentityCheckPage() {
       </section>
 
       {/* Solution Section */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
               <ShieldCheck className="w-3.5 h-3.5" /> The Solution
             </div>
@@ -238,10 +239,10 @@ export default function StaffingIdentityCheckPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-text-primary">Why Staffing Teams Choose TrustCredo</h2>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-text-primary">Why Staffing Teams Choose {BRAND.name}</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Reduce hiring risk, save recruiter time, and build client trust with verified candidates.
             </p>
@@ -258,9 +259,9 @@ export default function StaffingIdentityCheckPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">How It Works</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Four simple steps. Identity verified in seconds. Credit check optional.
@@ -289,9 +290,9 @@ export default function StaffingIdentityCheckPage() {
       </section>
 
       {/* Use Cases */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Who This Is For</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               From recruitment agencies to in-house HR teams — verify every candidate before they start.
@@ -312,7 +313,7 @@ export default function StaffingIdentityCheckPage() {
       </section>
 
       {/* Credit Check Section */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -373,9 +374,9 @@ export default function StaffingIdentityCheckPage() {
       </section>
 
       {/* Trust & Security */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Secure, Compliant, and Privacy-First</h2>
             <p className="mt-3 text-text-secondary max-w-2xl mx-auto">
               Candidate data is handled with the highest security standards. Every verification is encrypted, consent-tracked, and audit-ready.
@@ -401,7 +402,7 @@ export default function StaffingIdentityCheckPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 bg-primary relative overflow-hidden">
+      <section className="py-10 sm:py-12 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white">Make Every Hire a Verified and Trusted One</h2>

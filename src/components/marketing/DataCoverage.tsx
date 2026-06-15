@@ -40,9 +40,9 @@ const colorMap: Record<string, { bg: string; icon: string; stat: string }> = {
 
 export function DataCoverage() {
   return (
-    <section className="py-14 sm:py-16 bg-surface">
+    <section className="py-10 sm:py-12 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-text-primary">Comprehensive Data Coverage</h2>
           <p className="mt-3 text-text-secondary max-w-xl mx-auto">
             Screen against the world's most comprehensive watchlist database, aggregated from 80+ official sources.

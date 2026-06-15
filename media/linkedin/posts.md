@@ -17,7 +17,7 @@ Here's what we do:
 → ID Verification: Government ID + selfie, facial matching, liveness detection, 200+ countries
 → Credit Reports: Consumer credit reports powered by Equifax — scores, trade lines, public records
 
-$0.99 per screening or ID check. $5.99 per credit report. First month free.
+$0.99 per screening or ID check. $5.99 per credit report. $1.99 per signature envelope. First month free — 10 credits.
 
 We built this for compliance teams that are tired of slow, overpriced tools.
 
@@ -233,7 +233,7 @@ Trust Credo was built for teams that move fast:
 • $5.99 per Equifax credit report
 • Sub-3-second response times
 • Webhooks for async workflows
-• First month free
+• First month free — 10 credits included
 
 What's your biggest compliance pain point?
 
@@ -276,7 +276,7 @@ Every signed document includes:
 
 Sequential multi-signer. Drag-and-drop field editor. Draw, type, or upload signatures.
 
-$1.99 per document — unlimited signers.
+$1.99 per envelope — unlimited signers.
 
 Know who's signing → trustcredo.com/trusted-signatures
 
@@ -322,7 +322,7 @@ TrustCredo Trusted Signatures closes that gap:
 ✅ Tamper-proof sealed documents with verification proof
 ✅ Complete audit trail (opened, verified, signed, delivered)
 
-For $1.99 per document, you get signatures that actually prove who signed.
+For $1.99 per envelope, you get signatures that actually prove who signed.
 
 How confident are you in who's signing your documents?
 
@@ -362,7 +362,7 @@ Here's the full flow:
 → Webhook fires to your system
 → Stored per your retention policy
 
-One API. One dashboard. $1.99 per document — no matter how many signers.
+One API. One dashboard. $1.99 per envelope — no matter how many signers.
 
 trustcredo.com/trusted-signatures
 

@@ -1,6 +1,7 @@
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
+import { BRAND, legalOperatorLine } from '@/lib/brand';
 
 export default function TermsPage() {
   return (
@@ -23,8 +24,9 @@ export default function TermsPage() {
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">1. Acceptance of Terms</h2>
               <p>
-                By accessing or using Credo's background screening services ("Services"), you agree to be bound
-                by these Terms of Service ("Terms"). If you do not agree to these Terms, you may not access or use
+                By accessing or using {BRAND.name} and related services operated by {BRAND.legalEntity}
+                (carrying on business as {BRAND.registeredName}) (&quot;Services&quot;), you agree to be bound
+                by these Terms of Service (&quot;Terms&quot;). If you do not agree to these Terms, you may not access or use
                 the Services.
               </p>
               <p className="mt-3">
@@ -35,7 +37,7 @@ export default function TermsPage() {
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">2. Description of Services</h2>
-              <p>Credo provides background screening services that include:</p>
+              <p>{BRAND.name} provides background screening and compliance services that include:</p>
               <ul className="mt-3 space-y-2 list-disc pl-6">
                 <li>Watchlist screening against OFAC, sanctions, PEP, and 80+ global databases</li>
                 <li>Fuzzy name matching with composite confidence scoring</li>
@@ -93,9 +95,9 @@ export default function TermsPage() {
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">6. Fees and Payment</h2>
               <ul className="space-y-2 list-disc pl-6">
-                <li><strong>First Month Free:</strong> New accounts on the Starter and Professional plans receive up to 10 ID verifications and 10 background screenings at no cost during the first calendar month after registration. Unused free checks do not roll over. Standard per-use rates apply after the first month or once the free allocation is exhausted</li>
-                <li><strong>Paid Plans:</strong> Billed monthly according to your selected pricing plan</li>
-                <li>Unused screenings do not roll over to the next billing period</li>
+                <li><strong>First Month Free:</strong> New accounts receive 10 free credits during the first calendar month after registration. Each credit covers one ID verification, one background screening, or one Trusted Signatures envelope. Unused credits do not roll over. Standard per-use rates apply after the first month or once the free allocation is exhausted.</li>
+                <li><strong>Pay Per Use:</strong> After the free period, you purchase credits and pay per check according to our published rates</li>
+                <li>Unused credits do not roll over to the next billing period</li>
                 <li>You agree to provide accurate billing information and authorize charges</li>
                 <li>Prices are subject to change with 30 days written notice</li>
                 <li>You may cancel at any time; no refunds for partial billing periods</li>
@@ -207,8 +209,10 @@ export default function TermsPage() {
               <h2 className="text-xl font-bold text-gray-900 mb-3">16. Contact Information</h2>
               <p>If you have any questions about these Terms, please contact us at:</p>
               <p className="mt-3">
-                <strong>Email:</strong> <a href="mailto:support@credoscreening.com" className="text-indigo-600 hover:underline">support@credoscreening.com</a><br />
-                <strong>Website:</strong> <a href="https://credoscreening.com" className="text-indigo-600 hover:underline">credoscreening.com</a><br />
+                <strong>Email:</strong> <a href={`mailto:${BRAND.supportEmail}`} className="text-indigo-600 hover:underline">{BRAND.supportEmail}</a><br />
+                <strong>Website:</strong> <a href={BRAND.website} className="text-indigo-600 hover:underline">credoscreening.com</a><br />
+                <strong>Legal entity:</strong> {BRAND.legalEntity}<br />
+                <strong>Registered business name:</strong> {BRAND.registeredName}<br />
                 <strong>Address:</strong> Toronto, Ontario, Canada
               </p>
             </div>

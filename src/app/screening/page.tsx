@@ -7,6 +7,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Shield, Search, AlertTriangle, CheckCircle, Loader2, LogIn, UserPlus } from 'lucide-react';
 import { getAuth } from '@/lib/auth';
+import { FREE_TRIAL, PRODUCT_PRICES, formatUsd } from '@/lib/pricing';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
 
@@ -268,7 +269,7 @@ export default function ScreeningPage() {
                 </Link>
               </div>
               <div className="px-6 pb-4">
-                <p className="text-xs text-text-muted text-center">First month free — up to 10 verifications & 10 screenings. No credit card required.</p>
+                <p className="text-xs text-text-muted text-center">{FREE_TRIAL.cta}</p>
               </div>
             </div>
           )}
@@ -300,7 +301,9 @@ export default function ScreeningPage() {
                 </Link>
               </div>
               <div className="px-6 pb-4">
-                <p className="text-xs text-text-muted text-center">Pro plan starts at $49/month for 1,000 screenings.</p>
+                <p className="text-xs text-text-muted text-center">
+                  Buy credits to continue — {formatUsd(PRODUCT_PRICES.screening.amount)} per screening.
+                </p>
               </div>
             </div>
           )}

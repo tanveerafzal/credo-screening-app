@@ -17,7 +17,7 @@ export function PageHero({
   secondaryCta = { label: 'Contact Sales', href: '/contact' },
 }: PageHeroProps) {
   return (
-    <section className="pt-24 pb-12 sm:pt-28 sm:pb-14 relative overflow-hidden">
+    <section className="pt-20 pb-8 sm:pt-24 sm:pb-10 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated to-surface" />
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

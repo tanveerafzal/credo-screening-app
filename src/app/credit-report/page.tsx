@@ -12,7 +12,7 @@ import {
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Credit Report | Credo',
+  title: 'Credit Report',
   description: 'Consumer credit reports powered by Equifax. Access credit history, scores, and risk assessment through a single API. Fast, compliant, and affordable.',
 };
 
@@ -100,7 +100,7 @@ export default function CreditReportPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-28 pb-20 relative overflow-hidden">
+      <section className="pt-20 pb-8 sm:pt-24 sm:pb-10 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated to-surface" />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -133,7 +133,7 @@ export default function CreditReportPage() {
       </section>
 
       {/* Stats */}
-      <section className="py-14 bg-surface border-y border-border">
+      <section className="py-8 bg-surface border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -152,9 +152,9 @@ export default function CreditReportPage() {
       </section>
 
       {/* Benefits */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Why Pull Credit Through Credo?</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Direct Equifax integration. Simple API. No middlemen.
@@ -179,9 +179,9 @@ export default function CreditReportPage() {
       </section>
 
       {/* What's Included */}
-      <section id="whats-included" className="py-24 bg-surface">
+      <section id="whats-included" className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">What&apos;s in a Credit Report</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Every report includes the full Equifax credit file with scores, history, and risk indicators.
@@ -202,9 +202,9 @@ export default function CreditReportPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">How It Works</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Three steps to pull a credit report through the Credo API.
@@ -252,7 +252,7 @@ export default function CreditReportPage() {
       </section>
 
       {/* Use Cases */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-text-primary text-center mb-10">Common Use Cases</h2>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -267,7 +267,7 @@ export default function CreditReportPage() {
       </section>
 
       {/* Combine Products CTA */}
-      <section className="py-24 bg-primary relative overflow-hidden">
+      <section className="py-10 sm:py-12 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white">Credit Report + Screening + ID Verification</h2>
@@ -310,7 +310,7 @@ export default function CreditReportPage() {
       </section>
 
       {/* Compliance Note */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>

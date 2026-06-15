@@ -8,9 +8,10 @@ import {
   Wallet, LineChart, Server, Eye
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { BRAND } from '@/lib/brand';
 
 export const metadata: Metadata = {
-  title: 'Fintech KYC Verification | TrustCredo',
+  title: 'Fintech KYC Verification',
   description: 'Fast and secure KYC verification for fintech companies. Reduce fraud and verify users in seconds with ID + selfie matching powered by AI.',
   keywords: ['fintech KYC', 'identity verification', 'fraud prevention', 'KYC compliance', 'AML verification', 'fintech onboarding'],
 };
@@ -117,7 +118,7 @@ export default function FintechKycPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-28 pb-24 relative overflow-hidden">
+      <section className="pt-20 pb-8 sm:pt-24 sm:pb-10 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated via-surface to-surface" />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
 
@@ -157,7 +158,7 @@ export default function FintechKycPage() {
       </section>
 
       {/* Stats */}
-      <section className="py-14 bg-surface border-y border-border">
+      <section className="py-8 bg-surface border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -176,9 +177,9 @@ export default function FintechKycPage() {
       </section>
 
       {/* Problem Section */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">
               KYC Is Slowing You Down — and Letting Fraud In
             </h2>
@@ -201,9 +202,9 @@ export default function FintechKycPage() {
       </section>
 
       {/* Solution Section */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
               <Zap className="w-3.5 h-3.5" /> The Solution
             </div>
@@ -229,10 +230,10 @@ export default function FintechKycPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-text-primary">Why Fintech Teams Choose TrustCredo</h2>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-text-primary">Why Fintech Teams Choose {BRAND.name}</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Purpose-built for high-growth fintech companies that need speed, accuracy, and compliance.
             </p>
@@ -249,9 +250,9 @@ export default function FintechKycPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">How It Works</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Three steps. Under 30 seconds. No app download required.
@@ -280,9 +281,9 @@ export default function FintechKycPage() {
       </section>
 
       {/* Use Cases */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Built for Every Fintech Vertical</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               From neobanks to crypto exchanges, our KYC verification adapts to your compliance requirements.
@@ -303,7 +304,7 @@ export default function FintechKycPage() {
       </section>
 
       {/* Trust & Security */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -312,7 +313,7 @@ export default function FintechKycPage() {
               </div>
               <h2 className="text-3xl font-bold text-text-primary">Built with Security and Compliance in Mind</h2>
               <p className="mt-4 text-text-secondary leading-relaxed">
-                When you handle identity data, security isn&apos;t a feature — it&apos;s a requirement. TrustCredo is designed from the ground up to protect your users&apos; most sensitive information.
+                When you handle identity data, security isn&apos;t a feature — it&apos;s a requirement. {BRAND.registeredName} is designed from the ground up to protect your users&apos; most sensitive information.
               </p>
               <div className="mt-8 space-y-4">
                 {[
@@ -357,12 +358,12 @@ export default function FintechKycPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 bg-primary relative overflow-hidden">
+      <section className="py-10 sm:py-12 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white">Start Verifying Your Users Today</h2>
           <p className="mt-4 text-slate-300 text-lg max-w-2xl mx-auto">
-            Join hundreds of fintech companies using TrustCredo for fast, compliant KYC verification. First month free — no credit card required.
+            Join hundreds of fintech companies using {BRAND.name} for fast, compliant KYC verification. First month free — no credit card required.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
             <Link

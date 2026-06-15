@@ -6,15 +6,16 @@ import { ChevronDown } from 'lucide-react';
 interface FAQProps {
   title?: string;
   items: Array<{ q: string; a: string }>;
+  compactTop?: boolean;
 }
 
-export function FAQ({ title = 'Frequently Asked Questions', items }: FAQProps) {
+export function FAQ({ title = 'Frequently Asked Questions', items, compactTop = false }: FAQProps) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-14 sm:py-16 bg-surface">
+    <section className={`${compactTop ? 'pt-6 pb-10 sm:pt-8 sm:pb-12' : 'py-10 sm:py-12'} bg-surface`}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-text-primary">{title}</h2>
         </div>
         <div className="space-y-2">

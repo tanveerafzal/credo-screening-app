@@ -13,9 +13,9 @@ export function SolutionsGrid({ currentSlug, title = 'Solutions for Any Workflow
     : SOLUTIONS_LIST;
 
   return (
-    <section className="py-14 sm:py-16 bg-surface-elevated">
+    <section className="py-10 sm:py-12 bg-surface-elevated">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-text-primary">{title}</h2>
           <p className="mt-3 text-text-secondary max-w-xl mx-auto">
             One platform, multiple ways to integrate screening into your compliance workflow.

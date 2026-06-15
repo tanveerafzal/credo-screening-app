@@ -8,10 +8,19 @@ import {
   Zap, Globe, ShieldCheck, DollarSign, FileText, PenLine, UserCheck
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import {
+  BUNDLE_PRICES,
+  FREE_CREDITS,
+  FREE_TRIAL,
+  PRICING_FAQ,
+  PRODUCT_PRICES,
+  formatUsd,
+} from '@/lib/pricing';
 
 export const metadata: Metadata = {
-  title: 'Products & Pricing | Credo',
-  description: 'ID Verification, Background Screening, and Credit Reports. Pay per use, no contracts. Minimum monthly pulls apply. Powered by Equifax.',
+  title: 'Products & Pricing',
+  description:
+    'ID Verification, Background Screening, Credit Reports, and Trusted Signatures. Pay per use — no contracts or monthly minimums. Powered by Equifax.',
 };
 
 const PRODUCTS = [
@@ -19,7 +28,8 @@ const PRODUCTS = [
     icon: UserCheck,
     name: 'Digital Onboarding',
     tagline: 'Verify + screen in one flow',
-    price: 'From $0.99',
+    price: `From ${formatUsd(PRODUCT_PRICES.idVerification.amount)}`,
+    unit: 'per check',
     description: 'Complete remote onboarding: ID verification, selfie liveness, and AML/watchlist screening in a single workflow.',
     features: [
       'ID scan + selfie verification',
@@ -27,7 +37,7 @@ const PRODUCTS = [
       'OFAC, PEP & sanctions screening',
       'Trusted signatures integration',
       'SDK & REST API embedding',
-      'First month free — 10 checks included',
+      `First month free — ${FREE_CREDITS} credits included`,
     ],
     href: '/onboarding',
   },
@@ -35,7 +45,8 @@ const PRODUCTS = [
     icon: ScanFace,
     name: 'ID Verification',
     tagline: 'Verify real people in seconds',
-    price: '$0.99',
+    price: formatUsd(PRODUCT_PRICES.idVerification.amount),
+    unit: PRODUCT_PRICES.idVerification.unit,
     description: 'Government ID scan + selfie facial matching with liveness detection. Verify identities from 200+ countries in under 30 seconds.',
     features: [
       'Government ID, passport & driver\'s license',
@@ -51,7 +62,8 @@ const PRODUCTS = [
     icon: Search,
     name: 'Background Screening',
     tagline: 'Screen against 1.2M+ entities',
-    price: '$0.99',
+    price: formatUsd(PRODUCT_PRICES.screening.amount),
+    unit: PRODUCT_PRICES.screening.unit,
     description: 'Sanctions, PEP, criminal, and regulatory screening across 80+ global watchlists. Instant fuzzy name matching with composite scoring.',
     features: [
       'OFAC, EU, UN, UK & global sanctions',
@@ -67,7 +79,8 @@ const PRODUCTS = [
     icon: FileText,
     name: 'Credit Report',
     tagline: 'Powered by Equifax',
-    price: '$5.99',
+    price: formatUsd(PRODUCT_PRICES.creditReport.amount),
+    unit: PRODUCT_PRICES.creditReport.unit,
     description: 'Consumer credit reports from Equifax. Credit scores, trade lines, public records, and risk indicators — delivered in real-time via API.',
     features: [
       'Equifax credit score & risk factors',
@@ -83,14 +96,15 @@ const PRODUCTS = [
     icon: PenLine,
     name: 'Trusted Signatures',
     tagline: 'Verified People. Trusted Signatures.',
-    price: '$1.99',
+    price: formatUsd(PRODUCT_PRICES.trustedSignatures.amount),
+    unit: PRODUCT_PRICES.trustedSignatures.unit,
     description: 'Identity-verified electronic signatures. Each signer proves who they are before signing.',
     features: [
       'Identity verification before signing',
       'Sequential multi-signer support',
       'Draw, type, or upload signatures',
       'Drag-and-drop field editor',
-      'TrustCredo verification seal',
+      'Trust Credo verification seal',
       'Detailed audit trail',
     ],
     href: '/trusted-signatures',
@@ -98,9 +112,9 @@ const PRODUCTS = [
 ];
 
 const FAQS = [
-  { q: 'Is there a minimum monthly usage?', a: 'Yes. A minimum number of monthly pulls applies to each product. The minimum varies depending on which products you use. Contact us for details.' },
-  { q: 'How does the bundle pricing work?', a: 'When you run both ID Verification and Background Screening on the same person in a single request, you pay $1.59 instead of $1.98 — saving you $0.39 per check.' },
-  { q: 'Is there a free tier?', a: 'Yes! Your first month includes up to 10 ID verifications and 10 background screenings for free. After that, you pay per use.' },
+  { q: 'Is there a minimum monthly usage?', a: PRICING_FAQ.noMinimum },
+  { q: 'How does the bundle pricing work?', a: PRICING_FAQ.bundle },
+  { q: 'Is there a free tier?', a: PRICING_FAQ.freeTier },
   { q: 'Do I need to commit to a volume?', a: 'No commitments. Pay per use. Run 1 check or 10,000 — same price per check. For high-volume needs, contact us for enterprise pricing.' },
   { q: 'How do I get started?', a: 'Sign up for free, get your API key, and start running checks immediately. No credit card required for the free tier.' },
   { q: 'Can I use all products through the API?', a: 'Yes. All three products — ID Verification, Background Screening, and Credit Reports — are available via our REST API. Run them individually or combine them for a complete risk assessment.' },
@@ -113,26 +127,26 @@ export default function ProductsPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-28 pb-20 relative overflow-hidden">
+      <section className="pt-20 pb-8 sm:pt-24 sm:pb-10 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated to-surface" />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-6 border border-accent/10">
-            <ShieldCheck className="w-3.5 h-3.5" /> First Month Free — 10 verifications & 10 screenings included
+            <ShieldCheck className="w-3.5 h-3.5" /> {FREE_TRIAL.headline}
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary leading-tight tracking-tight">
             Simple Pricing.<br />
             <span className="text-accent">Pay Per Use.</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto">
-            ID Verification, Background Screening, and Credit Reports.
-            Pay per use. No contracts. Minimum monthly pulls apply.
+            ID Verification, Background Screening, Credit Reports, and Trusted Signatures.
+            Pay per use. No contracts. No monthly minimums.
           </p>
         </div>
       </section>
 
       {/* Product Cards */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {PRODUCTS.map((product) => (
@@ -144,7 +158,7 @@ export default function ProductsPage() {
                 <p className="text-sm text-text-muted mt-1">{product.tagline}</p>
                 <div className="mt-5">
                   <span className="text-4xl font-bold text-text-primary">{product.price}</span>
-                  <span className="text-sm text-text-muted ml-1">/ per check</span>
+                  <span className="text-sm text-text-muted ml-1">/ {product.unit}</span>
                 </div>
                 <p className="mt-4 text-sm text-text-secondary leading-relaxed">{product.description}</p>
                 <ul className="mt-6 space-y-3">
@@ -168,7 +182,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Bundle CTA */}
-      <section className="py-24 bg-primary relative overflow-hidden">
+      <section className="py-10 sm:py-12 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 text-white rounded-full text-xs font-semibold mb-6 border border-white/10">
@@ -178,29 +192,29 @@ export default function ProductsPage() {
             Bundle & Save
           </h2>
           <p className="mt-4 text-slate-300 text-lg max-w-2xl mx-auto">
-            Run all three products together — ID Verification, Background Screening, and Credit Report — for just <strong className="text-white">$7.99 per check</strong>. Save 15% compared to running them separately.
+            Run all three products together — ID Verification, Background Screening, and Credit Report — for just <strong className="text-white">{formatUsd(BUNDLE_PRICES.full.amount)} per check</strong>. Save {BUNDLE_PRICES.full.savingsPercent}% compared to running them separately.
           </p>
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
               <ScanFace className="w-7 h-7 text-slate-300 mx-auto mb-2" />
               <div className="text-xs text-slate-300">ID Verification</div>
-              <div className="text-xl font-bold text-white mt-1">$0.99</div>
+              <div className="text-xl font-bold text-white mt-1">{formatUsd(PRODUCT_PRICES.idVerification.amount)}</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
               <Search className="w-7 h-7 text-slate-300 mx-auto mb-2" />
               <div className="text-xs text-slate-300">Screening</div>
-              <div className="text-xl font-bold text-white mt-1">$0.99</div>
+              <div className="text-xl font-bold text-white mt-1">{formatUsd(PRODUCT_PRICES.screening.amount)}</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
               <FileText className="w-7 h-7 text-slate-300 mx-auto mb-2" />
               <div className="text-xs text-slate-300">Credit Report</div>
-              <div className="text-xl font-bold text-white mt-1">$5.99</div>
+              <div className="text-xl font-bold text-white mt-1">{formatUsd(PRODUCT_PRICES.creditReport.amount)}</div>
             </div>
             <div className="bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-xl p-5 ring-1 ring-accent/40">
               <Layers className="w-7 h-7 text-accent-light mx-auto mb-2" />
               <div className="text-xs text-accent-light">All Together</div>
-              <div className="text-xl font-bold text-white mt-1">$7.99</div>
-              <div className="text-xs text-accent-light mt-1">Save 15%</div>
+              <div className="text-xl font-bold text-white mt-1">{formatUsd(BUNDLE_PRICES.full.amount)}</div>
+              <div className="text-xs text-accent-light mt-1">Save {BUNDLE_PRICES.full.savingsPercent}%</div>
             </div>
           </div>
           <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
@@ -221,20 +235,20 @@ export default function ProductsPage() {
       </section>
 
       {/* Why Pay Per Use */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Why Pay Per Use?</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              Minimum monthly pulls apply. Beyond that, you only pay when you run a check.
+              No monthly minimums. Buy credits when you need them — pay only when you run a check.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
                 icon: DollarSign,
-                title: 'Minimum Pulls Apply',
-                desc: 'A minimum number of monthly pulls is required per product. Beyond that, pay only for what you use.',
+                title: 'No Monthly Minimums',
+                desc: 'Pay per use with credit packs. No platform fee and no required monthly volume.',
               },
               {
                 icon: Zap,
@@ -260,9 +274,9 @@ export default function ProductsPage() {
       </section>
 
       {/* Comparison Table */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">What&apos;s Included</h2>
             <p className="mt-3 text-text-secondary">Every product includes full features. No hidden tiers.</p>
           </div>
@@ -287,7 +301,7 @@ export default function ProductsPage() {
               </thead>
               <tbody>
                 {[
-                  { feature: 'Price per check', idv: '$0.99', screen: '$0.99', credit: '$5.99', bundle: '$7.99' },
+                  { feature: 'Price per check', idv: formatUsd(PRODUCT_PRICES.idVerification.amount), screen: formatUsd(PRODUCT_PRICES.screening.amount), credit: formatUsd(PRODUCT_PRICES.creditReport.amount), bundle: formatUsd(BUNDLE_PRICES.full.amount) },
                   { feature: 'REST API access', idv: true, screen: true, credit: true, bundle: true },
                   { feature: 'Webhook callbacks', idv: true, screen: true, credit: true, bundle: true },
                   { feature: 'ID document scanning', idv: true, screen: false, credit: false, bundle: true },

@@ -10,9 +10,11 @@ import {
   Gamepad2, Briefcase, Home, Heart
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import { BRAND } from '@/lib/brand';
+import { PRICING_FAQ } from '@/lib/pricing';
 
 export const metadata: Metadata = {
-  title: 'Digital Onboarding | Credo',
+  title: 'Digital Onboarding',
   description: 'Frictionless digital onboarding with remote identity verification, AML screening, and trusted signatures. Verify customers in under 30 seconds.',
 };
 
@@ -163,7 +165,7 @@ const FAQS = [
   { q: 'How long does onboarding take?', a: 'Most users complete ID verification in under 30 seconds. Combined with watchlist screening, the full compliance flow typically finishes in under a minute.' },
   { q: 'Can I combine ID verification and AML screening?', a: 'Yes. Run identity verification and sanctions/PEP screening in a single API workflow. Verify who someone is and whether they appear on watchlists at the same time.' },
   { q: 'Do users need to download an app?', a: 'No. Onboarding works in any modern web browser on desktop or mobile. Embed it in your signup flow via our SDK or API.' },
-  { q: 'Is there a free trial?', a: 'Yes — your first month includes 10 free ID verifications and 10 background screenings. No credit card required to get started.' },
+  { q: 'Is there a free trial?', a: `${PRICING_FAQ.freeTier} No credit card required to get started.` },
   { q: 'How do I integrate onboarding into my product?', a: 'Sign up for a free account, get your API key, and integrate via REST API or embed our verification SDK. Webhook callbacks deliver results asynchronously.' },
 ];
 
@@ -173,26 +175,26 @@ export default function OnboardingPage() {
       <Navbar />
 
       {/* Hero — What is Onboarding */}
-      <section className="pt-28 pb-20 relative overflow-hidden">
+      <section className="pt-20 pb-6 sm:pt-24 sm:pb-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated to-surface" />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-6 border border-accent/10">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
                 <UserCheck className="w-3.5 h-3.5" /> Digital Onboarding
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold text-text-primary leading-tight tracking-tight">
-                What is <span className="text-accent">TrustCredo Onboarding?</span>
+                What is <span className="text-accent">{BRAND.name} Digital Onboarding?</span>
               </h1>
-              <p className="mt-6 text-lg text-text-secondary leading-relaxed">
+              <p className="mt-4 text-lg text-text-secondary leading-relaxed">
                 Our solution lets you verify customer identity remotely — capturing document data automatically,
                 matching a selfie with passive liveness, and screening against AML, PEP, and sanctions lists in real time.
               </p>
-              <p className="mt-4 text-text-secondary leading-relaxed">
+              <p className="mt-3 text-text-secondary leading-relaxed">
                 No app downloads. No manual review queues. Onboard compliant customers in seconds, not days.
               </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <Link
                   href="/register"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-sm shadow-accent/20 transition-all"
@@ -207,9 +209,9 @@ export default function OnboardingPage() {
                 </Link>
               </div>
             </div>
-            <div className="bg-surface-elevated rounded-2xl border border-border p-8 lg:p-10">
-              <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-6">Complete Onboarding Flow</div>
-              <div className="space-y-4">
+            <div className="bg-surface-elevated rounded-2xl border border-border p-6 lg:p-8">
+              <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-4">Complete Onboarding Flow</div>
+              <div className="space-y-3">
                 {[
                   { icon: Camera, label: 'ID Document Scan', detail: 'OCR + MRZ extraction' },
                   { icon: ScanFace, label: 'Selfie + Liveness', detail: 'Facial match in real time' },
@@ -228,7 +230,7 @@ export default function OnboardingPage() {
                   </div>
                 ))}
               </div>
-              <div className="mt-8 pt-6 border-t border-border text-center">
+              <div className="mt-6 pt-4 border-t border-border text-center">
                 <div className="text-2xl font-bold text-accent">&lt;30s</div>
                 <div className="text-xs text-text-muted mt-1">End-to-end verification time</div>
               </div>
@@ -238,18 +240,18 @@ export default function OnboardingPage() {
       </section>
 
       {/* Benefits */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="pt-8 pb-10 sm:pt-10 sm:pb-12 bg-surface-elevated border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-3">Benefits of Digital Onboarding</div>
-            <h2 className="text-3xl font-bold text-text-primary">Maximize Results with TrustCredo Onboarding</h2>
+          <div className="text-center mb-6">
+            <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-2">Benefits of Digital Onboarding</div>
+            <h2 className="text-3xl font-bold text-text-primary">Maximize Results with {BRAND.name}</h2>
             <p className="mt-3 text-text-secondary max-w-2xl mx-auto">
               Faster signups, lower costs, and stronger compliance — without adding friction to your customer journey.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {BENEFITS.map((b) => (
-              <div key={b.title} className="bg-surface p-6 rounded-xl border border-border hover:shadow-lg hover:border-accent/20 transition-all">
+              <div key={b.title} className="bg-surface p-5 rounded-xl border border-border hover:shadow-lg hover:border-accent/20 transition-all">
                 <div className="w-10 h-10 bg-accent-subtle rounded-lg flex items-center justify-center mb-4">
                   <b.icon className="w-5 h-5 text-accent" />
                 </div>
@@ -266,29 +268,29 @@ export default function OnboardingPage() {
       </section>
 
       {/* 3-Step Process */}
-      <section id="how-it-works" className="py-24 bg-surface">
+      <section id="how-it-works" className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-6">
             <h2 className="text-3xl font-bold text-text-primary">Onboarding in 3 Simple Steps</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               A frictionless flow your users complete in the browser — no app install, no paperwork.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5">
             {STEPS.map((step, i) => (
               <div key={step.step} className="relative">
                 {i < STEPS.length - 1 && (
-                  <div className="hidden md:block absolute top-14 left-[60%] w-[80%] border-t-2 border-dashed border-border" />
+                  <div className="hidden md:block absolute top-12 left-[60%] w-[80%] border-t-2 border-dashed border-border" />
                 )}
-                <div className="bg-surface-elevated rounded-xl p-8 text-center relative border border-border h-full">
-                  <div className="inline-flex items-center justify-center w-10 h-10 bg-accent text-white rounded-full text-sm font-bold mb-5">
+                <div className="bg-surface-elevated rounded-xl p-6 text-center relative border border-border h-full">
+                  <div className="inline-flex items-center justify-center w-10 h-10 bg-accent text-white rounded-full text-sm font-bold mb-4">
                     {step.step}
                   </div>
-                  <div className="w-14 h-14 bg-accent-subtle rounded-xl flex items-center justify-center mx-auto mb-5">
-                    <step.icon className="w-7 h-7 text-accent" />
+                  <div className="w-12 h-12 bg-accent-subtle rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <step.icon className="w-6 h-6 text-accent" />
                   </div>
                   <h3 className="text-lg font-bold text-text-primary">{step.title}</h3>
-                  <p className="mt-3 text-sm text-text-secondary leading-relaxed">{step.desc}</p>
+                  <p className="mt-2 text-sm text-text-secondary leading-relaxed">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -297,16 +299,16 @@ export default function OnboardingPage() {
       </section>
 
       {/* Differentiating Features */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="pt-8 pb-10 sm:pt-10 sm:pb-12 bg-surface-elevated border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-3">Why Choose Us</div>
+          <div className="text-center mb-6">
+            <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-2">Why Choose Us</div>
             <h2 className="text-3xl font-bold text-text-primary">Differentiating Features</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Everything you need for secure, compliant digital onboarding in one platform.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {DIFFERENTIATORS.map((f) => (
               <div key={f.title} className="bg-surface p-5 rounded-xl border border-border hover:border-accent/20 transition-all">
                 <div className="w-9 h-9 bg-accent-subtle rounded-lg flex items-center justify-center mb-3">
@@ -321,15 +323,15 @@ export default function OnboardingPage() {
       </section>
 
       {/* Full Workflow CTA */}
-      <section className="py-24 bg-primary relative overflow-hidden">
+      <section className="py-8 sm:py-10 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white">One Platform for Complete Onboarding</h2>
-          <p className="mt-4 text-slate-300 text-lg">
+          <p className="mt-3 text-slate-300 text-lg">
             Verify identity, screen against watchlists, pull credit reports, and collect trusted signatures —
             all through a single API. Build the onboarding flow your compliance team and users will love.
           </p>
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">
             {[
               { icon: ScanFace, label: 'ID Verification', href: '/id-verification' },
               { icon: Search, label: 'Screening', href: '/screening' },
@@ -346,7 +348,7 @@ export default function OnboardingPage() {
               </Link>
             ))}
           </div>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/register"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-lg shadow-accent/20 transition-all"
@@ -364,22 +366,22 @@ export default function OnboardingPage() {
       </section>
 
       {/* Industries */}
-      <section className="py-24 bg-surface">
+      <section className="pt-8 pb-10 sm:pt-10 sm:pb-12 bg-surface border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-6">
             <h2 className="text-3xl font-bold text-text-primary">Sectors & Use Cases</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Digital onboarding for regulated industries and high-growth platforms worldwide.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {INDUSTRIES.map((ind) => (
               <Link
                 key={ind.title}
                 href={ind.href}
-                className="group bg-surface-elevated p-6 rounded-xl border border-border hover:border-accent/30 hover:shadow-md transition-all"
+                className="group bg-surface-elevated p-5 rounded-xl border border-border hover:border-accent/30 hover:shadow-md transition-all"
               >
-                <div className="w-10 h-10 bg-accent-subtle rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/10 transition-colors">
+                <div className="w-10 h-10 bg-accent-subtle rounded-lg flex items-center justify-center mb-3 group-hover:bg-accent/10 transition-colors">
                   <ind.icon className="w-5 h-5 text-accent" />
                 </div>
                 <h3 className="text-sm font-semibold text-text-primary">{ind.title}</h3>
@@ -393,10 +395,9 @@ export default function OnboardingPage() {
         </div>
       </section>
 
-      <FAQ items={FAQS} />
+      <FAQ items={FAQS} compactTop />
       <CTABanner
         title="Ready to streamline onboarding?"
-        subtitle="First month free — 10 ID verifications and 10 screenings included. No credit card required."
       />
 
       <Footer />

@@ -38,7 +38,7 @@ const BCC = process.env.OUTREACH_BCC || '';
 const SENDER_NAME = process.env.OUTREACH_SENDER_NAME || 'Kristina';
 
 const SUBJECT =
-  'Identity-verified signatures for {{firmName}} — free to try (25 envelopes or 1 month)';
+  'Identity-verified signatures for {{firmName}} — free to try (10 credits)';
 
 function loadTargets() {
   return JSON.parse(readFileSync(TARGETS_PATH, 'utf8'));

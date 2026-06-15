@@ -7,11 +7,12 @@ import {
   ArrowRight, MapPin, Clock, Building2, Users, Rocket,
   Globe, Heart, Shield
 } from 'lucide-react';
+import { BRAND } from '@/lib/brand';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Careers | Credo',
-  description: 'Join Credo and help build the compliance infrastructure for a digital-first world. View open positions.',
+  title: 'Careers',
+  description: `Join ${BRAND.name} and help build the compliance infrastructure for a digital-first world. View open positions.`,
 };
 
 const PERKS = [
@@ -97,7 +98,7 @@ export default function CareersPage() {
       <section className="py-24 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-text-primary">Why Credo?</h2>
+            <h2 className="text-3xl font-bold text-text-primary">Why {BRAND.name}?</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               We&apos;re building something that matters — and we take care of the people building it.
             </p>
@@ -121,14 +122,14 @@ export default function CareersPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-text-primary">About Credo</h2>
+              <h2 className="text-3xl font-bold text-text-primary">About {BRAND.name}</h2>
               <p className="mt-4 text-text-secondary leading-relaxed">
-                Credo helps businesses screen individuals and organizations against 1.2M+ entities from OFAC, global sanctions,
+                {BRAND.name} helps businesses screen individuals and organizations against 1.2M+ entities from OFAC, global sanctions,
                 PEP databases, and 80+ watchlists — all in under 3 seconds.
               </p>
               <p className="mt-3 text-text-secondary leading-relaxed">
                 We also provide identity verification with government ID scanning, facial matching, and liveness detection across 200+ countries.
-                A sister company of TrustCredo, we&apos;re building the compliance infrastructure that regulated industries depend on.
+                {BRAND.name} is operated by {BRAND.legalEntity}, carrying on business as {BRAND.registeredName}.
               </p>
             </div>
             <div className="bg-surface-elevated rounded-xl border border-border p-8">

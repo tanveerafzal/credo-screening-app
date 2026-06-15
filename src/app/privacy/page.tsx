@@ -1,6 +1,7 @@
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
+import { BRAND, legalOperatorLine } from '@/lib/brand';
 
 export default function PrivacyPage() {
   return (
@@ -23,9 +24,8 @@ export default function PrivacyPage() {
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">1. Introduction</h2>
               <p>
-                Credo ("we," "us," or "our") is committed to protecting your privacy.
-                This Privacy Policy explains how we collect, use, disclose, and safeguard your information when
-                you use our background screening services (the "Service").
+                {legalOperatorLine()} This Privacy Policy explains how we collect, use, disclose, and safeguard your
+                information when you use our background screening and related compliance services (the &quot;Service&quot;).
               </p>
               <p className="mt-3">
                 This Privacy Policy is divided into two parts. The first applies to individuals whose names are
@@ -207,8 +207,8 @@ export default function PrivacyPage() {
                 <strong>Address:</strong> Toronto, Ontario, Canada
               </p>
               <p className="mt-3">
-                Credo is a sister company of{' '}
-                <a href="https://trustcredo.com" className="text-indigo-600 hover:underline">TrustCredo</a> (Identity Verification).
+                <strong>Legal entity:</strong> {BRAND.legalEntity}<br />
+                <strong>Registered business name:</strong> {BRAND.registeredName}
               </p>
             </div>
 

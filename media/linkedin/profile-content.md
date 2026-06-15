@@ -40,7 +40,8 @@ Why teams choose us:
 • $5.99 per credit report (soft pull) — limited time
 • Simple REST API — send a request, get results
 • Critical sanctions lists updated hourly
-• First month free — no credit card required
+• $1.99 per Trusted Signatures envelope
+• First month free — 10 credits included, no credit card required
 
 Industries we serve: Financial services, FinTech, Insurance, Crypto, SaaS, Retail, Real Estate, Gaming, Professional Services, and more.
 

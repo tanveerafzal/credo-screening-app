@@ -11,7 +11,7 @@ import {
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'ID Verification | Credo',
+  title: 'ID Verification',
   description: 'Enterprise-grade identity verification in under 30 seconds. ID scan, selfie, done. 200+ countries, facial matching, liveness detection.',
 };
 
@@ -120,7 +120,7 @@ export default function IDVerificationPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-28 pb-20 relative overflow-hidden">
+      <section className="pt-20 pb-8 sm:pt-24 sm:pb-10 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated to-surface" />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -153,7 +153,7 @@ export default function IDVerificationPage() {
       </section>
 
       {/* Stats */}
-      <section className="py-14 bg-surface border-y border-border">
+      <section className="py-8 bg-surface border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -172,9 +172,9 @@ export default function IDVerificationPage() {
       </section>
 
       {/* Benefits */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Why Choose Credo for ID Verification?</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Verify identities without the friction. Your users won&apos;t hate it.
@@ -199,9 +199,9 @@ export default function IDVerificationPage() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-24 bg-surface">
+      <section id="how-it-works" className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">How It Works</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Three simple steps. No app downloads. No manual review.
@@ -230,9 +230,9 @@ export default function IDVerificationPage() {
       </section>
 
       {/* Supported Documents */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Supported Documents</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               Accept identity documents from over 200 countries worldwide.
@@ -253,7 +253,7 @@ export default function IDVerificationPage() {
       </section>
 
       {/* Security Deep-Dive */}
-      <section className="py-24 bg-surface">
+      <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -300,7 +300,7 @@ export default function IDVerificationPage() {
       </section>
 
       {/* Verify + Screen Together */}
-      <section className="py-24 bg-primary relative overflow-hidden">
+      <section className="py-10 sm:py-12 bg-primary relative overflow-hidden">
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white">Verify Identity + Screen Against Watchlists</h2>
@@ -326,9 +326,9 @@ export default function IDVerificationPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-surface-elevated">
+      <section className="py-10 sm:py-12 bg-surface-elevated">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Trusted by Businesses Worldwide</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
               From startups to enterprises, businesses trust Credo for fast, reliable identity verification.

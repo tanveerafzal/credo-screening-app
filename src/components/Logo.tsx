@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { BRAND } from '@/lib/brand';
 
 interface LogoProps {
   size?: number;
@@ -17,7 +18,7 @@ export function Logo({ size = 32, className = '', showText = true }: LogoProps) 
         /* eslint-disable-next-line @next/next/no-img-element */
         <img
           src="/trustcredo_logo.png"
-          alt="Credo — Trusted Background & Verification Screening Services"
+          alt={`${BRAND.name} — AML & sanctions screening`}
           width={width}
           height={height}
           className="hidden sm:block"
@@ -27,7 +28,7 @@ export function Logo({ size = 32, className = '', showText = true }: LogoProps) 
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/logo.svg"
-        alt="Credo"
+        alt={BRAND.name}
         width={size}
         height={size}
         className={showText ? 'sm:hidden' : ''}
