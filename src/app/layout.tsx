@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Geist_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { BRAND } from "@/lib/brand";
 import "./globals.css";
 
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     "background check",
     "watchlist screening",
     "KYC",
-    "Trust Credo",
+    "TrustCredo",
   ],
   openGraph: {
     siteName: BRAND.name,
@@ -55,6 +56,7 @@ export default function RootLayout({
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <GoogleAnalytics />
         {children}
       </body>
     </html>
