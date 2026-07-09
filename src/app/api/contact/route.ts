@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { BRAND } from '@/lib/brand';
-import { CONTACT_EMAIL, getSmtpFromAddress, getSmtpTransporter, isSmtpConfigured } from '@/lib/smtp';
+import { getContactEmail, getSmtpFromAddress, getSmtpTransporter, isSmtpConfigured } from '@/lib/smtp';
 
 function escapeHtml(value: string): string {
   return value
@@ -68,10 +68,18 @@ export async function POST(req: NextRequest) {
       .join('\n');
 
     const transporter = getSmtpTransporter();
+    const to = getContactEmail();
+    const from = getSmtpFromAddress();
+
+    if (!to) {
+      console.error('[Contact] No recipient configured');
+      return NextResponse.json({ error: 'Email service is not configured' }, { status: 503 });
+    }
+
     await transporter.sendMail({
-      from: getSmtpFromAddress(),
-      to: CONTACT_EMAIL,
-      replyTo: email,
+      from,
+      to,
+      replyTo: String(email).trim(),
       subject,
       text: textBody,
       html: htmlBody,

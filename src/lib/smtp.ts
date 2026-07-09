@@ -8,18 +8,44 @@ const SMTP_SECURE = process.env.SMTP_SECURE === 'true';
 const SMTP_USER = process.env.SMTP_USER || '';
 const SMTP_PASS = process.env.SMTP_PASS || '';
 
-export const CONTACT_EMAIL = process.env.CONTACT_EMAIL || BRAND.salesEmail;
+function isValidEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+/** Resolve at send time so Vercel runtime env vars are always used. */
+export function getContactEmail(): string {
+  const candidates = [
+    process.env.CONTACT_EMAIL,
+    process.env.SMTP_TO_EMAIL,
+    BRAND.salesEmail,
+  ];
+
+  for (const candidate of candidates) {
+    const trimmed = candidate?.trim();
+    if (trimmed && isValidEmail(trimmed)) return trimmed;
+  }
+
+  return BRAND.salesEmail;
+}
 
 export function isSmtpConfigured(): boolean {
   return Boolean(SMTP_HOST && SMTP_USER && SMTP_PASS);
 }
 
 export function getSmtpFromAddress(): string {
-  return (
-    process.env.CONTACT_FROM_EMAIL ||
-    process.env.SMTP_FROM_EMAIL ||
-    (SMTP_USER ? `${BRAND.name} <${SMTP_USER}>` : `${BRAND.name} <${BRAND.salesEmail}>`)
-  );
+  const candidates = [
+    process.env.CONTACT_FROM_EMAIL,
+    process.env.SMTP_FROM_EMAIL,
+    SMTP_USER ? `${BRAND.name} <${SMTP_USER}>` : null,
+    `${BRAND.name} <${BRAND.salesEmail}>`,
+  ];
+
+  for (const candidate of candidates) {
+    const trimmed = candidate?.trim();
+    if (trimmed) return trimmed;
+  }
+
+  return `${BRAND.name} <${BRAND.salesEmail}>`;
 }
 
 let transporter: Transporter | null = null;
