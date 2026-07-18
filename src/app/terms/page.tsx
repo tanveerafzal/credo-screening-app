@@ -103,7 +103,7 @@ export default function TermsPage() {
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">6. Fees and Payment</h2>
               <ul className="space-y-2 list-disc pl-6">
-                <li><strong>First Month Free:</strong> New accounts receive 10 free credits during the first calendar month after registration. Each credit covers one ID verification, one background screening, or one Trusted Signatures envelope. Unused credits do not roll over. Standard per-use rates apply after the first month or once the free allocation is exhausted.</li>
+                <li><strong>First Month Free:</strong> New accounts receive 10 free credits during the first calendar month after registration. Each credit covers one ID verification or one Trusted Signatures envelope, or ten background screenings (so 10 credits cover up to 100 screenings). Unused credits do not roll over. Standard per-use rates apply after the first month or once the free allocation is exhausted.</li>
                 <li><strong>Pay Per Use:</strong> After the free period, you purchase credits and pay per check according to our published rates</li>
                 <li>Unused credits do not roll over to the next billing period</li>
                 <li>You agree to provide accurate billing information and authorize charges</li>

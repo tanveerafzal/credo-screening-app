@@ -300,7 +300,7 @@ export default function Home() {
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-text-primary">Pay Per Use</h3>
               <p className="mt-2 text-text-secondary text-sm">
-                1 credit = 1 check. Use credits on any product below. ID + Screening bundle {formatUsd(BUNDLE_PRICES.idAndScreening.amount)}.
+                1 credit = 1 ID verification or signature — or 10 background screenings. Use credits on any product below. ID + Screening bundle {formatUsd(BUNDLE_PRICES.idAndScreening.amount)}.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
@@ -342,7 +342,7 @@ export default function Home() {
                 </div>
                 <div className="text-sm font-medium text-accent">All Together</div>
                 <div className="text-3xl font-bold text-text-primary mt-1">{formatUsd(BUNDLE_PRICES.full.amount)}</div>
-                <div className="text-xs text-accent mt-1">per check &middot; save 15%</div>
+                <div className="text-xs text-accent mt-1">per check &middot; save {BUNDLE_PRICES.full.savingsPercent}%</div>
               </div>
             </div>
             <div className="text-center mt-8">
