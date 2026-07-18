@@ -7,7 +7,7 @@ import {
   UserCheck, Camera, ScanFace, ShieldCheck, Zap, TrendingDown, Shield,
   Clock, Target, Layers, Globe, Scale, CheckCircle, ArrowRight, Search,
   PenLine, FileText, Code2, Smartphone, Landmark, Banknote, Coins,
-  Gamepad2, Briefcase, Home, Heart
+  Gamepad2, Briefcase, Home, Heart, Send, Building2
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BRAND } from '@/lib/brand';
@@ -84,21 +84,33 @@ const BENEFITS = [
 const STEPS = [
   {
     step: '01',
+    icon: Send,
+    title: 'Receive Secure Link',
+    desc: 'The business sends the customer a secure onboarding link by email or SMS. They open it in any browser — no app download, no account setup.',
+  },
+  {
+    step: '02',
     icon: Camera,
     title: 'Document Capture',
     desc: 'The user scans a government ID, passport, or driver\'s license. OCR and MRZ extraction pull data in real time — no manual entry.',
   },
   {
-    step: '02',
+    step: '03',
     icon: ScanFace,
     title: 'Identity Verification',
     desc: 'A quick selfie is matched against the ID photo with passive liveness detection. Confirm the person is real and present.',
   },
   {
-    step: '03',
+    step: '04',
     icon: ShieldCheck,
     title: 'Compliance & Fraud Checks',
     desc: 'Automatically screen against sanctions, PEP, and criminal watchlists. Catch deepfakes, document tampering, and high-risk matches.',
+  },
+  {
+    step: '05',
+    icon: Building2,
+    title: 'Verified Data Delivered',
+    desc: 'Once every check passes, clean, structured, verified customer data — identity, document, and screening results — is delivered back to the business instantly via dashboard, API, and webhook.',
   },
 ];
 
@@ -271,20 +283,21 @@ export default function OnboardingPage() {
         </div>
       </section>
 
-      {/* 3-Step Process */}
+      {/* Step Process */}
       <section id="how-it-works" className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-6">
-            <h2 className="text-3xl font-bold text-text-primary">Onboarding in 3 Simple Steps</h2>
+            <h2 className="text-3xl font-bold text-text-primary">Onboarding in {STEPS.length} Simple Steps</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              A frictionless flow your users complete in the browser — no app install, no paperwork.
+              From the invite link to verified data in your systems — a frictionless flow your
+              users complete in the browser, with no app install and no paperwork.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
             {STEPS.map((step, i) => (
               <div key={step.step} className="relative">
                 {i < STEPS.length - 1 && (
-                  <div className="hidden md:block absolute top-12 left-[60%] w-[80%] border-t-2 border-dashed border-border" />
+                  <div className="hidden lg:block absolute top-12 left-[60%] w-[80%] border-t-2 border-dashed border-border" />
                 )}
                 <div className="bg-surface-elevated rounded-xl p-6 text-center relative border border-border h-full">
                   <div className="inline-flex items-center justify-center w-10 h-10 bg-accent text-white rounded-full text-sm font-bold mb-4">
