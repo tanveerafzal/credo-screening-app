@@ -83,9 +83,37 @@ export default function ScreeningPage() {
   const [error, setError] = useState('');
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [showUpgradePrompt, setShowUpgradePrompt] = useState(false);
+  const [upgradeReason, setUpgradeReason] = useState<'limit' | 'credits'>('limit');
   const [limitInfo, setLimitInfo] = useState<{ used: number; limit: number } | null>(null);
 
   const remaining = DAILY_LIMIT - getDailyUsage().count;
+
+  /**
+   * Best-effort admin alert so we can monitor how many people try the free
+   * screening tool. Fire-and-forget — never blocks or breaks the screening.
+   */
+  const notifyAdminOfAttempt = (loggedIn: boolean) => {
+    try {
+      const auth = getAuth();
+      const payload = JSON.stringify({
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        dateOfBirth: dob.trim() || undefined,
+        nationality: nationality.trim() || undefined,
+        company: auth?.partner?.companyName,
+        loggedIn,
+      });
+      // keepalive lets the request finish even if the page navigates.
+      fetch('/api/screening-alert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+        keepalive: true,
+      }).catch(() => {});
+    } catch {
+      /* ignore — alerting must never affect the user */
+    }
+  };
 
   const saveScreeningInput = () => {
     if (typeof window !== 'undefined') {
@@ -112,6 +140,11 @@ export default function ScreeningPage() {
     }
 
     const auth = getAuth();
+    const loggedIn = Boolean(auth && auth.partner?.apiKey);
+
+    // Let the admin know someone tried a screening (fire-and-forget).
+    notifyAdminOfAttempt(loggedIn);
+
     if (!auth || !auth.partner?.apiKey) {
       saveScreeningInput();
       setShowAuthPrompt(true);
@@ -141,6 +174,7 @@ export default function ScreeningPage() {
 
       if (res.status === 429 || (data.error && String(data.error).toLowerCase().includes('limit'))) {
         setLimitInfo({ used: data.used || 10, limit: data.limit || 10 });
+        setUpgradeReason('limit');
         setShowUpgradePrompt(true);
         return;
       }
@@ -148,6 +182,18 @@ export default function ScreeningPage() {
       if (res.status === 401) {
         saveScreeningInput();
         setShowAuthPrompt(true);
+        return;
+      }
+
+      // 402 = no screening credits (e.g. legacy / exhausted balance). Show a
+      // friendly prompt to buy credits or start free instead of a raw error.
+      if (
+        res.status === 402 ||
+        (data.error && /credit/i.test(String(data.error))) ||
+        (data.message && /credit/i.test(String(data.message)))
+      ) {
+        setUpgradeReason('credits');
+        setShowUpgradePrompt(true);
         return;
       }
 
@@ -280,18 +326,28 @@ export default function ScreeningPage() {
               <div className="bg-amber-50 px-6 py-4 border-b border-amber-100">
                 <div className="flex items-center gap-2 mb-1">
                   <AlertTriangle className="w-5 h-5 text-amber-600" />
-                  <h3 className="font-semibold text-amber-900">Monthly screening limit reached</h3>
+                  <h3 className="font-semibold text-amber-900">
+                    {upgradeReason === 'credits'
+                      ? 'Screening credits required'
+                      : 'Monthly screening limit reached'}
+                  </h3>
                 </div>
                 <p className="text-sm text-amber-700 mt-1">
-                  You&apos;ve reached the screening limit. Upgrade to continue screening.
+                  {upgradeReason === 'credits'
+                    ? 'Your account is out of screening credits. Add credits to continue — or create a free account to get started.'
+                    : 'You\u2019ve reached the screening limit. Upgrade to continue screening.'}
                 </p>
               </div>
               <div className="p-6 flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/#pricing"
+                  href={upgradeReason === 'credits' ? '/register?redirect=/screening' : '/#pricing'}
                   className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light transition-colors text-sm"
                 >
-                  View Plans
+                  {upgradeReason === 'credits' ? (
+                    <><UserPlus className="w-4 h-4" /> Create Free Account</>
+                  ) : (
+                    'View Plans'
+                  )}
                 </Link>
                 <Link
                   href="/contact?plan=corporate"
@@ -302,7 +358,9 @@ export default function ScreeningPage() {
               </div>
               <div className="px-6 pb-4">
                 <p className="text-xs text-text-muted text-center">
-                  Buy credits to continue — {formatUsd(PRODUCT_PRICES.screening.amount)} per screening.
+                  {upgradeReason === 'credits'
+                    ? `${FREE_TRIAL.cta} Or buy credits — ${formatUsd(PRODUCT_PRICES.screening.amount)} per screening.`
+                    : `Buy credits to continue — ${formatUsd(PRODUCT_PRICES.screening.amount)} per screening.`}
                 </p>
               </div>
             </div>
