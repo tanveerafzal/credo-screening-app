@@ -207,7 +207,7 @@ export function Navbar() {
               )}
             </div>
 
-            <Link href="/#pricing" className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-elevated rounded-lg transition-colors">Pricing</Link>
+            <Link href="/products" className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-elevated rounded-lg transition-colors">Pricing</Link>
 
             <div className="w-px h-6 bg-border mx-2" />
 
@@ -281,7 +281,7 @@ export function Navbar() {
 
             <div className="pt-4 mt-4 border-t border-border space-y-1">
               <Link href="/products" className="block px-3 py-2.5 text-sm font-medium text-text-secondary hover:bg-surface-elevated rounded-lg" onClick={() => setMobileOpen(false)}>All Products & Pricing</Link>
-              <Link href="/#pricing" className="block px-3 py-2.5 text-sm font-medium text-text-secondary hover:bg-surface-elevated rounded-lg" onClick={() => setMobileOpen(false)}>Pricing</Link>
+              <Link href="/products" className="block px-3 py-2.5 text-sm font-medium text-text-secondary hover:bg-surface-elevated rounded-lg" onClick={() => setMobileOpen(false)}>Pricing</Link>
               <Link href="/login" className="block px-3 py-2.5 text-sm font-medium text-text-secondary hover:bg-surface-elevated rounded-lg" onClick={() => setMobileOpen(false)}>Login</Link>
               <Link href="/register" className="block w-full text-center px-4 py-2.5 bg-accent text-white text-sm font-semibold rounded-lg mt-2" onClick={() => setMobileOpen(false)}>
                 Start Free
