@@ -49,9 +49,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="border-t border-slate-800 mt-8 pt-6 text-xs text-slate-500">
           <span>{copyrightLine()} · All rights reserved.</span>
-          <span>SOC 2 Compliant &middot; GDPR Ready &middot; 99.9% Uptime</span>
         </div>
       </div>
     </footer>
