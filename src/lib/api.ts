@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-test-214036150009.northamerica-northeast2.run.app';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://id-verify-api-test-857526422891.northamerica-northeast2.run.app';
 
 export interface ScreeningResult {
   screeningId: string;
@@ -54,7 +54,7 @@ export interface WatchlistSource {
 }
 
 export async function getWatchlists(): Promise<WatchlistSource[]> {
-  const SCREENING_ENGINE_URL = process.env.NEXT_PUBLIC_SCREENING_ENGINE_URL || 'https://screening-engine-214036150009.us-central1.run.app';
+  const SCREENING_ENGINE_URL = process.env.NEXT_PUBLIC_SCREENING_ENGINE_URL || 'https://screening-engine-857526422891.us-central1.run.app';
   const res = await fetch(`${SCREENING_ENGINE_URL}/internal/lists`, {
     next: { revalidate: 3600 },
   });
