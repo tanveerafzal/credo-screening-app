@@ -20,7 +20,7 @@ export default function TermsPage() {
       <section className="pt-28 pb-10 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h1 className="text-4xl font-extrabold text-gray-900">Terms of Service</h1>
-          <p className="mt-3 text-gray-500">Last updated: April 2026</p>
+          <p className="mt-3 text-gray-500">Last updated: October 2026</p>
         </div>
       </section>
 
@@ -81,6 +81,7 @@ export default function TermsPage() {
               <ul className="mt-3 space-y-2 list-disc pl-6">
                 <li>Discriminate against individuals based on race, religion, gender, or other protected characteristics</li>
                 <li>Stalk, harass, or intimidate any person</li>
+                <li>Support or operate adult entertainment, gambling or betting, or alcohol sales or distribution businesses</li>
                 <li>Resell or redistribute screening data without authorization</li>
                 <li>Circumvent rate limits, quotas, or access controls</li>
                 <li>Reverse-engineer our matching algorithms or databases</li>
@@ -173,6 +174,11 @@ export default function TermsPage() {
                 Our total liability for any claim arising from these Terms shall not exceed the amount you paid us
                 in the 12 months preceding the claim.
               </p>
+              <p className="mt-3">
+                Without limiting the foregoing, Credo Screening shall not be liable for any claims arising from
+                your use of the Services in connection with adult entertainment, gambling or betting, or alcohol
+                sales or distribution.
+              </p>
             </div>
 
             <div>
@@ -181,7 +187,9 @@ export default function TermsPage() {
                 You agree to indemnify and hold harmless Credo and its officers, directors, employees, and
                 agents from any claims, damages, losses, or expenses (including reasonable attorneys' fees) arising
                 out of your use of the Services, violation of these Terms, or infringement of any rights of a
-                third party.
+                third party. This includes defending and paying Credo Screening for claims arising because you used
+                the Services for adult entertainment, gambling or betting, or alcohol sales or distribution in
+                violation of these Terms.
               </p>
             </div>
 
