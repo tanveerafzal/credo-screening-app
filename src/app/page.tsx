@@ -319,7 +319,7 @@ export default function Home() {
                 <div className="text-xs text-text-muted mt-1">per check</div>
               </div>
               <div className="bg-surface rounded-xl border border-border p-6 text-center hover:shadow-md hover:border-accent/20 transition-all relative">
-                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wide">Limited Time</div>
+                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-slate-700 text-white text-[10px] font-bold rounded-full uppercase tracking-wide">Canada Only</div>
                 <FileText className="w-8 h-8 text-accent mx-auto mb-3" />
                 <div className="text-sm font-medium text-text-muted">Credit Report</div>
                 <div className="text-3xl font-bold text-text-primary mt-1">{formatUsd(PRODUCT_PRICES.creditReport.amount)}</div>

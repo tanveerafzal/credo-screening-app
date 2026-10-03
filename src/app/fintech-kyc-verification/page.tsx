@@ -83,7 +83,7 @@ const BENEFITS = [
   { icon: Shield, text: 'Stay compliant with KYC/AML regulations across jurisdictions' },
   { icon: Lock, text: 'Biometric data encrypted in transit, deleted after verification' },
   { icon: Fingerprint, text: 'Catch deepfakes, synthetic IDs, and document tampering' },
-  { icon: CreditCard, text: 'Add Equifax credit reports for lending and risk assessment' },
+  { icon: CreditCard, text: 'Add Equifax credit reports (Canada only) for lending and risk assessment' },
 ];
 
 const STEPS = [
@@ -110,7 +110,7 @@ const STEPS = [
 const USE_CASES = [
   { icon: Building2, title: 'Digital Banks', desc: 'Onboard account holders instantly with compliant KYC that doesn\'t require branch visits.' },
   { icon: Coins, title: 'Crypto Platforms', desc: 'Meet regulatory requirements for crypto exchanges while keeping sign-up fast and frictionless.' },
-  { icon: Wallet, title: 'Lending Apps', desc: 'Verify borrower identity before disbursement. Combine with Equifax credit reports for full risk assessment.' },
+  { icon: Wallet, title: 'Lending Apps', desc: 'Verify borrower identity before disbursement. Combine with Equifax credit reports (Canada only) for full risk assessment.' },
   { icon: CreditCard, title: 'Payment Platforms', desc: 'Verify merchants and high-value users to reduce chargebacks and payment fraud.' },
   { icon: LineChart, title: 'Investment Apps', desc: 'Comply with SEC and FINRA requirements for brokerage account opening and suitability.' },
 ];

@@ -81,16 +81,16 @@ const PRODUCTS = [
   {
     icon: FileText,
     name: 'Credit Report',
-    tagline: 'Powered by Equifax',
+    tagline: 'Canada only · Powered by Equifax',
     price: formatUsd(PRODUCT_PRICES.creditReport.amount),
     unit: PRODUCT_PRICES.creditReport.unit,
-    description: 'Consumer credit reports from Equifax. Credit scores, trade lines, public records, and risk indicators — delivered in real-time via API.',
+    description: 'Canadian consumer credit reports from Equifax. Credit scores, trade lines, public records, and risk indicators — delivered in real-time via API. Available for Canada only.',
     features: [
+      'Canada-only Equifax credit reports',
       'Equifax credit score & risk factors',
       'Full trade line & payment history',
       'Collections, bankruptcies & liens',
       'Hard & soft inquiry history',
-      'FCRA-compliant credit pulls',
       'Consumer consent management',
     ],
     href: '/credit-report',
@@ -107,7 +107,7 @@ const PRODUCTS = [
       'Sequential multi-signer support',
       'Draw, type, or upload signatures',
       'Drag-and-drop field editor',
-      'Trust Credo verification seal',
+      'TrustCredo verification seal',
       'Detailed audit trail',
     ],
     href: '/credo-trusted-signatures',
@@ -121,7 +121,7 @@ const FAQS = [
   { q: 'Do I need to commit to a volume?', a: 'No commitments. Pay per use. Run 1 check or 10,000 — same price per check. For high-volume needs, contact us for enterprise pricing.' },
   { q: 'How do I get started?', a: 'Sign up for free, get your API key, and start running checks immediately. No credit card required for the free tier.' },
   { q: 'Can I use all products through the API?', a: 'Yes. All three products — ID Verification, Background Screening, and Credit Reports — are available via our REST API. Run them individually or combine them for a complete risk assessment.' },
-  { q: 'How do credit reports work?', a: 'Credit reports are pulled in real-time from Equifax. You\'ll need FCRA-compliant permissible purpose and consumer consent. Contact us to get set up.' },
+  { q: 'How do credit reports work?', a: 'Credit reports are available for Canada only and are pulled in real-time from Equifax. You\'ll need a permissible purpose and consumer consent. Contact us to get set up.' },
 ];
 
 export default function ProductsPage() {
@@ -215,7 +215,7 @@ export default function ProductsPage() {
             </div>
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
               <FileText className="w-7 h-7 text-slate-300 mx-auto mb-2" />
-              <div className="text-xs text-slate-300">Credit Report</div>
+              <div className="text-xs text-slate-300">Credit Report (Canada)</div>
               <div className="text-xl font-bold text-white mt-1">{formatUsd(PRODUCT_PRICES.creditReport.amount)}</div>
             </div>
             <div className="bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-xl p-5 ring-1 ring-accent/40">
@@ -320,8 +320,8 @@ export default function ProductsPage() {
                   { feature: 'Criminal watchlists', idv: false, screen: true, credit: false, bundle: true },
                   { feature: 'Credit score & history', idv: false, screen: false, credit: true, bundle: true },
                   { feature: 'Trade lines & public records', idv: false, screen: false, credit: true, bundle: true },
-                  { feature: 'Equifax data', idv: false, screen: false, credit: true, bundle: true },
-                  { feature: 'FCRA compliant', idv: false, screen: false, credit: true, bundle: true },
+                  { feature: 'Equifax Canada data', idv: false, screen: false, credit: true, bundle: true },
+                  { feature: 'Canada only', idv: false, screen: false, credit: true, bundle: true },
                 ].map((row) => (
                   <tr key={row.feature} className="border-b border-border-subtle">
                     <td className="text-sm text-text-secondary px-6 py-3">{row.feature}</td>

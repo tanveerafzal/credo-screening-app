@@ -29,7 +29,7 @@ const PRODUCTS_LIST = [
   {
     slug: 'credit-report',
     label: 'Credit Report',
-    shortDesc: 'Consumer credit reports powered by Equifax.',
+    shortDesc: 'Equifax consumer credit reports — Canada only.',
     icon: FileText,
   },
   {

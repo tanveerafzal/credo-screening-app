@@ -18,7 +18,7 @@ export const FREE_SCREENINGS = FREE_CREDITS * SCREENINGS_PER_CREDIT;
 export const PRODUCT_PRICES = {
   idVerification: { amount: 0.99, unit: 'per check', label: 'ID Verification' },
   screening: { amount: 0.49, unit: 'per check', label: 'Background Screening' },
-  creditReport: { amount: 5.99, unit: 'per soft pull', label: 'Credit Report' },
+  creditReport: { amount: 5.99, unit: 'per soft pull · Canada only', label: 'Credit Report' },
   trustedSignatures: { amount: 1.99, unit: 'per envelope', label: 'Trusted Signatures' },
 } as const;
 

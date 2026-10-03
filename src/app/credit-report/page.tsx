@@ -1,23 +1,22 @@
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { SolutionsGrid } from '@/components/marketing/SolutionsGrid';
 import { FAQ } from '@/components/marketing/FAQ';
 import { CTABanner } from '@/components/marketing/CTABanner';
 import Link from 'next/link';
 import {
   FileText, CheckCircle, ShieldCheck, Globe, Zap,
-  ArrowRight, BarChart3, Lock, Users, Clock, Building2,
+  ArrowRight, BarChart3, Lock, Users, Building2,
   CreditCard, TrendingUp, AlertTriangle
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Consumer Credit Reports',
+  title: 'Credit Report (Canada Only)',
   description:
-    'FCRA-compliant consumer credit reports powered by Equifax. Credit history, scores, and risk signals via API for lending, staffing, and tenant screening.',
+    'Canadian consumer credit reports powered by Equifax. Credit history, scores, and risk signals via API for lending, staffing, and tenant screening — Canada only.',
   path: '/credit-report',
-  keywords: ['credit report API', 'Equifax credit check', 'consumer credit screening'],
+  keywords: ['credit report API Canada', 'Equifax Canada credit check', 'Canadian consumer credit screening'],
 });
 
 const REPORT_INCLUDES = [
@@ -34,7 +33,7 @@ const REPORT_INCLUDES = [
   {
     icon: AlertTriangle,
     title: 'Derogatory Records',
-    desc: 'Collections, charge-offs, bankruptcies, liens, and judgments with dates and amounts.',
+    desc: 'Collections, charge-offs, bankruptcies, and judgments with dates and amounts.',
   },
   {
     icon: BarChart3,
@@ -44,7 +43,7 @@ const REPORT_INCLUDES = [
   {
     icon: Users,
     title: 'Public Records',
-    desc: 'Bankruptcies, civil judgments, and tax liens from public record sources.',
+    desc: 'Bankruptcies and related public-record items from Canadian credit file sources.',
   },
   {
     icon: CreditCard,
@@ -57,45 +56,45 @@ const BENEFITS = [
   {
     icon: Zap,
     title: 'Instant Access',
-    desc: 'Pull credit reports in real-time via API. No batch processing, no waiting. Results returned in seconds.',
+    desc: 'Pull Canadian credit reports in real-time via API. No batch processing, no waiting. Results returned in seconds.',
     stat: '$5.99',
     statLabel: 'Per soft pull · Limited time',
   },
   {
     icon: ShieldCheck,
-    title: 'Equifax Powered',
-    desc: 'Direct integration with Equifax — one of the three major credit bureaus. Reliable, comprehensive data you can trust.',
-    stat: '220M+',
-    statLabel: 'Consumer profiles',
+    title: 'Equifax Canada',
+    desc: 'Direct integration with Equifax for Canadian consumer credit files. Reliable bureau data for Canada-only use cases.',
+    stat: 'CA',
+    statLabel: 'Canada only',
   },
   {
     icon: Lock,
-    title: 'Fully Compliant',
-    desc: 'FCRA-compliant credit pulls with permissible purpose verification. Audit trails and consent management built in.',
-    stat: 'FCRA',
-    statLabel: 'Compliant',
+    title: 'Consent Built In',
+    desc: 'Credit pulls require consumer consent and a valid purpose. Consent tracking and audit trails are built into the flow.',
+    stat: 'SIN',
+    statLabel: 'Consent + identity',
   },
 ];
 
 const USE_CASES = [
-  'Tenant screening for property management',
-  'Pre-qualification for lending and credit decisions',
-  'Account opening risk assessment',
-  'Insurance underwriting',
-  'Employment background checks (with consent)',
-  'Debt collection skip tracing',
-  'KYC enhanced due diligence',
-  'Auto loan and lease origination',
+  'Tenant screening for Canadian property managers',
+  'Pre-qualification for Canadian lending decisions',
+  'Account opening risk assessment in Canada',
+  'Insurance underwriting (Canada)',
+  'Employment background checks with consent (Canada)',
+  'KYC enhanced due diligence for Canadian applicants',
+  'Auto loan and lease origination in Canada',
+  'Staffing / role-based financial risk checks (Canada)',
 ];
 
 const FAQS = [
-  { q: 'Which credit bureau does this use?', a: 'Credit reports are powered by Equifax, one of the three major US credit bureaus with data on over 220 million consumers.' },
-  { q: 'Is this FCRA compliant?', a: 'Yes. All credit pulls are FCRA-compliant. You must have a permissible purpose to pull a consumer credit report, and we verify this as part of the onboarding process.' },
-  { q: 'Do I need consumer consent?', a: 'Yes. You must obtain written consumer consent before pulling a credit report. Our API supports consent tracking and audit trails.' },
-  { q: 'Is this a hard or soft pull?', a: 'We support both hard and soft pulls depending on your use case. Soft pulls are available for pre-qualification and account review. Hard pulls are used for credit decisions.' },
-  { q: 'Can I combine credit reports with screening?', a: 'Yes. You can run credit reports alongside our background screening and ID verification products through the same API for a complete risk assessment.' },
-  { q: 'How is pricing structured?', a: 'Credit reports are $5.99 per soft pull — limited time pricing. All reports include the full credit file, score, and risk indicators. Contact us for volume pricing.' },
-  { q: 'What data is included in a report?', a: 'Each report includes credit score, trade lines, payment history, public records, collections, inquiries, and account summaries. The exact fields depend on the consumer\'s credit file.' },
+  { q: 'Is this available outside Canada?', a: 'No. Credit Report is Canada only. It pulls Canadian Equifax consumer credit files and is not offered for other countries.' },
+  { q: 'Which credit bureau does this use?', a: 'Reports are powered by Equifax for Canadian consumers. Coverage is limited to Canada.' },
+  { q: 'Do I need consumer consent?', a: 'Yes. You must obtain consumer consent before pulling a credit report. Our flow supports consent capture and audit trails.' },
+  { q: 'Is this a hard or soft pull?', a: 'We support soft pulls for pre-qualification and account review. Hard pulls may be available depending on your use case and onboarding.' },
+  { q: 'Can I combine credit reports with screening?', a: 'Yes. You can run Canadian credit reports alongside background screening and ID verification through the same platform.' },
+  { q: 'How is pricing structured?', a: 'Credit reports are $5.99 per soft pull — limited time pricing. Contact us for volume pricing.' },
+  { q: 'What data is included in a report?', a: 'Each report typically includes credit score, trade lines, payment history, public records, collections, inquiries, and account summaries. Exact fields depend on the consumer\'s credit file.' },
 ];
 
 export default function CreditReportPage() {
@@ -109,15 +108,15 @@ export default function CreditReportPage() {
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-6 border border-accent/10">
-            <FileText className="w-3.5 h-3.5" /> Powered by Equifax
+            <FileText className="w-3.5 h-3.5" /> Canada only · Powered by Equifax
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary leading-tight tracking-tight">
             Credit Reports<br />
-            <span className="text-accent">in seconds</span>
+            <span className="text-accent">for Canada</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto">
-            Pull consumer credit reports powered by <strong className="text-text-primary">Equifax</strong> through
-            a single API. Credit scores, trade lines, public records, and risk indicators — delivered in real-time.
+            Pull Canadian consumer credit reports powered by <strong className="text-text-primary">Equifax</strong> through
+            a single API. Credit scores, trade lines, public records, and risk indicators — Canada only.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Link
@@ -141,10 +140,10 @@ export default function CreditReportPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: '220M+', label: 'Consumer Profiles' },
+              { value: 'Canada', label: 'Coverage' },
               { value: '<5s', label: 'Response Time' },
-              { value: 'FCRA', label: 'Compliant' },
               { value: 'Equifax', label: 'Data Source' },
+              { value: '$5.99', label: 'Per Soft Pull' },
             ].map((s) => (
               <div key={s.label}>
                 <div className="text-2xl sm:text-3xl font-bold text-accent">{s.value}</div>
@@ -161,7 +160,7 @@ export default function CreditReportPage() {
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">Why Pull Credit Through Credo?</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              Direct Equifax integration. Simple API. No middlemen.
+              Equifax Canada integration. Simple API. Clear Canada-only coverage.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -188,7 +187,7 @@ export default function CreditReportPage() {
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">What&apos;s in a Credit Report</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              Every report includes the full Equifax credit file with scores, history, and risk indicators.
+              Every report includes the Equifax Canadian credit file with scores, history, and risk indicators.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -211,7 +210,7 @@ export default function CreditReportPage() {
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">How It Works</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              Three steps to pull a credit report through the Credo API.
+              Three steps to pull a Canadian credit report through the Credo API.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -220,19 +219,19 @@ export default function CreditReportPage() {
                 step: '01',
                 icon: Users,
                 title: 'Submit Consumer Info',
-                desc: 'Send the consumer\'s name, SSN, date of birth, and address through our API. Consumer consent is required and tracked.',
+                desc: 'Send the consumer\'s name, SIN, date of birth, and Canadian address through our API. Consumer consent is required and tracked.',
               },
               {
                 step: '02',
                 icon: Building2,
                 title: 'We Pull from Equifax',
-                desc: 'Credo connects directly to Equifax and retrieves the full credit file in real-time. No batch processing.',
+                desc: 'Credo retrieves the Canadian Equifax credit file in real-time. No batch processing.',
               },
               {
                 step: '03',
                 icon: FileText,
                 title: 'Get the Report',
-                desc: 'Receive the complete credit report with score, trade lines, public records, and risk factors via API response or webhook.',
+                desc: 'Receive the credit report with score, trade lines, public records, and risk factors via API response or webhook.',
               },
             ].map((step, i) => (
               <div key={step.step} className="relative">
@@ -276,14 +275,14 @@ export default function CreditReportPage() {
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white">Credit Report + Screening + ID Verification</h2>
           <p className="mt-4 text-slate-300 text-lg">
-            Combine credit reports with background screening and identity verification for a complete
+            Combine Canadian credit reports with background screening and identity verification for a complete
             risk assessment — all through one API, one dashboard, one integration.
           </p>
           <div className="mt-10 grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
               <FileText className="w-8 h-8 text-slate-300 mx-auto mb-3" />
               <div className="text-sm text-slate-300">Credit Report</div>
-              <div className="text-lg font-bold text-white mt-1">Equifax</div>
+              <div className="text-lg font-bold text-white mt-1">Canada · Equifax</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
               <Globe className="w-8 h-8 text-slate-300 mx-auto mb-3" />
@@ -319,19 +318,19 @@ export default function CreditReportPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-green-50 text-green-700 rounded-full text-xs font-semibold mb-4 border border-green-100">
-                <Lock className="w-3.5 h-3.5" /> FCRA Compliance
+                <Lock className="w-3.5 h-3.5" /> Canada Only
               </div>
-              <h2 className="text-3xl font-bold text-text-primary">Built for Compliance</h2>
+              <h2 className="text-3xl font-bold text-text-primary">Built for Responsible Use</h2>
               <p className="mt-4 text-text-secondary leading-relaxed">
-                Pulling consumer credit reports requires FCRA compliance. Credo handles the heavy lifting —
-                permissible purpose verification, consent management, dispute handling, and audit trails are all built into the platform.
+                Pulling consumer credit reports requires a valid purpose and consumer consent.
+                Credo supports consent capture, audit trails, and secure handling of Canadian credit data.
               </p>
               <div className="mt-8 space-y-4">
                 {[
-                  { title: 'Permissible Purpose', desc: 'We verify your permissible purpose during onboarding. Only authorized use cases can pull reports.' },
+                  { title: 'Canada Coverage', desc: 'Credit Report is offered for Canada only. Do not use this product for applicants outside Canada.' },
                   { title: 'Consumer Consent', desc: 'Built-in consent tracking with timestamps and audit trails for every credit pull.' },
                   { title: 'Data Security', desc: 'Credit data is encrypted in transit and at rest. Access controls and logging for every request.' },
-                  { title: 'Dispute Support', desc: 'Consumer dispute handling workflows compliant with FCRA requirements.' },
+                  { title: 'Identity First', desc: 'Pair with ID verification so the person providing a SIN matches the government ID on file.' },
                 ].map((item) => (
                   <div key={item.title} className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
@@ -347,14 +346,14 @@ export default function CreditReportPage() {
               <div className="w-20 h-20 bg-accent-subtle rounded-2xl flex items-center justify-center mb-6">
                 <ShieldCheck className="w-10 h-10 text-accent" />
               </div>
-              <h3 className="text-2xl font-bold text-text-primary">Equifax Certified</h3>
+              <h3 className="text-2xl font-bold text-text-primary">Equifax · Canada</h3>
               <p className="mt-3 text-text-secondary text-sm max-w-xs">
-                Credo is a certified Equifax reseller. Reports are pulled directly from Equifax systems with full bureau-level data quality.
+                Canadian credit reports are pulled via Equifax. This product is not available for US or other country credit files.
               </p>
               <div className="mt-6 w-full max-w-xs space-y-2">
                 <div className="bg-surface rounded-lg border border-border p-3 text-center">
-                  <div className="text-lg font-bold text-accent">FCRA</div>
-                  <div className="text-xs text-text-muted">Fair Credit Reporting Act</div>
+                  <div className="text-lg font-bold text-accent">Canada</div>
+                  <div className="text-xs text-text-muted">Coverage only</div>
                 </div>
                 <div className="bg-surface rounded-lg border border-border p-3 text-center">
                   <div className="text-lg font-bold text-accent">SOC 2</div>
@@ -368,8 +367,8 @@ export default function CreditReportPage() {
 
       <FAQ items={FAQS} />
       <CTABanner
-        title="Ready to pull credit reports?"
-        subtitle="Contact us to get set up with Equifax credit reporting through the Credo API."
+        title="Ready to pull Canadian credit reports?"
+        subtitle="Contact us to get set up with Equifax credit reporting for Canada through the Credo API."
         primaryLabel="Contact Sales"
         primaryHref="/contact?product=credit-report"
         secondaryLabel="View All Products"

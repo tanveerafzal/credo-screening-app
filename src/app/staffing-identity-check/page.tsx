@@ -14,7 +14,7 @@ import { pageMetadata } from '@/lib/seo';
 export const metadata: Metadata = pageMetadata({
   title: 'Staffing Identity & Credit Verification',
   description:
-    'Verify candidate identity and optional credit history for staffing and HR teams. Stop resume fraud with ID scan, selfie match, and Equifax credit checks.',
+    'Verify candidate identity and optional Canadian credit history for staffing and HR teams. Stop resume fraud with ID scan, selfie match, and Equifax credit checks (Canada only).',
   path: '/staffing-identity-check',
   keywords: ['staffing background check', 'candidate identity verification', 'hiring identity check', 'employment credit check'],
 });
