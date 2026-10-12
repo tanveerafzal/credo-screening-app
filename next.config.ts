@@ -54,6 +54,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/credit-report",
+        destination: "/products",
+        permanent: true,
+      },
+      {
+        source: "/credit-report/:path*",
+        destination: "/products",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [{ type: "host", value: "trustcredo.com" }],
         destination: "https://www.credoscreening.com/:path*",

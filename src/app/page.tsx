@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import {
   Search, Globe, Zap, Lock, BarChart3,
-  CheckCircle, ArrowRight, Database, ScanFace, Shield, Clock, FileText, PenLine,
+  CheckCircle, ArrowRight, Database, ScanFace, Shield, Clock, PenLine,
   UserCheck, Camera
 } from 'lucide-react';
 import { BRAND } from '@/lib/brand';
@@ -303,7 +303,7 @@ export default function Home() {
                 1 credit = 1 ID verification or signature — or 10 background screenings. Use credits on any product below. ID + Screening bundle {formatUsd(BUNDLE_PRICES.idAndScreening.amount)}.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               <div className="bg-surface rounded-xl border border-border p-6 text-center hover:shadow-md hover:border-accent/20 transition-all relative">
                 <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wide">Limited Time</div>
                 <ScanFace className="w-8 h-8 text-accent mx-auto mb-3" />
@@ -319,13 +319,6 @@ export default function Home() {
                 <div className="text-xs text-text-muted mt-1">per check</div>
               </div>
               <div className="bg-surface rounded-xl border border-border p-6 text-center hover:shadow-md hover:border-accent/20 transition-all relative">
-                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-slate-700 text-white text-[10px] font-bold rounded-full uppercase tracking-wide">Canada Only</div>
-                <FileText className="w-8 h-8 text-accent mx-auto mb-3" />
-                <div className="text-sm font-medium text-text-muted">Credit Report</div>
-                <div className="text-3xl font-bold text-text-primary mt-1">{formatUsd(PRODUCT_PRICES.creditReport.amount)}</div>
-                <div className="text-xs text-text-muted mt-1">per soft pull</div>
-              </div>
-              <div className="bg-surface rounded-xl border border-border p-6 text-center hover:shadow-md hover:border-accent/20 transition-all relative">
                 <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 bg-amber-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wide">Limited Time</div>
                 <PenLine className="w-8 h-8 text-accent mx-auto mb-3" />
                 <div className="text-sm font-medium text-text-muted">Trusted Signatures</div>
@@ -337,12 +330,10 @@ export default function Home() {
                   <ScanFace className="w-5 h-5 text-accent" />
                   <span className="text-accent font-bold text-xs">+</span>
                   <Search className="w-5 h-5 text-accent" />
-                  <span className="text-accent font-bold text-xs">+</span>
-                  <FileText className="w-5 h-5 text-accent" />
                 </div>
-                <div className="text-sm font-medium text-accent">All Together</div>
-                <div className="text-3xl font-bold text-text-primary mt-1">{formatUsd(BUNDLE_PRICES.full.amount)}</div>
-                <div className="text-xs text-accent mt-1">per check &middot; save {BUNDLE_PRICES.full.savingsPercent}%</div>
+                <div className="text-sm font-medium text-accent">ID + Screening</div>
+                <div className="text-3xl font-bold text-text-primary mt-1">{formatUsd(BUNDLE_PRICES.idAndScreening.amount)}</div>
+                <div className="text-xs text-accent mt-1">per check &middot; save {formatUsd(BUNDLE_PRICES.idAndScreening.savings)}</div>
               </div>
             </div>
             <div className="text-center mt-8">

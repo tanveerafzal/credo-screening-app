@@ -345,14 +345,13 @@ export default function OnboardingPage() {
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white">One Platform for Complete Onboarding</h2>
           <p className="mt-3 text-slate-300 text-lg">
-            Verify identity, screen against watchlists, pull credit reports, and collect trusted signatures —
+            Verify identity, screen against watchlists, and collect trusted signatures —
             all through a single API. Build the onboarding flow your compliance team and users will love.
           </p>
-          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          <div className="mt-8 grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
             {[
               { icon: ScanFace, label: 'ID Verification', href: '/credo-id-verification' },
               { icon: Search, label: 'Screening', href: '/screening' },
-              { icon: FileText, label: 'Credit Report (Canada)', href: '/credit-report' },
               { icon: PenLine, label: 'Trusted Signatures', href: '/credo-trusted-signatures' },
             ].map((item) => (
               <Link

@@ -5,7 +5,7 @@ import { FAQ } from '@/components/marketing/FAQ';
 import Link from 'next/link';
 import {
   ScanFace, Search, CheckCircle, ArrowRight, Layers,
-  Zap, Globe, ShieldCheck, DollarSign, FileText, PenLine, UserCheck
+  Zap, Globe, ShieldCheck, DollarSign, PenLine, UserCheck
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
@@ -21,7 +21,7 @@ import {
 export const metadata: Metadata = pageMetadata({
   title: 'Products & Pricing',
   description:
-    'AML screening, ID verification, credit reports, and identity-verified e-signatures. Pay per use with 10 free credits — no contracts or monthly minimums.',
+    'AML screening, ID verification, and identity-verified e-signatures. Pay per use with 10 free credits — no contracts or monthly minimums.',
   path: '/products',
   keywords: ['AML screening pricing', 'sanctions screening cost', 'KYC pricing', 'OFAC screening API'],
 });
@@ -79,23 +79,6 @@ const PRODUCTS = [
     href: '/screening',
   },
   {
-    icon: FileText,
-    name: 'Credit Report',
-    tagline: 'Canada only · Powered by Equifax',
-    price: formatUsd(PRODUCT_PRICES.creditReport.amount),
-    unit: PRODUCT_PRICES.creditReport.unit,
-    description: 'Canadian consumer credit reports from Equifax. Credit scores, trade lines, public records, and risk indicators — delivered in real-time via API. Available for Canada only.',
-    features: [
-      'Canada-only Equifax credit reports',
-      'Equifax credit score & risk factors',
-      'Full trade line & payment history',
-      'Collections, bankruptcies & liens',
-      'Hard & soft inquiry history',
-      'Consumer consent management',
-    ],
-    href: '/credit-report',
-  },
-  {
     icon: PenLine,
     name: 'Trusted Signatures',
     tagline: 'Verified People. Trusted Signatures.',
@@ -120,8 +103,7 @@ const FAQS = [
   { q: 'Is there a free tier?', a: PRICING_FAQ.freeTier },
   { q: 'Do I need to commit to a volume?', a: 'No commitments. Pay per use. Run 1 check or 10,000 — same price per check. For high-volume needs, contact us for enterprise pricing.' },
   { q: 'How do I get started?', a: 'Sign up for free, get your API key, and start running checks immediately. No credit card required for the free tier.' },
-  { q: 'Can I use all products through the API?', a: 'Yes. All three products — ID Verification, Background Screening, and Credit Reports — are available via our REST API. Run them individually or combine them for a complete risk assessment.' },
-  { q: 'How do credit reports work?', a: 'Credit reports are available for Canada only and are pulled in real-time from Equifax. You\'ll need a permissible purpose and consumer consent. Contact us to get set up.' },
+  { q: 'Can I use all products through the API?', a: 'Yes. ID Verification, Background Screening, and Trusted Signatures are available via our REST API. Run them individually or combine them for a complete onboarding flow.' },
 ];
 
 export default function ProductsPage() {
@@ -142,7 +124,7 @@ export default function ProductsPage() {
             <span className="text-accent">Pay Per Use.</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto">
-            ID Verification, Background Screening, Credit Reports, and Trusted Signatures.
+            ID Verification, Background Screening, and Trusted Signatures.
             Pay per use. No contracts. No monthly minimums.
           </p>
         </div>
@@ -151,13 +133,11 @@ export default function ProductsPage() {
       {/* Product Cards */}
       <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
-            {PRODUCTS.map((product, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {PRODUCTS.map((product) => (
               <div
                 key={product.name}
-                className={`bg-surface rounded-xl border border-border p-8 hover:shadow-lg hover:border-accent/20 transition-all flex flex-col lg:col-span-2 ${
-                  index === 3 ? 'lg:col-start-2' : ''
-                } ${index === 4 ? 'md:col-span-2 md:max-w-lg md:justify-self-center' : ''}`}
+                className="bg-surface rounded-xl border border-border p-8 hover:shadow-lg hover:border-accent/20 transition-all flex flex-col"
               >
                 <div className="w-12 h-12 bg-accent-subtle rounded-xl flex items-center justify-center mb-5">
                   <product.icon className="w-6 h-6 text-accent" />
@@ -200,9 +180,9 @@ export default function ProductsPage() {
             Bundle & Save
           </h2>
           <p className="mt-4 text-slate-300 text-lg max-w-2xl mx-auto">
-            Run all three products together — ID Verification, Background Screening, and Credit Report — for just <strong className="text-white">{formatUsd(BUNDLE_PRICES.full.amount)} per check</strong>. Save {BUNDLE_PRICES.full.savingsPercent}% compared to running them separately.
+            Run ID Verification and Background Screening together for just <strong className="text-white">{formatUsd(BUNDLE_PRICES.idAndScreening.amount)} per check</strong>. Save {formatUsd(BUNDLE_PRICES.idAndScreening.savings)} compared to running them separately.
           </p>
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          <div className="mt-10 grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
               <ScanFace className="w-7 h-7 text-slate-300 mx-auto mb-2" />
               <div className="text-xs text-slate-300">ID Verification</div>
@@ -213,16 +193,11 @@ export default function ProductsPage() {
               <div className="text-xs text-slate-300">Screening</div>
               <div className="text-xl font-bold text-white mt-1">{formatUsd(PRODUCT_PRICES.screening.amount)}</div>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5">
-              <FileText className="w-7 h-7 text-slate-300 mx-auto mb-2" />
-              <div className="text-xs text-slate-300">Credit Report (Canada)</div>
-              <div className="text-xl font-bold text-white mt-1">{formatUsd(PRODUCT_PRICES.creditReport.amount)}</div>
-            </div>
             <div className="bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-xl p-5 ring-1 ring-accent/40">
               <Layers className="w-7 h-7 text-accent-light mx-auto mb-2" />
-              <div className="text-xs text-accent-light">All Together</div>
-              <div className="text-xl font-bold text-white mt-1">{formatUsd(BUNDLE_PRICES.full.amount)}</div>
-              <div className="text-xs text-accent-light mt-1">Save {BUNDLE_PRICES.full.savingsPercent}%</div>
+              <div className="text-xs text-accent-light">Together</div>
+              <div className="text-xl font-bold text-white mt-1">{formatUsd(BUNDLE_PRICES.idAndScreening.amount)}</div>
+              <div className="text-xs text-accent-light mt-1">Save {formatUsd(BUNDLE_PRICES.idAndScreening.savings)}</div>
             </div>
           </div>
           <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
@@ -300,32 +275,25 @@ export default function ProductsPage() {
                     <Search className="w-4 h-4 inline mr-1 text-accent" />Screening
                   </th>
                   <th className="text-center text-sm font-semibold text-text-primary px-4 py-4">
-                    <FileText className="w-4 h-4 inline mr-1 text-accent" />Credit
-                  </th>
-                  <th className="text-center text-sm font-semibold text-text-primary px-4 py-4">
                     <Layers className="w-4 h-4 inline mr-1 text-accent" />Bundle
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { feature: 'Price per check', idv: formatUsd(PRODUCT_PRICES.idVerification.amount), screen: formatUsd(PRODUCT_PRICES.screening.amount), credit: formatUsd(PRODUCT_PRICES.creditReport.amount), bundle: formatUsd(BUNDLE_PRICES.full.amount) },
-                  { feature: 'REST API access', idv: true, screen: true, credit: true, bundle: true },
-                  { feature: 'Webhook callbacks', idv: true, screen: true, credit: true, bundle: true },
-                  { feature: 'ID document scanning', idv: true, screen: false, credit: false, bundle: true },
-                  { feature: 'Facial matching', idv: true, screen: false, credit: false, bundle: true },
-                  { feature: 'Liveness detection', idv: true, screen: false, credit: false, bundle: true },
-                  { feature: 'Sanctions screening', idv: false, screen: true, credit: false, bundle: true },
-                  { feature: 'PEP screening', idv: false, screen: true, credit: false, bundle: true },
-                  { feature: 'Criminal watchlists', idv: false, screen: true, credit: false, bundle: true },
-                  { feature: 'Credit score & history', idv: false, screen: false, credit: true, bundle: true },
-                  { feature: 'Trade lines & public records', idv: false, screen: false, credit: true, bundle: true },
-                  { feature: 'Equifax Canada data', idv: false, screen: false, credit: true, bundle: true },
-                  { feature: 'Canada only', idv: false, screen: false, credit: true, bundle: true },
+                  { feature: 'Price per check', idv: formatUsd(PRODUCT_PRICES.idVerification.amount), screen: formatUsd(PRODUCT_PRICES.screening.amount), bundle: formatUsd(BUNDLE_PRICES.idAndScreening.amount) },
+                  { feature: 'REST API access', idv: true, screen: true, bundle: true },
+                  { feature: 'Webhook callbacks', idv: true, screen: true, bundle: true },
+                  { feature: 'ID document scanning', idv: true, screen: false, bundle: true },
+                  { feature: 'Facial matching', idv: true, screen: false, bundle: true },
+                  { feature: 'Liveness detection', idv: true, screen: false, bundle: true },
+                  { feature: 'Sanctions screening', idv: false, screen: true, bundle: true },
+                  { feature: 'PEP screening', idv: false, screen: true, bundle: true },
+                  { feature: 'Criminal watchlists', idv: false, screen: true, bundle: true },
                 ].map((row) => (
                   <tr key={row.feature} className="border-b border-border-subtle">
                     <td className="text-sm text-text-secondary px-6 py-3">{row.feature}</td>
-                    {[row.idv, row.screen, row.credit, row.bundle].map((val, i) => (
+                    {[row.idv, row.screen, row.bundle].map((val, i) => (
                       <td key={i} className="text-center px-4 py-3">
                         {typeof val === 'boolean' ? (
                           val ? (

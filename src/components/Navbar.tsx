@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useRef } from 'react';
-import { Menu, X, ChevronDown, ScanFace, Search, FileText, Building2, Users, PenLine, UserCheck } from 'lucide-react';
+import { Menu, X, ChevronDown, ScanFace, Search, Building2, Users, PenLine, UserCheck } from 'lucide-react';
 import { Logo } from './Logo';
 import { SOLUTIONS_LIST } from '@/lib/solutions';
 import { INDUSTRIES_LIST } from '@/lib/industries';
@@ -25,12 +25,6 @@ const PRODUCTS_LIST = [
     label: 'Screening',
     shortDesc: 'Screen against 1.2M+ entities from OFAC, sanctions & PEP lists.',
     icon: Search,
-  },
-  {
-    slug: 'credit-report',
-    label: 'Credit Report',
-    shortDesc: 'Equifax consumer credit reports — Canada only.',
-    icon: FileText,
   },
   {
     slug: 'credo-trusted-signatures',
@@ -166,7 +160,7 @@ export function Navbar() {
                       </div>
                       <div className="min-w-0">
                         <div className="text-sm font-semibold text-text-primary">Staffing</div>
-                        <div className="text-xs text-text-muted leading-snug mt-0.5">Candidate identity & credit verification</div>
+                        <div className="text-xs text-text-muted leading-snug mt-0.5">Candidate identity verification</div>
                       </div>
                     </Link>
                   </div>

@@ -5,18 +5,18 @@ import {
   ArrowRight, Shield, ScanFace, Camera, CheckCircle, Zap, Globe,
   Lock, Users, AlertTriangle, Clock, UserX, ShieldCheck,
   Fingerprint, Smartphone, Building2, Briefcase, FileText,
-  BadgeCheck, Eye, CreditCard, Scale, UserCheck, Heart
+  BadgeCheck, Eye, Scale, UserCheck, Heart, Search
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BRAND } from '@/lib/brand';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Staffing Identity & Credit Verification',
+  title: 'Staffing Identity Verification',
   description:
-    'Verify candidate identity and optional Canadian credit history for staffing and HR teams. Stop resume fraud with ID scan, selfie match, and Equifax credit checks (Canada only).',
+    'Verify candidate identity for staffing and HR teams. Stop resume fraud with ID scan, selfie match, and optional watchlist screening.',
   path: '/staffing-identity-check',
-  keywords: ['staffing background check', 'candidate identity verification', 'hiring identity check', 'employment credit check'],
+  keywords: ['staffing background check', 'candidate identity verification', 'hiring identity check'],
 });
 
 const PAIN_POINTS = [
@@ -29,11 +29,6 @@ const PAIN_POINTS = [
     icon: FileText,
     title: 'Resume Fraud',
     desc: 'Fabricated credentials, inflated job titles, and fake references are on the rise. Traditional screening catches some — but not the identity behind the resume.',
-  },
-  {
-    icon: CreditCard,
-    title: 'Hidden Financial Risks',
-    desc: 'For roles involving financial responsibility, a candidate\'s financial history matters. Misrepresented financial standing can create liability for your clients.',
   },
   {
     icon: Clock,
@@ -69,9 +64,9 @@ const FEATURES = [
     desc: 'Results in under 30 seconds. No manual review queues. Candidates are verified before they even finish the application.',
   },
   {
-    icon: CreditCard,
-    title: 'Optional Credit Checks via Cove',
-    desc: 'For roles requiring financial trust, add consent-based credit checks powered by Cove. Seamlessly integrated into the same workflow.',
+    icon: Search,
+    title: 'Optional Watchlist Screening',
+    desc: 'Add sanctions, PEP, and adverse media screening for higher-risk placements — in the same verification workflow.',
   },
   {
     icon: Briefcase,
@@ -83,7 +78,7 @@ const FEATURES = [
 const BENEFITS = [
   { icon: BadgeCheck, text: 'Verify candidate identity before interviews begin' },
   { icon: UserX, text: 'Detect fake applicants instantly with AI-powered matching' },
-  { icon: CreditCard, text: 'Add financial trust checks for sensitive roles (optional)' },
+  { icon: Search, text: 'Add watchlist screening for higher-risk placements (optional)' },
   { icon: Clock, text: 'Save recruiter time — no more chasing unverifiable candidates' },
   { icon: Heart, text: 'Increase client confidence with verified, trusted placements' },
   { icon: Zap, text: 'Fast and simple onboarding — candidates verify in under 30 seconds' },
@@ -104,15 +99,9 @@ const STEPS = [
   },
   {
     step: '03',
-    icon: CreditCard,
-    title: 'Optional Credit Check via Cove',
-    desc: 'For roles requiring financial trust, a consent-based credit check is run through Cove. The candidate approves before any data is pulled.',
-  },
-  {
-    step: '04',
     icon: CheckCircle,
     title: 'Instant Verification Result',
-    desc: 'Identity verified, liveness confirmed, and credit check completed (if requested) — all in a single workflow. Results delivered via API or webhook.',
+    desc: 'Identity verified and liveness confirmed — all in a single workflow. Results delivered via API or webhook.',
   },
 ];
 
@@ -121,7 +110,7 @@ const USE_CASES = [
   { icon: Building2, title: 'Staffing Firms', desc: 'Reduce fraud risk across high-volume temporary and permanent placements.' },
   { icon: Globe, title: 'Remote Hiring Teams', desc: 'Verify candidates you\'ll never meet in person. Essential for distributed and global teams.' },
   { icon: Briefcase, title: 'HR Departments', desc: 'Add identity verification to your internal hiring process for an extra layer of security.' },
-  { icon: Scale, title: 'Financial & Executive Roles', desc: 'Roles involving financial responsibility, accounting, or executive authority benefit from identity + credit verification.' },
+  { icon: Scale, title: 'High-Trust Roles', desc: 'Roles involving financial responsibility, accounting, or executive authority benefit from verified identity before placement.' },
 ];
 
 export default function StaffingIdentityCheckPage() {
@@ -141,12 +130,12 @@ export default function StaffingIdentityCheckPage() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary leading-[1.1] tracking-tight">
-              Verify Candidate Identity and Financial Trust{' '}
+              Verify Candidate Identity{' '}
               <span className="text-accent">Before You Hire</span>
             </h1>
 
             <p className="mt-6 text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
-              Prevent fake applicants and reduce hiring risk with fast ID verification and optional credit checks powered by Cove.
+              Prevent fake applicants and reduce hiring risk with fast ID verification and optional watchlist screening.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
@@ -177,7 +166,7 @@ export default function StaffingIdentityCheckPage() {
               { value: '<30s', label: 'Verification Time' },
               { value: '200+', label: 'Countries Supported' },
               { value: '$0.99', label: 'Per ID Check' },
-              { value: 'Cove', label: 'Credit Check Partner' },
+              { value: '80+', label: 'Watchlist Sources' },
             ].map((s) => (
               <div key={s.label}>
                 <div className="text-2xl sm:text-3xl font-bold text-accent">{s.value}</div>
@@ -224,7 +213,7 @@ export default function StaffingIdentityCheckPage() {
               Complete Candidate Verification for Staffing Teams
             </h2>
             <p className="mt-3 text-text-secondary max-w-2xl mx-auto">
-              Identity verification and optional credit checks in a single workflow — built for recruiters who need speed and trust.
+              Identity verification and optional watchlist screening in a single workflow — built for recruiters who need speed and trust.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -267,10 +256,10 @@ export default function StaffingIdentityCheckPage() {
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-text-primary">How It Works</h2>
             <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              Four simple steps. Identity verified in seconds. Credit check optional.
+              Three simple steps. Identity verified in seconds.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
             {STEPS.map((step, i) => (
               <div key={step.step} className="relative">
                 {i < STEPS.length - 1 && (
@@ -315,67 +304,6 @@ export default function StaffingIdentityCheckPage() {
         </div>
       </section>
 
-      {/* Credit Check Section */}
-      <section className="py-10 sm:py-12 bg-surface-elevated">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
-                <CreditCard className="w-3.5 h-3.5" /> Powered by Cove
-              </div>
-              <h2 className="text-3xl font-bold text-text-primary">Add Credit Checks for High-Trust Roles</h2>
-              <p className="mt-4 text-text-secondary leading-relaxed">
-                For roles involving financial responsibility, go beyond identity verification with optional credit checks powered by Cove.
-                Assess a candidate&apos;s financial reliability before placing them in sensitive positions — with their full consent.
-              </p>
-              <div className="mt-8 space-y-4">
-                {[
-                  { title: 'Consent-Based Credit Checks', desc: 'Candidates explicitly approve before any credit data is pulled. Full transparency and compliance built in.' },
-                  { title: 'Assess Financial Responsibility', desc: 'Review credit history to evaluate financial reliability for roles that handle money, accounts, or sensitive assets.' },
-                  { title: 'Ideal for Finance & Sensitive Positions', desc: 'Accounting, executive, financial advisory, and any role where financial trust is essential to the position.' },
-                  { title: 'Seamless Integration', desc: 'Credit checks run in the same workflow as identity verification — no separate tools, no extra steps for the candidate.' },
-                ].map((item) => (
-                  <div key={item.title} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-text-primary">{item.title}</h4>
-                      <p className="text-sm text-text-secondary">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-xs text-text-muted">
-                Credit checks are entirely optional and require explicit candidate consent before any data is accessed.
-              </p>
-            </div>
-            <div className="bg-surface rounded-2xl border border-border p-10 flex flex-col items-center justify-center text-center">
-              <div className="w-16 h-16 bg-accent-subtle rounded-2xl flex items-center justify-center mb-6">
-                <CreditCard className="w-8 h-8 text-accent" />
-              </div>
-              <h3 className="text-2xl font-bold text-text-primary">Credit Verification</h3>
-              <p className="mt-2 text-sm text-text-muted">Powered by Cove</p>
-              <p className="mt-3 text-text-secondary text-sm max-w-xs">
-                Optional, consent-based credit checks for roles requiring financial trust and responsibility.
-              </p>
-              <div className="mt-6 w-full max-w-xs space-y-2">
-                <div className="bg-surface-elevated rounded-lg border border-border p-3 flex items-center justify-between">
-                  <span className="text-sm text-text-secondary">Identity Check</span>
-                  <span className="text-sm font-bold text-accent">$0.99</span>
-                </div>
-                <div className="bg-surface-elevated rounded-lg border border-border p-3 flex items-center justify-between">
-                  <span className="text-sm text-text-secondary">Credit Check</span>
-                  <span className="text-sm font-bold text-accent">Optional</span>
-                </div>
-                <div className="bg-accent-subtle rounded-lg border border-accent/10 p-3 flex items-center justify-between">
-                  <span className="text-sm font-medium text-accent">Both Together</span>
-                  <span className="text-sm font-bold text-text-primary">One Workflow</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Trust & Security */}
       <section className="py-10 sm:py-12 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -388,9 +316,9 @@ export default function StaffingIdentityCheckPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
             {[
               { icon: Lock, title: 'Data Encryption', desc: 'All data encrypted in transit (TLS 1.3) and at rest (AES-256). Biometric data deleted after verification.' },
-              { icon: ShieldCheck, title: 'Secure Processing', desc: 'SOC 2 Type II compliant infrastructure. Bank-level security for identity and credit data.' },
-              { icon: Fingerprint, title: 'Candidate Consent', desc: 'Credit checks require explicit candidate consent. Full audit trail for every verification request.' },
-              { icon: Scale, title: 'Regulatory Compliance', desc: 'GDPR-ready. FCRA-compliant credit checks. Meets data protection standards across jurisdictions.' },
+              { icon: ShieldCheck, title: 'Secure Processing', desc: 'SOC 2 Type II compliant infrastructure. Bank-level security for identity data.' },
+              { icon: Fingerprint, title: 'Candidate Consent', desc: 'Clear consent capture before verification. Full audit trail for every request.' },
+              { icon: Scale, title: 'Regulatory Compliance', desc: 'GDPR-ready. Meets data protection standards across jurisdictions.' },
             ].map((item) => (
               <div key={item.title} className="bg-surface-elevated p-6 rounded-xl border border-border text-center">
                 <div className="w-11 h-11 bg-accent-subtle rounded-lg flex items-center justify-center mx-auto mb-4">
@@ -410,7 +338,7 @@ export default function StaffingIdentityCheckPage() {
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white">Make Every Hire a Verified and Trusted One</h2>
           <p className="mt-4 text-slate-300 text-lg max-w-2xl mx-auto">
-            Stop guessing. Start verifying. Identity checks in seconds, with optional credit verification for high-trust roles.
+            Stop guessing. Start verifying. Identity checks in seconds for every candidate you place.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
             <Link

@@ -74,8 +74,7 @@ export default function AboutPage() {
             </p>
             <p className="text-gray-600 leading-relaxed mb-4">
               Under {BRAND.registeredName}, we deliver the full compliance stack — sanctions and watchlist screening,
-              identity verification, credit reporting, and identity-verified electronic signatures — through one platform
-              and API.
+              identity verification, and identity-verified electronic signatures — through one platform and API.
             </p>
             <p className="text-gray-600 leading-relaxed mb-6">
               Our partner portal, SDK, and verification flows run on {BRAND.registeredName} infrastructure at{' '}
