@@ -101,7 +101,7 @@ export function Navbar() {
     <header className="chrome-surface fixed inset-x-0 top-0 z-50 border-b border-border px-0 md:px-12">
       <div className="mx-auto grid h-16 w-full max-w-[84rem] grid-cols-[auto_1fr_auto] items-center gap-2 border-x border-border px-6 md:px-8 lg:grid-cols-[1fr_auto_1fr]">
         <Link href="/" aria-label="Credo Screening home" className="inline-flex h-9 w-fit items-center rounded-md">
-          <Logo size={112} />
+          <Logo size={94} />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-0.5 justify-self-center lg:flex">

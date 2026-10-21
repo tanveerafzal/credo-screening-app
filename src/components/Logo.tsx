@@ -1,17 +1,17 @@
 import { BRAND } from '@/lib/brand';
 
 interface LogoProps {
-  /** Rendered lockup width in px. */
+  /** Rendered wordmark width in px. */
   size?: number;
   className?: string;
   showText?: boolean;
   tone?: 'ink' | 'white';
 }
 
-// Hallmark + wordmark lockup, viewBox 328.86 x 79.92.
-const RATIO = 79.92 / 328.86;
+// Outfit wordmark, viewBox 264.91 x 73.6.
+const RATIO = 73.6 / 264.91;
 
-export function Logo({ size = 120, className = '', tone = 'ink' }: LogoProps) {
+export function Logo({ size = 96, className = '', tone = 'ink' }: LogoProps) {
   return (
     /* eslint-disable-next-line @next/next/no-img-element */
     <img
@@ -24,7 +24,7 @@ export function Logo({ size = 120, className = '', tone = 'ink' }: LogoProps) {
   );
 }
 
-/** The hallmark on its own, for square spaces. */
+/** The C mark on its own, for square spaces. */
 export function LogoIcon({ size = 32, className = '', tone = 'ink' }: { size?: number; className?: string; tone?: 'ink' | 'white' }) {
   return (
     /* eslint-disable-next-line @next/next/no-img-element */

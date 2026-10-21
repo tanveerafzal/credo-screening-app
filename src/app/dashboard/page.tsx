@@ -200,7 +200,7 @@ export default function DashboardPage() {
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-gray-200 flex flex-col fixed h-full">
         <div className="p-5 border-b border-gray-100">
-          <Logo size={120} />
+          <Logo size={96} />
         </div>
 
         <nav className="flex-1 p-3 space-y-1">

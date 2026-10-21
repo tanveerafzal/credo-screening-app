@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /*
- * Credo canvas. Light, ruled, near-monochrome. The logo is its own deep ink
- * (#0B4F4A, baked into /brand/*.svg). Teal is reserved for pixel marks, the
+ * Credo canvas. Light, ruled, near-monochrome. The logo carries its own teal
+ * (#047A72, baked into /brand/*.svg). --teal is reserved for pixel marks, the
  * ASCII field and "pass" states; actions are ink.
  * Legacy token names (primary, accent, surface, text-*) are kept so the app
  * screens (login, register, dashboard, legal) inherit the new palette.
