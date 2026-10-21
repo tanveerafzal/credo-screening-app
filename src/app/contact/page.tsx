@@ -7,13 +7,39 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
-import { ArrowGlyph, CheckGlyph, Container, TextLink } from '@/components/site/Canvas';
+import { ArrowGlyph, CheckGlyph, Container, TextLink, cx } from '@/components/site/Canvas';
+
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+type Field = 'name' | 'email' | 'company' | 'phone' | 'message';
+type Form = Record<Field, string>;
+
+/** Field-level problems, named for the person filling the form. */
+function validate(form: Form): Partial<Record<Field, string>> {
+  const errors: Partial<Record<Field, string>> = {};
+  if (!form.name.trim()) errors.name = 'Enter your name.';
+  if (!form.email.trim()) errors.email = 'Enter your email address.';
+  else if (!EMAIL.test(form.email.trim())) errors.email = 'Enter a valid email address, like you@company.com.';
+  if (!form.message.trim()) errors.message = 'Tell us what you need.';
+  return errors;
+}
+
+const inputClass =
+  'w-full rounded-lg border border-border-emphasized bg-background text-[0.9375rem] text-foreground placeholder:text-tertiary transition-colors focus:outline-none focus-visible:border-teal-ink focus-visible:ring-4 focus-visible:ring-teal-wash aria-invalid:border-danger aria-invalid:focus-visible:ring-danger/10';
+
+function FieldError({ id, message }: { id: string; message?: string }) {
+  return message ? (
+    <p id={id} role="alert" className="rise-in mt-1.5 text-[0.8125rem] leading-snug text-danger">
+      {message}
+    </p>
+  ) : null;
+}
 
 function ContactForm() {
   const searchParams = useSearchParams();
   const plan = searchParams.get('plan') || '';
 
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<Form>({
     name: '',
     email: '',
     company: '',
@@ -22,16 +48,32 @@ function ContactForm() {
       ? 'I\'m interested in the Corporate plan. Please provide details on pricing and custom integrations.'
       : '',
   });
+  const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+
+  const errors = validate(form);
+  const shown = (field: Field) => (touched[field] ? errors[field] : undefined);
+  const touch = (field: Field) => setTouched((t) => ({ ...t, [field]: true }));
+  const fieldProps = (field: Field) => ({
+    id: `contact-${field}`,
+    name: field,
+    value: form[field],
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm({ ...form, [field]: e.target.value }),
+    onBlur: () => touch(field),
+    'aria-invalid': shown(field) ? true : undefined,
+    'aria-describedby': shown(field) ? `contact-${field}-error` : undefined,
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      setError('Name, email, and message are required.');
+    if (Object.keys(errors).length) {
+      setTouched({ name: true, email: true, message: true });
+      const first = Object.keys(errors)[0];
+      document.getElementById(`contact-${first}`)?.focus();
       return;
     }
 
@@ -55,7 +97,7 @@ function ContactForm() {
 
   if (success) {
     return (
-      <div role="status" className="border-y border-border py-10">
+      <div role="status" className="rise-in border-y border-border py-10">
         <CheckGlyph className="h-6 w-6" />
         <h2 className="mt-5 text-2xl leading-tight">Message Sent!</h2>
         <p className="mt-3 max-w-md text-base leading-[1.75] text-muted">Thank you for reaching out. We&apos;ll get back to you within 24 hours.</p>
@@ -77,76 +119,43 @@ function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-foreground">Your Name *</label>
-          <input
-            type="text"
-            id="contact-name"
-            name="name"
-            value={form.name}
-            onChange={e => setForm({ ...form, name: e.target.value })}
-            placeholder="John Doe"
-            className="h-11 w-full rounded-lg border border-border-emphasized bg-background px-3.5 text-[0.9375rem] text-foreground placeholder:text-tertiary focus:outline-none focus-visible:border-teal-ink focus-visible:ring-4 focus-visible:ring-teal-wash"
-          />
+          <input type="text" autoComplete="name" placeholder="John Doe" className={cx('h-11 px-3.5', inputClass)} {...fieldProps('name')} />
+          <FieldError id="contact-name-error" message={shown('name')} />
         </div>
         <div>
           <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-foreground">Email *</label>
-          <input
-            type="email"
-            autoComplete="email"
-            id="contact-email"
-            name="email"
-            value={form.email}
-            onChange={e => setForm({ ...form, email: e.target.value })}
-            placeholder="you@company.com"
-            className="h-11 w-full rounded-lg border border-border-emphasized bg-background px-3.5 text-[0.9375rem] text-foreground placeholder:text-tertiary focus:outline-none focus-visible:border-teal-ink focus-visible:ring-4 focus-visible:ring-teal-wash"
-          />
+          <input type="email" autoComplete="email" placeholder="you@company.com" className={cx('h-11 px-3.5', inputClass)} {...fieldProps('email')} />
+          <FieldError id="contact-email-error" message={shown('email')} />
         </div>
         <div>
           <label htmlFor="contact-company" className="mb-1.5 block text-sm font-medium text-foreground">Company</label>
-          <input
-            type="text"
-            id="contact-company"
-            name="company"
-            value={form.company}
-            onChange={e => setForm({ ...form, company: e.target.value })}
-            placeholder="Acme Inc."
-            className="h-11 w-full rounded-lg border border-border-emphasized bg-background px-3.5 text-[0.9375rem] text-foreground placeholder:text-tertiary focus:outline-none focus-visible:border-teal-ink focus-visible:ring-4 focus-visible:ring-teal-wash"
-          />
+          <input type="text" autoComplete="organization" placeholder="Acme Inc." className={cx('h-11 px-3.5', inputClass)} {...fieldProps('company')} />
         </div>
         <div>
           <label htmlFor="contact-phone" className="mb-1.5 block text-sm font-medium text-foreground">Phone</label>
-          <input
-            type="tel"
-            id="contact-phone"
-            name="phone"
-            value={form.phone}
-            onChange={e => setForm({ ...form, phone: e.target.value })}
-            placeholder="+1 (555) 000-0000"
-            className="h-11 w-full rounded-lg border border-border-emphasized bg-background px-3.5 text-[0.9375rem] text-foreground placeholder:text-tertiary focus:outline-none focus-visible:border-teal-ink focus-visible:ring-4 focus-visible:ring-teal-wash"
-          />
+          <input type="tel" autoComplete="tel" placeholder="+1 (555) 000-0000" className={cx('h-11 px-3.5', inputClass)} {...fieldProps('phone')} />
         </div>
       </div>
 
       <div>
         <label htmlFor="contact-message" className="mb-1.5 block text-sm font-medium text-foreground">Message *</label>
         <textarea
-          id="contact-message"
-            name="message"
-            value={form.message}
-          onChange={e => setForm({ ...form, message: e.target.value })}
           rows={5}
           placeholder="Tell us about your screening needs, expected volume, and any custom requirements..."
-          className="w-full resize-none rounded-lg border border-border-emphasized bg-background px-3.5 py-3 text-[0.9375rem] leading-[1.6] text-foreground placeholder:text-tertiary focus:outline-none focus-visible:border-teal-ink focus-visible:ring-4 focus-visible:ring-teal-wash"
+          className={cx('resize-none px-3.5 py-3 leading-[1.6]', inputClass)}
+          {...fieldProps('message')}
         />
+        <FieldError id="contact-message-error" message={shown('message')} />
       </div>
 
       {error && (
-        <p role="alert" className="flex items-start gap-2.5 border-l-2 border-danger py-1 pl-3 text-sm text-danger">{error}</p>
+        <p role="alert" className="rise-in flex items-start gap-2.5 border-l border-danger py-1 pl-3 text-sm text-danger">{error}</p>
       )}
 
       <button
         type="submit"
         disabled={loading}
-        className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-5 text-[0.9375rem] font-medium text-white transition-[background-color,transform] duration-150 hover:bg-[var(--ink-hover)] active:translate-y-px disabled:opacity-50 sm:w-auto"
+        className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-5 text-[0.9375rem] font-medium text-white transition-[background-color,transform] duration-150 ease-out hover:bg-[var(--ink-hover)] active:scale-[0.98] disabled:opacity-50 sm:w-auto"
       >
         {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending...</> : 'Send Message'}
       </button>

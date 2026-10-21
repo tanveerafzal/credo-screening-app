@@ -1,0 +1,48 @@
+{
+  "reduced_motion": {
+    "pending": 0,
+    "anyIn": 0,
+    "statsText": [
+      "1.2M+",
+      "200+",
+      "<3s",
+      "99.9%"
+    ],
+    "actionTransition": "1e-05s",
+    "menuTransition": "1e-05s",
+    "recordValueAnim": "1e-05s",
+    "hidden": 0
+  },
+  "cls": {
+    "/": 0,
+    "/products": 0,
+    "/docs": 0
+  },
+  "no_js": {
+    "pending": 0,
+    "hidden": 0,
+    "stats": [
+      "1.2M+",
+      "200+",
+      "<3s",
+      "99.9%"
+    ]
+  },
+  "pending_after_load": 11,
+  "after_scroll": {
+    "pending": 0,
+    "in": 11,
+    "stillHidden": 0
+  },
+  "clipboard": "curl -H \"x-api-key: YOUR_API_KEY\" \\\n     https://api.credoscreening.com/api/v1/screenings",
+  "contact_posts_blocked": [],
+  "route_enter": {
+    "on_first_load": false,
+    "after_navigation": {
+      "marked": true,
+      "contentAnimation": "route-enter",
+      "headerAnimation": "none",
+      "scrollY": 0
+    }
+  }
+}

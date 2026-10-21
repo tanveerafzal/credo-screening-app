@@ -2,6 +2,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import { Action, CheckGlyph, Container } from '@/components/site/Canvas';
+import { CopyButton } from '@/components/site/CopyButton';
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { BRAND } from '@/lib/brand';
@@ -80,14 +81,18 @@ const th = 'border-b border-border-emphasized px-4 py-2.5 text-left text-xs font
 const td = 'px-4 py-3 align-top first:pl-0';
 
 function Code({ children, label }: { children: ReactNode; label: string }) {
+  const text = typeof children === 'string' ? children : null;
   return (
-    <pre
-      tabIndex={0}
-      aria-label={label}
-      className="max-w-full overflow-x-auto rounded-lg bg-night p-5 font-mono text-[0.8125rem] leading-[1.65] text-white/85"
-    >
-      {children}
-    </pre>
+    <div className="relative max-w-full">
+      <pre
+        tabIndex={0}
+        aria-label={label}
+        className="max-w-full overflow-x-auto rounded-lg bg-night p-5 pr-20 font-mono text-[0.8125rem] leading-[1.65] text-white/85"
+      >
+        {children}
+      </pre>
+      {text ? <CopyButton text={text} label={`Copy ${label.toLowerCase()}`} /> : null}
+    </div>
   );
 }
 

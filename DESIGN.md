@@ -27,10 +27,26 @@ Headings weight 500 with `-0.045em` tracking (`h1`, `h2`), card titles `-0.015em
   off-screen, still under reduced motion, 2D-canvas fallback). Used behind heroes, closing CTAs and
   the footer, fading out before it reaches text.
 - `VerificationRecord`: the staff result screen rebuilt with specimen data (fictional person,
-  SPECIMEN-marked licence). The one authored motion: check rows resolve in sequence on load.
+  SPECIMEN-marked licence). The one authored motion: checks tick and resolve in sequence, then the
+  verdict is issued; held until the card is in view.
 - `PixelIcon`: 16-unit stepped silhouettes in teal with static grain. Used sparingly.
 - `LandscapeBand`: engraved Canadian Shield lake (`public/art/canadian-shield-band.webp`).
 - `TrustSection` / `TrustedByRow`: the only added content (see AUDIT.md).
+
+## Motion (`src/app/globals.css`, `src/components/site/motion.tsx`)
+- One curve, `--ease-out: cubic-bezier(0.16, 1, 0.3, 1)`, and three steps: `--dur-fast` 150ms for
+  feedback (hover, press, menu close), `--dur-base` 200ms for state changes (menus, route enter,
+  errors), `--dur-slow` 300ms for reveals and the FAQ. Tailwind `transition-*` utilities default to
+  the fast step and the same curve.
+- Only opacity and transform move; the FAQ panel's grid rows are the single layout transition.
+- Feedback: pills press to `scale(0.98)` and nudge their arrow 2px on hover; `TextLink` draws a
+  solid rule over its faint resting rule (`.link-draw`); the focus ring follows each element's radius.
+- Continuity: `template.tsx` marks client navigations with `data-route-enter`; page content fades
+  and lifts 6px while the fixed header is excluded. The first, server-rendered load never animates.
+- Reveals: `Reveal` (IntersectionObserver, once) sets `data-reveal`; `.reveal` lifts a heading,
+  `.reveal-cells` fades ruled cells in order (40ms steps, capped at eight). `CountUp` counts stats of
+  10 or more up from zero. Markup is fully visible before hydration and under reduced motion.
+- Reduced motion collapses every animation and transition to an instant change.
 
 ## Imagery provenance
 - `public/art/canadian-shield-band.webp`, `public/art/guilloche-band.webp`: generated with Codex

@@ -12,6 +12,7 @@ import { TrustSection, TrustedByRow } from '@/components/site/TrustSection';
 import { LandscapeBand } from '@/components/site/LandscapeBand';
 import { StatsBar } from '@/components/marketing/StatsBar';
 import { FeatureCells } from '@/components/marketing/FeatureGrid';
+import { CountUp, Reveal } from '@/components/site/motion';
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -167,7 +168,7 @@ export default function Home() {
               Verify identity remotely with ID scan, selfie liveness, and automated AML screening —
               all in under 30 seconds. No app downloads. No manual review queues.
             </p>
-            <ol className="mt-10 max-w-xl border-y border-border">
+            <Reveal as="ol" className="reveal mt-10 max-w-xl border-y border-border">
               {ONBOARDING_STEPS.map((step, i) => (
                 <li key={step.title} className="flex gap-5 border-b border-border py-5 last:border-b-0">
                   <Index n={i + 1} className="mt-1" />
@@ -177,13 +178,13 @@ export default function Home() {
                   </div>
                 </li>
               ))}
-            </ol>
+            </Reveal>
             <div className="mt-9">
               <Action href="/credo-onboarding" arrow>Explore Digital Onboarding</Action>
             </div>
           </div>
           <div className="cells-clip border-t border-border lg:col-span-5 lg:border-t-0">
-          <dl className="cells h-full grid-cols-2">
+          <Reveal as="dl" className="reveal-cells cells h-full grid-cols-2">
             {[
               { value: '<30s', label: 'Verification Time' },
               { value: '200+', label: 'Countries' },
@@ -195,10 +196,12 @@ export default function Home() {
                 className="flex flex-col justify-end px-6 py-10 md:px-8"
               >
                 <dt className="order-2 mt-2 font-mono text-xs text-tertiary">{s.label}</dt>
-                <dd className="order-1 text-4xl font-medium tracking-[-0.045em] text-foreground-highlight">{s.value}</dd>
+                <dd className="order-1 text-4xl font-medium tracking-[-0.045em] text-foreground-highlight tabular-nums">
+                  <CountUp value={s.value} />
+                </dd>
               </div>
             ))}
-          </dl>
+          </Reveal>
           </div>
         </Container>
       </section>
@@ -210,7 +213,7 @@ export default function Home() {
           body={<p>Comprehensive coverage across sanctions, PEP, criminal, and regulatory databases worldwide.</p>}
         />
         <div className="cells-clip border-t border-border">
-        <div className="cells md:grid-cols-2 lg:grid-cols-3">
+        <Reveal className="reveal-cells cells md:grid-cols-2 lg:grid-cols-3">
           {SOURCES.map((group) => (
             <div key={group.category} className="px-6 py-8 md:px-8 md:py-10">
               <div className="flex items-baseline justify-between gap-4">
@@ -227,7 +230,7 @@ export default function Home() {
               </ul>
             </div>
           ))}
-        </div>
+        </Reveal>
         </div>
       </Section>
 
@@ -247,7 +250,7 @@ export default function Home() {
         />
 
         <div className="cells-clip border-y border-border">
-        <div className="cells md:grid-cols-2">
+        <Reveal className="reveal-cells cells md:grid-cols-2">
           {PLANS.map((plan) => (
             <div key={plan.name} className="flex flex-col px-6 py-10 md:px-8 md:py-12">
               <div className="flex items-center justify-between gap-4">
@@ -271,7 +274,7 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
+        </Reveal>
         </div>
 
         <div className="px-6 pb-4 pt-16 md:px-8">
@@ -281,7 +284,7 @@ export default function Home() {
           </p>
         </div>
         <div className="cells-clip mt-8 border-y border-border">
-        <ul className="cells sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal as="ul" className="reveal-cells cells sm:grid-cols-2 lg:grid-cols-4">
           {PER_USE.map((p) => (
             <li
               key={p.label}
@@ -295,7 +298,7 @@ export default function Home() {
               <span className="mt-2 text-sm text-tertiary">{p.unit}</span>
             </li>
           ))}
-        </ul>
+        </Reveal>
         </div>
         <div className="px-6 py-8 md:px-8">
           <TextLink href="/products">View full product details <ArrowGlyph /></TextLink>

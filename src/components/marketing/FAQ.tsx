@@ -27,6 +27,7 @@ export function FAQ({ title = 'Frequently Asked Questions', items }: FAQProps) {
                   <h3 className="text-base tracking-normal">
                     <button
                       type="button"
+                      id={`faq-${i}-q`}
                       onClick={() => setOpen(isOpen ? null : i)}
                       aria-expanded={isOpen}
                       aria-controls={`faq-${i}`}
@@ -35,12 +36,26 @@ export function FAQ({ title = 'Frequently Asked Questions', items }: FAQProps) {
                       <span>{item.q}</span>
                       <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" className="shrink-0 text-tertiary">
                         <path d="M3 8h10" stroke="currentColor" strokeWidth="1.5" />
-                        <path d="M8 3v10" stroke="currentColor" strokeWidth="1.5" className={`origin-center transition-transform duration-200 ${isOpen ? 'scale-y-0' : ''}`} />
+                        <path
+                          d="M8 3v10"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          className={`origin-center transition-transform duration-200 ${isOpen ? 'scale-y-0' : ''}`}
+                        />
                       </svg>
                     </button>
                   </h3>
-                  <div id={`faq-${i}`} hidden={!isOpen} className="max-w-2xl pb-6 text-[0.9375rem] leading-[1.75] text-muted">
-                    {item.a}
+                  {/* Grid-track accordion: the outer div animates 0fr to 1fr, the inner div clips. */}
+                  <div
+                    id={`faq-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-${i}-q`}
+                    data-open={isOpen || undefined}
+                    className="faq-panel"
+                  >
+                    <div>
+                      <div className="max-w-2xl pb-6 text-[0.9375rem] leading-[1.75] text-muted">{item.a}</div>
+                    </div>
                   </div>
                 </div>
               );

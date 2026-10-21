@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { Reveal } from './motion';
 
 export function cx(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(' ');
@@ -54,22 +55,20 @@ export function SectionHeader({
   className?: string;
 }) {
   return (
-    <div className={cx('mb-12 max-w-2xl px-6 md:mb-16 md:px-8', className)}>
+    <Reveal className={cx('reveal mb-12 max-w-2xl px-6 md:mb-16 md:px-8', className)}>
       <h2 className="text-2xl leading-tight sm:text-[2rem]">{title}</h2>
       {body ? <div className="mt-5 max-w-xl text-base leading-[1.75] text-muted">{body}</div> : null}
       {action ? <div className="mt-7">{action}</div> : null}
-    </div>
+    </Reveal>
   );
 }
 
 const ACTION_STYLES = {
-  primary:
-    'bg-ink text-white hover:bg-[var(--ink-hover)] active:translate-y-px',
+  primary: 'bg-ink text-white hover:bg-[var(--ink-hover)]',
   secondary:
-    'border border-border-emphasized bg-background text-foreground hover:border-border-hover hover:bg-foreground/[0.03] active:translate-y-px',
-  inverse: 'bg-white text-night hover:bg-teal-wash active:translate-y-px',
-  'inverse-secondary':
-    'border border-white/25 text-white hover:border-white/60 hover:bg-white/[0.06] active:translate-y-px',
+    'border border-border-emphasized bg-background text-foreground hover:border-border-hover hover:bg-foreground/[0.03]',
+  inverse: 'bg-white text-night hover:bg-teal-wash',
+  'inverse-secondary': 'border border-white/25 text-white hover:border-white/60 hover:bg-white/[0.06]',
 } as const;
 
 export function Action({
@@ -88,7 +87,7 @@ export function Action({
   arrow?: boolean;
 }) {
   const classes = cx(
-    'inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-[background-color,border-color,color,transform] duration-150 ease-out',
+    'group inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-[background-color,border-color,color,transform] duration-150 ease-out active:scale-[0.98]',
     size === 'sm' ? 'h-9 px-4 text-sm' : 'h-11 px-5 text-[0.9375rem]',
     ACTION_STYLES[variant],
     className,
@@ -96,7 +95,7 @@ export function Action({
   const content = (
     <>
       {children}
-      {arrow ? <ArrowGlyph /> : null}
+      {arrow ? <ArrowGlyph className="transition-transform duration-150 ease-out group-hover:translate-x-0.5" /> : null}
     </>
   );
   const external = href.startsWith('http') || href.startsWith('mailto:');
@@ -147,10 +146,7 @@ export function Tag({ children, tone = 'plain' }: { children: ReactNode; tone?: 
 }
 
 export function TextLink({ href, children, className }: { href: string; children: ReactNode; className?: string }) {
-  const classes = cx(
-    'inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline decoration-foreground/25 underline-offset-4 transition-colors hover:decoration-foreground/70',
-    className,
-  );
+  const classes = cx('link-draw inline-flex items-center gap-1.5 text-sm font-medium text-foreground', className);
   return href.startsWith('http') || href.startsWith('mailto:') ? (
     <a href={href} className={classes}>{children}</a>
   ) : (

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { cx } from './Canvas';
+import { Reveal } from './motion';
 
 const CHECKS = [
   { k: 'Document authenticity', d: 'Ontario driver’s licence template and security features', v: 'Pass' },
@@ -17,9 +18,21 @@ const TRAIL: Array<[string, string]> = [
   ['09:30:22', 'Checks complete, result issued'],
 ];
 
+/* Sequence timing (ms): rows scan from ROW_START, values tick in STEP apart, the verdict lands last. */
+const ROW_START = 300;
+const STEP = 140;
+const VALUE_LAG = 120;
+const VERDICT_AT = ROW_START + VALUE_LAG + CHECKS.length * STEP + 160;
+
+const FIGURE_CLASS =
+  'm-0 min-w-0 overflow-hidden rounded-xl border border-border-emphasized bg-background text-[0.875rem] shadow-[0_1px_2px_rgba(11,17,16,0.05),0_24px_48px_-28px_rgba(11,17,16,0.35)]';
+const FIGURE_LABEL = 'Example verification record with specimen data';
+
 /**
  * The verification result as staff see it, rebuilt with specimen data
- * (a fictional person and a SPECIMEN-marked licence).
+ * (a fictional person and a SPECIMEN-marked licence). With `animate`, the
+ * checks tick and resolve in sequence, then the verdict is issued; the
+ * sequence waits until the card is in view.
  */
 export function VerificationRecord({
   animate = false,
@@ -30,20 +43,15 @@ export function VerificationRecord({
   showTrail?: boolean;
   className?: string;
 }) {
-  return (
-    <figure
-      className={cx(
-        'm-0 min-w-0 overflow-hidden rounded-xl border border-border-emphasized bg-background text-[0.875rem] shadow-[0_1px_2px_rgba(11,17,16,0.05),0_24px_48px_-28px_rgba(11,17,16,0.35)]',
-        className,
-      )}
-      aria-label="Example verification record with specimen data"
-    >
+  const at = (ms: number) => (animate ? { animationDelay: `${ms}ms` } : undefined);
+  const body = (
+    <>
       <div className="flex items-start justify-between gap-4 border-b border-border px-5 py-4">
         <div className="min-w-0">
           <p className="font-medium text-foreground-highlight">Verification record</p>
           <p className="mt-0.5 truncate font-mono text-[0.6875rem] text-tertiary">CR-IDV-2026-226628 · Oct 21, 9:30 a.m. · 31 s</p>
         </div>
-        <div className="flex shrink-0 items-center gap-3">
+        <div className={cx('flex shrink-0 items-center gap-3', animate && 'resolve-verdict')} style={at(VERDICT_AT)}>
           <span className="rounded-full bg-teal-ink px-2.5 py-1 text-[0.6875rem] font-medium text-white">Verified</span>
           <span className="text-lg font-medium tracking-[-0.03em] text-foreground-highlight tabular-nums">
             96<span className="text-xs font-normal text-tertiary">/100</span>
@@ -71,17 +79,21 @@ export function VerificationRecord({
           <li
             key={c.k}
             className={cx('flex items-baseline justify-between gap-4 border-b border-border py-2.5 last:border-b-0', animate && 'resolve-row')}
-            style={animate ? { animationDelay: `${300 + i * 140}ms` } : undefined}
+            style={at(ROW_START + i * STEP)}
           >
             <span className="min-w-0">
               <span className="block font-medium text-foreground">{c.k}</span>
               <span className="block text-xs text-tertiary">{c.d}</span>
             </span>
-            <span
-              className={cx('shrink-0 font-medium text-teal-ink tabular-nums', animate && 'resolve-value')}
-              style={animate ? { animationDelay: `${420 + i * 140}ms` } : undefined}
-            >
-              {c.v}
+            <span className="flex shrink-0 items-center gap-1.5 font-medium text-teal-ink tabular-nums">
+              {animate ? (
+                <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" className="resolve-tick shrink-0">
+                  <path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="square" style={at(ROW_START + VALUE_LAG + i * STEP)} />
+                </svg>
+              ) : null}
+              <span className={cx(animate && 'resolve-value')} style={at(ROW_START + VALUE_LAG + i * STEP)}>
+                {c.v}
+              </span>
             </span>
           </li>
         ))}
@@ -104,6 +116,16 @@ export function VerificationRecord({
       <figcaption className="border-t border-border bg-surface-elevated px-5 py-2.5 text-[0.6875rem] text-tertiary">
         Specimen record. Fictional person and document.
       </figcaption>
+    </>
+  );
+
+  return animate ? (
+    <Reveal as="figure" className={cx(FIGURE_CLASS, className)} aria-label={FIGURE_LABEL}>
+      {body}
+    </Reveal>
+  ) : (
+    <figure className={cx(FIGURE_CLASS, className)} aria-label={FIGURE_LABEL}>
+      {body}
     </figure>
   );
 }

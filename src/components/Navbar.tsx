@@ -75,7 +75,7 @@ export function Navbar() {
   };
   const close = () => setOpenMenu(null);
 
-  const panel = 'absolute left-0 top-full mt-2 rounded-xl border border-border-emphasized bg-background p-2 shadow-[0_18px_40px_-20px_rgba(11,17,16,0.25)]';
+  const panel = 'menu-panel absolute left-0 top-full mt-2 rounded-xl border border-border-emphasized bg-background p-2 shadow-[0_18px_40px_-20px_rgba(11,17,16,0.25)]';
 
   const dropdown = (key: Exclude<MenuType, null>, label: string, content: React.ReactNode, width: string) => (
     <div className="relative" onMouseEnter={() => enter(key)} onMouseLeave={leave}>
@@ -89,11 +89,9 @@ export function Navbar() {
         {label}
         <ChevronDown className={cx('h-3.5 w-3.5 transition-transform duration-150', openMenu === key && 'rotate-180')} aria-hidden="true" />
       </button>
-      {openMenu === key ? (
-        <div className={cx(panel, width)} onMouseEnter={() => enter(key)} onMouseLeave={leave}>
-          {content}
-        </div>
-      ) : null}
+      <div className={cx(panel, width)} data-open={openMenu === key || undefined} onMouseEnter={() => enter(key)} onMouseLeave={leave}>
+        {content}
+      </div>
     </div>
   );
 
@@ -122,7 +120,7 @@ export function Navbar() {
                 </Link>
               </div>
             </>,
-            'w-[22rem]',
+            'w-[22rem] origin-top-left',
           )}
           {dropdown(
             'solutions',
@@ -137,7 +135,7 @@ export function Navbar() {
                 ))}
               </div>
             </div>,
-            'w-[34rem] -left-24',
+            'w-[34rem] -left-24 [transform-origin:7.5rem_0]',
           )}
           {dropdown(
             'industries',
@@ -147,7 +145,7 @@ export function Navbar() {
                 <MenuRow key={i.slug} href={`/industries/${i.slug}`} label={i.label} onClick={close} />
               ))}
             </div>,
-            'w-[28rem] -left-24',
+            'w-[28rem] -left-24 [transform-origin:7.5rem_0]',
           )}
           <Link href="/products" className={triggerClass}>
             Pricing
@@ -178,8 +176,11 @@ export function Navbar() {
         </div>
       </div>
 
-      {mobileOpen ? (
-        <div id="mobile-menu" className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background lg:hidden">
+      <div
+        id="mobile-menu"
+        data-open={mobileOpen || undefined}
+        className="mobile-menu absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background lg:hidden"
+      >
           <div className="mx-auto max-w-[84rem] px-6 pb-8 pt-2 md:px-8">
             {[
               { title: 'Products', items: PRODUCTS_LIST.map((p) => ({ href: `/${p.slug}`, label: p.label })) },
@@ -216,8 +217,7 @@ export function Navbar() {
             </div>
             <Action href="/register" className="w-full">Start Free</Action>
           </div>
-        </div>
-      ) : null}
+      </div>
     </header>
   );
 }

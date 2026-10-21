@@ -1,4 +1,5 @@
 import { Container } from './Canvas';
+import { Reveal } from './motion';
 import { PixelIcon, type PixelIconName } from './PixelIcon';
 
 export const TRUSTED_BY = ['TRREB / PropTx', 'CoreLogic One Home', 'SkySlope', 'Dominion Lending Centres'];
@@ -47,7 +48,7 @@ export function TrustSection({ id = 'security' }: { id?: string }) {
           </ul>
         </div>
         <div className="cells-clip lg:col-span-7">
-        <ul className="cells sm:grid-cols-2">
+        <Reveal as="ul" className="reveal-cells cells sm:grid-cols-2">
           {CONTROLS.map((c) => (
             <li key={c.title} className="px-6 py-8 md:px-8">
               <PixelIcon name={c.icon} size={28} />
@@ -55,7 +56,7 @@ export function TrustSection({ id = 'security' }: { id?: string }) {
               <p className="mt-1.5 text-[0.9375rem] leading-[1.65] text-muted">{c.desc}</p>
             </li>
           ))}
-        </ul>
+        </Reveal>
         </div>
       </Container>
     </section>

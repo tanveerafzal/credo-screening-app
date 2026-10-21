@@ -1,6 +1,7 @@
 import type { LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { Index, Section, SectionHeader } from '../site/Canvas';
+import { Reveal } from '../site/motion';
 
 interface Feature {
   icon?: LucideIcon;
@@ -32,7 +33,7 @@ export function FeatureGrid({ title = 'Key Features', subtitle, features, filler
 export function FeatureCells({ features, cols = 3, filler }: { features: Feature[]; cols?: 2 | 3; filler?: ReactNode }) {
   return (
     <div className="cells-clip border-t border-border">
-    <ul className={`cells sm:grid-cols-2 ${cols === 3 ? 'lg:grid-cols-3' : ''}`}>
+    <Reveal as="ul" className={`reveal-cells cells sm:grid-cols-2 ${cols === 3 ? 'lg:grid-cols-3' : ''}`}>
       {features.map((f, i) => (
         <li
           key={f.title}
@@ -44,7 +45,7 @@ export function FeatureCells({ features, cols = 3, filler }: { features: Feature
         </li>
       ))}
       {filler ? <li className={`relative hidden min-h-48 overflow-hidden sm:block ${cols === 3 ? 'lg:col-span-2' : ''}`}>{filler}</li> : null}
-    </ul>
+    </Reveal>
     </div>
   );
 }
