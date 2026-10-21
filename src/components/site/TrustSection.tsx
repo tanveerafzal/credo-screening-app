@@ -1,8 +1,52 @@
+import Image from 'next/image';
 import { Container } from './Canvas';
 import { Reveal } from './motion';
 import { PixelIcon, type PixelIconName } from './PixelIcon';
 
-export const TRUSTED_BY = ['TRREB / PropTx', 'CoreLogic One Home', 'SkySlope', 'Dominion Lending Centres'];
+/**
+ * Customer logos. Files are the official marks, cropped tight, in a
+ * single-colour grey plus the original colours (shown on hover).
+ * `height` is the optical size in px at scale 1: wide wordmarks sit lower,
+ * stacked marks and the solid DLC badge are set so each carries equal weight.
+ */
+const TRUSTED_BY: Array<{ name: string; file: string; ratio: number; height: number }> = [
+  { name: 'Toronto Regional Real Estate Board (TRREB)', file: 'trreb', ratio: 531.31 / 108, height: 30 },
+  { name: 'PropTx Verify', file: 'proptx', ratio: 176.35 / 23.91, height: 17 },
+  { name: 'CoreLogic One Home', file: 'corelogic', ratio: 79.56 / 60.78, height: 41 },
+  { name: 'SkySlope', file: 'skyslope', ratio: 151.85 / 24.5, height: 22 },
+  { name: 'Dominion Lending Centres', file: 'dominion-lending-centres', ratio: 213.96 / 110.4, height: 34 },
+];
+
+/** Logo wall. Grey at rest; colour fades in on hover (instant with reduced motion). */
+function LogoWall({ className }: { className?: string }) {
+  return (
+    <ul className={className}>
+      {TRUSTED_BY.map((logo) => {
+        const w = Math.round(logo.height * logo.ratio);
+        const size = { height: `calc(${logo.height}px * var(--logo-scale, 1))`, width: `calc(${w}px * var(--logo-scale, 1))` };
+        return (
+          <li key={logo.file} className="group relative flex-none" style={size}>
+            <Image
+              src={`/logos/${logo.file}-mono-grey.svg`}
+              alt={logo.name}
+              width={w}
+              height={logo.height}
+              className="absolute inset-0 h-full w-full opacity-80 transition-opacity duration-200 group-hover:opacity-0 motion-reduce:transition-none"
+            />
+            <Image
+              src={`/logos/${logo.file}-color.svg`}
+              alt=""
+              aria-hidden
+              width={w}
+              height={logo.height}
+              className="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-200 group-hover:opacity-100 motion-reduce:transition-none"
+            />
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 
 const CONTROLS: Array<{ icon: PixelIconName; title: string; desc: string }> = [
   { icon: 'globe', title: 'Hosted in Canada', desc: 'All data, including ID images and selfies, is hosted in Canada.' },
@@ -13,19 +57,13 @@ const CONTROLS: Array<{ icon: PixelIconName; title: string; desc: string }> = [
   { icon: 'id', title: 'FINTRAC client identification', desc: 'Ontario real estate brokerages use Credo through PropTx Verify to identify their clients.' },
 ];
 
-/** Logo-free customer row. Names are set in type; no borrowed logos. */
+/** Customer logo row under the hero. */
 export function TrustedByRow() {
   return (
     <section className="border-t border-border px-0 md:px-12" aria-label="Customers">
-      <Container className="grid items-center gap-6 px-6 py-8 md:grid-cols-12 md:px-8">
-        <p className="text-sm text-tertiary md:col-span-3">Trusted by</p>
-        <ul className="flex flex-wrap items-center gap-x-10 gap-y-3 md:col-span-9 md:justify-end">
-          {TRUSTED_BY.map((name) => (
-            <li key={name} className="text-[1.0625rem] font-medium tracking-[-0.02em] text-foreground-highlight">
-              {name}
-            </li>
-          ))}
-        </ul>
+      <Container className="grid items-center gap-6 px-6 py-9 md:px-8 lg:grid-cols-12">
+        <p className="text-sm text-tertiary lg:col-span-2">Trusted by</p>
+        <LogoWall className="flex flex-wrap items-center gap-x-9 gap-y-7 [--logo-scale:0.82] sm:[--logo-scale:0.95] lg:col-span-10 lg:justify-between lg:gap-x-8 lg:[--logo-scale:1]" />
       </Container>
     </section>
   );
@@ -40,12 +78,8 @@ export function TrustSection({ id = 'security' }: { id?: string }) {
           <p className="mt-5 max-w-md text-base leading-[1.75] text-muted">
             Credo runs the identity verification and screening behind PropTx Verify, carrying more than 8,000 screening reports a month for TRREB.
           </p>
-          <p className="mt-8 text-sm text-tertiary">Trusted by</p>
-          <ul className="mt-2 space-y-1">
-            {TRUSTED_BY.map((name) => (
-              <li key={name} className="font-medium tracking-[-0.015em] text-foreground-highlight">{name}</li>
-            ))}
-          </ul>
+          <p className="mt-10 text-sm text-tertiary">Trusted by</p>
+          <LogoWall className="mt-5 grid max-w-md grid-cols-2 items-center justify-items-start gap-x-8 gap-y-7 [--logo-scale:0.82] sm:grid-cols-3 sm:[--logo-scale:0.9]" />
         </div>
         <div className="cells-clip lg:col-span-7">
         <Reveal as="ul" className="reveal-cells cells sm:grid-cols-2">
