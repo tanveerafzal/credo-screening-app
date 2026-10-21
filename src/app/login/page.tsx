@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
-import { Logo } from '@/components/Logo';
+import { LogoIcon } from '@/components/Logo';
 import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { login, saveAuth } from '@/lib/auth';
 import { getPartnerDashboardUrl } from '@/lib/id-verify-api';
@@ -44,7 +44,7 @@ function LoginForm() {
         <div className="w-full max-w-md mx-4">
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <Logo size={40} />
+              <LogoIcon size={44} />
             </div>
             <h1 className="text-2xl font-bold text-text-primary">Welcome back</h1>
             <p className="text-sm text-text-muted mt-1">Sign in to your account</p>

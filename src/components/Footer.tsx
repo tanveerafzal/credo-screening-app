@@ -40,7 +40,7 @@ export function Footer() {
       <div className="relative mx-auto w-full max-w-[84rem] border-x border-white/10">
         <div className="grid gap-12 px-6 pb-48 pt-16 md:grid-cols-12 md:px-8 md:pt-20">
           <div className="md:col-span-6">
-            <Logo size={92} tone="white" />
+            <Logo size={124} tone="white" />
             <p className="mt-6 max-w-sm text-sm leading-[1.75] text-white/60">
               {BRAND.tagline} Screen against 1.2M+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists worldwide.
             </p>

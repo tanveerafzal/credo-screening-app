@@ -1,16 +1,17 @@
 import { BRAND } from '@/lib/brand';
 
 interface LogoProps {
-  /** Rendered wordmark width in px. */
+  /** Rendered lockup width in px. */
   size?: number;
   className?: string;
   showText?: boolean;
-  tone?: 'teal' | 'white';
+  tone?: 'ink' | 'white';
 }
 
-const RATIO = 1331 / 4667;
+// Hallmark + wordmark lockup, viewBox 328.86 x 79.92.
+const RATIO = 79.92 / 328.86;
 
-export function Logo({ size = 92, className = '', tone = 'teal' }: LogoProps) {
+export function Logo({ size = 120, className = '', tone = 'ink' }: LogoProps) {
   return (
     /* eslint-disable-next-line @next/next/no-img-element */
     <img
@@ -23,9 +24,16 @@ export function Logo({ size = 92, className = '', tone = 'teal' }: LogoProps) {
   );
 }
 
-export function LogoIcon({ size = 32, className = '' }: { size?: number; className?: string }) {
+/** The hallmark on its own, for square spaces. */
+export function LogoIcon({ size = 32, className = '', tone = 'ink' }: { size?: number; className?: string; tone?: 'ink' | 'white' }) {
   return (
     /* eslint-disable-next-line @next/next/no-img-element */
-    <img src="/brand/credo-wordmark.svg" alt="Credo" width={size * 2.6} height={size} className={className} />
+    <img
+      src={tone === 'white' ? '/brand/credo-mark-white.svg' : '/brand/credo-mark.svg'}
+      alt="Credo"
+      width={size}
+      height={size}
+      className={className}
+    />
   );
 }
