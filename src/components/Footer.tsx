@@ -33,12 +33,12 @@ function FooterLink({ label, href }: { label: string; href: string }) {
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-night px-0 text-white/60 md:px-12">
-      <div className="absolute inset-x-0 bottom-0 h-56 opacity-60" aria-hidden="true">
-        <AsciiField tone="dark" focus={[0.85, 1.05]} />
-        <div className="absolute inset-0 bg-gradient-to-b from-night via-night/40 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-72" aria-hidden="true">
+        <AsciiField tone="dark" focus={[0.78, 0.95]} />
+        <div className="absolute inset-0 bg-gradient-to-b from-night via-night/30 to-transparent" />
       </div>
       <div className="relative mx-auto w-full max-w-[84rem] border-x border-white/10">
-        <div className="grid gap-12 px-6 pb-56 pt-16 md:grid-cols-12 md:px-8 md:pt-20">
+        <div className="grid gap-12 px-6 pb-48 pt-16 md:grid-cols-12 md:px-8 md:pt-20">
           <div className="md:col-span-6">
             <Logo size={92} tone="white" />
             <p className="mt-6 max-w-sm text-sm leading-[1.75] text-white/60">

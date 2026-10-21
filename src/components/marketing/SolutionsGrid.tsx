@@ -17,7 +17,7 @@ export function SolutionsGrid({ currentSlug, title = 'Solutions for Any Workflow
         body={<p>One platform, multiple ways to integrate screening into your compliance workflow.</p>}
       />
       <div className="cells-clip border-t border-border">
-      <ul className="cells sm:grid-cols-2 lg:grid-cols-4">
+      <ul className={`cells sm:grid-cols-2 ${solutions.length === 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-4'}`}>
         {solutions.map((s) => (
           <li key={s.slug}>
             <Link href={`/solutions/${s.slug}`} className="group flex h-full flex-col px-6 py-8 transition-colors hover:bg-foreground/[0.02] md:px-8">

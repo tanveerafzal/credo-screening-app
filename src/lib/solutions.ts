@@ -38,7 +38,7 @@ export const SOLUTIONS: Record<string, SolutionConfig> = {
     deepDives: [
       {
         title: 'Integrate in Minutes',
-        desc: 'Simple `POST /api/v1/screenings` endpoint with firstName, lastName, DOB, and nationality. No SDKs to install, no complex setup.',
+        desc: 'Simple POST /api/v1/screenings endpoint with firstName, lastName, DOB, and nationality. No SDKs to install, no complex setup.',
         bullets: ['Works with any HTTP client', 'JSON request/response', 'API key authentication', 'Comprehensive documentation'],
       },
       {

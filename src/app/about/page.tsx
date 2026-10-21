@@ -1,11 +1,14 @@
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { Logo } from '@/components/Logo';
-import { Shield, Globe, Zap, Users, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { BRAND } from '@/lib/brand';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
+import { ArrowGlyph, Container, Index, Section, TextLink } from '@/components/site/Canvas';
+import { AsciiField } from '@/components/site/AsciiField';
+import { LandscapeBand } from '@/components/site/LandscapeBand';
+import { TrustSection } from '@/components/site/TrustSection';
+import { StatsBar } from '@/components/marketing/StatsBar';
 
 export const metadata: Metadata = pageMetadata({
   title: 'About Us',
@@ -13,101 +16,116 @@ export const metadata: Metadata = pageMetadata({
   path: '/about',
 });
 
+const VALUES = [
+  { title: 'Security First', desc: 'All data encrypted in transit and at rest. HMAC-signed webhooks. No PII stored beyond what\'s needed for screening.' },
+  { title: 'Speed & Reliability', desc: 'Sub-3-second response times with 99.9% uptime. Critical watchlists updated hourly so you\'re always screening against the latest data.' },
+  { title: 'Global Coverage', desc: 'Sanctions, PEP, and criminal databases from the US, EU, UK, UN, Australia, Canada, Switzerland, and 70+ more jurisdictions.' },
+  { title: 'Developer Friendly', desc: 'Simple REST API — send a name, get results. Webhook callbacks, CSV export, and comprehensive documentation.' },
+];
+
+const strong = 'font-medium text-foreground';
+
 export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-24 pb-20">
-        <section className="bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-16">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <Logo size={48} className="justify-center mb-6" />
-            <h1 className="text-4xl font-extrabold text-gray-900">About {BRAND.name}</h1>
-            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-              We help businesses stay compliant by screening individuals and organizations against
-              the world&apos;s most comprehensive watchlist database.
-            </p>
+      <main>
+        {/* Hero */}
+        <section className="relative overflow-hidden px-0 md:px-12">
+          <div className="absolute inset-0 opacity-70" aria-hidden="true">
+            <AsciiField focus={[0.86, 0.5]} fadeLeft={0.42} />
           </div>
+          <Container className="relative">
+            <div className="max-w-2xl px-6 pb-16 pt-32 md:px-8 md:pb-24 md:pt-44">
+              <p className="mb-6 text-sm text-tertiary">
+                <Link href="/" className="hover:text-foreground">Credo</Link>
+                <span className="mx-2 text-border-hover">/</span>
+                <span className="text-muted">About</span>
+              </p>
+              <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">About {BRAND.name}</h1>
+              <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">
+                We help businesses stay compliant by screening individuals and organizations against
+                the world&apos;s most comprehensive watchlist database.
+              </p>
+            </div>
+          </Container>
         </section>
 
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h2>
-            <p className="text-gray-600 leading-relaxed mb-6">
-              {BRAND.name} was founded with a simple mission: make compliance screening accessible to every business,
-              regardless of size. We believe that robust AML, sanctions, and PEP screening shouldn&apos;t require enterprise-level
-              budgets or months of integration work.
-            </p>
-            <p className="text-gray-600 leading-relaxed">
-              Our platform screens against <strong>1.2 million+ entities</strong> from <strong>80+ global sources</strong>,
-              including OFAC, EU, UN, and UK sanctions lists, PEP databases, Interpol notices, and regulatory debarment lists.
-              Results are delivered in seconds through a simple API or our web interface.
-            </p>
+        {/* Mission */}
+        <Section>
+          <div className="grid gap-8 px-6 md:px-8 lg:grid-cols-12">
+            <h2 className="text-2xl leading-tight sm:text-[2rem] lg:col-span-4">Our Mission</h2>
+            <div className="max-w-2xl space-y-5 text-base leading-[1.75] text-muted lg:col-span-8">
+              <p>
+                {BRAND.name}{' '}was founded with a simple mission: make compliance screening accessible to every business,
+                regardless of size. We believe that robust AML, sanctions, and PEP screening shouldn&apos;t require enterprise-level
+                budgets or months of integration work.
+              </p>
+              <p>
+                Our platform screens against <strong className={strong}>1.2 million+ entities</strong> from <strong className={strong}>80+ global sources</strong>,
+                including OFAC, EU, UN, and UK sanctions lists, PEP databases, Interpol notices, and regulatory debarment lists.
+                Results are delivered in seconds through a simple API or our web interface.
+              </p>
+            </div>
           </div>
-        </section>
+        </Section>
 
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">What We Stand For</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                { icon: Shield, title: 'Security First', desc: 'All data encrypted in transit and at rest. HMAC-signed webhooks. No PII stored beyond what\'s needed for screening.' },
-                { icon: Zap, title: 'Speed & Reliability', desc: 'Sub-3-second response times with 99.9% uptime. Critical watchlists updated hourly so you\'re always screening against the latest data.' },
-                { icon: Globe, title: 'Global Coverage', desc: 'Sanctions, PEP, and criminal databases from the US, EU, UK, UN, Australia, Canada, Switzerland, and 70+ more jurisdictions.' },
-                { icon: Users, title: 'Developer Friendly', desc: 'Simple REST API — send a name, get results. Webhook callbacks, CSV export, and comprehensive documentation.' },
-              ].map(v => (
-                <div key={v.title} className="bg-white p-6 rounded-2xl border border-gray-100">
-                  <v.icon className="w-8 h-8 text-indigo-600 mb-3" />
-                  <h3 className="text-lg font-semibold text-gray-900">{v.title}</h3>
-                  <p className="mt-2 text-sm text-gray-600 leading-relaxed">{v.desc}</p>
-                </div>
+        {/* Values */}
+        <Section tone="tint" innerClassName="pb-0 md:pb-0">
+          <div className="mb-12 max-w-2xl px-6 md:mb-16 md:px-8">
+            <h2 className="text-2xl leading-tight sm:text-[2rem]">What We Stand For</h2>
+          </div>
+          <div className="cells-clip border-t border-border">
+            <ul className="cells sm:grid-cols-2">
+              {VALUES.map((v, i) => (
+                <li key={v.title} className="px-6 py-8 md:px-8 md:py-10">
+                  <Index n={i + 1} />
+                  <h3 className="mt-4 text-[1.0625rem] leading-snug tracking-[-0.015em]">{v.title}</h3>
+                  <p className="mt-2.5 max-w-md text-[0.9375rem] leading-[1.7] text-muted">{v.desc}</p>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        </section>
+        </Section>
 
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Who We Are</h2>
-            <p className="text-gray-600 leading-relaxed mb-4">
-              {BRAND.name} is operated by <strong>{BRAND.legalEntity}</strong>, carrying on business under the
-              registered name <strong>{BRAND.registeredName}</strong> in Ontario, Canada.
-            </p>
-            <p className="text-gray-600 leading-relaxed mb-4">
-              Under {BRAND.registeredName}, we deliver the full compliance stack — sanctions and watchlist screening,
-              identity verification, and identity-verified electronic signatures — through one platform and API.
-            </p>
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Our partner portal, SDK, and verification flows run on {BRAND.registeredName} infrastructure at{' '}
-              <a href={BRAND.partnerPortal} className="text-indigo-600 font-medium hover:underline">partner.trustcredo.com</a>.
-            </p>
-            <div className="flex gap-4 flex-wrap">
-              <a href={BRAND.partnerPortal} className="inline-flex items-center gap-2 text-sm text-indigo-600 font-medium hover:underline">
-                Partner Portal <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-              <Link href="/contact" className="inline-flex items-center gap-2 text-sm text-indigo-600 font-medium hover:underline">
-                Contact Us <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+        {/* Who we are */}
+        <Section>
+          <div className="grid gap-8 px-6 md:px-8 lg:grid-cols-12">
+            <h2 className="text-2xl leading-tight sm:text-[2rem] lg:col-span-4">Who We Are</h2>
+            <div className="max-w-2xl lg:col-span-8">
+              <div className="space-y-5 text-base leading-[1.75] text-muted">
+                <p>
+                  {BRAND.name} is operated by <strong className={strong}>{BRAND.legalEntity}</strong>, carrying on business under the
+                  registered name <strong className={strong}>{BRAND.registeredName}</strong> in Ontario, Canada.
+                </p>
+                <p>
+                  Under {BRAND.registeredName}, we deliver the full compliance stack — sanctions and watchlist screening,
+                  identity verification, and identity-verified electronic signatures — through one platform and API.
+                </p>
+                <p>
+                  Our partner portal, SDK, and verification flows run on {BRAND.registeredName} infrastructure at{' '}
+                  <a href={BRAND.partnerPortal} className="font-medium text-foreground underline decoration-foreground/25 underline-offset-4 hover:decoration-foreground/70">partner.trustcredo.com</a>.
+                </p>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+                <TextLink href={BRAND.partnerPortal}>Partner Portal <ArrowGlyph /></TextLink>
+                <TextLink href="/contact">Contact Us <ArrowGlyph /></TextLink>
+              </div>
             </div>
           </div>
-        </section>
+        </Section>
 
-        <section className="py-12 bg-indigo-600">
-          <div className="max-w-4xl mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {[
-                { value: '1.2M+', label: 'Entities' },
-                { value: '80+', label: 'Data Sources' },
-                { value: '<3s', label: 'Response Time' },
-                { value: '24/7', label: 'Monitoring' },
-              ].map(s => (
-                <div key={s.label}>
-                  <div className="text-3xl font-extrabold text-white">{s.value}</div>
-                  <div className="text-sm text-indigo-200 mt-1">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <LandscapeBand />
+        <TrustSection />
+
+        <StatsBar
+          stats={[
+            { value: '1.2M+', label: 'Entities' },
+            { value: '80+', label: 'Data Sources' },
+            { value: '<3s', label: 'Response Time' },
+            { value: '24/7', label: 'Monitoring' },
+          ]}
+        />
       </main>
       <Footer />
     </>

@@ -21,7 +21,7 @@ export function CTABanner({
 }: CTABannerProps) {
   return (
     <section className="relative overflow-hidden border-t border-border px-0 md:px-12">
-      <div className="absolute inset-0 opacity-80" aria-hidden="true">
+      <div className="absolute inset-0 opacity-30 sm:opacity-80" aria-hidden="true">
         <AsciiField focus={[0.8, 0.55]} fadeLeft={0.38} />
       </div>
       <Container className="relative">

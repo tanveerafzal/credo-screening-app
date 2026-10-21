@@ -1,7 +1,8 @@
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
-import { ArrowRight, Shield, CheckCircle } from 'lucide-react';
+import { Action, CheckGlyph, Container } from '@/components/site/Canvas';
+import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { BRAND } from '@/lib/brand';
 import { pageMetadata } from '@/lib/seo';
@@ -15,81 +16,201 @@ export const metadata: Metadata = pageMetadata({
   keywords: ['sanctions screening API', 'OFAC API', 'AML API', 'PEP screening API'],
 });
 
+const NAV = [
+  { id: 'authentication', label: 'Authentication' },
+  { id: 'create-screening', label: 'POST /screenings' },
+  { id: 'get-screening', label: 'GET /screenings/:id' },
+  { id: 'match-levels', label: 'Match Levels' },
+  { id: 'list-types', label: 'List Types' },
+  { id: 'webhooks', label: 'Webhooks' },
+  { id: 'errors', label: 'Error Codes' },
+  { id: 'rate-limits', label: 'Rate Limits & Quotas' },
+];
+
+const REQUEST_FIELDS = [
+  { field: 'firstName', type: 'string', req: true, desc: 'First name of the person to screen' },
+  { field: 'lastName', type: 'string', req: true, desc: 'Last name of the person to screen' },
+  { field: 'dateOfBirth', type: 'string', req: false, desc: 'Date of birth (YYYY-MM-DD). Improves match accuracy' },
+  { field: 'nationality', type: 'string', req: false, desc: 'ISO 3166-1 alpha-2 country code (e.g., US, CA, GB)' },
+  { field: 'address', type: 'string', req: false, desc: 'Full address for additional matching context' },
+  { field: 'idNumber', type: 'string', req: false, desc: 'Passport or national ID number' },
+  { field: 'externalRef', type: 'string', req: false, desc: 'Your reference ID. Returned in webhooks as referenceId' },
+];
+
+const MATCH_LEVELS = [
+  { level: 'EXACT', range: '0.95 - 1.0', desc: 'Near-identical name match. High confidence.' },
+  { level: 'STRONG', range: '0.85 - 0.94', desc: 'Strong match with minor variations (spelling, transliteration).' },
+  { level: 'PARTIAL', range: '0.70 - 0.84', desc: 'Partial match. Manual review recommended.' },
+  { level: 'WEAK', range: '0.50 - 0.69', desc: 'Low confidence. Likely a different person.' },
+];
+
+const LIST_TYPES = [
+  { type: 'ofac', title: 'OFAC', desc: 'US Treasury OFAC sanctions — SDN, Consolidated, SSI, and FSE lists.' },
+  { type: 'sanction', title: 'SANCTION', desc: 'Global sanctions — EU, UN, UK OFSI, Australia, Canada, Switzerland, Japan, Singapore, and more.' },
+  { type: 'pep', title: 'PEP', desc: 'Politically Exposed Persons — heads of state, parliament members, senior government officials worldwide.' },
+];
+
+const WEBHOOK_EVENTS = [
+  { event: 'screening.completed', desc: 'Screening finished — no watchlist matches found' },
+  { event: 'screening.matched', desc: 'Screening finished — one or more watchlist matches found' },
+];
+
+const WEBHOOK_HEADERS = [
+  { header: 'X-Webhook-Signature', desc: 'HMAC-SHA256 signature of timestamp + payload' },
+  { header: 'X-Webhook-Timestamp', desc: 'Unix timestamp of when the webhook was sent' },
+  { header: 'X-Webhook-ID', desc: 'Unique ID for this webhook delivery' },
+];
+
+const ERRORS = [
+  { code: '200', meaning: 'Success', action: 'Parse the response body' },
+  { code: '400', meaning: 'Bad request', action: 'Check required fields (firstName, lastName)' },
+  { code: '401', meaning: 'Unauthorized', action: 'Check your x-api-key header' },
+  { code: '429', meaning: 'Rate limit / quota exceeded', action: 'Wait or upgrade your plan' },
+  { code: '500', meaning: 'Server error', action: 'Retry with exponential backoff' },
+];
+
+const PLANS = [
+  { plan: 'Pay as you go', screenings: 'Credit-based', rate: '5,000 req/15min', api: true },
+  { plan: 'Enterprise', screenings: 'Custom', rate: 'Custom', api: true },
+];
+
+const inlineCode = 'rounded bg-foreground/[0.05] px-1.5 py-0.5 font-mono text-[0.8125rem] text-foreground';
+const prose = 'max-w-2xl text-base leading-[1.75] text-muted';
+const th = 'border-b border-border-emphasized px-4 py-2.5 text-left text-xs font-medium text-tertiary first:pl-0';
+const td = 'px-4 py-3 align-top first:pl-0';
+
+function Code({ children, label }: { children: ReactNode; label: string }) {
+  return (
+    <pre
+      tabIndex={0}
+      aria-label={label}
+      className="max-w-full overflow-x-auto rounded-lg bg-night p-5 font-mono text-[0.8125rem] leading-[1.65] text-white/85"
+    >
+      {children}
+    </pre>
+  );
+}
+
+function Table({ children }: { children: ReactNode }) {
+  return (
+    <div className="relative max-w-full overflow-x-auto" tabIndex={0} role="region" aria-label="Scrollable table">
+      <table className="w-full min-w-[34rem] border-collapse text-[0.9375rem]">{children}</table>
+    </div>
+  );
+}
+
+function DocSection({ id, children }: { id: string; children: ReactNode }) {
+  return (
+    <section id={id} className="scroll-mt-20 border-b border-border px-6 py-14 md:px-8 md:py-16">
+      {children}
+    </section>
+  );
+}
+
+function Endpoint({ method, path }: { method: 'GET' | 'POST'; path: string }) {
+  return (
+    <h2 className="flex flex-wrap items-baseline gap-x-3 gap-y-1 font-mono text-lg tracking-normal sm:text-xl">
+      <span className={method === 'POST' ? 'text-teal-ink' : 'text-foreground'}>{method}</span>
+      <code className="break-all text-foreground-highlight">{path}</code>
+    </h2>
+  );
+}
+
+const h2 = 'text-xl leading-snug sm:text-2xl';
+const h3 = 'mb-3 mt-10 text-base leading-snug tracking-[-0.015em]';
+
 export default function DocsPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-24 pb-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="mb-10">
-            <h1 className="text-3xl font-bold text-gray-900">API Documentation</h1>
-            <p className="mt-2 text-gray-600">Everything you need to integrate {BRAND.name} into your application.</p>
-            <div className="mt-4 p-4 bg-indigo-50 border border-indigo-200 rounded-xl text-sm text-indigo-700">
-              <strong>Base URL:</strong> <code className="bg-indigo-100 px-1.5 py-0.5 rounded">{API_URL}/api/v1</code>
-              <span className="ml-4">Need an API key? <Link href="/register" className="font-semibold underline">Create a free account</Link></span>
-            </div>
-          </div>
-
-          <div className="space-y-8">
-            {/* Authentication */}
-            <section className="bg-white rounded-2xl border border-gray-100 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-3">Authentication</h2>
-              <p className="text-sm text-gray-600 mb-4">
-                All requests require an API key passed in the <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">x-api-key</code> header.
+      <main>
+        <section className="px-0 md:px-12">
+          <Container>
+            <div className="px-6 pb-14 pt-32 md:px-8 md:pb-20 md:pt-40">
+              <p className="mb-6 text-sm text-tertiary">
+                <Link href="/" className="hover:text-foreground">Credo</Link>
+                <span className="mx-2 text-border-hover">/</span>
+                <span className="text-muted">Docs</span>
               </p>
-              <pre className="bg-gray-900 text-gray-100 rounded-xl p-4 text-xs overflow-x-auto">
+              <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">API Documentation</h1>
+              <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">Everything you need to integrate {BRAND.name} into your application.</p>
+              <dl className="mt-8 flex max-w-2xl flex-col gap-3 border-y border-border py-4 text-sm sm:flex-row sm:items-baseline sm:gap-6">
+                <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <dt className="font-medium text-foreground">Base URL:</dt>
+                  <dd className="min-w-0 break-all font-mono text-[0.8125rem] text-foreground">{API_URL}/api/v1</dd>
+                </div>
+                <div className="text-muted">
+                  Need an API key? <Link href="/register" className="font-medium text-foreground underline decoration-foreground/25 underline-offset-4 hover:decoration-foreground/70">Create a free account</Link>
+                </div>
+              </dl>
+            </div>
+          </Container>
+        </section>
+
+        <section className="border-t border-border px-0 md:px-12">
+          <Container className="grid lg:grid-cols-12">
+            <nav aria-label="API reference" className="hidden border-r border-border lg:col-span-3 lg:block">
+              <ul className="sticky top-20 space-y-0.5 px-8 py-14 text-sm">
+                {NAV.map((n) => (
+                  <li key={n.id}>
+                    <a
+                      href={`#${n.id}`}
+                      className={`block rounded py-1.5 text-muted transition-colors hover:text-foreground ${n.label.startsWith('POST') || n.label.startsWith('GET') ? 'font-mono text-[0.8125rem]' : ''}`}
+                    >
+                      {n.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div className="min-w-0 lg:col-span-9">
+              {/* Authentication */}
+              <DocSection id="authentication">
+                <h2 className={h2}>Authentication</h2>
+                <p className={`mt-4 mb-6 ${prose}`}>
+                  All requests require an API key passed in the <code className={inlineCode}>x-api-key</code> header.
+                </p>
+                <Code label="Authentication example">
 {`curl -H "x-api-key: YOUR_API_KEY" \\
      ${API_URL}/api/v1/screenings`}
-              </pre>
-              <p className="mt-3 text-xs text-gray-500">
-                Your API key is available on your <Link href="/dashboard" className="text-indigo-600 hover:underline">dashboard</Link> after registration.
-              </p>
-            </section>
+              </Code>
+                <p className="mt-4 text-sm text-tertiary">
+                  Your API key is available on your <Link href="/dashboard" className="font-medium text-foreground underline decoration-foreground/25 underline-offset-4 hover:decoration-foreground/70">dashboard</Link> after registration.
+                </p>
+              </DocSection>
 
-            {/* Screen a Person */}
-            <section className="bg-white rounded-2xl border border-gray-100 p-6">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="px-2.5 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-lg">POST</span>
-                <code className="text-base font-mono font-semibold text-gray-900">/api/v1/screenings</code>
-              </div>
-              <p className="text-sm text-gray-600 mt-2 mb-5">
-                Screen a person against 1.2M+ entities from OFAC, sanctions, PEP, and 80+ watchlists. Returns results instantly.
-              </p>
+              {/* Screen a Person */}
+              <DocSection id="create-screening">
+                <Endpoint method="POST" path="/api/v1/screenings" />
+                <p className={`mt-4 ${prose}`}>
+                  Screen a person against 1.2M+ entities from OFAC, sanctions, PEP, and 80+ watchlists. Returns results instantly.
+                </p>
 
-              <h3 className="text-sm font-bold text-gray-800 mb-2">Request Body</h3>
-              <div className="overflow-x-auto mb-4">
-                <table className="w-full text-sm border-collapse">
+                <h3 className={h3}>Request Body</h3>
+                <Table>
                   <thead>
-                    <tr className="bg-gray-50">
-                      <th className="text-left px-3 py-2 font-semibold text-gray-600">Field</th>
-                      <th className="text-left px-3 py-2 font-semibold text-gray-600">Type</th>
-                      <th className="text-left px-3 py-2 font-semibold text-gray-600">Required</th>
-                      <th className="text-left px-3 py-2 font-semibold text-gray-600">Description</th>
+                    <tr>
+                      <th scope="col" className={th}>Field</th>
+                      <th scope="col" className={th}>Type</th>
+                      <th scope="col" className={th}>Required</th>
+                      <th scope="col" className={th}>Description</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-100">
-                    {[
-                      { field: 'firstName', type: 'string', req: true, desc: 'First name of the person to screen' },
-                      { field: 'lastName', type: 'string', req: true, desc: 'Last name of the person to screen' },
-                      { field: 'dateOfBirth', type: 'string', req: false, desc: 'Date of birth (YYYY-MM-DD). Improves match accuracy' },
-                      { field: 'nationality', type: 'string', req: false, desc: 'ISO 3166-1 alpha-2 country code (e.g., US, CA, GB)' },
-                      { field: 'address', type: 'string', req: false, desc: 'Full address for additional matching context' },
-                      { field: 'idNumber', type: 'string', req: false, desc: 'Passport or national ID number' },
-                      { field: 'externalRef', type: 'string', req: false, desc: 'Your reference ID. Returned in webhooks as referenceId' },
-                    ].map(f => (
-                      <tr key={f.field}>
-                        <td className="px-3 py-2"><code className="text-xs bg-gray-100 px-1 rounded">{f.field}</code></td>
-                        <td className="px-3 py-2 text-gray-500">{f.type}</td>
-                        <td className="px-3 py-2">{f.req ? <span className="text-red-600 font-semibold">Yes</span> : <span className="text-gray-400">No</span>}</td>
-                        <td className="px-3 py-2 text-gray-600">{f.desc}</td>
+                  <tbody>
+                    {REQUEST_FIELDS.map((f) => (
+                      <tr key={f.field} className="border-b border-border">
+                        <td className={td}><code className="font-mono text-[0.8125rem] text-foreground">{f.field}</code></td>
+                        <td className={`${td} font-mono text-[0.8125rem] text-tertiary`}>{f.type}</td>
+                        <td className={td}>{f.req ? <span className="font-medium text-foreground">Yes</span> : <span className="text-tertiary">No</span>}</td>
+                        <td className={`${td} text-muted`}>{f.desc}</td>
                       </tr>
                     ))}
                   </tbody>
-                </table>
-              </div>
+                </Table>
 
-              <h3 className="text-sm font-bold text-gray-800 mb-2">Example Request</h3>
-              <pre className="bg-gray-900 text-gray-100 rounded-xl p-4 text-xs overflow-x-auto mb-4">
+                <h3 className={h3}>Example Request</h3>
+                <Code label="Example request">
 {`curl -X POST ${API_URL}/api/v1/screenings \\
   -H "Content-Type: application/json" \\
   -H "x-api-key: YOUR_API_KEY" \\
@@ -98,10 +219,10 @@ export default function DocsPage() {
     "lastName": "Putin",
     "nationality": "RU"
   }'`}
-              </pre>
+              </Code>
 
-              <h3 className="text-sm font-bold text-gray-800 mb-2">Response — No Match</h3>
-              <pre className="bg-gray-900 text-gray-100 rounded-xl p-4 text-xs overflow-x-auto mb-4">
+                <h3 className={h3}>Response — No Match</h3>
+                <Code label="Response with no match">
 {`{
   "screeningId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
   "hasMatch": false,
@@ -112,10 +233,10 @@ export default function DocsPage() {
   "referenceId": null,
   "externalRef": null
 }`}
-              </pre>
+              </Code>
 
-              <h3 className="text-sm font-bold text-gray-800 mb-2">Response — Match Found</h3>
-              <pre className="bg-gray-900 text-gray-100 rounded-xl p-4 text-xs overflow-x-auto">
+                <h3 className={h3}>Response — Match Found</h3>
+                <Code label="Response with a match">
 {`{
   "screeningId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
   "hasMatch": true,
@@ -145,85 +266,69 @@ export default function DocsPage() {
   "referenceId": "your-external-ref",
   "externalRef": "your-external-ref"
 }`}
-              </pre>
-            </section>
+              </Code>
+              </DocSection>
 
-            {/* Get Result */}
-            <section className="bg-white rounded-2xl border border-gray-100 p-6">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="px-2.5 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-lg">GET</span>
-                <code className="text-base font-mono font-semibold text-gray-900">/api/v1/screenings/:id</code>
-              </div>
-              <p className="text-sm text-gray-600 mt-2 mb-4">Retrieve a previously completed screening result by its ID.</p>
-              <pre className="bg-gray-900 text-gray-100 rounded-xl p-4 text-xs overflow-x-auto">
+              {/* Get Result */}
+              <DocSection id="get-screening">
+                <Endpoint method="GET" path="/api/v1/screenings/:id" />
+                <p className={`mt-4 mb-6 ${prose}`}>Retrieve a previously completed screening result by its ID.</p>
+                <Code label="Get screening example">
 {`curl ${API_URL}/api/v1/screenings/a1b2c3d4-... \\
   -H "x-api-key: YOUR_API_KEY"`}
-              </pre>
-            </section>
+              </Code>
+              </DocSection>
 
-            {/* Match Levels */}
-            <section className="bg-white rounded-2xl border border-gray-100 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Match Levels</h2>
-              <p className="text-sm text-gray-600 mb-4">
-                Each matched entity includes a <code className="bg-gray-100 px-1 rounded text-xs">score</code> (0.0 to 1.0)
-                and a <code className="bg-gray-100 px-1 rounded text-xs">matchLevel</code> classification.
-              </p>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {[
-                  { level: 'EXACT', range: '0.95 - 1.0', color: 'border-red-200 bg-red-50', badge: 'bg-red-100 text-red-700', desc: 'Near-identical name match. High confidence.' },
-                  { level: 'STRONG', range: '0.85 - 0.94', color: 'border-orange-200 bg-orange-50', badge: 'bg-orange-100 text-orange-700', desc: 'Strong match with minor variations (spelling, transliteration).' },
-                  { level: 'PARTIAL', range: '0.70 - 0.84', color: 'border-yellow-200 bg-yellow-50', badge: 'bg-yellow-100 text-yellow-700', desc: 'Partial match. Manual review recommended.' },
-                  { level: 'WEAK', range: '0.50 - 0.69', color: 'border-gray-200 bg-gray-50', badge: 'bg-gray-100 text-gray-700', desc: 'Low confidence. Likely a different person.' },
-                ].map(m => (
-                  <div key={m.level} className={`p-4 rounded-xl border ${m.color}`}>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${m.badge}`}>{m.level}</span>
-                      <span className="text-xs text-gray-500">{m.range}</span>
+              {/* Match Levels */}
+              <DocSection id="match-levels">
+                <h2 className={h2}>Match Levels</h2>
+                <p className={`mt-4 mb-8 ${prose}`}>
+                  Each matched entity includes a <code className={inlineCode}>score</code> (0.0 to 1.0)
+                  and a <code className={inlineCode}>matchLevel</code> classification.
+                </p>
+                <dl className="border-t border-border">
+                  {MATCH_LEVELS.map((m) => (
+                    <div key={m.level} className="grid gap-1 border-b border-border py-4 sm:grid-cols-[7rem_7rem_1fr] sm:gap-4">
+                      <dt className="font-mono text-[0.8125rem] font-medium text-foreground">{m.level}</dt>
+                      <dd className="font-mono text-[0.8125rem] text-tertiary">{m.range}</dd>
+                      <dd className="text-[0.9375rem] leading-[1.65] text-muted">{m.desc}</dd>
                     </div>
-                    <p className="text-xs text-gray-600 mt-1">{m.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
+                  ))}
+                </dl>
+              </DocSection>
 
-            {/* List Types */}
-            <section className="bg-white rounded-2xl border border-gray-100 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">List Types</h2>
-              <div className="space-y-3">
-                {[
-                  { type: 'ofac', badge: 'bg-red-100 text-red-700', title: 'OFAC', desc: 'US Treasury OFAC sanctions — SDN, Consolidated, SSI, and FSE lists.' },
-                  { type: 'sanction', badge: 'bg-amber-100 text-amber-700', title: 'SANCTION', desc: 'Global sanctions — EU, UN, UK OFSI, Australia, Canada, Switzerland, Japan, Singapore, and more.' },
-                  { type: 'pep', badge: 'bg-purple-100 text-purple-700', title: 'PEP', desc: 'Politically Exposed Persons — heads of state, parliament members, senior government officials worldwide.' },
-                ].map(t => (
-                  <div key={t.type} className="flex items-start gap-3 p-4 rounded-xl border border-gray-100">
-                    <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${t.badge} flex-shrink-0 mt-0.5`}>{t.title}</span>
-                    <p className="text-sm text-gray-600">{t.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
+              {/* List Types */}
+              <DocSection id="list-types">
+                <h2 className={h2}>List Types</h2>
+                <dl className="mt-8 border-t border-border">
+                  {LIST_TYPES.map((t) => (
+                    <div key={t.type} className="grid gap-1 border-b border-border py-4 sm:grid-cols-[7rem_1fr] sm:gap-4">
+                      <dt className="font-mono text-[0.8125rem] font-medium text-foreground">{t.title}</dt>
+                      <dd className="text-[0.9375rem] leading-[1.65] text-muted">{t.desc}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </DocSection>
 
-            {/* Webhooks */}
-            <section className="bg-white rounded-2xl border border-gray-100 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-3">Webhooks</h2>
-              <p className="text-sm text-gray-600 mb-4">
-                Configure a webhook URL to receive screening results asynchronously. Contact us to set up your webhook endpoint.
-              </p>
+              {/* Webhooks */}
+              <DocSection id="webhooks">
+                <h2 className={h2}>Webhooks</h2>
+                <p className={`mt-4 ${prose}`}>
+                  Configure a webhook URL to receive screening results asynchronously. Contact us to set up your webhook endpoint.
+                </p>
 
-              <h3 className="text-sm font-bold text-gray-800 mb-2">Event Types</h3>
-              <div className="space-y-2 mb-4">
-                <div className="flex items-center gap-3 p-3 rounded-lg border border-gray-100">
-                  <code className="text-xs font-mono bg-green-50 text-green-700 px-2 py-0.5 rounded-lg">screening.completed</code>
-                  <span className="text-sm text-gray-600">Screening finished — no watchlist matches found</span>
-                </div>
-                <div className="flex items-center gap-3 p-3 rounded-lg border border-gray-100">
-                  <code className="text-xs font-mono bg-red-50 text-red-700 px-2 py-0.5 rounded-lg">screening.matched</code>
-                  <span className="text-sm text-gray-600">Screening finished — one or more watchlist matches found</span>
-                </div>
-              </div>
+                <h3 className={h3}>Event Types</h3>
+                <dl className="border-t border-border">
+                  {WEBHOOK_EVENTS.map((e) => (
+                    <div key={e.event} className="grid gap-1 border-b border-border py-4 sm:grid-cols-[12rem_1fr] sm:gap-4">
+                      <dt><code className="font-mono text-[0.8125rem] text-foreground">{e.event}</code></dt>
+                      <dd className="text-[0.9375rem] leading-[1.65] text-muted">{e.desc}</dd>
+                    </div>
+                  ))}
+                </dl>
 
-              <h3 className="text-sm font-bold text-gray-800 mb-2">Webhook Payload</h3>
-              <pre className="bg-gray-900 text-gray-100 rounded-xl p-4 text-xs overflow-x-auto mb-4">
+                <h3 className={h3}>Webhook Payload</h3>
+                <Code label="Webhook payload example">
 {`{
   "event": "screening.matched",
   "screeningId": "a1b2c3d4-...",
@@ -237,98 +342,81 @@ export default function DocsPage() {
   },
   "timestamp": "2026-04-15T10:00:00.000Z"
 }`}
-              </pre>
+              </Code>
 
-              <h3 className="text-sm font-bold text-gray-800 mb-2">Signature Verification</h3>
-              <p className="text-sm text-gray-600 mb-2">
-                All webhook payloads are signed with HMAC-SHA256. Verify using these headers:
-              </p>
-              <div className="space-y-1 text-xs">
-                {[
-                  { header: 'X-Webhook-Signature', desc: 'HMAC-SHA256 signature of timestamp + payload' },
-                  { header: 'X-Webhook-Timestamp', desc: 'Unix timestamp of when the webhook was sent' },
-                  { header: 'X-Webhook-ID', desc: 'Unique ID for this webhook delivery' },
-                ].map(h => (
-                  <div key={h.header} className="flex items-start gap-2 p-2 bg-gray-50 rounded-lg">
-                    <code className="bg-gray-200 px-1.5 py-0.5 rounded text-gray-700 flex-shrink-0">{h.header}</code>
-                    <span className="text-gray-600">{h.desc}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
+                <h3 className={h3}>Signature Verification</h3>
+                <p className={`mb-4 ${prose}`}>
+                  All webhook payloads are signed with HMAC-SHA256. Verify using these headers:
+                </p>
+                <dl className="border-t border-border">
+                  {WEBHOOK_HEADERS.map((h) => (
+                    <div key={h.header} className="grid gap-1 border-b border-border py-4 sm:grid-cols-[12rem_1fr] sm:gap-4">
+                      <dt><code className="font-mono text-[0.8125rem] text-foreground">{h.header}</code></dt>
+                      <dd className="text-[0.9375rem] leading-[1.65] text-muted">{h.desc}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </DocSection>
 
-            {/* Errors */}
-            <section className="bg-white rounded-2xl border border-gray-100 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Error Codes</h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+              {/* Errors */}
+              <DocSection id="errors">
+                <h2 className={`mb-8 ${h2}`}>Error Codes</h2>
+                <Table>
                   <thead>
-                    <tr className="bg-gray-50">
-                      <th className="text-left px-3 py-2 font-semibold text-gray-600">Status</th>
-                      <th className="text-left px-3 py-2 font-semibold text-gray-600">Meaning</th>
-                      <th className="text-left px-3 py-2 font-semibold text-gray-600">Action</th>
+                    <tr>
+                      <th scope="col" className={th}>Status</th>
+                      <th scope="col" className={th}>Meaning</th>
+                      <th scope="col" className={th}>Action</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-100">
-                    {[
-                      { code: '200', meaning: 'Success', action: 'Parse the response body', color: 'text-green-600' },
-                      { code: '400', meaning: 'Bad request', action: 'Check required fields (firstName, lastName)', color: 'text-yellow-600' },
-                      { code: '401', meaning: 'Unauthorized', action: 'Check your x-api-key header', color: 'text-red-600' },
-                      { code: '429', meaning: 'Rate limit / quota exceeded', action: 'Wait or upgrade your plan', color: 'text-red-600' },
-                      { code: '500', meaning: 'Server error', action: 'Retry with exponential backoff', color: 'text-red-600' },
-                    ].map(e => (
-                      <tr key={e.code}>
-                        <td className="px-3 py-2"><code className={`font-bold ${e.color}`}>{e.code}</code></td>
-                        <td className="px-3 py-2 text-gray-700">{e.meaning}</td>
-                        <td className="px-3 py-2 text-gray-500">{e.action}</td>
+                  <tbody>
+                    {ERRORS.map((e) => (
+                      <tr key={e.code} className="border-b border-border">
+                        <td className={td}><code className={`font-mono text-[0.8125rem] font-medium ${e.code === '200' ? 'text-teal-ink' : 'text-foreground'}`}>{e.code}</code></td>
+                        <td className={`${td} text-foreground`}>{e.meaning}</td>
+                        <td className={`${td} text-muted`}>{e.action}</td>
                       </tr>
                     ))}
                   </tbody>
-                </table>
-              </div>
-            </section>
+                </Table>
+              </DocSection>
 
-            {/* Rate Limits */}
-            <section className="bg-white rounded-2xl border border-gray-100 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Rate Limits & Quotas</h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+              {/* Rate Limits */}
+              <DocSection id="rate-limits">
+                <h2 className={`mb-8 ${h2}`}>Rate Limits &amp; Quotas</h2>
+                <Table>
                   <thead>
-                    <tr className="bg-gray-50">
-                      <th className="text-left px-3 py-2 font-semibold text-gray-600">Plan</th>
-                      <th className="text-left px-3 py-2 font-semibold text-gray-600">Screenings/month</th>
-                      <th className="text-left px-3 py-2 font-semibold text-gray-600">Rate limit</th>
-                      <th className="text-left px-3 py-2 font-semibold text-gray-600">API access</th>
+                    <tr>
+                      <th scope="col" className={th}>Plan</th>
+                      <th scope="col" className={th}>Screenings/month</th>
+                      <th scope="col" className={th}>Rate limit</th>
+                      <th scope="col" className={th}>API access</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-100">
-                    {[
-                      { plan: 'Pay as you go', screenings: 'Credit-based', rate: '5,000 req/15min', api: true },
-                      { plan: 'Enterprise', screenings: 'Custom', rate: 'Custom', api: true },
-                    ].map(p => (
-                      <tr key={p.plan}>
-                        <td className="px-3 py-2 font-medium text-gray-900">{p.plan}</td>
-                        <td className="px-3 py-2 text-gray-700">{p.screenings}</td>
-                        <td className="px-3 py-2 text-gray-500">{p.rate}</td>
-                        <td className="px-3 py-2">{p.api ? <CheckCircle className="w-4 h-4 text-green-500" /> : '—'}</td>
+                  <tbody>
+                    {PLANS.map((p) => (
+                      <tr key={p.plan} className="border-b border-border">
+                        <td className={`${td} font-medium text-foreground`}>{p.plan}</td>
+                        <td className={`${td} text-muted`}>{p.screenings}</td>
+                        <td className={`${td} font-mono text-[0.8125rem] text-muted`}>{p.rate}</td>
+                        <td className={td}>{p.api ? <><CheckGlyph /><span className="sr-only">Yes</span></> : '—'}</td>
                       </tr>
                     ))}
                   </tbody>
-                </table>
-              </div>
-            </section>
+                </Table>
+              </DocSection>
 
-            {/* CTA */}
-            <section className="bg-indigo-600 rounded-2xl p-8 text-center">
-              <Shield className="w-10 h-10 text-indigo-200 mx-auto mb-3" />
-              <h2 className="text-xl font-bold text-white">Ready to integrate?</h2>
-              <p className="text-indigo-200 mt-2 text-sm">Create a free account and get your API key in 30 seconds.</p>
-              <Link href="/register" className="mt-4 inline-flex items-center gap-2 px-6 py-2.5 bg-white text-indigo-600 font-semibold text-sm rounded-xl hover:bg-indigo-50 transition">
-                Get API Key <ArrowRight className="w-4 h-4" />
-              </Link>
-            </section>
-          </div>
-        </div>
+              {/* CTA */}
+              <section className="px-6 py-14 md:px-8 md:py-16">
+                <h2 className={h2}>Ready to integrate?</h2>
+                <p className={`mt-3 ${prose}`}>Create a free account and get your API key in 30 seconds.</p>
+                <div className="mt-6">
+                  <Action href="/register" arrow>Get API Key</Action>
+                </div>
+              </section>
+            </div>
+          </Container>
+        </section>
       </main>
       <Footer />
     </>

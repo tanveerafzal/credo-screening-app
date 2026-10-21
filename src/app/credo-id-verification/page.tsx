@@ -1,13 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { SolutionsGrid } from '@/components/marketing/SolutionsGrid';
 import { FAQ } from '@/components/marketing/FAQ';
 import { CTABanner } from '@/components/marketing/CTABanner';
-import Link from 'next/link';
-import {
-  ScanFace, Camera, CheckCircle, ShieldCheck, Globe, Zap,
-  ArrowRight, CreditCard, BookOpen, Lock
-} from 'lucide-react';
+import { PageHero } from '@/components/marketing/PageHero';
+import { StatsBar } from '@/components/marketing/StatsBar';
+import { Action, CheckGlyph, Container, Index, Section, SectionHeader } from '@/components/site/Canvas';
+import { VerificationRecord } from '@/components/site/VerificationRecord';
+import { TrustSection } from '@/components/site/TrustSection';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
 
@@ -21,20 +22,14 @@ export const metadata: Metadata = pageMetadata({
 
 const STEPS = [
   {
-    step: '01',
-    icon: Camera,
     title: 'Scan Your ID',
     desc: 'Point your camera at any government-issued ID, driver\'s license, or passport. Our OCR and MRZ scanning extracts data instantly.',
   },
   {
-    step: '02',
-    icon: ScanFace,
     title: 'Take a Selfie',
     desc: 'Snap a quick selfie. Our facial matching technology compares it to your ID photo in real-time with liveness detection.',
   },
   {
-    step: '03',
-    icon: CheckCircle,
     title: 'Verified',
     desc: 'Identity confirmed in seconds. No manual review, no waiting. Results delivered instantly to your application via API or webhook.',
   },
@@ -42,17 +37,14 @@ const STEPS = [
 
 const DOCUMENTS = [
   {
-    icon: CreditCard,
     title: 'Government-Issued IDs',
     desc: 'State and national ID cards from 200+ countries.',
   },
   {
-    icon: BookOpen,
     title: 'Driver\'s License',
     desc: 'US, Canadian, and international licenses supported.',
   },
   {
-    icon: Globe,
     title: 'Passport',
     desc: 'MRZ scanning for instant data extraction from any passport.',
   },
@@ -60,26 +52,30 @@ const DOCUMENTS = [
 
 const BENEFITS = [
   {
-    icon: Zap,
     title: 'Lightning Fast',
     desc: 'The whole process takes seconds. No waiting around for manual document checks or third-party verifications.',
     stat: '<30s',
     statLabel: 'Average verification time',
   },
   {
-    icon: ShieldCheck,
     title: 'Top-Notch Security',
     desc: 'Facial matching and liveness detection ensure the person behind the screen is who they say they are.',
     stat: '180+',
     statLabel: 'Countries covered',
   },
   {
-    icon: ScanFace,
     title: 'Simple Process',
     desc: 'Scan your ID and snap a selfie — that\'s it. No app downloads, no document uploads, no human review delays.',
     stat: '2',
     statLabel: 'Photos to verify',
   },
+];
+
+const SECURITY_POINTS = [
+  { title: 'Facial Matching', desc: 'We match the selfie to the ID photo in real-time. Same face? You\'re in.' },
+  { title: 'Liveness Detection', desc: 'AI confirms a live person is present — not a photo, video, or mask.' },
+  { title: 'Encrypted & Deleted', desc: 'Biometric data is encrypted during verification and deleted immediately after. Never stored.' },
+  { title: 'Fraud Detection', desc: 'Built-in fraud detection catches tampered documents, expired IDs, and spoofing attempts.' },
 ];
 
 const TESTIMONIALS = [
@@ -123,235 +119,177 @@ export default function IDVerificationPage() {
     <>
       <Navbar />
 
-      {/* Hero */}
-      <section className="pt-20 pb-8 sm:pt-24 sm:pb-10 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated to-surface" />
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-6 border border-accent/10">
-            <ScanFace className="w-3.5 h-3.5" /> Identity Verification
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary leading-tight tracking-tight">
-            The Fastest Way to<br />
-            <span className="text-accent">Verify Real People</span>
-          </h1>
-          <p className="mt-6 text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto">
-            ID scan. Selfie. Done. Enterprise-grade identity verification
-            your users complete in <strong className="text-text-primary">under 30 seconds</strong> — no app downloads, no manual review.
+      <PageHero
+        badge="Identity Verification"
+        title="The Fastest Way to Verify Real People"
+        subtitle={
+          <p>
+            ID scan. Selfie. Done. Enterprise-grade identity verification your users complete in{' '}
+            <strong className="font-medium text-foreground-highlight">under 30 seconds</strong> — no app downloads, no manual review.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/contact?plan=corporate"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-sm shadow-accent/20 transition-all"
-            >
-              Get Started <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="#how-it-works"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-surface text-text-primary font-semibold rounded-lg border border-border hover:border-text-muted transition-all"
-            >
-              See How It Works
-            </Link>
-          </div>
-        </div>
-      </section>
+        }
+        primaryCta={{ label: 'Get Started', href: '/contact?plan=corporate' }}
+        secondaryCta={{ label: 'See How It Works', href: '#how-it-works' }}
+        aside={<VerificationRecord animate className="mx-auto max-w-[30rem] lg:mx-0 lg:ml-auto" />}
+      />
 
-      {/* Stats */}
-      <section className="py-8 bg-surface border-y border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: '<30s', label: 'Verification Time' },
-              { value: '200+', label: 'Countries Supported' },
-              { value: '99.9%', label: 'Uptime SLA' },
-              { value: '0', label: 'Biometric Data Stored' },
-            ].map((s) => (
-              <div key={s.label}>
-                <div className="text-2xl sm:text-3xl font-bold text-accent">{s.value}</div>
-                <div className="text-sm text-text-muted mt-1">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <StatsBar
+        stats={[
+          { value: '<30s', label: 'Verification Time' },
+          { value: '200+', label: 'Countries Supported' },
+          { value: '99.9%', label: 'Uptime SLA' },
+          { value: '0', label: 'Biometric Data Stored' },
+        ]}
+      />
 
       {/* Benefits */}
-      <section className="py-10 sm:py-12 bg-surface-elevated">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-text-primary">Why Choose Credo for ID Verification?</h2>
-            <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              Verify identities without the friction. Your users won&apos;t hate it.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {BENEFITS.map((b) => (
-              <div key={b.title} className="bg-surface p-8 rounded-xl border border-border hover:shadow-lg hover:border-accent/20 transition-all text-center">
-                <div className="w-12 h-12 bg-accent-subtle rounded-xl flex items-center justify-center mx-auto mb-5">
-                  <b.icon className="w-6 h-6 text-accent" />
+      <Section innerClassName="pb-0 md:pb-0">
+        <SectionHeader
+          title="Why Choose Credo for ID Verification?"
+          body={<p>Verify identities without the friction. Your users won&apos;t hate it.</p>}
+        />
+        <div className="cells-clip border-t border-border">
+          <ul className="cells md:grid-cols-3">
+            {BENEFITS.map((b, i) => (
+              <li key={b.title} className="flex flex-col px-6 py-8 md:px-8 md:py-10">
+                <Index n={i + 1} />
+                <h3 className="mt-4 text-[1.0625rem] leading-snug tracking-[-0.015em]">{b.title}</h3>
+                <p className="mt-2.5 max-w-sm flex-1 text-[0.9375rem] leading-[1.7] text-muted">{b.desc}</p>
+                <div className="mt-8 border-t border-border pt-6">
+                  <p className="text-4xl font-medium tracking-[-0.045em] text-foreground-highlight">{b.stat}</p>
+                  <p className="mt-2 font-mono text-xs text-tertiary">{b.statLabel}</p>
                 </div>
-                <h3 className="text-lg font-bold text-text-primary">{b.title}</h3>
-                <p className="mt-3 text-sm text-text-secondary leading-relaxed">{b.desc}</p>
-                <div className="mt-5 pt-5 border-t border-border">
-                  <div className="text-2xl font-bold text-accent">{b.stat}</div>
-                  <div className="text-xs text-text-muted mt-1">{b.statLabel}</div>
-                </div>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-      </section>
+      </Section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-10 sm:py-12 bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-text-primary">How It Works</h2>
-            <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              Three simple steps. No app downloads. No manual review.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
+      <Section id="how-it-works" tone="tint" innerClassName="pb-0 md:pb-0">
+        <SectionHeader
+          title="How It Works"
+          body={<p>Three simple steps. No app downloads. No manual review.</p>}
+        />
+        <div className="cells-clip border-t border-border">
+          <ol className="cells md:grid-cols-3">
             {STEPS.map((step, i) => (
-              <div key={step.step} className="relative">
-                {i < STEPS.length - 1 && (
-                  <div className="hidden md:block absolute top-12 left-[60%] w-[80%] border-t-2 border-dashed border-border" />
-                )}
-                <div className="bg-surface-elevated rounded-xl p-8 text-center relative border border-border">
-                  <div className="inline-flex items-center justify-center w-10 h-10 bg-accent text-white rounded-full text-sm font-bold mb-5">
-                    {step.step}
-                  </div>
-                  <div className="w-14 h-14 bg-accent-subtle rounded-xl flex items-center justify-center mx-auto mb-5">
-                    <step.icon className="w-7 h-7 text-accent" />
-                  </div>
-                  <h3 className="text-lg font-bold text-text-primary">{step.title}</h3>
-                  <p className="mt-3 text-sm text-text-secondary leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
+              <li key={step.title} className="px-6 py-8 md:px-8 md:py-10">
+                <Index n={i + 1} />
+                <h3 className="mt-4 text-[1.0625rem] leading-snug tracking-[-0.015em]">{step.title}</h3>
+                <p className="mt-2.5 max-w-sm text-[0.9375rem] leading-[1.7] text-muted">{step.desc}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
-      </section>
+      </Section>
 
       {/* Supported Documents */}
-      <section className="py-10 sm:py-12 bg-surface-elevated">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-text-primary">Supported Documents</h2>
-            <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              Accept identity documents from over 200 countries worldwide.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {DOCUMENTS.map((doc) => (
-              <div key={doc.title} className="bg-surface p-6 rounded-xl border border-border hover:shadow-md hover:border-accent/20 transition-all">
-                <div className="w-11 h-11 bg-accent-subtle rounded-lg flex items-center justify-center mb-4">
-                  <doc.icon className="w-5 h-5 text-accent" />
+      <Section innerClassName="pb-0 md:pb-0">
+        <SectionHeader
+          title="Supported Documents"
+          body={<p>Accept identity documents from over 200 countries worldwide.</p>}
+        />
+        <div className="grid grid-cols-1 border-t border-border lg:grid-cols-12">
+          <ul className="lg:col-span-5 lg:border-r lg:border-border">
+            {DOCUMENTS.map((doc, i) => (
+              <li key={doc.title} className="flex gap-5 border-b border-border px-6 py-7 md:px-8 lg:last:border-b-0">
+                <Index n={i + 1} className="mt-1" />
+                <div>
+                  <h3 className="text-base leading-snug tracking-[-0.015em]">{doc.title}</h3>
+                  <p className="mt-1 text-[0.9375rem] leading-[1.65] text-muted">{doc.desc}</p>
                 </div>
-                <h3 className="text-base font-semibold text-text-primary">{doc.title}</h3>
-                <p className="mt-2 text-sm text-text-secondary">{doc.desc}</p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
+          <figure className="m-0 bg-surface-elevated px-6 py-10 md:px-8 md:py-12 lg:col-span-7">
+            <img
+              src="/specimen/on-licence-front.webp"
+              alt="Specimen Ontario driver's licence, front"
+              width={1400}
+              height={883}
+              loading="lazy"
+              className="mx-auto w-full max-w-[34rem] rounded-lg border border-border"
+            />
+            <figcaption className="mx-auto mt-4 max-w-[34rem] text-sm text-tertiary">Specimen document. Fictional person.</figcaption>
+          </figure>
         </div>
-      </section>
+      </Section>
 
       {/* Security Deep-Dive */}
-      <section className="py-10 sm:py-12 bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-green-50 text-green-700 rounded-full text-xs font-semibold mb-4 border border-green-100">
-                <Lock className="w-3.5 h-3.5" /> Privacy & Security
-              </div>
-              <h2 className="text-3xl font-bold text-text-primary">You&apos;re You. We Make Sure of It.</h2>
-              <p className="mt-4 text-text-secondary leading-relaxed">
-                180+ countries — no fraud, no fakes, no second-guessing. We tell you exactly what data we collect,
-                how we use it, and who sees it. No surprises. No fine print.
-              </p>
-              <div className="mt-8 space-y-4">
-                {[
-                  { title: 'Facial Matching', desc: 'We match the selfie to the ID photo in real-time. Same face? You\'re in.' },
-                  { title: 'Liveness Detection', desc: 'AI confirms a live person is present — not a photo, video, or mask.' },
-                  { title: 'Encrypted & Deleted', desc: 'Biometric data is encrypted during verification and deleted immediately after. Never stored.' },
-                  { title: 'Fraud Detection', desc: 'Built-in fraud detection catches tampered documents, expired IDs, and spoofing attempts.' },
-                ].map((item) => (
-                  <div key={item.title} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-text-primary">{item.title}</h4>
-                      <p className="text-sm text-text-secondary">{item.desc}</p>
-                    </div>
+      <section className="border-t border-border px-0 md:px-12">
+        <Container className="grid grid-cols-1 lg:grid-cols-12">
+          <div className="px-6 py-20 md:px-8 md:py-28 lg:col-span-7 lg:border-r lg:border-border">
+            <p className="text-sm text-tertiary">Privacy &amp; Security</p>
+            <h2 className="mt-3 text-2xl leading-tight sm:text-[2rem]">You&apos;re You. We Make Sure of It.</h2>
+            <p className="mt-5 max-w-xl text-base leading-[1.75] text-muted">
+              180+ countries — no fraud, no fakes, no second-guessing. We tell you exactly what data we collect,
+              how we use it, and who sees it. No surprises. No fine print.
+            </p>
+            <ul className="mt-10 max-w-xl border-y border-border">
+              {SECURITY_POINTS.map((item) => (
+                <li key={item.title} className="flex gap-4 border-b border-border py-5 last:border-b-0">
+                  <CheckGlyph className="mt-1" />
+                  <div>
+                    <h3 className="text-base leading-snug tracking-[-0.015em]">{item.title}</h3>
+                    <p className="mt-1 text-[0.9375rem] leading-[1.65] text-muted">{item.desc}</p>
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="bg-surface-elevated rounded-2xl border border-border p-10 flex flex-col items-center justify-center text-center">
-              <ShieldCheck className="w-16 h-16 text-accent mb-6" />
-              <h3 className="text-2xl font-bold text-text-primary">Enterprise-Grade Security</h3>
-              <p className="mt-3 text-text-secondary text-sm max-w-xs">
-                Your users&apos; data is protected with bank-level encryption. We verify and delete — nothing is stored on our servers.
-              </p>
-              <div className="mt-6 w-full max-w-xs">
-                <div className="bg-surface rounded-lg border border-border p-3 text-center">
-                  <div className="text-xl font-bold text-accent">AES-256</div>
-                  <div className="text-xs text-text-muted">Encryption</div>
-                </div>
-              </div>
-            </div>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
+          <div className="flex flex-col justify-center border-t border-border bg-surface-elevated px-6 py-16 md:px-8 md:py-20 lg:col-span-5 lg:border-t-0">
+            <h3 className="text-xl leading-tight tracking-[-0.03em]">Enterprise-Grade Security</h3>
+            <p className="mt-3 max-w-sm text-[0.9375rem] leading-[1.7] text-muted">
+              Your users&apos; data is protected with bank-level encryption. We verify and delete — nothing is stored on our servers.
+            </p>
+            <dl className="mt-10 flex max-w-sm flex-col border-t border-border pt-8">
+              <dt className="order-2 mt-2 font-mono text-xs text-tertiary">Encryption</dt>
+              <dd className="order-1 text-4xl font-medium tracking-[-0.045em] text-foreground-highlight">AES-256</dd>
+            </dl>
+          </div>
+        </Container>
       </section>
 
       {/* Verify + Screen Together */}
-      <section className="py-10 sm:py-12 bg-primary relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }} />
-        <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white">Verify Identity + Screen Against Watchlists</h2>
-          <p className="mt-4 text-slate-300 text-lg">
+      <Section tone="tint">
+        <div className="max-w-2xl px-6 md:px-8">
+          <h2 className="text-2xl leading-tight sm:text-[2rem]">Verify Identity + Screen Against Watchlists</h2>
+          <p className="mt-5 max-w-xl text-base leading-[1.75] text-muted">
             Combine ID verification with sanctions, PEP, and criminal screening in a single workflow.
-            Verify who someone is <em>and</em> check if they&apos;re on a watchlist — all through one API.
+            Verify who someone is <em>and</em>{' '}check if they&apos;re on a watchlist — all through one API.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/screening"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-lg shadow-accent/20 transition-all"
-            >
-              Try Free Screening <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/contact?plan=corporate"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:bg-white/15 transition-all"
-            >
-              Contact Sales
-            </Link>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Action href="/screening" arrow>Try Free Screening</Action>
+            <Action href="/contact?plan=corporate" variant="secondary">Contact Sales</Action>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Testimonials */}
-      <section className="py-10 sm:py-12 bg-surface-elevated">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-text-primary">Trusted by Businesses Worldwide</h2>
-            <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              From startups to enterprises, businesses trust Credo for fast, reliable identity verification.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {TESTIMONIALS.map((t, i) => (
-              <div key={i} className="bg-surface p-6 rounded-xl border border-border">
-                <p className="text-text-secondary text-sm leading-relaxed italic">&ldquo;{t.quote}&rdquo;</p>
-                <div className="mt-4 pt-4 border-t border-border">
-                  <div className="text-xs font-semibold text-accent">{t.role}</div>
-                </div>
-              </div>
+      <Section innerClassName="pb-0 md:pb-0">
+        <SectionHeader
+          title="Trusted by Businesses Worldwide"
+          body={<p>From startups to enterprises, businesses trust Credo for fast, reliable identity verification.</p>}
+        />
+        <div className="cells-clip border-t border-border">
+          <ul className="cells sm:grid-cols-2 lg:grid-cols-3">
+            {TESTIMONIALS.map((t) => (
+              <li key={t.role} className="px-6 py-8 md:px-8 md:py-10">
+                <figure className="m-0 flex h-full flex-col">
+                  <blockquote className="flex-1 text-[1.0625rem] leading-[1.6] tracking-[-0.01em] text-foreground">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-6 text-sm text-tertiary">{t.role}</figcaption>
+                </figure>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-      </section>
+      </Section>
 
       <SolutionsGrid currentSlug="id-verification" />
+      <TrustSection />
       <FAQ items={FAQS} />
       <CTABanner />
 

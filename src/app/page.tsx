@@ -95,13 +95,13 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative overflow-hidden px-0 md:px-12">
-        <div className="absolute inset-0 opacity-60" aria-hidden="true">
+        <div className="absolute inset-0 opacity-25 sm:opacity-60" aria-hidden="true">
           <AsciiField focus={[0.74, 0.42]} fadeLeft={0.36} />
         </div>
         <Container className="relative">
-          <div className="grid items-center gap-14 px-6 pb-20 pt-32 md:px-8 md:pb-28 md:pt-40 lg:grid-cols-12">
+          <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-14 px-6 pb-20 pt-28 md:px-8 md:pb-28 md:pt-40 lg:grid-cols-12">
             <div className="lg:col-span-6">
-              <h1 className="text-[2.6rem] leading-[1.02] sm:text-[3.6rem] lg:text-[4rem]">
+              <h1 className="text-[2.3rem] leading-[1.04] sm:text-[3.6rem] lg:text-[4rem]">
                 Compliance screening
                 <br />
                 you can trust
@@ -304,7 +304,7 @@ export default function Home() {
 
       {/* CTA */}
       <section className="relative overflow-hidden border-t border-border px-0 md:px-12">
-        <div className="absolute inset-0 opacity-80" aria-hidden="true">
+        <div className="absolute inset-0 opacity-30 sm:opacity-80" aria-hidden="true">
           <AsciiField focus={[0.82, 0.6]} fadeLeft={0.4} />
         </div>
         <Container className="relative">

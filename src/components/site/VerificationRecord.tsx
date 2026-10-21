@@ -33,7 +33,7 @@ export function VerificationRecord({
   return (
     <figure
       className={cx(
-        'm-0 overflow-hidden rounded-xl border border-border-emphasized bg-background text-[0.875rem] shadow-[0_1px_2px_rgba(11,17,16,0.05),0_24px_48px_-28px_rgba(11,17,16,0.35)]',
+        'm-0 min-w-0 overflow-hidden rounded-xl border border-border-emphasized bg-background text-[0.875rem] shadow-[0_1px_2px_rgba(11,17,16,0.05),0_24px_48px_-28px_rgba(11,17,16,0.35)]',
         className,
       )}
       aria-label="Example verification record with specimen data"
