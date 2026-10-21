@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { SolutionsGrid } from '@/components/marketing/SolutionsGrid';
@@ -8,6 +7,7 @@ import { StatsBar } from '@/components/marketing/StatsBar';
 import { FeatureCells } from '@/components/marketing/FeatureGrid';
 import Link from 'next/link';
 import { Action, CheckGlyph, Container, Index, Section, SectionHeader } from '@/components/site/Canvas';
+import { GuillocheArt } from '@/components/site/GuillocheArt';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
 
@@ -127,16 +127,8 @@ export default function TrustedSignaturesPage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden px-0 md:px-12">
-        <img
-          src="/art/guilloche-band.webp"
-          alt=""
-          aria-hidden="true"
-          width={2400}
-          height={800}
-          className="absolute inset-y-0 right-0 h-full w-full object-cover object-right opacity-15 mix-blend-multiply [mask-image:linear-gradient(to_right,transparent,black_40%)] md:opacity-40 lg:w-[62%] lg:opacity-90"
-        />
-        <Container className="relative">
-          <div className="px-6 pb-16 pt-32 md:px-8 md:pb-24 md:pt-44">
+        <Container>
+          <div className="relative z-10 px-6 pb-4 pt-32 md:px-8 md:pt-44 lg:pb-24">
             <div className="max-w-2xl">
               <p className="mb-6 text-sm text-tertiary">
                 <Link href="/" className="hover:text-foreground">Credo</Link>
@@ -159,6 +151,10 @@ export default function TrustedSignaturesPage() {
               </div>
             </div>
           </div>
+          <GuillocheArt
+            className="relative h-64 [mask-composite:intersect] [mask-image:linear-gradient(to_right,transparent,black_35%),linear-gradient(to_bottom,transparent,black_25%)] sm:h-80 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[66%] lg:[mask-image:linear-gradient(to_right,transparent,black_36%)]"
+            svgClassName="absolute inset-y-0 right-0 h-full w-[180%] sm:w-[130%] lg:w-full"
+          />
         </Container>
       </section>
 
