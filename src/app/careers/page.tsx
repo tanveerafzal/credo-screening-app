@@ -3,13 +3,11 @@ import { Footer } from '@/components/Footer';
 import { CTABanner } from '@/components/marketing/CTABanner';
 import { JOBS } from '@/lib/jobs';
 import Link from 'next/link';
-import {
-  ArrowRight, MapPin, Clock, Building2, Users, Rocket,
-  Globe, Heart, Shield
-} from 'lucide-react';
 import { BRAND } from '@/lib/brand';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
+import { ArrowGlyph, Container, Index, Section, SectionHeader } from '@/components/site/Canvas';
+import { AsciiField } from '@/components/site/AsciiField';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Careers',
@@ -18,12 +16,12 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const PERKS = [
-  { icon: Heart, title: 'Health & Wellness', desc: 'Medical, dental, and vision coverage for you and your family.' },
-  { icon: Globe, title: 'Remote-First', desc: 'Work from anywhere in the US or Canada. We care about results, not office hours.' },
-  { icon: Rocket, title: 'Equity', desc: 'Meaningful ownership in a company with strong product-market fit.' },
-  { icon: Clock, title: 'Unlimited PTO', desc: 'Take the time you need to recharge. We trust you to manage your schedule.' },
-  { icon: Building2, title: 'Home Office', desc: 'Stipend to set up your ideal workspace at home.' },
-  { icon: Users, title: 'Team Offsites', desc: 'Regular in-person offsites to connect, collaborate, and have fun.' },
+  { title: 'Health & Wellness', desc: 'Medical, dental, and vision coverage for you and your family.' },
+  { title: 'Remote-First', desc: 'Work from anywhere in the US or Canada. We care about results, not office hours.' },
+  { title: 'Equity', desc: 'Meaningful ownership in a company with strong product-market fit.' },
+  { title: 'Unlimited PTO', desc: 'Take the time you need to recharge. We trust you to manage your schedule.' },
+  { title: 'Home Office', desc: 'Stipend to set up your ideal workspace at home.' },
+  { title: 'Team Offsites', desc: 'Regular in-person offsites to connect, collaborate, and have fun.' },
 ];
 
 export default function CareersPage() {
@@ -32,125 +30,120 @@ export default function CareersPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-28 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated to-surface" />
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-6 border border-accent/10">
-            <Shield className="w-3.5 h-3.5" /> We&apos;re Hiring
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-text-primary leading-tight tracking-tight">
-            Help build the future of<br />
-            <span className="text-accent">compliance screening</span>
-          </h1>
-          <p className="mt-5 text-lg text-text-secondary max-w-2xl mx-auto">
-            We&apos;re a small, fast-moving team building the compliance infrastructure that regulated businesses rely on.
-            Join us and make a real impact from day one.
-          </p>
+      <section className="relative overflow-hidden px-0 md:px-12">
+        <div className="absolute inset-0 opacity-70" aria-hidden="true">
+          <AsciiField focus={[0.86, 0.5]} fadeLeft={0.42} />
         </div>
+        <Container className="relative">
+          <div className="max-w-2xl px-6 pb-16 pt-32 md:px-8 md:pb-24 md:pt-44">
+            <p className="mb-6 text-sm text-tertiary">
+              <Link href="/" className="hover:text-foreground">Credo</Link>
+              <span className="mx-2 text-border-hover">/</span>
+              <span className="text-muted">We&apos;re Hiring</span>
+            </p>
+            <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">
+              Help build the future of<br />
+              compliance screening
+            </h1>
+            <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">
+              We&apos;re a small, fast-moving team building the compliance infrastructure that regulated businesses rely on.
+              Join us and make a real impact from day one.
+            </p>
+          </div>
+        </Container>
       </section>
 
       {/* Open Positions */}
-      <section className="py-24 bg-surface">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-text-primary">Open Positions</h2>
-            <p className="mt-3 text-text-secondary">
-              {JOBS.length} open role{JOBS.length !== 1 ? 's' : ''} — all remote across the US & Canada.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            {JOBS.map((job) => (
+      <Section id="positions" innerClassName="pb-0 md:pb-0">
+        <SectionHeader
+          title="Open Positions"
+          body={<p>{JOBS.length} open role{JOBS.length !== 1 ? 's' : ''} — all remote across the US & Canada.</p>}
+        />
+        <ul className="border-t border-border">
+          {JOBS.map((job) => (
+            <li key={job.slug} className="border-b border-border last:border-b-0">
               <Link
-                key={job.slug}
                 href={`/careers/${job.slug}`}
-                className="group block bg-surface rounded-xl border border-border hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 p-6 transition-all"
+                className="group grid gap-4 px-6 py-8 transition-colors hover:bg-foreground/[0.02] md:grid-cols-12 md:items-baseline md:gap-6 md:px-8"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-start gap-4">
-                    <div className="w-11 h-11 bg-accent-subtle rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent/10 transition-colors">
-                      <job.icon className="w-5 h-5 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-text-primary group-hover:text-accent transition-colors">{job.title}</h3>
-                      <p className="text-sm text-text-secondary mt-1">{job.shortDesc}</p>
-                      <div className="flex flex-wrap items-center gap-3 mt-3">
-                        <span className="inline-flex items-center gap-1.5 text-xs text-text-muted">
-                          <Building2 className="w-3.5 h-3.5" /> {job.department}
-                        </span>
-                        <span className="inline-flex items-center gap-1.5 text-xs text-text-muted">
-                          <MapPin className="w-3.5 h-3.5" /> {job.location}
-                        </span>
-                        <span className="inline-flex items-center gap-1.5 text-xs text-text-muted">
-                          <Clock className="w-3.5 h-3.5" /> {job.employmentType}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-accent flex-shrink-0 mt-1 transition-colors" />
+                <div className="md:col-span-6">
+                  <h3 className="text-[1.0625rem] leading-snug tracking-[-0.015em] group-hover:underline group-hover:decoration-foreground/30 group-hover:underline-offset-4">
+                    {job.title}
+                  </h3>
+                  <p className="mt-2 max-w-lg text-[0.9375rem] leading-[1.65] text-muted">{job.shortDesc}</p>
                 </div>
+                <dl className="grid grid-cols-3 gap-4 font-mono text-xs text-tertiary md:col-span-5">
+                  <div>
+                    <dt className="sr-only">Team</dt>
+                    <dd>{job.department}</dd>
+                  </div>
+                  <div>
+                    <dt className="sr-only">Location</dt>
+                    <dd>{job.location}</dd>
+                  </div>
+                  <div>
+                    <dt className="sr-only">Type</dt>
+                    <dd>{job.employmentType}</dd>
+                  </div>
+                </dl>
+                <span className="hidden justify-end text-tertiary transition-transform duration-150 group-hover:translate-x-0.5 group-hover:text-foreground md:col-span-1 md:flex">
+                  <ArrowGlyph />
+                </span>
               </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+            </li>
+          ))}
+        </ul>
+      </Section>
 
       {/* Why Credo */}
-      <section className="py-24 bg-surface-elevated">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-text-primary">Why {BRAND.name}?</h2>
-            <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-              We&apos;re building something that matters — and we take care of the people building it.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {PERKS.map((perk) => (
-              <div key={perk.title} className="bg-surface p-6 rounded-xl border border-border">
-                <div className="w-10 h-10 bg-accent-subtle rounded-lg flex items-center justify-center mb-4">
-                  <perk.icon className="w-5 h-5 text-accent" />
-                </div>
-                <h3 className="text-base font-semibold text-text-primary">{perk.title}</h3>
-                <p className="mt-2 text-sm text-text-secondary leading-relaxed">{perk.desc}</p>
-              </div>
+      <Section tone="tint" innerClassName="pb-0 md:pb-0">
+        <SectionHeader
+          title={`Why ${BRAND.name}?`}
+          body={<p>We&apos;re building something that matters — and we take care of the people building it.</p>}
+        />
+        <div className="cells-clip border-t border-border">
+          <ul className="cells sm:grid-cols-2 lg:grid-cols-3">
+            {PERKS.map((perk, i) => (
+              <li key={perk.title} className="px-6 py-8 md:px-8 md:py-10">
+                <Index n={i + 1} />
+                <h3 className="mt-4 text-[1.0625rem] leading-snug tracking-[-0.015em]">{perk.title}</h3>
+                <p className="mt-2.5 max-w-sm text-[0.9375rem] leading-[1.7] text-muted">{perk.desc}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-      </section>
+      </Section>
 
       {/* About */}
-      <section className="py-24 bg-surface">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-text-primary">About {BRAND.name}</h2>
-              <p className="mt-4 text-text-secondary leading-relaxed">
-                {BRAND.name} helps businesses screen individuals and organizations against 1.2M+ entities from OFAC, global sanctions,
-                PEP databases, and 80+ watchlists — all in under 3 seconds.
-              </p>
-              <p className="mt-3 text-text-secondary leading-relaxed">
-                We also provide identity verification with government ID scanning, facial matching, and liveness detection across 200+ countries.
-                {BRAND.name} is operated by {BRAND.legalEntity}, carrying on business as {BRAND.registeredName}.
-              </p>
-            </div>
-            <div className="bg-surface-elevated rounded-xl border border-border p-8">
-              <div className="space-y-5">
-                {[
-                  { label: 'Entities screened against', value: '1.2M+' },
-                  { label: 'Global watchlists', value: '80+' },
-                  { label: 'Countries for ID verification', value: '200+' },
-                  { label: 'Average response time', value: '<3 seconds' },
-                ].map((stat) => (
-                  <div key={stat.label} className="flex items-center justify-between">
-                    <span className="text-sm text-text-secondary">{stat.label}</span>
-                    <span className="text-sm font-bold text-accent">{stat.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+      <section className="border-t border-border px-0 md:px-12">
+        <Container className="grid lg:grid-cols-12">
+          <div className="px-6 py-20 md:px-8 md:py-28 lg:col-span-7 lg:border-r lg:border-border">
+            <h2 className="text-2xl leading-tight sm:text-[2rem]">About {BRAND.name}</h2>
+            <p className="mt-5 max-w-xl text-base leading-[1.75] text-muted">
+              {BRAND.name} helps businesses screen individuals and organizations against 1.2M+ entities from OFAC, global sanctions,
+              PEP databases, and 80+ watchlists — all in under 3 seconds.
+            </p>
+            <p className="mt-4 max-w-xl text-base leading-[1.75] text-muted">
+              We also provide identity verification with government ID scanning, facial matching, and liveness detection across 200+ countries.{' '}
+              {BRAND.name} is operated by {BRAND.legalEntity}, carrying on business as {BRAND.registeredName}.
+            </p>
           </div>
-        </div>
+          <div className="cells-clip border-t border-border lg:col-span-5 lg:border-t-0">
+            <dl className="cells h-full grid-cols-2">
+              {[
+                { label: 'Entities screened against', value: '1.2M+' },
+                { label: 'Global watchlists', value: '80+' },
+                { label: 'Countries for ID verification', value: '200+' },
+                { label: 'Average response time', value: '<3 seconds' },
+              ].map((stat) => (
+                <div key={stat.label} className="flex flex-col justify-end px-6 py-10 md:px-8">
+                  <dt className="order-2 mt-2 font-mono text-xs text-tertiary">{stat.label}</dt>
+                  <dd className="order-1 text-3xl font-medium tracking-[-0.045em] text-foreground-highlight sm:text-4xl">{stat.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </Container>
       </section>
 
       <CTABanner

@@ -10,7 +10,7 @@ import { SolutionsGrid } from '@/components/marketing/SolutionsGrid';
 import { FAQ } from '@/components/marketing/FAQ';
 import { CTABanner } from '@/components/marketing/CTABanner';
 import { SOLUTIONS, SOLUTIONS_LIST } from '@/lib/solutions';
-import { CheckCircle } from 'lucide-react';
+import { CheckGlyph, Container, Index } from '@/components/site/Canvas';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
 
@@ -57,21 +57,26 @@ export default async function SolutionPage({ params }: Props) {
 
       {/* Feature Deep-Dives */}
       {solution.deepDives.map((d, i) => (
-        <section key={i} className={`py-10 sm:py-12 ${i % 2 === 0 ? 'bg-surface' : 'bg-surface-elevated'}`}>
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-text-primary mb-4">{d.title}</h2>
-            <p className="text-text-secondary leading-relaxed text-lg">{d.desc}</p>
-            {d.bullets && (
-              <ul className="mt-6 space-y-3">
-                {d.bullets.map((b, j) => (
-                  <li key={j} className="flex items-start gap-3 text-text-secondary">
-                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+        <section key={i} className="border-t border-border px-0 md:px-12">
+          <Container className="grid gap-8 px-6 py-16 md:px-8 md:py-24 lg:grid-cols-12 lg:gap-6">
+            <div className="lg:col-span-5">
+              <Index n={i + 1} />
+              <h2 className="mt-4 max-w-md text-2xl leading-tight sm:text-[2rem]">{d.title}</h2>
+            </div>
+            <div className="lg:col-span-7">
+              <p className="max-w-2xl text-base leading-[1.75] text-muted sm:text-[1.0625rem]">{d.desc}</p>
+              {d.bullets && (
+                <ul className="mt-8 max-w-2xl border-t border-border">
+                  {d.bullets.map((b, j) => (
+                    <li key={j} className="flex items-start gap-3 border-b border-border py-3.5 text-[0.9375rem] leading-[1.65] text-muted">
+                      <CheckGlyph className="mt-1" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </Container>
         </section>
       ))}
 

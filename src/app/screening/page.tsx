@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { Shield, Search, AlertTriangle, CheckCircle, Loader2, LogIn, UserPlus } from 'lucide-react';
+import { AlertTriangle, Loader2 } from 'lucide-react';
+import { Action, CheckGlyph, Container, Tag, cx } from '@/components/site/Canvas';
 import { getAuth } from '@/lib/auth';
 import { FREE_TRIAL, PRODUCT_PRICES, formatUsd } from '@/lib/pricing';
 
@@ -61,11 +62,14 @@ function incrementUsage() {
   return newCount;
 }
 
-const listTypeBadge: Record<string, { bg: string; text: string; label: string }> = {
-  ofac: { bg: 'bg-red-100', text: 'text-red-700', label: 'OFAC' },
-  sanction: { bg: 'bg-amber-100', text: 'text-amber-700', label: 'SANCTION' },
-  pep: { bg: 'bg-violet-100', text: 'text-violet-700', label: 'PEP' },
+const listTypeBadge: Record<string, { label: string }> = {
+  ofac: { label: 'OFAC' },
+  sanction: { label: 'SANCTION' },
+  pep: { label: 'PEP' },
 };
+
+const inputClass =
+  'h-11 w-full rounded-lg border border-border-emphasized bg-background px-3.5 text-[0.9375rem] text-foreground placeholder:text-tertiary transition-colors focus:outline-none focus-visible:border-teal-ink focus-visible:ring-4 focus-visible:ring-teal-wash';
 
 export default function ScreeningPage() {
   const router = useRouter();
@@ -215,255 +219,228 @@ export default function ScreeningPage() {
     <>
       <Navbar />
 
-      <main className="pt-24 pb-20 min-h-screen bg-background">
-        <div className="max-w-3xl mx-auto px-4">
-          {/* Header */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-4 border border-accent/10">
-              <Shield className="w-3.5 h-3.5" /> Free Screening Tool
-            </div>
-            <h1 className="text-3xl font-bold text-text-primary">Screen Against 1.2M+ Entities</h1>
-            <p className="mt-2 text-text-secondary">
-              Check any name against OFAC, global sanctions, PEP databases, and 80+ watchlists.
-            </p>
-            <p className="mt-1 text-sm text-text-muted">
-              {remaining > 0
-                ? `${remaining} free screening${remaining !== 1 ? 's' : ''} remaining today`
-                : 'Daily limit reached. Sign up for unlimited access.'}
-            </p>
-          </div>
-
-          {/* Form */}
-          <form onSubmit={handleScreen} className="bg-surface rounded-xl shadow-sm border border-border p-6 sm:p-8">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-text-primary mb-1.5">First Name *</label>
-                <input
-                  type="text"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  placeholder="e.g. Vladimir"
-                  className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-text-primary mb-1.5">Last Name *</label>
-                <input
-                  type="text"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  placeholder="e.g. Putin"
-                  className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-text-primary mb-1.5">Date of Birth</label>
-                <input
-                  type="text"
-                  value={dob}
-                  onChange={(e) => setDob(e.target.value)}
-                  placeholder="YYYY-MM-DD"
-                  className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-text-primary mb-1.5">Nationality</label>
-                <input
-                  type="text"
-                  value={nationality}
-                  onChange={(e) => setNationality(e.target.value)}
-                  placeholder="e.g. RU, US, CA"
-                  className="w-full px-4 py-2.5 border border-border rounded-lg text-sm bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                />
-              </div>
+      <main className="flex min-h-screen flex-col bg-background">
+        <section className="flex flex-1 flex-col px-0 md:px-12">
+          <Container className="grid flex-1 content-start gap-12 px-6 pb-20 pt-32 md:px-8 md:pb-28 md:pt-40 lg:grid-cols-12">
+            {/* Header */}
+            <div className="lg:col-span-5">
+              <p className="mb-6 text-sm text-tertiary">
+                <Link href="/" className="hover:text-foreground">Credo</Link>
+                <span className="mx-2 text-border-hover">/</span>
+                <span className="text-muted">Free Screening Tool</span>
+              </p>
+              <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">Screen Against 1.2M+ Entities</h1>
+              <p className="mt-6 max-w-md text-[1.0625rem] leading-[1.7] text-muted">
+                Check any name against OFAC, global sanctions, PEP databases, and 80+ watchlists.
+              </p>
+              <p className="mt-5 font-mono text-xs text-tertiary">
+                {remaining > 0
+                  ? `${remaining} free screening${remaining !== 1 ? 's' : ''} remaining today`
+                  : 'Daily limit reached. Sign up for unlimited access.'}
+              </p>
             </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="mt-6 w-full flex items-center justify-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {loading ? (
-                <><Loader2 className="w-4 h-4 animate-spin" /> Screening...</>
-              ) : (
-                <><Search className="w-4 h-4" /> Run Screening</>
-              )}
-            </button>
-          </form>
-
-          {/* Auth Prompt */}
-          {showAuthPrompt && (
-            <div className="mt-6 bg-surface rounded-xl border border-accent/20 shadow-sm overflow-hidden">
-              <div className="bg-accent-subtle px-6 py-4 border-b border-accent/10">
-                <h3 className="font-semibold text-text-primary">Sign in to run your screening</h3>
-                <p className="text-sm text-text-secondary mt-1">
-                  Create a free account to screen against 1.2M+ entities. Your screening details have been saved.
-                </p>
-              </div>
-              <div className="p-6 flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/login?redirect=/screening"
-                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light transition-colors text-sm"
-                >
-                  <LogIn className="w-4 h-4" /> Sign In
-                </Link>
-                <Link
-                  href="/register?redirect=/screening"
-                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-surface text-accent font-semibold rounded-lg border-2 border-accent hover:bg-accent-subtle transition-colors text-sm"
-                >
-                  <UserPlus className="w-4 h-4" /> Create Free Account
-                </Link>
-              </div>
-              <div className="px-6 pb-4">
-                <p className="text-xs text-text-muted text-center">{FREE_TRIAL.cta}</p>
-              </div>
-            </div>
-          )}
-
-          {/* Upgrade Prompt */}
-          {showUpgradePrompt && (
-            <div className="mt-6 bg-surface rounded-xl border border-warning/30 shadow-sm overflow-hidden">
-              <div className="bg-amber-50 px-6 py-4 border-b border-amber-100">
-                <div className="flex items-center gap-2 mb-1">
-                  <AlertTriangle className="w-5 h-5 text-amber-600" />
-                  <h3 className="font-semibold text-amber-900">
-                    {upgradeReason === 'credits'
-                      ? 'Screening credits required'
-                      : 'Monthly screening limit reached'}
-                  </h3>
-                </div>
-                <p className="text-sm text-amber-700 mt-1">
-                  {upgradeReason === 'credits'
-                    ? 'Your account is out of screening credits. Add credits to continue — or create a free account to get started.'
-                    : 'You\u2019ve reached the screening limit. Upgrade to continue screening.'}
-                </p>
-              </div>
-              <div className="p-6 flex flex-col sm:flex-row gap-3">
-                <Link
-                  href={upgradeReason === 'credits' ? '/register?redirect=/screening' : '/#pricing'}
-                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light transition-colors text-sm"
-                >
-                  {upgradeReason === 'credits' ? (
-                    <><UserPlus className="w-4 h-4" /> Create Free Account</>
-                  ) : (
-                    'View Plans'
-                  )}
-                </Link>
-                <Link
-                  href="/contact?plan=corporate"
-                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-surface text-accent font-semibold rounded-lg border-2 border-accent hover:bg-accent-subtle transition-colors text-sm"
-                >
-                  Contact Sales
-                </Link>
-              </div>
-              <div className="px-6 pb-4">
-                <p className="text-xs text-text-muted text-center">
-                  {upgradeReason === 'credits'
-                    ? `${FREE_TRIAL.cta} Or buy credits — ${formatUsd(PRODUCT_PRICES.screening.amount)} per screening.`
-                    : `Buy credits to continue — ${formatUsd(PRODUCT_PRICES.screening.amount)} per screening.`}
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* Error */}
-          {error && (
-            <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-              <AlertTriangle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-red-700">{error}</p>
-            </div>
-          )}
-
-          {/* Results */}
-          {result && (
-            <div className="mt-6 space-y-4">
-              {/* Subject Information */}
-              <div className="rounded-xl border border-border bg-surface p-6">
-                <h3 className="text-sm font-semibold text-text-primary mb-3">Subject Information</h3>
-                <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
-                  <div className="flex justify-between sm:block">
-                    <span className="text-text-muted">First Name</span>
-                    <span className="sm:ml-2 font-medium text-text-primary">{firstName.trim()}</span>
-                  </div>
-                  <div className="flex justify-between sm:block">
-                    <span className="text-text-muted">Last Name</span>
-                    <span className="sm:ml-2 font-medium text-text-primary">{lastName.trim()}</span>
-                  </div>
-                  <div className="flex justify-between sm:block">
-                    <span className="text-text-muted">Date of Birth</span>
-                    <span className="sm:ml-2 font-medium text-text-primary">{dob.trim() || '—'}</span>
-                  </div>
-                  <div className="flex justify-between sm:block">
-                    <span className="text-text-muted">Nationality</span>
-                    <span className="sm:ml-2 font-medium text-text-primary">{nationality.trim() || '—'}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Screening Result */}
-              <div className={`rounded-xl border p-6 ${result.hasMatch ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'}`}>
-                <div className="flex items-center gap-3 mb-4">
-                  {result.hasMatch ? (
-                    <AlertTriangle className="w-6 h-6 text-red-500" />
-                  ) : (
-                    <CheckCircle className="w-6 h-6 text-green-500" />
-                  )}
+            <div className="lg:col-span-7">
+              {/* Form */}
+              <form onSubmit={handleScreen} className="rounded-lg border border-border bg-background p-6 sm:p-8">
+                <div className="grid gap-5 sm:grid-cols-2">
                   <div>
-                    <h2 className={`text-lg font-bold ${result.hasMatch ? 'text-red-800' : 'text-green-800'}`}>
-                      {result.hasMatch
-                        ? `${result.totalMatches} Match${result.totalMatches > 1 ? 'es' : ''} Found`
-                        : 'All Clear'}
-                    </h2>
-                    <p className={`text-sm ${result.hasMatch ? 'text-red-600' : 'text-green-600'}`}>
-                      Screened: {result.queriedName}
-                    </p>
+                    <label htmlFor="screen-first-name" className="mb-2 block text-sm font-medium text-foreground">
+                      First Name <span className="text-teal-ink">*</span>
+                    </label>
+                    <input
+                      id="screen-first-name"
+                      type="text"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      placeholder="e.g. Vladimir"
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="screen-last-name" className="mb-2 block text-sm font-medium text-foreground">
+                      Last Name <span className="text-teal-ink">*</span>
+                    </label>
+                    <input
+                      id="screen-last-name"
+                      type="text"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder="e.g. Putin"
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="screen-dob" className="mb-2 block text-sm font-medium text-foreground">Date of Birth</label>
+                    <input
+                      id="screen-dob"
+                      type="text"
+                      value={dob}
+                      onChange={(e) => setDob(e.target.value)}
+                      placeholder="YYYY-MM-DD"
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="screen-nationality" className="mb-2 block text-sm font-medium text-foreground">Nationality</label>
+                    <input
+                      id="screen-nationality"
+                      type="text"
+                      value={nationality}
+                      onChange={(e) => setNationality(e.target.value)}
+                      placeholder="e.g. RU, US, CA"
+                      className={inputClass}
+                    />
                   </div>
                 </div>
 
-                {result.hasMatch && result.matchedLists.map((list, i) => {
-                  const badge = listTypeBadge[list.listType] || listTypeBadge.sanction;
-                  return (
-                    <div key={i} className="mt-4 bg-white rounded-lg border border-red-100 p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="font-semibold text-sm text-text-primary">{list.name}</span>
-                        <span className={`text-xs font-bold px-2 py-0.5 rounded-md ${badge.bg} ${badge.text}`}>
-                          {badge.label}
-                        </span>
-                        {list.countryCode && (
-                          <span className="text-xs text-text-muted">{list.countryCode}</span>
-                        )}
-                      </div>
-                      {list.entities.map((entity, j) => (
-                        <div key={j} className="flex justify-between items-center py-1.5 border-t border-gray-50 text-sm">
-                          <div>
-                            <span className="text-text-secondary">{entity.name}</span>
-                            {entity.birthdate && (
-                              <span className="ml-2 text-xs text-text-muted">DOB: {entity.birthdate}</span>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs text-text-muted">{entity.matchLevel}</span>
-                            <span className={`text-xs font-bold px-2 py-0.5 rounded-md ${
-                              entity.score >= 0.9 ? 'bg-red-100 text-red-700' :
-                              entity.score >= 0.8 ? 'bg-orange-100 text-orange-700' :
-                              'bg-yellow-100 text-yellow-700'
-                            }`}>
-                              {(entity.score * 100).toFixed(0)}%
-                            </span>
-                          </div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="mt-7 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-5 text-[0.9375rem] font-medium text-white transition-[background-color,transform] duration-150 ease-out hover:bg-[var(--ink-hover)] active:translate-y-px disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {loading ? (
+                    <><Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> Screening...</>
+                  ) : (
+                    'Run Screening'
+                  )}
+                </button>
+              </form>
+
+              {/* Auth Prompt */}
+              {showAuthPrompt && (
+                <div className="mt-6 rounded-lg border border-border bg-surface-elevated p-6 sm:p-8">
+                  <h3 className="text-[1.0625rem] leading-snug tracking-[-0.015em]">Sign in to run your screening</h3>
+                  <p className="mt-2 text-[0.9375rem] leading-[1.7] text-muted">
+                    Create a free account to screen against 1.2M+ entities. Your screening details have been saved.
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Action href="/login?redirect=/screening">Sign In</Action>
+                    <Action href="/register?redirect=/screening" variant="secondary">Create Free Account</Action>
+                  </div>
+                  <p className="mt-5 text-sm text-tertiary">{FREE_TRIAL.cta}</p>
+                </div>
+              )}
+
+              {/* Upgrade Prompt */}
+              {showUpgradePrompt && (
+                <div className="mt-6 rounded-lg border border-border bg-surface-elevated p-6 sm:p-8">
+                  <div className="flex items-center gap-2.5">
+                    <AlertTriangle className="h-4 w-4 shrink-0 text-warning" aria-hidden="true" />
+                    <h3 className="text-[1.0625rem] leading-snug tracking-[-0.015em]">
+                      {upgradeReason === 'credits'
+                        ? 'Screening credits required'
+                        : 'Monthly screening limit reached'}
+                    </h3>
+                  </div>
+                  <p className="mt-2 text-[0.9375rem] leading-[1.7] text-muted">
+                    {upgradeReason === 'credits'
+                      ? 'Your account is out of screening credits. Add credits to continue — or create a free account to get started.'
+                      : 'You’ve reached the screening limit. Upgrade to continue screening.'}
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Action href={upgradeReason === 'credits' ? '/register?redirect=/screening' : '/#pricing'}>
+                      {upgradeReason === 'credits' ? 'Create Free Account' : 'View Plans'}
+                    </Action>
+                    <Action href="/contact?plan=corporate" variant="secondary">Contact Sales</Action>
+                  </div>
+                  <p className="mt-5 text-sm text-tertiary">
+                    {upgradeReason === 'credits'
+                      ? `${FREE_TRIAL.cta} Or buy credits — ${formatUsd(PRODUCT_PRICES.screening.amount)} per screening.`
+                      : `Buy credits to continue — ${formatUsd(PRODUCT_PRICES.screening.amount)} per screening.`}
+                  </p>
+                </div>
+              )}
+
+              {/* Error */}
+              {error && (
+                <div role="alert" className="mt-6 flex items-start gap-3 rounded-lg border border-danger/30 px-4 py-3.5">
+                  <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-danger" aria-hidden="true" />
+                  <p className="text-sm text-danger">{error}</p>
+                </div>
+              )}
+
+              {/* Results */}
+              {result && (
+                <div className="mt-6 rounded-lg border border-border bg-background" aria-live="polite">
+                  {/* Subject Information */}
+                  <div className="border-b border-border px-6 py-5 sm:px-8">
+                    <h3 className="text-sm font-medium text-foreground">Subject Information</h3>
+                    <dl className="mt-3 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
+                      {[
+                        ['First Name', firstName.trim()],
+                        ['Last Name', lastName.trim()],
+                        ['Date of Birth', dob.trim() || '—'],
+                        ['Nationality', nationality.trim() || '—'],
+                      ].map(([label, value]) => (
+                        <div key={label} className="flex justify-between gap-4">
+                          <dt className="text-tertiary">{label}</dt>
+                          <dd className="font-medium text-foreground">{value}</dd>
                         </div>
                       ))}
-                    </div>
-                  );
-                })}
+                    </dl>
+                  </div>
 
-                <p className="mt-4 text-xs text-text-muted">
-                  Screening ID: {result.screeningId} | Provider: {result.provider}
-                </p>
-              </div>
+                  {/* Screening Result */}
+                  <div className="flex items-start gap-3 border-b border-border px-6 py-5 sm:px-8">
+                    {result.hasMatch ? (
+                      <AlertTriangle className="mt-1 h-5 w-5 shrink-0 text-danger" aria-hidden="true" />
+                    ) : (
+                      <CheckGlyph className="mt-1.5" />
+                    )}
+                    <div>
+                      <h2 className={cx('text-xl leading-snug tracking-[-0.02em]', result.hasMatch ? 'text-danger' : 'text-teal-ink')}>
+                        {result.hasMatch
+                          ? `${result.totalMatches} Match${result.totalMatches > 1 ? 'es' : ''} Found`
+                          : 'All Clear'}
+                      </h2>
+                      <p className="mt-1 text-sm text-muted">
+                        Screened: {result.queriedName}
+                      </p>
+                    </div>
+                  </div>
+
+                  {result.hasMatch && result.matchedLists.map((list, i) => {
+                    const badge = listTypeBadge[list.listType] || listTypeBadge.sanction;
+                    return (
+                      <div key={i} className="border-b border-border px-6 py-5 sm:px-8">
+                        <div className="flex flex-wrap items-center gap-2.5">
+                          <span className="text-sm font-medium text-foreground">{list.name}</span>
+                          <Tag>{badge.label}</Tag>
+                          {list.countryCode && (
+                            <span className="font-mono text-xs text-tertiary">{list.countryCode}</span>
+                          )}
+                        </div>
+                        <ul className="mt-3">
+                          {list.entities.map((entity, j) => (
+                            <li key={j} className="flex items-baseline justify-between gap-4 border-t border-border py-2.5 text-sm">
+                              <div className="min-w-0">
+                                <span className="text-foreground">{entity.name}</span>
+                                {entity.birthdate && (
+                                  <span className="ml-2 font-mono text-xs text-tertiary">DOB: {entity.birthdate}</span>
+                                )}
+                              </div>
+                              <div className="flex shrink-0 items-baseline gap-3">
+                                <span className="text-xs text-tertiary">{entity.matchLevel}</span>
+                                <span className={cx('font-mono text-xs tabular-nums', entity.score >= 0.9 ? 'font-medium text-danger' : 'text-foreground')}>
+                                  {(entity.score * 100).toFixed(0)}%
+                                </span>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })}
+
+                  <p className="px-6 py-4 font-mono text-xs text-tertiary sm:px-8">
+                    Screening ID: {result.screeningId} | Provider: {result.provider}
+                  </p>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </Container>
+        </section>
       </main>
 
       <Footer />

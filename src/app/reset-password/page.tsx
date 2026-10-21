@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
-import { Logo } from '@/components/Logo';
+import { LogoIcon } from '@/components/Logo';
 import { Loader2, CheckCircle, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { resetPassword } from '@/lib/auth';
 
@@ -56,7 +56,7 @@ function ResetPasswordForm() {
         <div className="w-full max-w-md mx-4">
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <Logo size={40} />
+              <LogoIcon size={44} />
             </div>
             <h1 className="text-2xl font-bold text-gray-900">Set new password</h1>
             <p className="text-sm text-gray-500 mt-1">Enter your new password below</p>

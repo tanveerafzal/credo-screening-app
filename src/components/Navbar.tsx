@@ -1,289 +1,223 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useRef } from 'react';
-import { Menu, X, ChevronDown, ScanFace, Search, Building2, Users, PenLine, UserCheck } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 import { Logo } from './Logo';
 import { SOLUTIONS_LIST } from '@/lib/solutions';
 import { INDUSTRIES_LIST } from '@/lib/industries';
+import { Action, ArrowGlyph, cx } from './site/Canvas';
 
 const PRODUCTS_LIST = [
   {
     slug: 'credo-onboarding',
     label: 'Digital Onboarding',
     shortDesc: 'Remote identity verification + AML screening in one flow.',
-    icon: UserCheck,
   },
   {
     slug: 'credo-id-verification',
     label: 'ID Verification',
     shortDesc: 'Government ID + selfie verification in under 30 seconds.',
-    icon: ScanFace,
   },
   {
     slug: 'screening',
     label: 'Screening',
     shortDesc: 'Screen against 1.2M+ entities from OFAC, sanctions & PEP lists.',
-    icon: Search,
   },
   {
     slug: 'credo-trusted-signatures',
     label: 'Trusted Signatures',
     shortDesc: 'Identity-verified electronic signatures that prevent fraud.',
-    icon: PenLine,
   },
 ];
 
+const EXTRA_SOLUTIONS = [
+  { href: '/fintech-kyc-verification', label: 'Fintech KYC', shortDesc: 'Identity verification for fintech companies' },
+  { href: '/staffing-identity-check', label: 'Staffing', shortDesc: 'Candidate identity verification' },
+];
+
 type MenuType = 'solutions' | 'industries' | 'products' | null;
+
+const triggerClass =
+  'inline-flex h-8 items-center gap-1 rounded-md px-3 text-sm text-muted transition-colors duration-100 hover:bg-foreground/5 hover:text-foreground aria-expanded:bg-foreground/5 aria-expanded:text-foreground';
+
+function MenuRow({ href, label, desc, onClick }: { href: string; label: string; desc?: string; onClick: () => void }) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className="group block rounded-md px-3 py-2.5 transition-colors hover:bg-foreground/[0.04]"
+    >
+      <span className="block text-sm font-medium text-foreground-highlight">{label}</span>
+      {desc ? <span className="mt-0.5 block text-[0.8125rem] leading-snug text-tertiary">{desc}</span> : null}
+    </Link>
+  );
+}
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<MenuType>(null);
   const closeTimer = useRef<NodeJS.Timeout | null>(null);
 
-  const handleMenuEnter = (menu: MenuType) => {
+  useEffect(() => {
+    if (!openMenu) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpenMenu(null);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [openMenu]);
+
+  const enter = (menu: MenuType) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setOpenMenu(menu);
   };
-
-  const handleMenuLeave = () => {
+  const leave = () => {
     closeTimer.current = setTimeout(() => setOpenMenu(null), 150);
   };
+  const close = () => setOpenMenu(null);
+
+  const panel = 'menu-panel absolute left-0 top-full mt-2 rounded-xl border border-border-emphasized bg-background p-2 shadow-[0_18px_40px_-20px_rgba(11,17,16,0.25)]';
+
+  const dropdown = (key: Exclude<MenuType, null>, label: string, content: React.ReactNode, width: string) => (
+    <div className="relative" onMouseEnter={() => enter(key)} onMouseLeave={leave}>
+      <button
+        type="button"
+        className={triggerClass}
+        aria-expanded={openMenu === key}
+        aria-haspopup="true"
+        onClick={() => setOpenMenu(openMenu === key ? null : key)}
+      >
+        {label}
+        <ChevronDown className={cx('h-3.5 w-3.5 transition-transform duration-150', openMenu === key && 'rotate-180')} aria-hidden="true" />
+      </button>
+      <div className={cx(panel, width)} data-open={openMenu === key || undefined} onMouseEnter={() => enter(key)} onMouseLeave={leave}>
+        {content}
+      </div>
+    </div>
+  );
 
   return (
-    <nav className="fixed top-0 w-full bg-surface/80 backdrop-blur-xl border-b border-border z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/">
-            <Logo size={56} />
+    <header className="chrome-surface fixed inset-x-0 top-0 z-50 border-b border-border px-0 md:px-12">
+      <div className="mx-auto grid h-16 w-full max-w-[84rem] grid-cols-[auto_1fr_auto] items-center gap-2 border-x border-border px-6 md:px-8 lg:grid-cols-[1fr_auto_1fr]">
+        <Link href="/" aria-label="Credo Screening home" className="inline-flex h-9 w-fit items-center rounded-md">
+          <Logo size={94} />
+        </Link>
+
+        <nav aria-label="Main" className="hidden items-center gap-0.5 justify-self-center lg:flex">
+          {dropdown(
+            'products',
+            'Products',
+            <>
+              {PRODUCTS_LIST.map((p) => (
+                <MenuRow key={p.slug} href={`/${p.slug}`} label={p.label} desc={p.shortDesc} onClick={close} />
+              ))}
+              <div className="mt-1 border-t border-border pt-1">
+                <Link
+                  href="/products"
+                  onClick={close}
+                  className="flex items-center gap-1.5 rounded-md px-3 py-2.5 text-sm font-medium text-teal-ink hover:bg-foreground/[0.04]"
+                >
+                  View all products & pricing <ArrowGlyph />
+                </Link>
+              </div>
+            </>,
+            'w-[22rem] origin-top-left',
+          )}
+          {dropdown(
+            'solutions',
+            'Solutions',
+            <div className="grid grid-cols-2 gap-x-1">
+              {SOLUTIONS_LIST.map((s) => (
+                <MenuRow key={s.slug} href={`/solutions/${s.slug}`} label={s.label} desc={s.shortDesc} onClick={close} />
+              ))}
+              <div className="col-span-2 mt-1 grid grid-cols-2 gap-x-1 border-t border-border pt-1">
+                {EXTRA_SOLUTIONS.map((s) => (
+                  <MenuRow key={s.href} href={s.href} label={s.label} desc={s.shortDesc} onClick={close} />
+                ))}
+              </div>
+            </div>,
+            'w-[34rem] -left-24 [transform-origin:7.5rem_0]',
+          )}
+          {dropdown(
+            'industries',
+            'Industries',
+            <div className="grid grid-cols-2 gap-x-1">
+              {INDUSTRIES_LIST.map((i) => (
+                <MenuRow key={i.slug} href={`/industries/${i.slug}`} label={i.label} onClick={close} />
+              ))}
+            </div>,
+            'w-[28rem] -left-24 [transform-origin:7.5rem_0]',
+          )}
+          <Link href="/products" className={triggerClass}>
+            Pricing
           </Link>
+        </nav>
 
-          <div className="hidden md:flex items-center gap-1">
-            {/* Products Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleMenuEnter('products')}
-              onMouseLeave={handleMenuLeave}
-            >
-              <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-elevated rounded-lg transition-colors">
-                Products <ChevronDown className="w-3.5 h-3.5" />
-              </button>
-
-              {openMenu === 'products' && (
-                <div
-                  className="absolute top-full -left-4 mt-1 w-[340px] bg-surface rounded-xl border border-border shadow-xl shadow-black/5 p-3 space-y-1"
-                  onMouseEnter={() => handleMenuEnter('products')}
-                  onMouseLeave={handleMenuLeave}
-                >
-                  {PRODUCTS_LIST.map((p) => (
-                    <Link
-                      key={p.slug}
-                      href={`/${p.slug}`}
-                      className="flex items-start gap-3 p-3 rounded-lg hover:bg-surface-elevated transition-colors"
-                      onClick={() => setOpenMenu(null)}
-                    >
-                      <div className="w-9 h-9 bg-accent-subtle rounded-lg flex items-center justify-center flex-shrink-0">
-                        <p.icon className="w-4.5 h-4.5 text-accent" />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-sm font-semibold text-text-primary">{p.label}</div>
-                        <div className="text-xs text-text-muted leading-snug mt-0.5">{p.shortDesc}</div>
-                      </div>
-                    </Link>
-                  ))}
-                  <div className="border-t border-border mt-2 pt-2">
-                    <Link
-                      href="/products"
-                      className="block px-3 py-2 text-xs font-medium text-accent hover:bg-surface-elevated rounded-lg transition-colors"
-                      onClick={() => setOpenMenu(null)}
-                    >
-                      View all products & pricing →
-                    </Link>
-                  </div>
-                </div>
+        <div className="flex items-center gap-2 justify-self-end">
+          <span className="hidden sm:inline-flex">
+            <Action href="/login" variant="secondary" size="sm">Login</Action>
+          </span>
+          <Action href="/register" size="sm">Start Free</Action>
+          <button
+            type="button"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md text-foreground hover:bg-foreground/5 lg:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          >
+            <svg viewBox="0 0 18 18" width="18" height="18" aria-hidden="true">
+              {mobileOpen ? (
+                <path d="M4 4l10 10M14 4 4 14" stroke="currentColor" strokeWidth="1.5" />
+              ) : (
+                <path d="M2 5.5h14M2 12.5h14" stroke="currentColor" strokeWidth="1.5" />
               )}
-            </div>
-
-            {/* Solutions Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleMenuEnter('solutions')}
-              onMouseLeave={handleMenuLeave}
-            >
-              <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-elevated rounded-lg transition-colors">
-                Solutions <ChevronDown className="w-3.5 h-3.5" />
-              </button>
-
-              {openMenu === 'solutions' && (
-                <div
-                  className="absolute top-full -left-4 mt-1 w-[540px] bg-surface rounded-xl border border-border shadow-xl shadow-black/5 p-3 grid grid-cols-2 gap-1"
-                  onMouseEnter={() => handleMenuEnter('solutions')}
-                  onMouseLeave={handleMenuLeave}
-                >
-                  {SOLUTIONS_LIST.map((s) => (
-                    <Link
-                      key={s.slug}
-                      href={`/solutions/${s.slug}`}
-                      className="flex items-start gap-3 p-3 rounded-lg hover:bg-surface-elevated transition-colors"
-                      onClick={() => setOpenMenu(null)}
-                    >
-                      <div className="w-9 h-9 bg-accent-subtle rounded-lg flex items-center justify-center flex-shrink-0">
-                        <s.icon className="w-4.5 h-4.5 text-accent" />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-sm font-semibold text-text-primary">{s.label}</div>
-                        <div className="text-xs text-text-muted leading-snug mt-0.5">{s.shortDesc}</div>
-                      </div>
-                    </Link>
-                  ))}
-                  <div className="col-span-2 border-t border-border mt-1 pt-2 grid grid-cols-2 gap-1">
-                    <Link
-                      href="/fintech-kyc-verification"
-                      className="flex items-start gap-3 p-3 rounded-lg hover:bg-surface-elevated transition-colors"
-                      onClick={() => setOpenMenu(null)}
-                    >
-                      <div className="w-9 h-9 bg-accent-subtle rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Building2 className="w-4.5 h-4.5 text-accent" />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-sm font-semibold text-text-primary">Fintech KYC</div>
-                        <div className="text-xs text-text-muted leading-snug mt-0.5">Identity verification for fintech companies</div>
-                      </div>
-                    </Link>
-                    <Link
-                      href="/staffing-identity-check"
-                      className="flex items-start gap-3 p-3 rounded-lg hover:bg-surface-elevated transition-colors"
-                      onClick={() => setOpenMenu(null)}
-                    >
-                      <div className="w-9 h-9 bg-accent-subtle rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Users className="w-4.5 h-4.5 text-accent" />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-sm font-semibold text-text-primary">Staffing</div>
-                        <div className="text-xs text-text-muted leading-snug mt-0.5">Candidate identity verification</div>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Industries Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => handleMenuEnter('industries')}
-              onMouseLeave={handleMenuLeave}
-            >
-              <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-elevated rounded-lg transition-colors">
-                Industries <ChevronDown className="w-3.5 h-3.5" />
-              </button>
-
-              {openMenu === 'industries' && (
-                <div
-                  className="absolute top-full -left-4 mt-1 w-[540px] bg-surface rounded-xl border border-border shadow-xl shadow-black/5 p-3 grid grid-cols-2 gap-1"
-                  onMouseEnter={() => handleMenuEnter('industries')}
-                  onMouseLeave={handleMenuLeave}
-                >
-                  {INDUSTRIES_LIST.map((i) => (
-                    <Link
-                      key={i.slug}
-                      href={`/industries/${i.slug}`}
-                      className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-surface-elevated transition-colors"
-                      onClick={() => setOpenMenu(null)}
-                    >
-                      <div className="w-8 h-8 bg-surface-elevated rounded-lg flex items-center justify-center flex-shrink-0">
-                        <i.icon className="w-4 h-4 text-accent" />
-                      </div>
-                      <div className="text-sm font-medium text-text-primary">{i.label}</div>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <Link href="/products" className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-elevated rounded-lg transition-colors">Pricing</Link>
-
-            <div className="w-px h-6 bg-border mx-2" />
-
-            <Link href="/login" className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-elevated rounded-lg transition-colors">Login</Link>
-            <Link
-              href="/register"
-              className="ml-1 px-4 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent-light transition-colors shadow-sm"
-            >
-              Start Free
-            </Link>
-          </div>
-
-          <button className="md:hidden p-2 rounded-lg hover:bg-surface-elevated transition-colors" onClick={() => setMobileOpen(!mobileOpen)}>
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </svg>
           </button>
         </div>
       </div>
 
-      {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-surface max-h-[80vh] overflow-y-auto">
-          <div className="px-4 py-4 space-y-1">
-            <div className="text-xs font-semibold text-text-muted uppercase tracking-wider px-3 pt-2 pb-1">Products</div>
-            {PRODUCTS_LIST.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/${p.slug}`}
-                className="block px-3 py-2.5 text-sm text-text-secondary hover:bg-surface-elevated hover:text-text-primary rounded-lg transition-colors"
-                onClick={() => setMobileOpen(false)}
-              >
-                {p.label}
-              </Link>
+      <div
+        id="mobile-menu"
+        data-open={mobileOpen || undefined}
+        className="mobile-menu absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background lg:hidden"
+      >
+          <div className="mx-auto max-w-[84rem] px-6 pb-8 pt-2 md:px-8">
+            {[
+              { title: 'Products', items: PRODUCTS_LIST.map((p) => ({ href: `/${p.slug}`, label: p.label })) },
+              {
+                title: 'Solutions',
+                items: [
+                  ...SOLUTIONS_LIST.map((s) => ({ href: `/solutions/${s.slug}`, label: s.label })),
+                  ...EXTRA_SOLUTIONS.map((s) => ({ href: s.href, label: s.label })),
+                ],
+              },
+              { title: 'Industries', items: INDUSTRIES_LIST.map((i) => ({ href: `/industries/${i.slug}`, label: i.label })) },
+            ].map((group) => (
+              <div key={group.title} className="border-b border-border py-4">
+                <p className="pb-2 font-mono text-xs text-tertiary">{group.title}</p>
+                <ul className="grid grid-cols-2 gap-x-4">
+                  {group.items.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="block py-2 text-[0.9375rem] text-foreground hover:text-teal-ink"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-
-            <div className="text-xs font-semibold text-text-muted uppercase tracking-wider px-3 pt-4 pb-1">Solutions</div>
-            {SOLUTIONS_LIST.map((s) => (
-              <Link
-                key={s.slug}
-                href={`/solutions/${s.slug}`}
-                className="block px-3 py-2.5 text-sm text-text-secondary hover:bg-surface-elevated hover:text-text-primary rounded-lg transition-colors"
-                onClick={() => setMobileOpen(false)}
-              >
-                {s.label}
-              </Link>
-            ))}
-            <Link
-              href="/fintech-kyc-verification"
-              className="block px-3 py-2.5 text-sm text-text-secondary hover:bg-surface-elevated hover:text-text-primary rounded-lg transition-colors"
-              onClick={() => setMobileOpen(false)}
-            >
-              Fintech KYC
-            </Link>
-            <Link
-              href="/staffing-identity-check"
-              className="block px-3 py-2.5 text-sm text-text-secondary hover:bg-surface-elevated hover:text-text-primary rounded-lg transition-colors"
-              onClick={() => setMobileOpen(false)}
-            >
-              Staffing
-            </Link>
-
-            <div className="text-xs font-semibold text-text-muted uppercase tracking-wider px-3 pt-4 pb-1">Industries</div>
-            {INDUSTRIES_LIST.map((i) => (
-              <Link
-                key={i.slug}
-                href={`/industries/${i.slug}`}
-                className="block px-3 py-2.5 text-sm text-text-secondary hover:bg-surface-elevated hover:text-text-primary rounded-lg transition-colors"
-                onClick={() => setMobileOpen(false)}
-              >
-                {i.label}
-              </Link>
-            ))}
-
-            <div className="pt-4 mt-4 border-t border-border space-y-1">
-              <Link href="/products" className="block px-3 py-2.5 text-sm font-medium text-text-secondary hover:bg-surface-elevated rounded-lg" onClick={() => setMobileOpen(false)}>All Products & Pricing</Link>
-              <Link href="/products" className="block px-3 py-2.5 text-sm font-medium text-text-secondary hover:bg-surface-elevated rounded-lg" onClick={() => setMobileOpen(false)}>Pricing</Link>
-              <Link href="/login" className="block px-3 py-2.5 text-sm font-medium text-text-secondary hover:bg-surface-elevated rounded-lg" onClick={() => setMobileOpen(false)}>Login</Link>
-              <Link href="/register" className="block w-full text-center px-4 py-2.5 bg-accent text-white text-sm font-semibold rounded-lg mt-2" onClick={() => setMobileOpen(false)}>
-                Start Free
-              </Link>
+            <div className="flex flex-col gap-1 py-4">
+              <Link href="/products" onClick={() => setMobileOpen(false)} className="py-2 text-[0.9375rem] text-foreground">All Products & Pricing</Link>
+              <Link href="/products" onClick={() => setMobileOpen(false)} className="py-2 text-[0.9375rem] text-foreground">Pricing</Link>
+              <Link href="/login" onClick={() => setMobileOpen(false)} className="py-2 text-[0.9375rem] text-foreground">Login</Link>
             </div>
+            <Action href="/register" className="w-full">Start Free</Action>
           </div>
-        </div>
-      )}
-    </nav>
+      </div>
+    </header>
   );
 }

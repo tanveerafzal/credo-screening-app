@@ -1,6 +1,7 @@
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
+import { Container, Section } from '@/components/site/Canvas';
 import { BRAND, legalOperatorLine } from '@/lib/brand';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
@@ -17,27 +18,33 @@ export default function PrivacyPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-28 pb-10 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-extrabold text-gray-900">Privacy Policy</h1>
-          <p className="mt-3 text-gray-500">Last updated: April 2026</p>
-        </div>
+      <section className="px-0 md:px-12">
+        <Container>
+          <div className="px-6 pb-14 pt-32 md:px-8 md:pb-20 md:pt-40">
+            <p className="mb-6 text-sm text-tertiary">
+              <Link href="/" className="hover:text-foreground">Credo</Link>
+              <span className="mx-2 text-border-hover">/</span>
+              <span className="text-muted">Legal</span>
+            </p>
+            <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">Privacy Policy</h1>
+            <p className="mt-6 font-mono text-xs text-tertiary">Last updated: April 2026</p>
+          </div>
+        </Container>
       </section>
 
       {/* Content */}
-      <section className="pb-20">
-        <div className="max-w-3xl mx-auto px-4">
-          <div className="legal-document space-y-8 text-gray-700 text-[15px] leading-relaxed">
+      <Section innerClassName="px-6 md:px-8">
+          <div className="legal-document max-w-2xl space-y-14 text-base leading-[1.75] text-muted">
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">1. Introduction</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">1. Introduction</h2>
               <p>
-                {legalOperatorLine()} This Privacy Policy explains how we collect, use, disclose, and safeguard your
+                {legalOperatorLine()}{' '}This Privacy Policy explains how we collect, use, disclose, and safeguard your
                 information when you use our background screening and related compliance services (the &quot;Service&quot;).
               </p>
               <p className="mt-3">
                 This Privacy Policy is divided into two parts. The first applies to individuals whose names are
-                submitted for screening by our business customers ("Customers"). The second applies to our
+                submitted for screening by our business customers (&quot;Customers&quot;). The second applies to our
                 Customers and visitors to our website.
               </p>
               <p className="mt-3">
@@ -47,16 +54,16 @@ export default function PrivacyPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">2. Privacy Policy for Individuals Being Screened</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">2. Privacy Policy for Individuals Being Screened</h2>
               <p>
                 Our Customers use Credo to screen individuals against watchlists as part of their
                 compliance obligations (AML, KYC, sanctions screening). When a screening is performed:
               </p>
-              <ul className="mt-3 space-y-2 list-disc pl-6">
-                <li><strong>Data collected:</strong> Name, date of birth, nationality, and optionally address and identification numbers, as provided by the Customer</li>
-                <li><strong>How it's used:</strong> Matched against publicly available government and international watchlist databases to determine if a match exists</li>
-                <li><strong>Data retention:</strong> Screening records are retained for 7 years to comply with AML/KYC regulatory requirements</li>
-                <li><strong>Data sharing:</strong> Screening results are returned to the Customer who initiated the request. We do not share your data with any other third party</li>
+              <ul className="mt-3 space-y-2 list-disc pl-5 marker:text-tertiary">
+                <li><strong className="font-medium text-foreground">Data collected:</strong> Name, date of birth, nationality, and optionally address and identification numbers, as provided by the Customer</li>
+                <li><strong className="font-medium text-foreground">How it&apos;s used:</strong> Matched against publicly available government and international watchlist databases to determine if a match exists</li>
+                <li><strong className="font-medium text-foreground">Data retention:</strong> Screening records are retained for 7 years to comply with AML/KYC regulatory requirements</li>
+                <li><strong className="font-medium text-foreground">Data sharing:</strong> Screening results are returned to the Customer who initiated the request. We do not share your data with any other third party</li>
               </ul>
               <p className="mt-3">
                 Credo acts as a data processor on behalf of our Customers. The Customer is the data
@@ -66,30 +73,30 @@ export default function PrivacyPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">3. Privacy Policy for Customers and Website Visitors</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">3. Privacy Policy for Customers and Website Visitors</h2>
 
-              <h3 className="text-lg font-semibold text-gray-800 mt-4 mb-2">Information We Collect</h3>
+              <h3 className="mb-2 mt-6 text-[1.0625rem] leading-snug tracking-[-0.015em]">Information We Collect</h3>
 
-              <p><strong>Account Information:</strong> When you register, we collect your name, email address,
+              <p><strong className="font-medium text-foreground">Account Information:</strong> When you register, we collect your name, email address,
               company name, and phone number (optional). This information is used to create your account,
               provide customer support, and communicate service updates.</p>
 
-              <p className="mt-3"><strong>Screening Data:</strong> When you perform a screening, we process the names
+              <p className="mt-3"><strong className="font-medium text-foreground">Screening Data:</strong> When you perform a screening, we process the names
               and identifiers you submit. This data is used solely to match against our watchlist databases and
               return results to you.</p>
 
-              <p className="mt-3"><strong>Usage Data:</strong> We automatically collect information about how you use
+              <p className="mt-3"><strong className="font-medium text-foreground">Usage Data:</strong> We automatically collect information about how you use
               our service, including IP addresses, browser type, pages visited, API usage metrics, and
               screening volumes.</p>
 
-              <p className="mt-3"><strong>Payment Information:</strong> If you subscribe to a paid plan, payment
+              <p className="mt-3"><strong className="font-medium text-foreground">Payment Information:</strong> If you subscribe to a paid plan, payment
               information is processed by our third-party payment processor. We do not store credit card
               numbers on our servers.</p>
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">4. How We Use Your Information</h2>
-              <ul className="space-y-2 list-disc pl-6">
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">4. How We Use Your Information</h2>
+              <ul className="space-y-2 list-disc pl-5 marker:text-tertiary">
                 <li>Provide and maintain the screening service</li>
                 <li>Process screening requests and return results</li>
                 <li>Manage your account and API access</li>
@@ -102,24 +109,24 @@ export default function PrivacyPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">5. Data Retention</h2>
-              <ul className="space-y-2 list-disc pl-6">
-                <li><strong>Screening records:</strong> Retained for 7 years (AML/KYC regulatory compliance)</li>
-                <li><strong>Account information:</strong> Retained for as long as your account is active</li>
-                <li><strong>Webhook delivery logs:</strong> Retained for 90 days</li>
-                <li><strong>Usage logs:</strong> Retained for 12 months</li>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">5. Data Retention</h2>
+              <ul className="space-y-2 list-disc pl-5 marker:text-tertiary">
+                <li><strong className="font-medium text-foreground">Screening records:</strong> Retained for 7 years (AML/KYC regulatory compliance)</li>
+                <li><strong className="font-medium text-foreground">Account information:</strong> Retained for as long as your account is active</li>
+                <li><strong className="font-medium text-foreground">Webhook delivery logs:</strong> Retained for 90 days</li>
+                <li><strong className="font-medium text-foreground">Usage logs:</strong> Retained for 12 months</li>
               </ul>
               <p className="mt-3">
                 You may request account deletion by contacting us at{' '}
-                <a href="mailto:support@credoscreening.com" className="text-indigo-600 hover:underline">support@credoscreening.com</a>.
+                <a href="mailto:support@credoscreening.com" className="font-medium text-foreground underline decoration-foreground/25 underline-offset-4 hover:decoration-foreground/70">support@credoscreening.com</a>.
                 Note that screening records may be retained as required by law even after account deletion.
               </p>
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">6. Data Security</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">6. Data Security</h2>
               <p>We implement industry-standard security measures to protect your data:</p>
-              <ul className="mt-3 space-y-2 list-disc pl-6">
+              <ul className="mt-3 space-y-2 list-disc pl-5 marker:text-tertiary">
                 <li>All data transmitted over HTTPS/TLS encryption</li>
                 <li>API keys stored with cryptographic hashing</li>
                 <li>Webhook payloads signed with HMAC-SHA256 for authenticity verification</li>
@@ -130,21 +137,21 @@ export default function PrivacyPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">7. Data Sharing</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">7. Data Sharing</h2>
               <p>We do not sell your personal information. We may share data with:</p>
-              <ul className="mt-3 space-y-2 list-disc pl-6">
-                <li><strong>Service providers:</strong> Google Cloud Platform (hosting), Neon (database), Resend (email delivery), Vercel (website hosting)</li>
-                <li><strong>Legal requirements:</strong> When required by law, regulation, subpoena, or legal process</li>
-                <li><strong>Business transfers:</strong> In connection with a merger, acquisition, or sale of assets, with appropriate notice</li>
+              <ul className="mt-3 space-y-2 list-disc pl-5 marker:text-tertiary">
+                <li><strong className="font-medium text-foreground">Service providers:</strong> Google Cloud Platform (hosting), Neon (database), Resend (email delivery), Vercel (website hosting)</li>
+                <li><strong className="font-medium text-foreground">Legal requirements:</strong> When required by law, regulation, subpoena, or legal process</li>
+                <li><strong className="font-medium text-foreground">Business transfers:</strong> In connection with a merger, acquisition, or sale of assets, with appropriate notice</li>
               </ul>
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">8. Watchlist Data Sources</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">8. Watchlist Data Sources</h2>
               <p>
                 The screening data we match against is sourced from publicly available government and international
                 organization databases. Our primary data source is{' '}
-                <a href="https://opensanctions.org" className="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">OpenSanctions</a>,
+                <a href="https://opensanctions.org" className="font-medium text-foreground underline decoration-foreground/25 underline-offset-4 hover:decoration-foreground/70" target="_blank" rel="noopener noreferrer">OpenSanctions</a>,
                 which aggregates data from OFAC, EU, UN, UK, and 80+ other official sources.
               </p>
               <p className="mt-3">
@@ -154,25 +161,25 @@ export default function PrivacyPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">9. Your Rights</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">9. Your Rights</h2>
               <p>Depending on your jurisdiction (GDPR, CCPA, PIPEDA), you may have the right to:</p>
-              <ul className="mt-3 space-y-2 list-disc pl-6">
-                <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
-                <li><strong>Correction:</strong> Request correction of inaccurate data</li>
-                <li><strong>Deletion:</strong> Request deletion of your personal data (subject to legal retention requirements)</li>
-                <li><strong>Objection:</strong> Object to or restrict certain types of processing</li>
-                <li><strong>Portability:</strong> Request your data in a machine-readable format</li>
-                <li><strong>Withdraw consent:</strong> Where processing is based on consent, withdraw it at any time</li>
+              <ul className="mt-3 space-y-2 list-disc pl-5 marker:text-tertiary">
+                <li><strong className="font-medium text-foreground">Access:</strong> Request a copy of the personal data we hold about you</li>
+                <li><strong className="font-medium text-foreground">Correction:</strong> Request correction of inaccurate data</li>
+                <li><strong className="font-medium text-foreground">Deletion:</strong> Request deletion of your personal data (subject to legal retention requirements)</li>
+                <li><strong className="font-medium text-foreground">Objection:</strong> Object to or restrict certain types of processing</li>
+                <li><strong className="font-medium text-foreground">Portability:</strong> Request your data in a machine-readable format</li>
+                <li><strong className="font-medium text-foreground">Withdraw consent:</strong> Where processing is based on consent, withdraw it at any time</li>
               </ul>
               <p className="mt-3">
                 To exercise these rights, contact{' '}
-                <a href="mailto:support@credoscreening.com" className="text-indigo-600 hover:underline">support@credoscreening.com</a>.
+                <a href="mailto:support@credoscreening.com" className="font-medium text-foreground underline decoration-foreground/25 underline-offset-4 hover:decoration-foreground/70">support@credoscreening.com</a>.
                 We will respond within 30 days.
               </p>
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">10. Cookies and Local Storage</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">10. Cookies and Local Storage</h2>
               <p>
                 We use essential cookies for authentication and session management. We use browser localStorage
                 to track free-tier screening usage (daily limit counter) and authentication state.
@@ -181,7 +188,7 @@ export default function PrivacyPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">11. Children's Privacy</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">11. Children&apos;s Privacy</h2>
               <p>
                 Our Service is intended for business use and is not directed at individuals under 18 years of age.
                 We do not knowingly collect personal information from children.
@@ -189,7 +196,7 @@ export default function PrivacyPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">12. International Data Transfers</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">12. International Data Transfers</h2>
               <p>
                 Our services are hosted on Google Cloud Platform in North America. If you access the Service
                 from outside North America, your data may be transferred to and processed in Canada or the
@@ -198,7 +205,7 @@ export default function PrivacyPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">13. Changes to This Policy</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">13. Changes to This Policy</h2>
               <p>
                 We may update this Privacy Policy from time to time. Material changes will be communicated via
                 email or by posting a notice on our website at least 30 days before they take effect.
@@ -207,22 +214,21 @@ export default function PrivacyPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">14. Contact Information</h2>
+              <h2 className="mb-4 text-xl leading-snug sm:text-2xl">14. Contact Information</h2>
               <p>If you have any questions about this Privacy Policy, please contact us at:</p>
               <p className="mt-3">
-                <strong>Email:</strong> <a href="mailto:support@credoscreening.com" className="text-indigo-600 hover:underline">support@credoscreening.com</a><br />
-                <strong>Website:</strong> <a href="https://credoscreening.com" className="text-indigo-600 hover:underline">credoscreening.com</a><br />
-                <strong>Address:</strong> Toronto, Ontario, Canada
+                <strong className="font-medium text-foreground">Email:</strong> <a href="mailto:support@credoscreening.com" className="font-medium text-foreground underline decoration-foreground/25 underline-offset-4 hover:decoration-foreground/70">support@credoscreening.com</a><br />
+                <strong className="font-medium text-foreground">Website:</strong> <a href="https://credoscreening.com" className="font-medium text-foreground underline decoration-foreground/25 underline-offset-4 hover:decoration-foreground/70">credoscreening.com</a><br />
+                <strong className="font-medium text-foreground">Address:</strong> Toronto, Ontario, Canada
               </p>
               <p className="mt-3">
-                <strong>Legal entity:</strong> {BRAND.legalEntity}<br />
-                <strong>Registered business name:</strong> {BRAND.registeredName}
+                <strong className="font-medium text-foreground">Legal entity:</strong> {BRAND.legalEntity}<br />
+                <strong className="font-medium text-foreground">Registered business name:</strong> {BRAND.registeredName}
               </p>
             </div>
 
           </div>
-        </div>
-      </section>
+      </Section>
 
       <Footer />
     </>

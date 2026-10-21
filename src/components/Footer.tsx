@@ -1,55 +1,71 @@
 import Link from 'next/link';
-import { LogoIcon } from './Logo';
+import { Logo } from './Logo';
 import { BRAND, copyrightLine } from '@/lib/brand';
+import { AsciiField } from './site/AsciiField';
+
+const PRODUCT_LINKS: Array<[string, string]> = [
+  ['Products', '/products'],
+  ['Digital Onboarding', '/credo-onboarding'],
+  ['ID Verification', '/credo-id-verification'],
+  ['Free Screening', '/screening'],
+  ['Trusted Signatures', '/credo-trusted-signatures'],
+  ['Pricing', '/#pricing'],
+  ['API Docs', '/docs'],
+];
+
+const COMPANY_LINKS: Array<[string, string]> = [
+  ['Partner Portal', BRAND.partnerPortal],
+  ['About', '/about'],
+  ['Careers', '/careers'],
+  ['Privacy Policy', '/privacy'],
+  ['Terms of Service', '/terms'],
+];
+
+function FooterLink({ label, href }: { label: string; href: string }) {
+  const cls = 'text-sm text-white/60 transition-colors hover:text-white';
+  return href.startsWith('http') ? (
+    <a href={href} className={cls}>{label}</a>
+  ) : (
+    <Link href={href} className={cls}>{label}</Link>
+  );
+}
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-slate-400">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2.5 mb-4">
-              <LogoIcon size={28} />
-              <span className="text-lg font-bold text-accent-light">
-                {BRAND.name}
-              </span>
-            </div>
-            <p className="text-sm leading-relaxed max-w-md text-slate-400">
+    <footer className="relative overflow-hidden bg-night px-0 text-white/60 md:px-12">
+      <div className="absolute inset-x-0 bottom-0 h-72" aria-hidden="true">
+        <AsciiField tone="dark" focus={[0.78, 0.95]} />
+        <div className="absolute inset-0 bg-gradient-to-b from-night via-night/30 to-transparent" />
+      </div>
+      <div className="relative mx-auto w-full max-w-[84rem] border-x border-white/10">
+        <div className="grid gap-12 px-6 pb-48 pt-16 md:grid-cols-12 md:px-8 md:pt-20">
+          <div className="md:col-span-6">
+            <Logo size={108} tone="white" />
+            <p className="mt-6 max-w-sm text-sm leading-[1.75] text-white/60">
               {BRAND.tagline} Screen against 1.2M+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists worldwide.
             </p>
           </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Product</h3>
-            <ul className="space-y-2.5 text-sm">
-              <li><Link href="/products" className="hover:text-white transition-colors">Products</Link></li>
-              <li><Link href="/credo-onboarding" className="hover:text-white transition-colors">Digital Onboarding</Link></li>
-              <li><Link href="/credo-id-verification" className="hover:text-white transition-colors">ID Verification</Link></li>
-              <li><Link href="/screening" className="hover:text-white transition-colors">Free Screening</Link></li>
-              <li><Link href="/credo-trusted-signatures" className="hover:text-white transition-colors">Trusted Signatures</Link></li>
-              <li><Link href="/#pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-              <li><Link href="/docs" className="hover:text-white transition-colors">API Docs</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-white mb-4">Company</h3>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <a href={BRAND.partnerPortal} className="hover:text-white transition-colors">
-                  Partner Portal
-                </a>
-              </li>
-              <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-              <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
-              <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
-            </ul>
-          </div>
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-8 md:col-span-6 md:justify-items-end">
+            <div>
+              <h2 className="mb-4 font-mono text-xs font-normal tracking-normal text-white/55">Product</h2>
+              <ul className="space-y-2.5">
+                {PRODUCT_LINKS.map(([label, href]) => (
+                  <li key={label}><FooterLink label={label} href={href} /></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="mb-4 font-mono text-xs font-normal tracking-normal text-white/55">Company</h2>
+              <ul className="space-y-2.5">
+                {COMPANY_LINKS.map(([label, href]) => (
+                  <li key={label}><FooterLink label={label} href={href} /></li>
+                ))}
+              </ul>
+            </div>
+          </nav>
         </div>
-
-        <div className="border-t border-slate-800 mt-8 pt-6 text-xs text-slate-500">
-          <span>{copyrightLine()} · All rights reserved.</span>
+        <div className="relative border-t border-white/10 px-6 py-5 text-xs text-white/45 md:px-8">
+          <span>{copyrightLine(2026)} · All rights reserved.</span>
         </div>
       </div>
     </footer>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { Container } from '../site/Canvas';
 
 interface FAQProps {
   title?: string;
@@ -9,32 +9,60 @@ interface FAQProps {
   compactTop?: boolean;
 }
 
-export function FAQ({ title = 'Frequently Asked Questions', items, compactTop = false }: FAQProps) {
+export function FAQ({ title = 'Frequently Asked Questions', items }: FAQProps) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className={`${compactTop ? 'pt-6 pb-10 sm:pt-8 sm:pb-12' : 'py-10 sm:py-12'} bg-surface`}>
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold text-text-primary">{title}</h2>
+    <section className="border-t border-border px-0 md:px-12">
+      <Container className="grid gap-10 py-20 md:py-28 lg:grid-cols-12">
+        <div className="px-6 md:px-8 lg:col-span-4">
+          <h2 className="text-2xl leading-tight sm:text-[2rem]">{title}</h2>
         </div>
-        <div className="space-y-2">
-          {items.map((item, i) => (
-            <div key={i} className="bg-surface rounded-xl border border-border overflow-hidden">
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-surface-elevated transition-colors"
-              >
-                <span className="font-semibold text-text-primary text-sm">{item.q}</span>
-                <ChevronDown className={`w-4 h-4 text-text-muted flex-shrink-0 ml-4 transition-transform duration-200 ${open === i ? 'rotate-180' : ''}`} />
-              </button>
-              {open === i && (
-                <div className="px-5 pb-4 text-sm text-text-secondary leading-relaxed">{item.a}</div>
-              )}
-            </div>
-          ))}
+        <div className="px-6 md:px-8 lg:col-span-8">
+          <div className="border-y border-border">
+            {items.map((item, i) => {
+              const isOpen = open === i;
+              return (
+                <div key={i} className="border-b border-border last:border-b-0">
+                  <h3 className="text-base tracking-normal">
+                    <button
+                      type="button"
+                      id={`faq-${i}-q`}
+                      onClick={() => setOpen(isOpen ? null : i)}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-${i}`}
+                      className="flex w-full items-center justify-between gap-6 py-5 text-left font-medium text-foreground-highlight transition-colors hover:text-teal-ink"
+                    >
+                      <span>{item.q}</span>
+                      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" className="shrink-0 text-tertiary">
+                        <path d="M3 8h10" stroke="currentColor" strokeWidth="1.5" />
+                        <path
+                          d="M8 3v10"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          className={`origin-center transition-transform duration-200 ${isOpen ? 'scale-y-0' : ''}`}
+                        />
+                      </svg>
+                    </button>
+                  </h3>
+                  {/* Grid-track accordion: the outer div animates 0fr to 1fr, the inner div clips. */}
+                  <div
+                    id={`faq-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-${i}-q`}
+                    data-open={isOpen || undefined}
+                    className="faq-panel"
+                  >
+                    <div>
+                      <div className="max-w-2xl pb-6 text-[0.9375rem] leading-[1.75] text-muted">{item.a}</div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
