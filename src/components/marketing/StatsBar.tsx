@@ -1,28 +1,27 @@
-import { Database, Globe, Clock, Shield } from 'lucide-react';
+import { Container } from '../site/Canvas';
 
-export function StatsBar() {
-  const stats = [
-    { value: '1.2M+', label: 'Entities Screened Against', icon: Database },
-    { value: '80+', label: 'Global Data Sources', icon: Globe },
-    { value: '<3s', label: 'Average Response Time', icon: Clock },
-    { value: '99.9%', label: 'Uptime SLA', icon: Shield },
-  ];
+export const DEFAULT_STATS = [
+  { value: '1.2M+', label: 'Entities Screened Against' },
+  { value: '80+', label: 'Global Data Sources' },
+  { value: '<3s', label: 'Average Response Time' },
+  { value: '99.9%', label: 'Uptime SLA' },
+];
 
+export function StatsBar({ stats = DEFAULT_STATS }: { stats?: Array<{ value: string; label: string }> }) {
   return (
-    <section className="py-8 bg-surface border-y border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <section className="border-t border-border px-0 md:px-12">
+      <Container>
+        <div className="cells-clip">
+        <dl className="cells grid-cols-2 md:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-accent-subtle mb-3">
-                <s.icon className="w-5 h-5 text-accent" />
-              </div>
-              <div className="text-2xl sm:text-3xl font-bold text-text-primary">{s.value}</div>
-              <div className="text-sm text-text-muted mt-1">{s.label}</div>
+            <div key={s.label} className="px-6 py-7 md:px-8 md:py-9">
+              <dt className="font-mono text-xs text-tertiary">{s.label}</dt>
+              <dd className="mt-2 text-3xl font-medium tracking-[-0.04em] text-foreground-highlight sm:text-[2.25rem]">{s.value}</dd>
             </div>
           ))}
+        </dl>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

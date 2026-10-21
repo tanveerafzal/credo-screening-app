@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import type { ReactNode } from 'react';
+import { Action, Container } from '../site/Canvas';
+import { AsciiField } from '../site/AsciiField';
 
 interface PageHeroProps {
   badge: string;
@@ -7,6 +9,9 @@ interface PageHeroProps {
   subtitle: string;
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
+  /** Optional figure shown beside the copy on wide screens. */
+  aside?: ReactNode;
+  note?: ReactNode;
 }
 
 export function PageHero({
@@ -15,34 +20,35 @@ export function PageHero({
   subtitle,
   primaryCta = { label: 'Try Free', href: '/register' },
   secondaryCta = { label: 'Contact Sales', href: '/contact' },
+  aside,
+  note,
 }: PageHeroProps) {
   return (
-    <section className="pt-20 pb-8 sm:pt-24 sm:pb-10 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-surface-elevated to-surface" />
-      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-subtle text-accent rounded-full text-xs font-semibold mb-6 border border-accent/10">
-          {badge}
+    <section className="relative overflow-hidden px-0 md:px-12">
+      {!aside ? (
+        <div className="absolute inset-0 opacity-70" aria-hidden="true">
+          <AsciiField focus={[0.86, 0.5]} fadeLeft={0.42} />
         </div>
-        <h1 className="text-4xl sm:text-5xl font-bold text-text-primary leading-tight max-w-3xl mx-auto tracking-tight">
-          {title}
-        </h1>
-        <p className="mt-5 text-lg text-text-secondary max-w-2xl mx-auto">{subtitle}</p>
-        <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-          <Link
-            href={primaryCta.href}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light shadow-sm shadow-accent/20 transition-all"
-          >
-            {primaryCta.label} <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link
-            href={secondaryCta.href}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-surface text-text-primary font-semibold rounded-lg border border-border hover:border-text-muted transition-all"
-          >
-            {secondaryCta.label}
-          </Link>
+      ) : null}
+      <Container className="relative">
+        <div className={aside ? 'grid items-center gap-12 px-6 pb-16 pt-32 md:px-8 md:pb-24 md:pt-40 lg:grid-cols-12' : 'px-6 pb-16 pt-32 md:px-8 md:pb-24 md:pt-44'}>
+          <div className={aside ? 'lg:col-span-6' : 'max-w-2xl'}>
+            <p className="mb-6 text-sm text-tertiary">
+              <Link href="/" className="hover:text-foreground">Credo</Link>
+              <span className="mx-2 text-border-hover">/</span>
+              <span className="text-muted">{badge}</span>
+            </p>
+            <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">{title}</h1>
+            <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">{subtitle}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Action href={primaryCta.href}>{primaryCta.label}</Action>
+              <Action href={secondaryCta.href} variant="secondary">{secondaryCta.label}</Action>
+            </div>
+            {note ? <div className="mt-5 text-sm text-tertiary">{note}</div> : null}
+          </div>
+          {aside ? <div className="lg:col-span-5 lg:col-start-8">{aside}</div> : null}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

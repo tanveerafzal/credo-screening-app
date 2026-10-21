@@ -1,50 +1,65 @@
 @import "tailwindcss";
 
+/*
+ * Credo canvas. Light, ruled, near-monochrome. Teal is reserved for the
+ * wordmark, pixel marks, the ASCII field and "pass" states; actions are ink.
+ * Legacy token names (primary, accent, surface, text-*) are kept so the app
+ * screens (login, register, dashboard, legal) inherit the new palette.
+ */
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --primary: #0f2b46;
-  --primary-light: #1e3a5f;
-  --accent: #0d9488;
-  --accent-light: #14b8a6;
-  --accent-subtle: #ccfbf1;
-  --surface: #ffffff;
-  --surface-elevated: #f1f5f9;
-  --border: #e2e8f0;
-  --border-subtle: #f1f5f9;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  --success: #059669;
-  --danger: #dc2626;
-  --warning: #d97706;
-}
+  color-scheme: light;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0c1222;
-    --foreground: #f1f5f9;
-    --primary: #e2f1ff;
-    --primary-light: #bfdbfe;
-    --accent: #2dd4bf;
-    --accent-light: #5eead4;
-    --accent-subtle: #042f2e;
-    --surface: #0f1729;
-    --surface-elevated: #1e293b;
-    --border: #334155;
-    --border-subtle: #1e293b;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --success: #34d399;
-    --danger: #f87171;
-    --warning: #fbbf24;
-  }
+  --background: #ffffff;
+  --foreground: #0b1110;
+  --foreground-highlight: #000000;
+  --muted: #4a5553;
+  --tertiary: #66716f;
+
+  --border: rgba(11, 17, 16, 0.09);
+  --border-subtle: rgba(11, 17, 16, 0.05);
+  --border-emphasized: rgba(11, 17, 16, 0.16);
+  --border-hover: rgba(11, 17, 16, 0.24);
+  --border-focus: rgba(11, 17, 16, 0.45);
+
+  --teal: #0d9488;
+  --teal-ink: #0f766e;
+  --teal-press: #0b5d57;
+  --teal-wash: #e7f4f2;
+
+  --ink: #0b1110;
+  --ink-hover: #26302e;
+  --night: #070b0a;
+
+  /* Legacy names, remapped */
+  --primary: #0b1110;
+  --primary-light: #26302e;
+  --accent: #0f766e;
+  --accent-light: #0b5d57;
+  --accent-subtle: #e7f4f2;
+  --surface: #ffffff;
+  --surface-elevated: #f6f7f7;
+  --text-primary: #0b1110;
+  --text-secondary: #4a5553;
+  --text-muted: #66716f;
+  --success: #0f766e;
+  --danger: #b42318;
+  --warning: #8a5a00;
+
+  --heading-tracking: -0.045em;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-foreground-highlight: var(--foreground-highlight);
+  --color-muted: var(--muted);
+  --color-tertiary: var(--tertiary);
+  --color-ink: var(--ink);
+  --color-night: var(--night);
+  --color-teal: var(--teal);
+  --color-teal-ink: var(--teal-ink);
+  --color-teal-wash: var(--teal-wash);
   --color-primary: var(--primary);
   --color-primary-light: var(--primary-light);
   --color-accent: var(--accent);
@@ -54,48 +69,118 @@
   --color-surface-elevated: var(--surface-elevated);
   --color-border: var(--border);
   --color-border-subtle: var(--border-subtle);
+  --color-border-emphasized: var(--border-emphasized);
+  --color-border-hover: var(--border-hover);
+  --color-border-focus: var(--border-focus);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
   --color-success: var(--success);
   --color-danger: var(--danger);
   --color-warning: var(--warning);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+h1, h2, h3, h4 {
+  font-weight: 500;
+  text-wrap: balance;
+  color: var(--foreground-highlight);
 }
 
-/* Focus ring utility */
+h1, h2 {
+  letter-spacing: var(--heading-tracking);
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--teal-wash);
+  color: var(--foreground-highlight);
+}
+
 *:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: 2px solid var(--teal-ink);
+  outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+input, select, textarea {
+  caret-color: var(--teal-ink);
 }
 
-::-webkit-scrollbar-track {
-  background: var(--surface-elevated);
+a {
+  text-underline-offset: 3px;
+}
 }
 
+/* Scrollbar, themed from the palette */
+* {
+  scrollbar-color: rgba(11, 17, 16, 0.22) transparent;
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
+  background: rgba(11, 17, 16, 0.18);
+  border-radius: 10px;
+  border: 3px solid var(--background);
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(11, 17, 16, 0.32); }
+
+/* Header surface: solid fallback, translucent where backdrop filtering exists */
+.chrome-surface {
+  background: var(--background);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .chrome-surface {
+    background: rgba(255, 255, 255, 0.84);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+/* One authored moment: hero record checks resolve in sequence. */
+@keyframes credo-resolve {
+  from { opacity: 0; filter: blur(3px); transform: translateX(4px); }
+  to { opacity: 1; filter: blur(0); transform: none; }
 }
+@keyframes credo-scan {
+  from { background-color: var(--teal-wash); }
+  to { background-color: transparent; }
+}
+.resolve-row { animation: credo-scan 900ms var(--ease-out) both; }
+.resolve-value { animation: credo-resolve 700ms var(--ease-out) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+ * Ruled cell grids. Every cell draws its right and bottom rule; the clip hides
+ * the last column's and last row's rules so each shared edge has one owner.
+ */
+.cells-clip { overflow: hidden; }
+.cells { display: grid; margin-right: -1px; margin-bottom: -1px; }
+.cells > * { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }

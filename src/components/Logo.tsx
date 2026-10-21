@@ -1,42 +1,31 @@
-import Image from 'next/image';
 import { BRAND } from '@/lib/brand';
 
 interface LogoProps {
+  /** Rendered wordmark width in px. */
   size?: number;
   className?: string;
   showText?: boolean;
+  tone?: 'teal' | 'white';
 }
 
-export function Logo({ size = 32, className = '', showText = true }: LogoProps) {
-  const height = 110;
-  // The logo image has a ~2.2:1 aspect ratio
-  const width = Math.round(height * 2.2);
+const RATIO = 1331 / 4667;
 
+export function Logo({ size = 92, className = '', tone = 'teal' }: LogoProps) {
   return (
-    <div className={`flex items-center ${className}`}>
-      {showText ? (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
-          src="/trustcredo_logo.png"
-          alt={`${BRAND.name} — AML & sanctions screening`}
-          width={width}
-          height={height}
-          className="hidden sm:block"
-        />
-      ) : null}
-      {/* Mobile: show just the shield icon */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/logo.svg"
-        alt={BRAND.name}
-        width={size}
-        height={size}
-        className={showText ? 'sm:hidden' : ''}
-      />
-    </div>
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      src={tone === 'white' ? '/brand/credo-wordmark-white.svg' : '/brand/credo-wordmark.svg'}
+      alt={`${BRAND.name}: AML & sanctions screening`}
+      width={size}
+      height={Math.round(size * RATIO)}
+      className={`block h-auto ${className}`}
+    />
   );
 }
 
 export function LogoIcon({ size = 32, className = '' }: { size?: number; className?: string }) {
-  return <Image src="/logo.svg" alt="Credo" width={size} height={size} className={className} />;
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img src="/brand/credo-wordmark.svg" alt="Credo" width={size * 2.6} height={size} className={className} />
+  );
 }
