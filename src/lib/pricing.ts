@@ -46,6 +46,12 @@ export function formatUsd(amount: number): string {
   return `$${amount.toFixed(2)}`;
 }
 
+export const STARTING_FROM = 'Starting from';
+
+export function formatStartingFrom(amount: number): string {
+  return `${STARTING_FROM} ${formatUsd(amount)}`;
+}
+
 /** Shared FAQ answers — import in product/solution pages */
 export const PRICING_FAQ = {
   freeTier: `${FREE_TRIAL.description} After that, pay per use.`,

@@ -136,7 +136,7 @@ export default function StaffingIdentityCheckPage() {
         stats={[
           { value: '<30s', label: 'Verification Time' },
           { value: '200+', label: 'Countries Supported' },
-          { value: '$0.99', label: 'Per ID Check' },
+          { value: '$0.99', label: 'Starting from / ID check' },
           { value: '80+', label: 'Watchlist Sources' },
         ]}
       />

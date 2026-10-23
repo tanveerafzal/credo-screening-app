@@ -21,6 +21,7 @@ import {
   FREE_TRIAL,
   PRICING_FAQ,
   PRODUCT_PRICES,
+  STARTING_FROM,
   formatUsd,
 } from '@/lib/pricing';
 
@@ -36,7 +37,7 @@ const PRODUCTS = [
   {
     name: 'Digital Onboarding',
     tagline: 'Verify + screen in one flow',
-    price: `From ${formatUsd(PRODUCT_PRICES.idVerification.amount)}`,
+    price: formatUsd(PRODUCT_PRICES.idVerification.amount),
     unit: 'per check',
     description: 'Complete remote onboarding: ID verification, selfie liveness, and AML/watchlist screening in a single workflow.',
     features: [
@@ -115,7 +116,7 @@ const WHY = [
 ];
 
 const COMPARISON: Array<{ feature: string; idv: string | boolean; screen: string | boolean; bundle: string | boolean }> = [
-  { feature: 'Price per check', idv: formatUsd(PRODUCT_PRICES.idVerification.amount), screen: formatUsd(PRODUCT_PRICES.screening.amount), bundle: formatUsd(BUNDLE_PRICES.idAndScreening.amount) },
+  { feature: `${STARTING_FROM} / check`, idv: formatUsd(PRODUCT_PRICES.idVerification.amount), screen: formatUsd(PRODUCT_PRICES.screening.amount), bundle: formatUsd(BUNDLE_PRICES.idAndScreening.amount) },
   { feature: 'REST API access', idv: true, screen: true, bundle: true },
   { feature: 'Webhook callbacks', idv: true, screen: true, bundle: true },
   { feature: 'ID document scanning', idv: true, screen: false, bundle: true },
@@ -159,6 +160,7 @@ export default function ProductsPage() {
             </h1>
             <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">
               ID Verification, Background Screening, and Trusted Signatures.
+              Starting from {formatUsd(PRODUCT_PRICES.screening.amount)} per check.
               Pay per use. No contracts. No monthly minimums.
             </p>
             <div className="mt-7">
@@ -181,6 +183,7 @@ export default function ProductsPage() {
                   </div>
                   <p className="mt-1 text-sm text-tertiary">{product.tagline}</p>
                   <p className="mt-7">
+                    <span className="mb-2 block font-mono text-[0.6875rem] uppercase tracking-wide text-tertiary">{STARTING_FROM}</span>
                     <span className="text-[2.5rem] font-medium leading-none tracking-[-0.05em] text-foreground-highlight">{product.price}</span>
                     <span className="ml-1.5 text-sm text-tertiary">/ {product.unit}</span>
                   </p>
@@ -210,7 +213,7 @@ export default function ProductsPage() {
             <Tag tone="teal">Best Value</Tag>
             <h2 className="mt-5 text-2xl leading-tight sm:text-[2rem]">Bundle & Save</h2>
             <p className="mt-5 max-w-xl text-base leading-[1.75] text-muted">
-              Run ID Verification and Background Screening together for just <strong className="font-medium text-foreground-highlight">{formatUsd(BUNDLE_PRICES.idAndScreening.amount)} per check</strong>. Save {formatUsd(BUNDLE_PRICES.idAndScreening.savings)} compared to running them separately.
+              Run ID Verification and Background Screening together {STARTING_FROM.toLowerCase()} <strong className="font-medium text-foreground-highlight">{formatUsd(BUNDLE_PRICES.idAndScreening.amount)} per check</strong>. Save {formatUsd(BUNDLE_PRICES.idAndScreening.savings)} compared to running them separately.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Action href="/register" arrow>Get Started Free</Action>
@@ -230,6 +233,7 @@ export default function ProductsPage() {
                 >
                   <dt className={`order-2 mt-2 font-mono text-xs lg:order-1 lg:mt-0 ${s.note ? 'text-teal-ink' : 'text-tertiary'}`}>{s.label}</dt>
                   <dd className="order-1 lg:order-2 lg:text-right">
+                    <span className="mb-1 block font-mono text-[0.6875rem] uppercase tracking-wide text-tertiary">{STARTING_FROM}</span>
                     <span className="block text-4xl font-medium tracking-[-0.045em] text-foreground-highlight">{s.value}</span>
                     {s.note ? <span className="mt-1 block text-sm text-teal-ink">{s.note}</span> : null}
                   </dd>

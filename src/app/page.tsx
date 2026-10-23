@@ -2,7 +2,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import { BRAND } from '@/lib/brand';
-import { BUNDLE_PRICES, FREE_CREDITS, FREE_TRIAL, PRODUCT_PRICES, formatUsd } from '@/lib/pricing';
+import { BUNDLE_PRICES, FREE_CREDITS, FREE_TRIAL, PRODUCT_PRICES, STARTING_FROM, formatUsd } from '@/lib/pricing';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
 import { Action, ArrowGlyph, CheckGlyph, Container, Index, Section, SectionHeader, Tag, TextLink } from '@/components/site/Canvas';
@@ -243,7 +243,9 @@ export default function Home() {
           title="Simple, Transparent Pricing"
           body={
             <>
-              <p>Pay per use. No monthly minimums. Scale as you grow.</p>
+              <p>
+                {STARTING_FROM} {formatUsd(PRODUCT_PRICES.screening.amount)} per check. Pay per use. No monthly minimums. Scale as you grow.
+              </p>
               <p className="mt-4"><Tag tone="teal">{FREE_TRIAL.headline}</Tag></p>
             </>
           }
@@ -294,7 +296,8 @@ export default function Home() {
                 <span className="text-sm font-medium text-foreground">{p.label}</span>
                 {p.tag ? <span className="font-mono text-[0.6875rem] text-tertiary">{p.tag}</span> : null}
               </div>
-              <span className="mt-6 text-[2.5rem] font-medium leading-none tracking-[-0.05em] text-foreground-highlight">{p.price}</span>
+              <span className="mt-6 font-mono text-[0.6875rem] uppercase tracking-wide text-tertiary">{STARTING_FROM}</span>
+              <span className="mt-2 text-[2.5rem] font-medium leading-none tracking-[-0.05em] text-foreground-highlight">{p.price}</span>
               <span className="mt-2 text-sm text-tertiary">{p.unit}</span>
             </li>
           ))}

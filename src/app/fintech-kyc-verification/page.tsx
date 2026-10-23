@@ -124,7 +124,7 @@ export default function FintechKycPage() {
           { value: '<30s', label: 'Verification Time' },
           { value: '200+', label: 'Countries Supported' },
           { value: '99.9%', label: 'Matching Accuracy' },
-          { value: '$0.99', label: 'Per Verification' },
+          { value: '$0.99', label: 'Starting from / verification' },
         ]}
       />
 
