@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
 import { LogoIcon } from '@/components/Logo';
 import { Loader2, Eye, EyeOff } from 'lucide-react';
-import { register, saveAuth } from '@/lib/auth';
+import { isPendingSignup, register, saveAuth } from '@/lib/auth';
 import { getPartnerDashboardUrl } from '@/lib/id-verify-api';
 
 function RegisterForm() {
@@ -17,9 +17,11 @@ function RegisterForm() {
     password: '',
     confirmPassword: '',
   });
+  const [restrictedIndustryWarrantyAccepted, setRestrictedIndustryWarrantyAccepted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [submittedEmail, setSubmittedEmail] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,6 +42,11 @@ function RegisterForm() {
       return;
     }
 
+    if (!restrictedIndustryWarrantyAccepted) {
+      setError('Please confirm that you are not an adult, gambling, or alcohol business.');
+      return;
+    }
+
     setLoading(true);
     try {
       const data = await register({
@@ -47,7 +54,12 @@ function RegisterForm() {
         password: form.password,
         companyName: form.companyName.trim(),
         contactName: form.contactName.trim(),
+        restrictedIndustryWarrantyAccepted: true,
       });
+      if (isPendingSignup(data) || !('token' in data) || !data.token) {
+        setSubmittedEmail(form.email.trim());
+        return;
+      }
       saveAuth(data.token, data.partner);
       window.location.href = `${DASHBOARD_URL}?token=${encodeURIComponent(data.token)}`;
     } catch (err) {
@@ -67,9 +79,22 @@ function RegisterForm() {
               <LogoIcon size={44} />
             </div>
             <h1 className="text-2xl font-bold text-text-primary">Create your account</h1>
-            <p className="text-sm text-text-muted mt-1">Get your API key and start screening</p>
+            <p className="text-sm text-text-muted mt-1">Request access — we review every new account</p>
           </div>
 
+          {submittedEmail ? (
+            <div className="bg-surface rounded-xl shadow-sm border border-border p-6 sm:p-8 space-y-4 text-center">
+              <h2 className="text-lg font-semibold text-text-primary">Request received</h2>
+              <p className="text-sm text-text-secondary">
+                Your request will be reviewed and approved. We will email you at{' '}
+                <strong className="text-text-primary">{submittedEmail}</strong> once your account is ready.
+              </p>
+              <p className="text-sm text-text-muted">You will not be able to sign in until that review is complete.</p>
+              <Link href="/login" className="inline-block text-accent font-medium hover:text-accent-light transition-colors">
+                Go to sign in
+              </Link>
+            </div>
+          ) : (
           <form onSubmit={handleSubmit} className="bg-surface rounded-xl shadow-sm border border-border p-6 sm:p-8 space-y-4">
             <div>
               <label className="block text-sm font-medium text-text-primary mb-1.5">Company Name</label>
@@ -135,6 +160,16 @@ function RegisterForm() {
               />
             </div>
 
+            <label className="flex items-start gap-2 text-sm text-text-secondary">
+              <input
+                type="checkbox"
+                checked={restrictedIndustryWarrantyAccepted}
+                onChange={(e) => setRestrictedIndustryWarrantyAccepted(e.target.checked)}
+                className="mt-1"
+              />
+              <span>We are not an adult, gambling, or alcohol business</span>
+            </label>
+
             {error && (
               <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
                 {error}
@@ -143,16 +178,17 @@ function RegisterForm() {
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || !restrictedIndustryWarrantyAccepted}
               className="w-full flex items-center justify-center gap-2 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-light disabled:opacity-50 transition-colors"
             >
-              {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Creating account...</> : 'Create Account'}
+              {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Submitting request...</> : 'Request Account'}
             </button>
 
             <p className="text-center text-sm text-text-muted">
               Already have an account? <Link href="/login" className="text-accent font-medium hover:text-accent-light transition-colors">Sign in</Link>
             </p>
           </form>
+          )}
         </div>
       </main>
     </>

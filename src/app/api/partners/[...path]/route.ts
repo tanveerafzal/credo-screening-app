@@ -7,7 +7,8 @@ async function proxyToIdVerifyApi(req: NextRequest, context: RouteContext) {
   const { path } = await context.params;
   const segment = path.join('/');
   const apiBase = getIdVerifyApiUrl();
-  const url = `${apiBase}/api/v1/partners/${segment}`;
+  const search = req.nextUrl.search || '';
+  const url = `${apiBase}/api/v1/partners/${segment}${search}`;
 
   const headers = new Headers();
   const contentType = req.headers.get('content-type');

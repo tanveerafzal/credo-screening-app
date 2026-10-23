@@ -12,12 +12,42 @@ export interface AuthResponse {
   };
 }
 
+export interface PendingSignupResponse {
+  pendingApproval: true;
+  message: string;
+  partner: {
+    id: string;
+    email: string;
+    companyName: string;
+    contactName: string;
+  };
+}
+
+export type RegisterResponse = PendingSignupResponse | AuthResponse;
+
+export function isPendingSignup(data: RegisterResponse): data is PendingSignupResponse {
+  return 'pendingApproval' in data && data.pendingApproval === true;
+}
+
+export interface SignupApproval {
+  partnerId: string;
+  companyName: string;
+  contactName: string;
+  email: string;
+  phone?: string | null;
+  products: { idVerification?: boolean; watchlistScreening?: boolean; creditReport?: boolean };
+  creditBalance: number;
+  createdAt: string;
+  status: 'pending' | 'approved' | 'rejected';
+}
+
 export async function register(data: {
   email: string;
   password: string;
   companyName: string;
   contactName: string;
-}): Promise<AuthResponse> {
+  restrictedIndustryWarrantyAccepted: boolean;
+}): Promise<RegisterResponse> {
   const res = await fetch(`${API_URL}/partners/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -26,6 +56,28 @@ export async function register(data: {
 
   const json = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
   if (!res.ok) throw new Error(json.error || json.message || 'Registration failed');
+  return json.data || json;
+}
+
+export async function getSignupApproval(token: string): Promise<SignupApproval> {
+  const res = await fetch(`${API_URL}/partners/signup-approval?token=${encodeURIComponent(token)}`);
+  const json = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+  if (!res.ok) throw new Error(json.error || json.message || 'Failed to load approval');
+  return json.data || json;
+}
+
+export async function reviewSignupApproval(
+  token: string,
+  action: 'approve' | 'reject'
+): Promise<{ status: string; companyName: string; email: string }> {
+  const res = await fetch(`${API_URL}/partners/signup-approval`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token, action }),
+  });
+
+  const json = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+  if (!res.ok) throw new Error(json.error || json.message || 'Failed to review signup');
   return json.data || json;
 }
 

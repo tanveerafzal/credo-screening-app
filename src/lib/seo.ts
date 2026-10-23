@@ -32,6 +32,7 @@ export const NOINDEX_PATHS = [
   '/forgot-password',
   '/reset-password',
   '/dashboard',
+  '/approve-account',
 ] as const;
 
 export function absoluteUrl(path: string): string {
