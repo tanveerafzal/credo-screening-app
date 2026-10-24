@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { BRAND } from './brand';
 import { INDUSTRIES_LIST } from './industries';
 import { JOBS } from './jobs';
+import { BLOG_POSTS } from './blog';
 import { SOLUTIONS_LIST } from './solutions';
 
 /** Marketing pages that should be indexed. */
@@ -15,6 +16,8 @@ export const INDEXABLE_PATHS = [
   '/fintech-kyc-verification',
   '/staffing-identity-check',
   '/about',
+  '/blog',
+  ...BLOG_POSTS.map((post) => `/blog/${post.slug}`),
   '/contact',
   '/careers',
   '/privacy',

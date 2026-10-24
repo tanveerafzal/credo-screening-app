@@ -6,6 +6,7 @@ import { ChevronDown } from 'lucide-react';
 import { Logo } from './Logo';
 import { SOLUTIONS_LIST } from '@/lib/solutions';
 import { INDUSTRIES_LIST } from '@/lib/industries';
+import { BRAND } from '@/lib/brand';
 import { Action, ArrowGlyph, cx } from './site/Canvas';
 
 const PRODUCTS_LIST = [
@@ -36,21 +37,23 @@ const EXTRA_SOLUTIONS = [
   { href: '/staffing-identity-check', label: 'Staffing', shortDesc: 'Candidate identity verification' },
 ];
 
-type MenuType = 'solutions' | 'industries' | 'products' | null;
+type MenuType = 'solutions' | 'industries' | 'products' | 'resources' | null;
 
 const triggerClass =
   'inline-flex h-8 items-center gap-1 rounded-md px-3 text-sm text-muted transition-colors duration-100 hover:bg-foreground/5 hover:text-foreground aria-expanded:bg-foreground/5 aria-expanded:text-foreground';
 
 function MenuRow({ href, label, desc, onClick }: { href: string; label: string; desc?: string; onClick: () => void }) {
-  return (
-    <Link
-      href={href}
-      onClick={onClick}
-      className="group block rounded-md px-3 py-2.5 transition-colors hover:bg-foreground/[0.04]"
-    >
+  const className = 'group block rounded-md px-3 py-2.5 transition-colors hover:bg-foreground/[0.04]';
+  const content = (
+    <>
       <span className="block text-sm font-medium text-foreground-highlight">{label}</span>
       {desc ? <span className="mt-0.5 block text-[0.8125rem] leading-snug text-tertiary">{desc}</span> : null}
-    </Link>
+    </>
+  );
+  return href.startsWith('http') ? (
+    <a href={href} onClick={onClick} className={className}>{content}</a>
+  ) : (
+    <Link href={href} onClick={onClick} className={className}>{content}</Link>
   );
 }
 
@@ -147,6 +150,15 @@ export function Navbar() {
             </div>,
             'w-[28rem] -left-24 [transform-origin:7.5rem_0]',
           )}
+          {dropdown(
+            'resources',
+            'Resources',
+            <>
+              <MenuRow href="/blog" label="Blogs" desc="Articles on identity verification and digital onboarding" onClick={close} />
+              <MenuRow href={BRAND.docsUrl} label="API Docs" desc="Identity verification and screening API reference" onClick={close} />
+            </>,
+            'w-[22rem] origin-top-left',
+          )}
           <Link href="/products" className={triggerClass}>
             Pricing
           </Link>
@@ -192,6 +204,7 @@ export function Navbar() {
                 ],
               },
               { title: 'Industries', items: INDUSTRIES_LIST.map((i) => ({ href: `/industries/${i.slug}`, label: i.label })) },
+              { title: 'Resources', items: [{ href: '/blog', label: 'Blogs' }, { href: BRAND.docsUrl, label: 'API Docs' }] },
             ].map((group) => (
               <div key={group.title} className="border-b border-border py-4">
                 <p className="pb-2 font-mono text-xs text-tertiary">{group.title}</p>

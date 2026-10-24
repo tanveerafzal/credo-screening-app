@@ -10,6 +10,10 @@ const PRODUCT_LINKS: Array<[string, string]> = [
   ['Free Screening', '/screening'],
   ['Trusted Signatures', '/credo-trusted-signatures'],
   ['Pricing', '/#pricing'],
+];
+
+const RESOURCE_LINKS: Array<[string, string]> = [
+  ['Blogs', '/blog'],
   ['API Docs', BRAND.docsUrl],
 ];
 
@@ -45,11 +49,19 @@ export function Footer() {
               {BRAND.tagline} Screen against 1.2M+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists worldwide.
             </p>
           </div>
-          <nav aria-label="Footer" className="grid grid-cols-2 gap-8 md:col-span-6 md:justify-items-end">
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-6 md:justify-items-end">
             <div>
               <h2 className="mb-4 font-mono text-xs font-normal tracking-normal text-white/55">Product</h2>
               <ul className="space-y-2.5">
                 {PRODUCT_LINKS.map(([label, href]) => (
+                  <li key={label}><FooterLink label={label} href={href} /></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="mb-4 font-mono text-xs font-normal tracking-normal text-white/55">Resources</h2>
+              <ul className="space-y-2.5">
+                {RESOURCE_LINKS.map(([label, href]) => (
                   <li key={label}><FooterLink label={label} href={href} /></li>
                 ))}
               </ul>
