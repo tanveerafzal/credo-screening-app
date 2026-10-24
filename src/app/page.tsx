@@ -147,12 +147,12 @@ export default function Home() {
           filler={
             <>
               <AsciiField focus={[0.5, 0.5]} />
-              <Link
-                href="/docs"
+              <a
+                href={BRAND.docsUrl}
                 className="absolute inset-x-6 bottom-6 inline-flex w-fit items-center gap-1.5 rounded-full bg-background px-3 py-1.5 text-sm font-medium text-foreground shadow-[0_0_0_1px_var(--border-emphasized)] md:inset-x-8"
               >
                 API Docs <ArrowGlyph />
-              </Link>
+              </a>
             </>
           }
         />

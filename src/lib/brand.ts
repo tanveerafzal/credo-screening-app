@@ -20,6 +20,7 @@ export const BRAND = {
 
   /** Product infrastructure — keep on trustcredo.com subdomains */
   partnerPortal: 'https://partner.trustcredo.com',
+  docsUrl: 'https://partner.trustcredo.com/docs',
   sdkUrl: 'https://sdk.trustcredo.com',
   verifyUrl: 'https://verify.trustcredo.com',
 } as const;

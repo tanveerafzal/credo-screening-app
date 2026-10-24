@@ -14,7 +14,6 @@ export const INDEXABLE_PATHS = [
   '/credo-trusted-signatures',
   '/fintech-kyc-verification',
   '/staffing-identity-check',
-  '/docs',
   '/about',
   '/contact',
   '/careers',

@@ -302,7 +302,7 @@ export default function OnboardingPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Action href="/register" arrow>Get Started Free</Action>
-              <Action href="/docs" variant="secondary">View API Docs</Action>
+              <Action href={BRAND.docsUrl} variant="secondary">View API Docs</Action>
             </div>
           </div>
           <ul className="border-t border-border lg:col-span-5 lg:border-l lg:border-t-0">

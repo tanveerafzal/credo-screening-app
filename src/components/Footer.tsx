@@ -10,7 +10,7 @@ const PRODUCT_LINKS: Array<[string, string]> = [
   ['Free Screening', '/screening'],
   ['Trusted Signatures', '/credo-trusted-signatures'],
   ['Pricing', '/#pricing'],
-  ['API Docs', '/docs'],
+  ['API Docs', BRAND.docsUrl],
 ];
 
 const COMPANY_LINKS: Array<[string, string]> = [
