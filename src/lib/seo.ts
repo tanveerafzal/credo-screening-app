@@ -17,6 +17,7 @@ export const INDEXABLE_PATHS = [
   '/staffing-identity-check',
   '/about',
   '/blog',
+  '/supported-documents',
   ...BLOG_POSTS.map((post) => `/blog/${post.slug}`),
   '/contact',
   '/careers',

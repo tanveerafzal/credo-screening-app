@@ -155,6 +155,7 @@ export function Navbar() {
             'Resources',
             <>
               <MenuRow href="/blog" label="Blogs" desc="Articles on identity verification and digital onboarding" onClick={close} />
+              <MenuRow href="/supported-documents" label="Supported documents" desc="IDs we accept, starting with Canada, then the United States" onClick={close} />
               <MenuRow href={BRAND.docsUrl} label="API Docs" desc="Identity verification and screening API reference" onClick={close} />
             </>,
             'w-[22rem] origin-top-left',
@@ -204,7 +205,7 @@ export function Navbar() {
                 ],
               },
               { title: 'Industries', items: INDUSTRIES_LIST.map((i) => ({ href: `/industries/${i.slug}`, label: i.label })) },
-              { title: 'Resources', items: [{ href: '/blog', label: 'Blogs' }, { href: BRAND.docsUrl, label: 'API Docs' }] },
+              { title: 'Resources', items: [{ href: '/blog', label: 'Blogs' }, { href: '/supported-documents', label: 'Supported documents' }, { href: BRAND.docsUrl, label: 'API Docs' }] },
             ].map((group) => (
               <div key={group.title} className="border-b border-border py-4">
                 <p className="pb-2 font-mono text-xs text-tertiary">{group.title}</p>

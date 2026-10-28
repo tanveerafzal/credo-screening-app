@@ -14,6 +14,7 @@ const PRODUCT_LINKS: Array<[string, string]> = [
 
 const RESOURCE_LINKS: Array<[string, string]> = [
   ['Blogs', '/blog'],
+  ['Supported documents', '/supported-documents'],
   ['API Docs', BRAND.docsUrl],
 ];
 
