@@ -110,7 +110,7 @@ export default function FintechKycPage() {
       <Navbar />
 
       <PageHero
-        badge="Built for Fintech"
+        badge="Fintech KYC"
         title="Fast, Compliant KYC Verification for Fintech Companies"
         subtitle="Verify customer identities in under 30 seconds using ID + selfie — reduce fraud, meet compliance, and onboard users faster."
         primaryCta={{ label: 'Book a Demo', href: '/contact?source=fintech-kyc&action=demo' }}

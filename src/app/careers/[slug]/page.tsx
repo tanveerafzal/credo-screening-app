@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { JOBS, JOBS_MAP } from '@/lib/jobs';
-import Link from 'next/link';
 import type { Metadata } from 'next';
+import { Breadcrumb } from '@/components/marketing/Breadcrumb';
 import { pageMetadata } from '@/lib/seo';
 import { BRAND } from '@/lib/brand';
 import { Action, CheckGlyph, Container } from '@/components/site/Canvas';
@@ -51,11 +51,7 @@ export default async function JobPage({ params }: Props) {
       <section className="px-0 md:px-12">
         <Container>
           <div className="px-6 pb-14 pt-32 md:px-8 md:pb-20 md:pt-40">
-            <p className="mb-6 text-sm text-tertiary">
-              <Link href="/careers" className="hover:text-foreground">
-                <span aria-hidden="true">&larr; </span>All Positions
-              </Link>
-            </p>
+            <Breadcrumb items={[{ label: 'Careers', href: '/careers' }, { label: job.title }]} />
             <h1 className="max-w-3xl text-[2.15rem] leading-[1.06] sm:text-5xl">{job.title}</h1>
             <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">{job.shortDesc}</p>
             <div className="mt-8">

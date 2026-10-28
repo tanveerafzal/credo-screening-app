@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { Action, Container } from '../site/Canvas';
 import { AsciiField } from '../site/AsciiField';
+import { Breadcrumb } from './Breadcrumb';
 
 interface PageHeroProps {
   badge: string;
@@ -33,11 +33,7 @@ export function PageHero({
       <Container className="relative">
         <div className={aside ? 'grid grid-cols-[minmax(0,1fr)] items-center gap-12 px-6 pb-16 pt-28 md:px-8 md:pb-24 md:pt-40 lg:grid-cols-12' : 'px-6 pb-16 pt-28 md:px-8 md:pb-24 md:pt-44'}>
           <div className={aside ? 'lg:col-span-6' : 'max-w-2xl'}>
-            <p className="mb-6 text-sm text-tertiary">
-              <Link href="/" className="hover:text-foreground">Credo</Link>
-              <span className="mx-2 text-border-hover">/</span>
-              <span className="text-muted">{badge}</span>
-            </p>
+            <Breadcrumb items={[{ label: badge }]} />
             <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">{title}</h1>
             <div className="mt-6 max-w-xl space-y-4 text-[1.0625rem] leading-[1.7] text-muted">
               {typeof subtitle === 'string' ? <p>{subtitle}</p> : subtitle}

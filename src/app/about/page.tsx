@@ -1,7 +1,7 @@
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import Link from 'next/link';
 import { BRAND } from '@/lib/brand';
+import { Breadcrumb } from '@/components/marketing/Breadcrumb';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
 import { ArrowGlyph, Container, Index, Section, TextLink } from '@/components/site/Canvas';
@@ -37,11 +37,7 @@ export default function AboutPage() {
           </div>
           <Container className="relative">
             <div className="max-w-2xl px-6 pb-16 pt-32 md:px-8 md:pb-24 md:pt-44">
-              <p className="mb-6 text-sm text-tertiary">
-                <Link href="/" className="hover:text-foreground">Credo</Link>
-                <span className="mx-2 text-border-hover">/</span>
-                <span className="text-muted">About</span>
-              </p>
+              <Breadcrumb items={[{ label: 'About' }]} />
               <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">About {BRAND.name}</h1>
               <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">
                 We help businesses stay compliant by screening individuals and organizations against

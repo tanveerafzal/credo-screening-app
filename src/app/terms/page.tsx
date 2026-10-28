@@ -5,6 +5,7 @@ import { Container, Section } from '@/components/site/Canvas';
 import { BRAND, legalOperatorLine } from '@/lib/brand';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
+import { Breadcrumb } from '@/components/marketing/Breadcrumb';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Terms of Service',
@@ -21,11 +22,7 @@ export default function TermsPage() {
       <section className="px-0 md:px-12">
         <Container>
           <div className="px-6 pb-14 pt-32 md:px-8 md:pb-20 md:pt-40">
-            <p className="mb-6 text-sm text-tertiary">
-              <Link href="/" className="hover:text-foreground">Credo</Link>
-              <span className="mx-2 text-border-hover">/</span>
-              <span className="text-muted">Legal</span>
-            </p>
+            <Breadcrumb items={[{ label: 'Terms' }]} />
             <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">Terms of Service</h1>
             <p className="mt-6 font-mono text-xs text-tertiary">Last updated: October 2026</p>
           </div>

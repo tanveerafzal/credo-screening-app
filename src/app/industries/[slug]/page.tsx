@@ -40,7 +40,7 @@ export default async function IndustryPage({ params }: Props) {
       <Navbar />
 
       <PageHero
-        badge={industry.hero.badge}
+        badge={industry.label.replaceAll(' / ', ' · ')}
         title={industry.hero.title}
         subtitle={industry.hero.subtitle}
       />

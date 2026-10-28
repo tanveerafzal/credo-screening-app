@@ -42,7 +42,7 @@ export default async function SolutionPage({ params }: Props) {
       <Navbar />
 
       <PageHero
-        badge={solution.hero.badge}
+        badge={solution.label}
         title={solution.hero.title}
         subtitle={solution.hero.subtitle}
       />

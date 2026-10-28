@@ -8,6 +8,7 @@ import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
 import { ArrowGlyph, Container, Index, Section, SectionHeader } from '@/components/site/Canvas';
 import { AsciiField } from '@/components/site/AsciiField';
+import { Breadcrumb } from '@/components/marketing/Breadcrumb';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Careers',
@@ -36,11 +37,7 @@ export default function CareersPage() {
         </div>
         <Container className="relative">
           <div className="max-w-2xl px-6 pb-16 pt-32 md:px-8 md:pb-24 md:pt-44">
-            <p className="mb-6 text-sm text-tertiary">
-              <Link href="/" className="hover:text-foreground">Credo</Link>
-              <span className="mx-2 text-border-hover">/</span>
-              <span className="text-muted">We&apos;re Hiring</span>
-            </p>
+            <Breadcrumb items={[{ label: 'Careers' }]} />
             <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">
               Help build the future of<br />
               compliance screening

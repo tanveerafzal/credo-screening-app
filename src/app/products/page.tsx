@@ -2,8 +2,8 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { CTABanner } from '@/components/marketing/CTABanner';
 import { FAQ } from '@/components/marketing/FAQ';
-import Link from 'next/link';
 import type { Metadata } from 'next';
+import { Breadcrumb } from '@/components/marketing/Breadcrumb';
 import { pageMetadata } from '@/lib/seo';
 import {
   Action,
@@ -148,11 +148,7 @@ export default function ProductsPage() {
         </div>
         <Container className="relative">
           <div className="max-w-2xl px-6 pb-16 pt-32 md:px-8 md:pb-24 md:pt-44">
-            <p className="mb-6 text-sm text-tertiary">
-              <Link href="/" className="hover:text-foreground">Credo</Link>
-              <span className="mx-2 text-border-hover">/</span>
-              <span className="text-muted">Products</span>
-            </p>
+            <Breadcrumb items={[{ label: 'Products' }]} />
             <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">
               Simple Pricing.
               <br />

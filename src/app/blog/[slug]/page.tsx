@@ -10,6 +10,7 @@ import { BRAND } from '@/lib/brand';
 import { pageMetadata } from '@/lib/seo';
 import { ArrowGlyph, Container } from '@/components/site/Canvas';
 import { AsciiField } from '@/components/site/AsciiField';
+import { Breadcrumb } from '@/components/marketing/Breadcrumb';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -75,13 +76,13 @@ export default async function BlogArticlePage({ params }: Props) {
             </div>
             <Container className="relative">
               <div className="max-w-2xl px-6 pb-12 pt-32 md:px-8 md:pb-16 md:pt-44">
-                <p className="mb-6 text-sm text-tertiary">
-                  <Link href="/" className="hover:text-foreground">Credo</Link>
-                  <span className="mx-2 text-border-hover">/</span>
-                  <Link href="/blog" className="hover:text-foreground">Blogs</Link>
-                  <span className="mx-2 text-border-hover">/</span>
-                  <span className="text-muted">{post.category}</span>
-                </p>
+                <Breadcrumb
+                  items={[
+                    { label: 'Resources' },
+                    { label: 'Blogs', href: '/blog' },
+                    { label: post.title },
+                  ]}
+                />
                 <h1 className="text-[2.05rem] leading-[1.12] sm:text-[2.75rem]">{post.title}</h1>
                 <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">{post.subtitle}</p>
                 <p className="mt-6 font-mono text-xs text-tertiary">

@@ -9,7 +9,6 @@ export interface IndustryConfig {
   shortDesc: string;
   icon: typeof Landmark;
   hero: {
-    badge: string;
     title: string;
     subtitle: string;
   };
@@ -24,7 +23,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'Banks, credit unions, wealth managers',
     icon: Landmark,
     hero: {
-      badge: 'Regulated Finance',
       title: 'AML Screening for Financial Institutions',
       subtitle: 'From community banks to global investment firms — our screening solutions meet the strictest regulatory requirements.',
     },
@@ -41,7 +39,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'Payments, lending, neobanks',
     icon: Banknote,
     hero: {
-      badge: 'Fast-Moving Fintech',
       title: 'AML Screening for FinTechs',
       subtitle: 'Developer-friendly API that fits your stack. Screen customers at onboarding and transaction time without slowing down your growth.',
     },
@@ -58,7 +55,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'Carriers, MGAs, brokers',
     icon: Shield,
     hero: {
-      badge: 'Insurance Compliance',
       title: 'AML Screening for Insurance',
       subtitle: 'Mitigate regulatory risk across life, P&C, and reinsurance. Screen policyholders, beneficiaries, and intermediaries in seconds.',
     },
@@ -75,7 +71,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'Digital insurance platforms',
     icon: Heart,
     hero: {
-      badge: 'Digital-First Insurance',
       title: 'AML Screening for InsurTechs',
       subtitle: 'API-first screening for innovative insurance platforms. Embed compliance into your digital customer journey.',
     },
@@ -92,7 +87,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'Exchanges, wallets, DeFi',
     icon: Coins,
     hero: {
-      badge: 'Crypto Compliance',
       title: 'AML Screening for Crypto',
       subtitle: 'OFAC-compliant screening for exchanges, wallets, and DeFi platforms. Screen users, counterparties, and wallet addresses.',
     },
@@ -109,7 +103,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'B2B software platforms',
     icon: Laptop,
     hero: {
-      badge: 'SaaS Compliance',
       title: 'AML Screening for SaaS',
       subtitle: 'Screen your B2B customers and their end-users. Prevent sanctioned entities from using your platform.',
     },
@@ -126,7 +119,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'E-commerce & marketplaces',
     icon: ShoppingCart,
     hero: {
-      badge: 'Retail & E-commerce',
       title: 'AML Screening for Retail',
       subtitle: 'Screen high-value customers, marketplace sellers, and international buyers for sanctions compliance.',
     },
@@ -143,7 +135,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'Supply chain & vendor screening',
     icon: Factory,
     hero: {
-      badge: 'Supply Chain',
       title: 'Supply Chain Screening for Manufacturers',
       subtitle: 'Screen suppliers, distributors, and end-customers to comply with export controls and economic sanctions.',
     },
@@ -160,7 +151,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'Online gambling & sportsbooks',
     icon: Gamepad2,
     hero: {
-      badge: 'iGaming Compliance',
       title: 'AML Screening for Gaming & Gambling',
       subtitle: 'Tightening regulations demand robust KYC. Screen players at signup and high-value transactions.',
     },
@@ -177,7 +167,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'Law, accounting, consulting',
     icon: Briefcase,
     hero: {
-      badge: 'Professional Services',
       title: 'Client Screening for Professional Services',
       subtitle: 'Law firms, accounting firms, and consultancies — screen clients to meet KYC/AML obligations.',
     },
@@ -194,7 +183,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'Brokers, developers, agents',
     icon: Home,
     hero: {
-      badge: 'Real Estate Compliance',
       title: 'AML Screening for Real Estate',
       subtitle: 'High-value transactions demand rigorous buyer screening. Comply with real estate AML regulations globally.',
     },
@@ -211,7 +199,6 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     shortDesc: 'Charities & foundations',
     icon: HandHeart,
     hero: {
-      badge: 'NGO Compliance',
       title: 'Screening for NGOs and Non-Profits',
       subtitle: 'Protect your mission from being misused for money laundering or terrorist financing. Screen donors, grantees, and partners.',
     },

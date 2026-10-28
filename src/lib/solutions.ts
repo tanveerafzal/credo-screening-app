@@ -7,7 +7,6 @@ export interface SolutionConfig {
   shortDesc: string;
   icon: typeof Code2;
   hero: {
-    badge: string;
     title: string;
     subtitle: string;
   };
@@ -23,7 +22,6 @@ export const SOLUTIONS: Record<string, SolutionConfig> = {
     shortDesc: 'RESTful API for automated screening',
     icon: Code2,
     hero: {
-      badge: 'For Developers',
       title: 'Screening API for Automated Compliance',
       subtitle: 'A RESTful API that connects to 1.2M+ sanctioned entities, PEPs, and criminals. Integrate in minutes, screen in under 3 seconds.',
     },
@@ -60,7 +58,6 @@ export const SOLUTIONS: Record<string, SolutionConfig> = {
     shortDesc: 'High-volume screening with webhooks',
     icon: Layers,
     hero: {
-      badge: 'For Enterprise',
       title: 'Batch Screening with Webhooks',
       subtitle: 'Screen thousands of entities in parallel. Results delivered via webhook callbacks when complete.',
     },
@@ -88,7 +85,6 @@ export const SOLUTIONS: Record<string, SolutionConfig> = {
     shortDesc: 'Web portal for compliance teams',
     icon: Building2,
     hero: {
-      badge: 'No-Code',
       title: 'Manual Screening Portal',
       subtitle: 'A web portal for compliance teams — screen partners one-by-one or upload a spreadsheet. No integration required.',
     },
@@ -115,7 +111,6 @@ export const SOLUTIONS: Record<string, SolutionConfig> = {
     shortDesc: 'Stay compliant 24/7',
     icon: Activity,
     hero: {
-      badge: 'Always-On Compliance',
       title: 'Continuous Monitoring',
       subtitle: 'Automatically re-screen your entire customer base every time watchlists are updated. Real-time alerts when status changes.',
     },
@@ -142,7 +137,6 @@ export const SOLUTIONS: Record<string, SolutionConfig> = {
     shortDesc: 'Verify real people in seconds',
     icon: ScanFace,
     hero: {
-      badge: 'Identity Verification',
       title: 'The Fastest Way to Verify Real People',
       subtitle: 'ID scan. Selfie. Done. Enterprise-grade identity verification your users complete in under 30 seconds — no app downloads, no manual review.',
     },

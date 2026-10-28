@@ -5,8 +5,8 @@ import { FAQ } from '@/components/marketing/FAQ';
 import { CTABanner } from '@/components/marketing/CTABanner';
 import { StatsBar } from '@/components/marketing/StatsBar';
 import { FeatureCells } from '@/components/marketing/FeatureGrid';
-import Link from 'next/link';
 import { Action, CheckGlyph, Container, Index, Section, SectionHeader } from '@/components/site/Canvas';
+import { Breadcrumb } from '@/components/marketing/Breadcrumb';
 import { GuillocheArt } from '@/components/site/GuillocheArt';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
@@ -130,11 +130,7 @@ export default function TrustedSignaturesPage() {
         <Container>
           <div className="relative z-10 px-6 pb-4 pt-32 md:px-8 md:pt-44 lg:pb-24">
             <div className="max-w-2xl">
-              <p className="mb-6 text-sm text-tertiary">
-                <Link href="/" className="hover:text-foreground">Credo</Link>
-                <span className="mx-2 text-border-hover">/</span>
-                <span className="text-muted">Trusted Signatures</span>
-              </p>
+              <Breadcrumb items={[{ label: 'Trusted Signatures' }]} />
               <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">
                 Verified People.
                 <br />

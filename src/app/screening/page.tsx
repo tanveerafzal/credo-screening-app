@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { Navbar } from '@/components/Navbar';
+import { Breadcrumb } from '@/components/marketing/Breadcrumb';
 import { Footer } from '@/components/Footer';
 import { AlertTriangle, Loader2 } from 'lucide-react';
 import { Action, CheckGlyph, Container, Tag, cx } from '@/components/site/Canvas';
@@ -224,11 +224,7 @@ export default function ScreeningPage() {
           <Container className="grid flex-1 content-start gap-12 px-6 pb-20 pt-32 md:px-8 md:pb-28 md:pt-40 lg:grid-cols-12">
             {/* Header */}
             <div className="lg:col-span-5">
-              <p className="mb-6 text-sm text-tertiary">
-                <Link href="/" className="hover:text-foreground">Credo</Link>
-                <span className="mx-2 text-border-hover">/</span>
-                <span className="text-muted">Screening</span>
-              </p>
+              <Breadcrumb items={[{ label: 'Screening' }]} />
               <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">Screen Against 1.2M+ Entities</h1>
               <p className="mt-6 max-w-md text-[1.0625rem] leading-[1.7] text-muted">
                 Check any name against OFAC, global sanctions, PEP databases, and 80+ watchlists.

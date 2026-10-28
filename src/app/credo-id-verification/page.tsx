@@ -120,7 +120,7 @@ export default function IDVerificationPage() {
       <Navbar />
 
       <PageHero
-        badge="Identity Verification"
+        badge="ID Verification"
         title="The Fastest Way to Verify Real People"
         subtitle={
           <p>

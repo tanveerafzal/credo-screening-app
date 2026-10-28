@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
 import { ArrowGlyph, Container, Section } from '@/components/site/Canvas';
 import { AsciiField } from '@/components/site/AsciiField';
+import { Breadcrumb } from '@/components/marketing/Breadcrumb';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Blog',
@@ -26,13 +27,7 @@ export default function BlogIndexPage() {
           </div>
           <Container className="relative">
             <div className="max-w-2xl px-6 pb-16 pt-32 md:px-8 md:pb-24 md:pt-44">
-              <p className="mb-6 text-sm text-tertiary">
-                <Link href="/" className="hover:text-foreground">Credo</Link>
-                <span className="mx-2 text-border-hover">/</span>
-                <span className="text-muted">Resources</span>
-                <span className="mx-2 text-border-hover">/</span>
-                <span className="text-muted">Blogs</span>
-              </p>
+              <Breadcrumb items={[{ label: 'Resources' }, { label: 'Blogs' }]} />
               <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">Blogs</h1>
               <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">
                 Notes on identity verification, digital onboarding, and how to verify more legitimate people without weakening security.

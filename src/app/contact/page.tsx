@@ -5,8 +5,8 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
+import { Breadcrumb } from '@/components/marketing/Breadcrumb';
 import { ArrowGlyph, CheckGlyph, Container, TextLink, cx } from '@/components/site/Canvas';
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -171,11 +171,7 @@ export default function ContactPage() {
         <section className="px-0 md:px-12">
           <Container>
             <div className="px-6 pb-14 pt-32 md:px-8 md:pb-20 md:pt-40">
-              <p className="mb-6 text-sm text-tertiary">
-                <Link href="/" className="hover:text-foreground">Credo</Link>
-                <span className="mx-2 text-border-hover">/</span>
-                <span className="text-muted">Contact</span>
-              </p>
+              <Breadcrumb items={[{ label: 'Contact' }]} />
               <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">Contact Us</h1>
               <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">
                 Have questions? Need a custom plan? We&apos;d love to hear from you.

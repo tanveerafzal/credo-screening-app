@@ -124,7 +124,7 @@ export default function StaffingIdentityCheckPage() {
       <Navbar />
 
       <PageHero
-        badge="Built for Staffing & Recruitment"
+        badge="Staffing"
         title="Verify Candidate Identity Before You Hire"
         subtitle="Prevent fake applicants and reduce hiring risk with fast ID verification and optional watchlist screening."
         primaryCta={{ label: 'Book a Demo', href: '/contact?source=staffing&action=demo' }}
