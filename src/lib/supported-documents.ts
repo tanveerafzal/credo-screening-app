@@ -24,13 +24,13 @@ export const SUPPORTED_COUNTRIES: SupportedCountry[] = [
       {
         name: "Driver's licence",
         detail:
-          'Alberta, British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Ontario, Prince Edward Island, Quebec, Saskatchewan, Northwest Territories, Nunavut, and Yukon.',
-        capture: 'Front',
+          'Alberta, British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Ontario, Prince Edward Island, Quebec, Saskatchewan, Northwest Territories, Nunavut, and Yukon. The barcode is on the back.',
+        capture: 'Front and back',
       },
       {
         name: 'Photo card',
-        detail: 'Provincial photo identification cards, including the Ontario Photo Card.',
-        capture: 'Front',
+        detail: 'Provincial photo identification cards, including the Ontario Photo Card. The barcode is on the back.',
+        capture: 'Front and back',
       },
       {
         name: 'Health card',
@@ -61,8 +61,8 @@ export const SUPPORTED_COUNTRIES: SupportedCountry[] = [
     documents: [
       {
         name: "Driver's licence",
-        detail: 'State driver licences.',
-        capture: 'Front',
+        detail: 'State driver licences. The barcode is on the back.',
+        capture: 'Front and back',
       },
       {
         name: 'State ID',
