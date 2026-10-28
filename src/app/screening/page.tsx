@@ -227,7 +227,7 @@ export default function ScreeningPage() {
               <p className="mb-6 text-sm text-tertiary">
                 <Link href="/" className="hover:text-foreground">Credo</Link>
                 <span className="mx-2 text-border-hover">/</span>
-                <span className="text-muted">Free Screening Tool</span>
+                <span className="text-muted">Screening</span>
               </p>
               <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">Screen Against 1.2M+ Entities</h1>
               <p className="mt-6 max-w-md text-[1.0625rem] leading-[1.7] text-muted">
