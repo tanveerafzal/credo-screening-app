@@ -16,13 +16,13 @@ import { CountUp, Reveal } from '@/components/site/motion';
 
 export const metadata: Metadata = {
   ...pageMetadata({
-    title: 'AML & Sanctions Screening Platform',
+    title: 'ID Verification & Compliance Screening',
     description: BRAND.description,
     path: '/',
-    keywords: ['AML screening', 'sanctions screening', 'OFAC screening', 'PEP screening', 'watchlist screening'],
+    keywords: ['ID verification', 'identity verification', 'AML screening', 'sanctions screening', 'OFAC screening', 'PEP screening', 'watchlist screening'],
   }),
   title: {
-    absolute: `${BRAND.name} — AML & Sanctions Screening Platform`,
+    absolute: `${BRAND.name} — ID Verification & Compliance Screening`,
   },
 };
 
@@ -103,15 +103,18 @@ export default function Home() {
           <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-14 px-6 pb-20 pt-28 md:px-8 md:pb-28 md:pt-40 lg:grid-cols-12">
             <div className="lg:col-span-6">
               <h1 className="text-[2.3rem] leading-[1.04] sm:text-[3.6rem] lg:text-[4rem]">
-                Compliance screening
+                ID verification and
+                <br />
+                compliance screening
                 <br />
                 you can trust
               </h1>
               <p className="mt-7 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">
-                Screen against <strong className="font-medium text-foreground-highlight">1.2 million+ entities</strong> from OFAC, global sanctions, PEP databases, and 80+ watchlists. Verify identities with ID scan + selfie in under 30 seconds.
+                Verify a government ID with a selfie in under 30 seconds, and screen against <strong className="font-medium text-foreground-highlight">1.2 million+ entities</strong> from OFAC, global sanctions, PEP databases, and 80+ watchlists.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Action href="/screening" arrow>Try Free Screening</Action>
+                <Action href="/credo-id-verification" arrow>Verify an ID</Action>
+                <Action href="/screening" variant="secondary">Try Free Screening</Action>
                 <Action href="#sources" variant="secondary">View Data Sources</Action>
               </div>
               <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-tertiary">
@@ -140,7 +143,7 @@ export default function Home() {
       <Section innerClassName="pb-0 md:pb-0">
         <SectionHeader
           title={`Why ${BRAND.name}?`}
-          body={<p>Built for compliance teams, fintechs, and any business that needs reliable screening.</p>}
+          body={<p>Built for teams that need to confirm who someone is, and screen them for compliance.</p>}
         />
         <FeatureCells
           features={FEATURES}
@@ -315,10 +318,11 @@ export default function Home() {
         </div>
         <Container className="relative">
           <div className="max-w-2xl px-6 py-24 md:px-8 md:py-32">
-            <h2 className="text-[1.75rem] leading-tight sm:text-[2.5rem]">Ready to strengthen your compliance?</h2>
+            <h2 className="text-[1.75rem] leading-tight sm:text-[2.5rem]">Ready to verify identity and screen for compliance?</h2>
             <p className="mt-5 max-w-xl text-base leading-[1.75] text-muted">{FREE_TRIAL.cta}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Action href="/screening" arrow>Start Screening</Action>
+              <Action href="/credo-id-verification" arrow>Verify an ID</Action>
+              <Action href="/screening" variant="secondary">Start Screening</Action>
               <Action href="/contact" variant="secondary">Contact Sales</Action>
             </div>
           </div>

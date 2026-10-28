@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(BRAND.website),
   title: {
-    default: `${BRAND.name} — AML & Sanctions Screening Platform`,
+    default: `${BRAND.name} — ID Verification & Compliance Screening`,
     template: `%s | ${BRAND.name}`,
   },
   description: BRAND.description,
@@ -32,6 +32,8 @@ export const metadata: Metadata = {
     "background check",
     "watchlist screening",
     "KYC",
+    "ID verification",
+    "identity verification",
     "TrustCredo",
   ],
   openGraph: {

@@ -46,7 +46,7 @@ export function Footer() {
           <div className="md:col-span-6">
             <Logo size={108} tone="white" />
             <p className="mt-6 max-w-sm text-sm leading-[1.75] text-white/60">
-              {BRAND.tagline} Screen against 1.2M+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists worldwide.
+              {BRAND.description}
             </p>
           </div>
           <nav aria-label="Footer" className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-6 md:justify-items-end">

@@ -5,9 +5,9 @@ export const BRAND = {
   /** Public marketing / SEO brand */
   name: 'Credo Screening',
   shortName: 'Credo Screening',
-  tagline: 'Your trusted AML and sanctions screening partner.',
+  tagline: 'ID verification and compliance screening you can trust.',
   description:
-    'Screen individuals and businesses against 1.2M+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists.',
+    'Verify a government ID with a selfie, and screen individuals and businesses against 1.2M+ entities from OFAC, global sanctions, PEP databases, and 80+ watchlists.',
   website: 'https://www.credoscreening.com',
   supportEmail: 'support@credoscreening.com',
   salesEmail: 'sales@credoscreening.com',
