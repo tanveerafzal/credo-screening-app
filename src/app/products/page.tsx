@@ -127,7 +127,6 @@ const COMPARISON: Array<{ feature: string; idv: string | boolean; screen: string
 const FAQS = [
   { q: 'Is there a minimum monthly usage?', a: PRICING_FAQ.noMinimum },
   { q: 'How does the bundle pricing work?', a: PRICING_FAQ.bundle },
-  { q: 'Is there a free tier?', a: PRICING_FAQ.freeTier },
   { q: 'How are enterprise deployments priced?', a: PRICING_FAQ.enterprise },
   { q: 'How do I get started?', a: 'Talk with us about the workflow, volume, and security review. A self-serve account is available when your team wants to try the API.' },
   { q: 'Can I use all products through the API?', a: 'Yes. ID Verification, Background Screening, and Trusted Signatures are available via our REST API. Run them individually or combine them for a complete onboarding flow.' },

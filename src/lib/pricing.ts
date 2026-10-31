@@ -57,7 +57,6 @@ export const ENTERPRISE_NOTE =
 
 /** Shared FAQ answers — import in product/solution pages */
 export const PRICING_FAQ = {
-  freeTier: `${FREE_TRIAL.description} After that, pay per use.`,
   noMinimum:
     'Self-serve usage has no monthly minimum. 1 credit = 1 ID verification or Trusted Signatures envelope, or 10 background screenings.',
   bundle:
