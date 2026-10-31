@@ -2,7 +2,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import { BRAND } from '@/lib/brand';
-import { BUNDLE_PRICES, ENTERPRISE_NOTE, FREE_CREDITS, PRODUCT_PRICES, formatUsd } from '@/lib/pricing';
+import { BUNDLE_PRICES, ENTERPRISE_NOTE, PRODUCT_PRICES, formatUsd } from '@/lib/pricing';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
 import { Action, ArrowGlyph, CheckGlyph, Container, Index, Section, SectionHeader, TextLink } from '@/components/site/Canvas';
@@ -75,7 +75,6 @@ const PLANS = [
       `Screening ${formatUsd(PRODUCT_PRICES.screening.amount)} per check`,
       `Signatures ${formatUsd(PRODUCT_PRICES.trustedSignatures.amount)} per envelope`,
       'REST API, webhooks, and dashboard',
-      `${FREE_CREDITS} credits to evaluate a workflow`,
     ],
     cta: 'Create an account',
     href: '/register',
@@ -189,7 +188,7 @@ export default function Home() {
               { value: '<30s', label: 'Verification Time' },
               { value: '200+', label: 'Countries' },
               { value: '1.2M+', label: 'Watchlist Entities' },
-              { value: String(FREE_CREDITS), label: 'Free Credits' },
+              { value: '80+', label: 'Watchlist Sources' },
             ].map((s) => (
               <div
                 key={s.label}

@@ -43,7 +43,7 @@ export const FREE_TRIAL = {
 } as const;
 
 export function formatUsd(amount: number): string {
-  return `$${amount.toFixed(2)}`;
+  return `$${amount.toFixed(2)} USD`;
 }
 
 export const STARTING_FROM = 'Starting from';

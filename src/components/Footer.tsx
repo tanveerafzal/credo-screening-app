@@ -7,7 +7,7 @@ const PRODUCT_LINKS: Array<[string, string]> = [
   ['Products', '/products'],
   ['Digital Onboarding', '/credo-onboarding'],
   ['ID Verification', '/credo-id-verification'],
-  ['Free Screening', '/screening'],
+  ['Screening', '/screening'],
   ['Trusted Signatures', '/credo-trusted-signatures'],
   ['Pricing', '/#pricing'],
 ];

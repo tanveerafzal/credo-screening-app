@@ -116,7 +116,7 @@ const FAQS = [
   },
   {
     q: 'How is Trusted Signatures priced?',
-    a: 'Trusted Signatures is $1.99 per completed envelope, with identity verification included. Enterprise volume is scoped with your team.',
+    a: 'Trusted Signatures is $1.99 USD per completed envelope, with identity verification included. Enterprise volume is scoped with your team.',
   },
 ];
 
@@ -272,8 +272,8 @@ export default function TrustedSignaturesPage() {
           <div className="cells-clip border-t border-border lg:col-span-5 lg:border-t-0">
             <dl className="cells h-full grid-cols-2">
               {[
-                { label: 'ID Verification', value: '$0.99 per check', highlight: false },
-                { label: 'Trusted Signatures', value: '$1.99 / envelope', highlight: true },
+                { label: 'ID Verification', value: '$0.99 USD per check', highlight: false },
+                { label: 'Trusted Signatures', value: '$1.99 USD / envelope', highlight: true },
               ].map((p) => (
                 <div
                   key={p.label}

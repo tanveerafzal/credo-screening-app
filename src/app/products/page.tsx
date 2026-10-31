@@ -104,7 +104,7 @@ const WHY = [
   },
   {
     title: 'A report your team can file',
-    desc: 'Each check returns extracted ID data, a face match, liveness, and a timestamped record.',
+    desc: 'Each ID verification returns extracted ID data, a face match, liveness, and a timestamped record.',
   },
   {
     title: 'One API',
