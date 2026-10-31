@@ -167,8 +167,8 @@ const FAQS = [
   { q: 'How long does onboarding take?', a: 'Most users complete ID verification in under 30 seconds. Combined with watchlist screening, the full compliance flow typically finishes in under a minute.' },
   { q: 'Can I combine ID verification and AML screening?', a: 'Yes. Run identity verification and sanctions/PEP screening in a single API workflow. Verify who someone is and whether they appear on watchlists at the same time.' },
   { q: 'Do users need to download an app?', a: 'No. Onboarding works in any modern web browser on desktop or mobile. Embed it in your signup flow via our SDK or API.' },
-  { q: 'Is there a free trial?', a: `${PRICING_FAQ.freeTier} No credit card required to get started.` },
-  { q: 'How do I integrate onboarding into my product?', a: 'Sign up for a free account, get your API key, and integrate via REST API or embed our verification SDK. Webhook callbacks deliver results asynchronously.' },
+  { q: 'How is onboarding priced?', a: `${PRICING_FAQ.bundle} ${PRICING_FAQ.enterprise}` },
+  { q: 'How do I integrate onboarding into my product?', a: 'Integrate via REST API or the verification SDK. Webhook callbacks deliver results. Volume and a security review are scoped with your team before a production deployment.' },
 ];
 
 function OnboardingFlow() {
@@ -209,8 +209,8 @@ export default function OnboardingPage() {
             <p className="text-foreground">No app downloads. No manual review queues. Onboard compliant customers in seconds, not days.</p>
           </>
         }
-        primaryCta={{ label: 'Start Free', href: '/register' }}
-        secondaryCta={{ label: 'Contact Sales', href: '/contact?plan=corporate' }}
+        primaryCta={{ label: 'Talk to sales', href: '/contact?plan=corporate' }}
+        secondaryCta={{ label: 'See pricing', href: '/products' }}
         aside={<OnboardingFlow />}
       />
 

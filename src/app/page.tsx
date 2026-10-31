@@ -2,10 +2,10 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import { BRAND } from '@/lib/brand';
-import { BUNDLE_PRICES, FREE_CREDITS, FREE_TRIAL, PRODUCT_PRICES, STARTING_FROM, formatUsd } from '@/lib/pricing';
+import { BUNDLE_PRICES, ENTERPRISE_NOTE, FREE_CREDITS, PRODUCT_PRICES, formatUsd } from '@/lib/pricing';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
-import { Action, ArrowGlyph, CheckGlyph, Container, Index, Section, SectionHeader, Tag, TextLink } from '@/components/site/Canvas';
+import { Action, ArrowGlyph, CheckGlyph, Container, Index, Section, SectionHeader, TextLink } from '@/components/site/Canvas';
 import { AsciiField } from '@/components/site/AsciiField';
 import { VerificationRecord } from '@/components/site/VerificationRecord';
 import { TrustSection, TrustedByRow } from '@/components/site/TrustSection';
@@ -53,40 +53,41 @@ const ONBOARDING_STEPS = [
 
 const PLANS = [
   {
-    name: 'Pay as you go',
-    price: '$0',
-    period: ' platform fee',
-    features: [
-      `${FREE_CREDITS} free credits on signup`,
-      'Per-check pricing — no commitments',
-      'REST API, webhooks & dashboard included',
-      'Buy more credits anytime in your account',
-    ],
-    cta: 'Get Started',
-    href: '/register',
-    popular: true,
-  },
-  {
     name: 'Enterprise',
     price: 'Custom',
     period: '',
-    features: ['Volume pricing & credit packs', 'Continuous monitoring', 'Dedicated support', 'Custom integrations', 'SLA guarantee'],
-    cta: 'Contact Us',
+    features: [
+      'Volume and deployment scoping',
+      'Security review and SLA',
+      'Dedicated support',
+      'Custom integrations',
+      'Continuous monitoring',
+    ],
+    cta: 'Talk to sales',
     href: '/contact?plan=corporate',
-    popular: false,
+    primary: true,
+  },
+  {
+    name: 'Usage',
+    price: formatUsd(PRODUCT_PRICES.idVerification.amount),
+    period: ' per ID check',
+    features: [
+      `Screening ${formatUsd(PRODUCT_PRICES.screening.amount)} per check`,
+      `Signatures ${formatUsd(PRODUCT_PRICES.trustedSignatures.amount)} per envelope`,
+      'REST API, webhooks, and dashboard',
+      `${FREE_CREDITS} credits to evaluate a workflow`,
+    ],
+    cta: 'Create an account',
+    href: '/register',
+    primary: false,
   },
 ];
 
 const PER_USE = [
-  { label: 'ID Verification', price: formatUsd(PRODUCT_PRICES.idVerification.amount), unit: 'per check', tag: 'Limited Time' },
-  { label: 'Background Screening', price: formatUsd(PRODUCT_PRICES.screening.amount), unit: 'per check', tag: 'Limited Time' },
-  { label: 'Trusted Signatures', price: formatUsd(PRODUCT_PRICES.trustedSignatures.amount), unit: 'per envelope', tag: 'Limited Time' },
-  {
-    label: 'ID + Screening',
-    price: formatUsd(BUNDLE_PRICES.idAndScreening.amount),
-    unit: `per check · save ${formatUsd(BUNDLE_PRICES.idAndScreening.savings)}`,
-    tag: null,
-  },
+  { label: 'ID Verification', price: formatUsd(PRODUCT_PRICES.idVerification.amount), unit: 'per check' },
+  { label: 'Background Screening', price: formatUsd(PRODUCT_PRICES.screening.amount), unit: 'per check' },
+  { label: 'Trusted Signatures', price: formatUsd(PRODUCT_PRICES.trustedSignatures.amount), unit: 'per envelope' },
+  { label: 'ID + Screening', price: formatUsd(BUNDLE_PRICES.idAndScreening.amount), unit: 'per check' },
 ];
 
 export default function Home() {
@@ -113,14 +114,10 @@ export default function Home() {
                 Verify a government ID with a selfie in under 30 seconds, and screen against <strong className="font-medium text-foreground-highlight">1.2 million+ entities</strong> from OFAC, global sanctions, PEP databases, and 80+ watchlists.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Action href="/credo-id-verification" arrow>Verify an ID</Action>
-                <Action href="/screening" variant="secondary">Try Free Screening</Action>
-                <Action href="#sources" variant="secondary">View Data Sources</Action>
+                <Action href="/contact?plan=corporate" arrow>Talk to sales</Action>
+                <Action href="/credo-id-verification" variant="secondary">See ID verification</Action>
               </div>
-              <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-tertiary">
-                <Tag tone="teal">{FREE_TRIAL.headline}</Tag>
-                <span>No credit card required. Cancel anytime.</span>
-              </div>
+              <p className="mt-6 max-w-xl text-sm text-tertiary">{ENTERPRISE_NOTE}</p>
             </div>
             <div className="lg:col-span-5 lg:col-start-8">
               <VerificationRecord animate className="mx-auto max-w-[30rem] lg:mx-0 lg:ml-auto" />
@@ -243,14 +240,14 @@ export default function Home() {
       {/* Pricing */}
       <Section id="pricing" innerClassName="pb-0 md:pb-0">
         <SectionHeader
-          title="Simple, Transparent Pricing"
+          title="Pricing"
           body={
-            <>
-              <p>
-                {STARTING_FROM} {formatUsd(PRODUCT_PRICES.screening.amount)} per check. Pay per use. No monthly minimums. Scale as you grow.
-              </p>
-              <p className="mt-4"><Tag tone="teal">{FREE_TRIAL.headline}</Tag></p>
-            </>
+            <p>
+              ID verification is {formatUsd(PRODUCT_PRICES.idVerification.amount)} per check.
+              Screening is {formatUsd(PRODUCT_PRICES.screening.amount)}.
+              Signature envelopes are {formatUsd(PRODUCT_PRICES.trustedSignatures.amount)}.
+              {' '}{ENTERPRISE_NOTE}
+            </p>
           }
         />
 
@@ -258,10 +255,7 @@ export default function Home() {
         <Reveal className="reveal-cells cells md:grid-cols-2">
           {PLANS.map((plan) => (
             <div key={plan.name} className="flex flex-col px-6 py-10 md:px-8 md:py-12">
-              <div className="flex items-center justify-between gap-4">
-                <h3 className="text-lg leading-snug tracking-[-0.015em]">{plan.name}</h3>
-                {plan.popular ? <Tag>Most Popular</Tag> : null}
-              </div>
+              <h3 className="text-lg leading-snug tracking-[-0.015em]">{plan.name}</h3>
               <p className="mt-6">
                 <span className="text-5xl font-medium tracking-[-0.05em] text-foreground-highlight">{plan.price}</span>
                 <span className="text-sm text-tertiary">{plan.period}</span>
@@ -275,7 +269,7 @@ export default function Home() {
                 ))}
               </ul>
               <div className="mt-10">
-                <Action href={plan.href} variant={plan.popular ? 'primary' : 'secondary'}>{plan.cta}</Action>
+                <Action href={plan.href} variant={plan.primary ? 'primary' : 'secondary'}>{plan.cta}</Action>
               </div>
             </div>
           ))}
@@ -285,22 +279,15 @@ export default function Home() {
         <div className="px-6 pb-4 pt-16 md:px-8">
           <h3 className="text-xl leading-tight tracking-[-0.03em]">Pay Per Use</h3>
           <p className="mt-3 max-w-2xl text-[0.9375rem] leading-[1.7] text-muted">
-            1 credit = 1 ID verification or signature — or 10 background screenings. Use credits on any product below. ID + Screening bundle {formatUsd(BUNDLE_PRICES.idAndScreening.amount)}.
+            1 credit = 1 ID verification or signature envelope, or 10 background screenings. ID and screening together are {formatUsd(BUNDLE_PRICES.idAndScreening.amount)} per check.
           </p>
         </div>
         <div className="cells-clip mt-8 border-y border-border">
         <Reveal as="ul" className="reveal-cells cells sm:grid-cols-2 lg:grid-cols-4">
           {PER_USE.map((p) => (
-            <li
-              key={p.label}
-              className={`flex flex-col px-6 py-8 md:px-8 ${p.tag ? '' : 'bg-teal-wash/60'}`}
-            >
-              <div className="flex min-h-6 items-center justify-between gap-3">
-                <span className="text-sm font-medium text-foreground">{p.label}</span>
-                {p.tag ? <span className="font-mono text-[0.6875rem] text-tertiary">{p.tag}</span> : null}
-              </div>
-              <span className="mt-6 font-mono text-[0.6875rem] uppercase tracking-wide text-tertiary">{STARTING_FROM}</span>
-              <span className="mt-2 text-[2.5rem] font-medium leading-none tracking-[-0.05em] text-foreground-highlight">{p.price}</span>
+            <li key={p.label} className="flex flex-col px-6 py-8 md:px-8">
+              <span className="text-sm font-medium text-foreground">{p.label}</span>
+              <span className="mt-6 text-[2.5rem] font-medium leading-none tracking-[-0.05em] text-foreground-highlight">{p.price}</span>
               <span className="mt-2 text-sm text-tertiary">{p.unit}</span>
             </li>
           ))}
@@ -318,12 +305,11 @@ export default function Home() {
         </div>
         <Container className="relative">
           <div className="max-w-2xl px-6 py-24 md:px-8 md:py-32">
-            <h2 className="text-[1.75rem] leading-tight sm:text-[2.5rem]">Ready to verify identity and screen for compliance?</h2>
-            <p className="mt-5 max-w-xl text-base leading-[1.75] text-muted">{FREE_TRIAL.cta}</p>
+            <h2 className="text-[1.75rem] leading-tight sm:text-[2.5rem]">Scope a deployment with your team</h2>
+            <p className="mt-5 max-w-xl text-base leading-[1.75] text-muted">{ENTERPRISE_NOTE}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Action href="/credo-id-verification" arrow>Verify an ID</Action>
-              <Action href="/screening" variant="secondary">Start Screening</Action>
-              <Action href="/contact" variant="secondary">Contact Sales</Action>
+              <Action href="/contact?plan=corporate" arrow>Talk to sales</Action>
+              <Action href="/products" variant="secondary">See pricing</Action>
             </div>
           </div>
         </Container>

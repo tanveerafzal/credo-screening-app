@@ -29,7 +29,7 @@ export const JOBS: Job[] = [
     compensation: '$65K – $110K • Equity • Commission',
     icon: Briefcase,
     shortDesc: 'Drive new business across fintech, financial services, insurance, crypto, and other regulated industries.',
-    about: 'We\'re looking for a high-energy Account Executive to drive new business across our target markets: fintech, financial services, insurance, crypto, SaaS, real estate, and professional services. You\'ll own the full sales cycle — from prospecting to close — selling a product that compliance teams genuinely need and that practically demos itself.\n\nThis isn\'t enterprise sales with 18-month cycles. Our price point ($0.99/check) and self-serve free tier mean you\'re often closing within weeks. The best reps here will combine outbound hustle with a consultative approach, helping prospects understand how Credo fits into their compliance workflow.\n\nYou\'ll be one of the first sales hires — which means you\'ll have an outsized impact on how we sell, who we sell to, and how fast we grow.',
+    about: 'We\'re looking for an Account Executive to sell Credo to compliance, records, and regulated onboarding teams across fintech, financial services, insurance, crypto, SaaS, real estate, and professional services. You\'ll own the full sales cycle — from prospecting to close.\n\nThis is enterprise sales: discovery, a live demo, a security review, and a deployment scoped with the buyer\'s team. The best reps here are consultative. They help a compliance or records lead see how Credo fits the workflow they already run.\n\nYou\'ll be one of the first sales hires — which means you\'ll have an outsized impact on how we sell, who we sell to, and how fast we grow.',
     responsibilities: [
       'Own the full sales cycle from outbound prospecting through close, focusing on mid-market and enterprise accounts',
       'Build and manage pipeline across target industries (fintech, financial services, insurance, crypto, SaaS, real estate)',
@@ -60,7 +60,7 @@ export const JOBS: Job[] = [
     ],
     whyJoin: [
       { title: 'Early-stage impact', desc: 'You\'ll be one of the first sales hires. Your work will directly shape revenue trajectory and go-to-market strategy.' },
-      { title: 'Product that sells itself', desc: '$0.99/check, free trial, instant results. Shorter sales cycles and higher conversion.' },
+      { title: 'A product a buyer can evaluate', desc: 'Live demo, a sample report, and an API the buyer\'s team can try during a security review.' },
       { title: 'Massive market', desc: 'Every regulated business needs screening. AML/KYC compliance is mandatory, not optional.' },
       { title: 'Competitive comp', desc: 'Base + uncapped commission + equity. We want you to earn well when you perform.' },
       { title: 'Remote-first', desc: 'Work from anywhere in the US or Canada. We care about results, not office hours.' },

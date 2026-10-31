@@ -116,7 +116,7 @@ const FAQS = [
   },
   {
     q: 'How is Trusted Signatures priced?',
-    a: 'Trusted Signatures is priced at $1.99 per completed signing envelope — one price regardless of the number of signers or pages. Identity verification is included. Contact us for volume pricing.',
+    a: 'Trusted Signatures is $1.99 per completed envelope, with identity verification included. Enterprise volume is scoped with your team.',
   },
 ];
 
@@ -272,7 +272,7 @@ export default function TrustedSignaturesPage() {
           <div className="cells-clip border-t border-border lg:col-span-5 lg:border-t-0">
             <dl className="cells h-full grid-cols-2">
               {[
-                { label: 'ID Verification', value: 'From $0.99', highlight: false },
+                { label: 'ID Verification', value: '$0.99 per check', highlight: false },
                 { label: 'Trusted Signatures', value: '$1.99 / envelope', highlight: true },
               ].map((p) => (
                 <div
@@ -292,8 +292,8 @@ export default function TrustedSignaturesPage() {
       <FAQ items={FAQS} />
       <CTABanner
         title="Ready to stop trusting email addresses?"
-        subtitle="Trusted Signatures puts verified identity behind every signature. Get started at $1.99 per envelope."
-        primaryLabel="Get Started"
+        subtitle="Trusted Signatures puts a verified identity behind every signature. Enterprise volume is scoped with your team."
+        primaryLabel="Talk to sales"
         primaryHref="/contact?product=credo-trusted-signatures"
         secondaryLabel="View All Products"
         secondaryHref="/products"

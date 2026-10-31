@@ -260,8 +260,8 @@ export default function IDVerificationPage() {
             Verify who someone is <em>and</em>{' '}check if they&apos;re on a watchlist — all through one API.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Action href="/screening" arrow>Try Free Screening</Action>
-            <Action href="/contact?plan=corporate" variant="secondary">Contact Sales</Action>
+            <Action href="/contact?plan=corporate" arrow>Talk to sales</Action>
+            <Action href="/screening" variant="secondary">See screening</Action>
           </div>
         </div>
       </Section>

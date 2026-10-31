@@ -45,7 +45,7 @@ export const INDUSTRIES: Record<string, IndustryConfig> = {
     painPoints: [
       { title: 'Scale Without Limits', desc: 'From 100 to 1 million customers — our API scales with you. No platform migrations needed.' },
       { title: 'Developer Experience', desc: 'REST API, webhook callbacks, comprehensive docs. Get integrated in an afternoon.' },
-      { title: 'Cost-Effective Compliance', desc: 'Usage-based pricing — pay only for what you screen. No per-seat licenses or minimum commitments.' },
+      { title: 'Scoped with your team', desc: 'REST API and webhooks. Volume, security review, and the workflow are scoped with your compliance team.' },
     ],
     useCases: ['KYC onboarding', 'Transaction monitoring', 'Merchant screening', 'P2P payment screening', 'Lending due diligence'],
   },

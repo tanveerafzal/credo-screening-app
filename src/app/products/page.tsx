@@ -12,23 +12,20 @@ import {
   Index,
   Section,
   SectionHeader,
-  Tag,
 } from '@/components/site/Canvas';
 import { AsciiField } from '@/components/site/AsciiField';
 import {
   BUNDLE_PRICES,
-  FREE_CREDITS,
-  FREE_TRIAL,
+  ENTERPRISE_NOTE,
   PRICING_FAQ,
   PRODUCT_PRICES,
-  STARTING_FROM,
   formatUsd,
 } from '@/lib/pricing';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Products & Pricing',
   description:
-    'AML screening, ID verification, and identity-verified e-signatures. Pay per use with 10 free credits — no contracts or monthly minimums.',
+    'ID verification, sanctions screening, and identity-verified signatures for regulated teams. Published rates, with enterprise deployments scoped separately.',
   path: '/products',
   keywords: ['AML screening pricing', 'sanctions screening cost', 'KYC pricing', 'OFAC screening API'],
 });
@@ -37,8 +34,8 @@ const PRODUCTS = [
   {
     name: 'Digital Onboarding',
     tagline: 'Verify + screen in one flow',
-    price: formatUsd(PRODUCT_PRICES.idVerification.amount),
-    unit: 'per check',
+    price: 'Custom',
+    unit: 'scoped with your team',
     description: 'Complete remote onboarding: ID verification, selfie liveness, and AML/watchlist screening in a single workflow.',
     features: [
       'ID scan + selfie verification',
@@ -46,7 +43,7 @@ const PRODUCTS = [
       'OFAC, PEP & sanctions screening',
       'Trusted signatures integration',
       'SDK & REST API embedding',
-      `First month free — ${FREE_CREDITS} credits included`,
+      'Security review and a scoped deployment',
     ],
     href: '/credo-onboarding',
   },
@@ -102,21 +99,21 @@ const PRODUCTS = [
 
 const WHY = [
   {
-    title: 'No Monthly Minimums',
-    desc: 'Pay per use with credit packs. No platform fee and no required monthly volume.',
+    title: 'Scoped with your team',
+    desc: 'Volume, security review, and the workflow are agreed before a deployment goes live.',
   },
   {
-    title: 'Instant Access',
-    desc: 'Sign up, get your API key, and start running checks in minutes. No setup fees.',
+    title: 'A report your team can file',
+    desc: 'Each check returns extracted ID data, a face match, liveness, and a timestamped record.',
   },
   {
-    title: 'Scale Freely',
-    desc: 'Same low price whether you run 10 checks a month or 10,000. Enterprise volume? Let\'s talk.',
+    title: 'One API',
+    desc: 'ID verification, screening, and signatures run through the same REST API and webhooks.',
   },
 ];
 
 const COMPARISON: Array<{ feature: string; idv: string | boolean; screen: string | boolean; bundle: string | boolean }> = [
-  { feature: `${STARTING_FROM} / check`, idv: formatUsd(PRODUCT_PRICES.idVerification.amount), screen: formatUsd(PRODUCT_PRICES.screening.amount), bundle: formatUsd(BUNDLE_PRICES.idAndScreening.amount) },
+  { feature: 'Per check', idv: formatUsd(PRODUCT_PRICES.idVerification.amount), screen: formatUsd(PRODUCT_PRICES.screening.amount), bundle: formatUsd(BUNDLE_PRICES.idAndScreening.amount) },
   { feature: 'REST API access', idv: true, screen: true, bundle: true },
   { feature: 'Webhook callbacks', idv: true, screen: true, bundle: true },
   { feature: 'ID document scanning', idv: true, screen: false, bundle: true },
@@ -131,8 +128,8 @@ const FAQS = [
   { q: 'Is there a minimum monthly usage?', a: PRICING_FAQ.noMinimum },
   { q: 'How does the bundle pricing work?', a: PRICING_FAQ.bundle },
   { q: 'Is there a free tier?', a: PRICING_FAQ.freeTier },
-  { q: 'Do I need to commit to a volume?', a: 'No commitments. Pay per use. Run 1 check or 10,000 — same price per check. For high-volume needs, contact us for enterprise pricing.' },
-  { q: 'How do I get started?', a: 'Sign up for free, get your API key, and start running checks immediately. No credit card required for the free tier.' },
+  { q: 'How are enterprise deployments priced?', a: PRICING_FAQ.enterprise },
+  { q: 'How do I get started?', a: 'Talk with us about the workflow, volume, and security review. A self-serve account is available when your team wants to try the API.' },
   { q: 'Can I use all products through the API?', a: 'Yes. ID Verification, Background Screening, and Trusted Signatures are available via our REST API. Run them individually or combine them for a complete onboarding flow.' },
 ];
 
@@ -150,24 +147,25 @@ export default function ProductsPage() {
           <div className="max-w-2xl px-6 pb-16 pt-32 md:px-8 md:pb-24 md:pt-44">
             <Breadcrumb items={[{ label: 'Products' }]} />
             <h1 className="text-[2.15rem] leading-[1.06] sm:text-5xl">
-              Simple Pricing.
+              Identity verification
               <br />
-              Pay Per Use.
+              for regulated teams.
             </h1>
             <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-muted">
-              ID Verification, Background Screening, and Trusted Signatures.
-              Starting from {formatUsd(PRODUCT_PRICES.screening.amount)} per check.
-              Pay per use. No contracts. No monthly minimums.
+              ID verification is {formatUsd(PRODUCT_PRICES.idVerification.amount)} per check.
+              Screening is {formatUsd(PRODUCT_PRICES.screening.amount)}.
+              Signature envelopes are {formatUsd(PRODUCT_PRICES.trustedSignatures.amount)}.
+              {' '}{ENTERPRISE_NOTE}
             </p>
-            <div className="mt-7">
-              <Tag tone="teal">{FREE_TRIAL.headline}</Tag>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Action href="/contact?plan=corporate" arrow>Talk to sales</Action>
+              <Action href="#rates" variant="secondary">See rates</Action>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Product cells */}
-      <section className="border-t border-border px-0 md:px-12">
+      <section id="rates" className="border-t border-border px-0 md:px-12">
         <Container>
           <div className="cells-clip">
             <ul className="cells md:grid-cols-2">
@@ -179,9 +177,8 @@ export default function ProductsPage() {
                   </div>
                   <p className="mt-1 text-sm text-tertiary">{product.tagline}</p>
                   <p className="mt-7">
-                    <span className="mb-2 block font-mono text-[0.6875rem] uppercase tracking-wide text-tertiary">{STARTING_FROM}</span>
                     <span className="text-[2.5rem] font-medium leading-none tracking-[-0.05em] text-foreground-highlight">{product.price}</span>
-                    <span className="ml-1.5 text-sm text-tertiary">/ {product.unit}</span>
+                    <span className="mt-2 block text-sm text-tertiary">{product.unit}</span>
                   </p>
                   <p className="mt-6 max-w-md text-[0.9375rem] leading-[1.7] text-muted">{product.description}</p>
                   <ul className="mt-7 flex-1 space-y-2.5">
@@ -206,14 +203,13 @@ export default function ProductsPage() {
       <section className="border-t border-border bg-surface-elevated px-0 md:px-12">
         <Container className="grid lg:grid-cols-12">
           <div className="px-6 py-20 md:px-8 md:py-28 lg:col-span-6 lg:border-r lg:border-border">
-            <Tag tone="teal">Best Value</Tag>
-            <h2 className="mt-5 text-2xl leading-tight sm:text-[2rem]">Bundle & Save</h2>
+            <h2 className="text-2xl leading-tight sm:text-[2rem]">ID and screening together</h2>
             <p className="mt-5 max-w-xl text-base leading-[1.75] text-muted">
-              Run ID Verification and Background Screening together {STARTING_FROM.toLowerCase()} <strong className="font-medium text-foreground-highlight">{formatUsd(BUNDLE_PRICES.idAndScreening.amount)} per check</strong>. Save {formatUsd(BUNDLE_PRICES.idAndScreening.savings)} compared to running them separately.
+              Run ID Verification and Background Screening on the same person for <strong className="font-medium text-foreground-highlight">{formatUsd(BUNDLE_PRICES.idAndScreening.amount)} per check</strong>. {ENTERPRISE_NOTE}
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Action href="/register" arrow>Get Started Free</Action>
-              <Action href="/contact?plan=corporate" variant="secondary">Contact Sales</Action>
+              <Action href="/contact?plan=corporate" arrow>Talk to sales</Action>
+              <Action href="/credo-onboarding" variant="secondary">See onboarding</Action>
             </div>
           </div>
           <div className="cells-clip border-t border-border lg:col-span-6 lg:border-t-0">
@@ -221,7 +217,7 @@ export default function ProductsPage() {
               {[
                 { label: 'ID Verification', value: formatUsd(PRODUCT_PRICES.idVerification.amount), note: null },
                 { label: 'Screening', value: formatUsd(PRODUCT_PRICES.screening.amount), note: null },
-                { label: 'Together', value: formatUsd(BUNDLE_PRICES.idAndScreening.amount), note: `Save ${formatUsd(BUNDLE_PRICES.idAndScreening.savings)}` },
+                { label: 'Together', value: formatUsd(BUNDLE_PRICES.idAndScreening.amount), note: 'Same person, one request' },
               ].map((s) => (
                 <div
                   key={s.label}
@@ -229,7 +225,6 @@ export default function ProductsPage() {
                 >
                   <dt className={`order-2 mt-2 font-mono text-xs lg:order-1 lg:mt-0 ${s.note ? 'text-teal-ink' : 'text-tertiary'}`}>{s.label}</dt>
                   <dd className="order-1 lg:order-2 lg:text-right">
-                    <span className="mb-1 block font-mono text-[0.6875rem] uppercase tracking-wide text-tertiary">{STARTING_FROM}</span>
                     <span className="block text-4xl font-medium tracking-[-0.045em] text-foreground-highlight">{s.value}</span>
                     {s.note ? <span className="mt-1 block text-sm text-teal-ink">{s.note}</span> : null}
                   </dd>
@@ -240,11 +235,10 @@ export default function ProductsPage() {
         </Container>
       </section>
 
-      {/* Why Pay Per Use */}
       <Section innerClassName="pb-0 md:pb-0">
         <SectionHeader
-          title="Why Pay Per Use?"
-          body={<p>No monthly minimums. Buy credits when you need them — pay only when you run a check.</p>}
+          title="How a deployment works"
+          body={<p>{ENTERPRISE_NOTE} Published rates above are for self-serve usage.</p>}
         />
         <div className="cells-clip border-t border-border">
           <ul className="cells md:grid-cols-3">

@@ -114,8 +114,7 @@ export default function FintechKycPage() {
         title="Fast, Compliant KYC Verification for Fintech Companies"
         subtitle="Verify customer identities in under 30 seconds using ID + selfie — reduce fraud, meet compliance, and onboard users faster."
         primaryCta={{ label: 'Book a Demo', href: '/contact?source=fintech-kyc&action=demo' }}
-        secondaryCta={{ label: 'Start Free Trial', href: '/register' }}
-        note="No credit card required. First month free."
+        secondaryCta={{ label: 'See ID verification', href: '/credo-id-verification' }}
         aside={<VerificationRecord animate className="mx-auto max-w-[30rem] lg:mx-0 lg:ml-auto" />}
       />
 
@@ -124,7 +123,7 @@ export default function FintechKycPage() {
           { value: '<30s', label: 'Verification Time' },
           { value: '200+', label: 'Countries Supported' },
           { value: '99.9%', label: 'Matching Accuracy' },
-          { value: '$0.99', label: 'Starting from / verification' },
+          { value: 'API', label: 'REST and webhooks' },
         ]}
       />
 
@@ -255,11 +254,11 @@ export default function FintechKycPage() {
 
       <CTABanner
         title="Start Verifying Your Users Today"
-        subtitle={`Join hundreds of fintech companies using ${BRAND.name} for fast, compliant KYC verification. First month free — no credit card required.`}
+        subtitle="ID scan, selfie, and watchlist screening in one workflow. Volume and a security review are scoped with your team."
         primaryLabel="Book a Demo"
         primaryHref="/contact?source=fintech-kyc&action=demo"
-        secondaryLabel="Get Started"
-        secondaryHref="/register"
+        secondaryLabel="See pricing"
+        secondaryHref="/products"
       />
 
       <Footer />

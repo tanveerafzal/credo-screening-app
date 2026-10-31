@@ -169,7 +169,7 @@ export function Navbar() {
           <span className="hidden sm:inline-flex">
             <Action href="/login" variant="secondary" size="sm">Login</Action>
           </span>
-          <Action href="/register" size="sm">Start Free</Action>
+          <Action href="/contact?plan=corporate" size="sm">Talk to sales</Action>
           <button
             type="button"
             className="inline-flex h-9 w-9 items-center justify-center rounded-md text-foreground hover:bg-foreground/5 lg:hidden"
@@ -229,7 +229,7 @@ export function Navbar() {
               <Link href="/products" onClick={() => setMobileOpen(false)} className="py-2 text-[0.9375rem] text-foreground">Pricing</Link>
               <Link href="/login" onClick={() => setMobileOpen(false)} className="py-2 text-[0.9375rem] text-foreground">Login</Link>
             </div>
-            <Action href="/register" className="w-full">Start Free</Action>
+            <Action href="/contact?plan=corporate" className="w-full">Talk to sales</Action>
           </div>
       </div>
     </header>

@@ -128,15 +128,14 @@ export default function StaffingIdentityCheckPage() {
         title="Verify Candidate Identity Before You Hire"
         subtitle="Prevent fake applicants and reduce hiring risk with fast ID verification and optional watchlist screening."
         primaryCta={{ label: 'Book a Demo', href: '/contact?source=staffing&action=demo' }}
-        secondaryCta={{ label: 'Start Free Trial', href: '/register' }}
-        note="No credit card required. First month free."
+        secondaryCta={{ label: 'See ID verification', href: '/credo-id-verification' }}
       />
 
       <StatsBar
         stats={[
           { value: '<30s', label: 'Verification Time' },
           { value: '200+', label: 'Countries Supported' },
-          { value: '$0.99', label: 'Starting from / ID check' },
+          { value: '1 link', label: 'Applicant finishes on their phone' },
           { value: '80+', label: 'Watchlist Sources' },
         ]}
       />

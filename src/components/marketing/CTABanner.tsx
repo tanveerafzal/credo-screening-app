@@ -1,4 +1,4 @@
-import { FREE_TRIAL } from '@/lib/pricing';
+import { ENTERPRISE_NOTE } from '@/lib/pricing';
 import { Action, Container } from '../site/Canvas';
 import { AsciiField } from '../site/AsciiField';
 
@@ -12,12 +12,12 @@ interface CTABannerProps {
 }
 
 export function CTABanner({
-  title = 'Ready to start screening?',
-  subtitle = FREE_TRIAL.cta,
-  primaryLabel = 'Try Free',
-  primaryHref = '/register',
-  secondaryLabel = 'Contact Sales',
-  secondaryHref = '/contact',
+  title = 'Talk with us about a deployment',
+  subtitle = ENTERPRISE_NOTE,
+  primaryLabel = 'Contact Sales',
+  primaryHref = '/contact?plan=corporate',
+  secondaryLabel = 'See pricing',
+  secondaryHref = '/products',
 }: CTABannerProps) {
   return (
     <section className="relative overflow-hidden border-t border-border px-0 md:px-12">

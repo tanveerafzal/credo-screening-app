@@ -52,13 +52,17 @@ export function formatStartingFrom(amount: number): string {
   return `${STARTING_FROM} ${formatUsd(amount)}`;
 }
 
+export const ENTERPRISE_NOTE =
+  'Enterprise volume, security review, and private workflows are scoped with your team.';
+
 /** Shared FAQ answers — import in product/solution pages */
 export const PRICING_FAQ = {
   freeTier: `${FREE_TRIAL.description} After that, pay per use.`,
   noMinimum:
-    'No monthly minimums. Pay per use — 1 credit = 1 ID verification or Trusted Signatures envelope, or 10 background screenings. Buy credit packs when you need more.',
+    'Self-serve usage has no monthly minimum. 1 credit = 1 ID verification or Trusted Signatures envelope, or 10 background screenings.',
   bundle:
-    `When you run both ID Verification and Background Screening on the same person in a single request, you pay ${formatUsd(BUNDLE_PRICES.idAndScreening.amount)} instead of ${formatUsd(BUNDLE_PRICES.idAndScreening.separateTotal)} — saving you ${formatUsd(BUNDLE_PRICES.idAndScreening.savings)} per check.`,
+    `ID Verification and Background Screening on the same person, in one request, are ${formatUsd(BUNDLE_PRICES.idAndScreening.amount)} per check.`,
+  enterprise: ENTERPRISE_NOTE,
 } as const;
 
 export const OUTREACH_TRIAL = {

@@ -18,8 +18,8 @@ export function PageHero({
   badge,
   title,
   subtitle,
-  primaryCta = { label: 'Try Free', href: '/register' },
-  secondaryCta = { label: 'Contact Sales', href: '/contact' },
+  primaryCta = { label: 'Talk to sales', href: '/contact?plan=corporate' },
+  secondaryCta = { label: 'See pricing', href: '/products' },
   aside,
   note,
 }: PageHeroProps) {

@@ -130,8 +130,8 @@ export default async function BlogArticlePage({ params }: Props) {
         <CTABanner
           title="Verify more legitimate people digitally"
           subtitle="Government ID, selfie, and liveness checks — without relying on a credit file."
-          primaryLabel="Start Free"
-          primaryHref="/register"
+          primaryLabel="Talk to sales"
+          primaryHref="/contact?plan=corporate"
           secondaryLabel="ID Verification"
           secondaryHref="/credo-id-verification"
         />
