@@ -9,6 +9,12 @@ import { Loader2 } from 'lucide-react';
 import { Breadcrumb } from '@/components/marketing/Breadcrumb';
 import { ArrowGlyph, CheckGlyph, Container, TextLink, cx } from '@/components/site/Canvas';
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type Field = 'name' | 'email' | 'company' | 'phone' | 'message';
@@ -88,6 +94,13 @@ function ContactForm() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to send');
       setSuccess(true);
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          form: 'contact',
+          plan: plan || undefined,
+        });
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to send');
     } finally {
