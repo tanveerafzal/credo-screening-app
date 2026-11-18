@@ -13,8 +13,8 @@ export const BRAND = {
   salesEmail: 'sales@credoscreening.com',
   apiUrl: 'https://api.credoscreening.com',
 
-  /** Ontario incorporation */
-  legalEntity: '2002846 ONTARIO INC.',
+  /** Legal entity operating the public sites */
+  legalEntity: 'Ultrasoft Solutions Inc.',
   /** Registered business name (Ontario) */
   registeredName: 'Trust Credo',
 
