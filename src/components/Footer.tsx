@@ -78,7 +78,7 @@ export function Footer() {
           </nav>
         </div>
         <div className="relative border-t border-white/10 px-6 py-5 text-xs text-white/45 md:px-8">
-          <span>{copyrightLine(2026)} · All rights reserved.</span>
+          <span>{copyrightLine(2024)} · All rights reserved.</span>
         </div>
       </div>
     </footer>
